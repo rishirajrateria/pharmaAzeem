@@ -48,11 +48,9 @@ test('product page exposes Product/Drug structured data and the inquiry flow wor
     .getByRole('button', { name: /add to inquiry list/i })
     .first()
     .click()
-  await expect(page.getByRole('dialog', { name: /inquiry list/i })).toBeVisible()
-  await page
-    .getByRole('link', { name: /inquire now/i })
-    .first()
-    .click()
+  const drawer = page.getByRole('dialog', { name: /inquiry list/i })
+  await expect(drawer).toBeVisible()
+  await drawer.getByRole('link', { name: /inquire now/i }).click()
   await expect(page).toHaveURL(/\/inquiry/)
 })
 
