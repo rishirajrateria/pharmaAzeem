@@ -30,6 +30,7 @@ pnpm build && pnpm start
 | `pnpm generate:importmap` | Regenerate the admin import map after adding admin components |
 | `pnpm map:generate` | Regenerate the dotted world-map SVG |
 | `pnpm test:e2e` | Playwright smoke tests against `pnpm start` |
+| `node scripts/qa-screenshots.mjs [baseUrl] [outDir]` | Full-page desktop + mobile screenshots of every key route (visual QA; set `CHROMIUM_PATH` to reuse an installed Chromium) |
 
 ## Environment variables
 
