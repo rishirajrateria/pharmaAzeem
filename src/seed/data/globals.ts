@@ -596,9 +596,9 @@ export const globalPresencePage = {
   },
   intro: `Exporting medicines is about more than shipping boxes. Each market has its own regulator, dossier format, labelling language and distribution model. Over fifteen years we have built the registrations, partnerships and logistics to serve more than 50 countries – and we add new markets every year. Select a country below to see how we work there.`,
   stats: [
-    { value: '50', suffix: '+', label: 'Countries' },
+    { value: '58', label: 'Countries served' },
     { value: '1200', suffix: '+', label: 'Product registrations' },
-    { value: '9', label: 'Regions' },
+    { value: '8', label: 'Regions' },
     { value: '40', suffix: '+', label: 'Containers per month' },
   ],
   exportServices: [

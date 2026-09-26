@@ -88,7 +88,6 @@ export function InquiryForm({
       />
       <input type="hidden" name="source" value={source} />
       <input type="hidden" name="items" value={JSON.stringify(listPayload)} />
-      <input type="hidden" name="pageUrl" value={mounted ? window.location.href : ''} />
 
       <div className={cn('grid gap-4', !compact && 'sm:grid-cols-2')}>
         <Field label="Full name" name="name" required error={err.name} autoComplete="name" />

@@ -68,7 +68,7 @@ export function Logo({
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            'text-[17px] font-semibold tracking-tight',
+            'whitespace-nowrap text-[15px] font-semibold tracking-tight sm:text-[17px]',
             invert ? 'text-white' : 'text-ink-950',
           )}
         >
@@ -77,7 +77,7 @@ export function Logo({
         {tagline && (
           <span
             className={cn(
-              'mt-1 font-mono text-[10px] uppercase tracking-[0.18em]',
+              'mt-1 hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] sm:block',
               invert ? 'text-white/60' : 'text-ink-500',
             )}
           >

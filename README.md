@@ -65,6 +65,8 @@ See `.env.example`.
 
 Content changes are published instantly: pages are statically generated and revalidated on demand by Payload hooks.
 
+**Spam protection.** The inquiry action has a honeypot field and a per-IP throttle (5 submissions per 10 minutes, in-memory). On serverless or multi-instance hosting add a shared limiter (e.g. Upstash Ratelimit) or a CAPTCHA (Turnstile/hCaptcha) in `src/app/actions/inquiry.ts`.
+
 ## SEO & AI-search (LLM) optimisation
 
 - **Per-entity SEO** – every category, sub-category, product, country and page has title / description / OG image / keywords / canonical / no-index.

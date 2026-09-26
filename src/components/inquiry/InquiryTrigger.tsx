@@ -19,7 +19,7 @@ export function InquiryTrigger({ label }: { label: string }) {
       aria-label={`Open ${label.toLowerCase()} (${n} items)`}
     >
       <ClipboardList className="h-5 w-5" />
-      <span className="hidden xl:inline">{label}</span>
+      <span className="hidden whitespace-nowrap 2xl:inline">{label}</span>
       <span
         className={`absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-gradient px-1 text-[10px] font-bold text-white shadow transition-transform ${n ? 'scale-100' : 'scale-0'}`}
         aria-hidden="true"

@@ -29,7 +29,7 @@ export function buildKeyFacts(product: Product): KeyFact[] {
     !!product.storage && { label: 'Storage', value: product.storage, icon: 'thermometer' },
     !!product.minOrderQuantity && {
       label: 'Minimum order',
-      value: `${product.minOrderQuantity.toLocaleString('en')} units`,
+      value: `${product.minOrderQuantity.toLocaleString('en')} ${product.minOrderQuantity === 1 ? 'unit' : 'units'}`,
       icon: 'layers',
     },
     !!product.availability && {

@@ -24,9 +24,13 @@ const text = (t: string, format = 0): TextNode => ({
 })
 
 const inline = (line: string): TextNode[] => {
-  const parts = line.split(/(\*\*[^*]+\*\*)/g).filter(Boolean)
+  const parts = line.split(/(\*\*[^*]+\*\*|\*[^*\s][^*]*\*)/g).filter(Boolean)
   return parts.map((p) =>
-    p.startsWith('**') && p.endsWith('**') ? text(p.slice(2, -2), 1) : text(p),
+    p.startsWith('**') && p.endsWith('**')
+      ? text(p.slice(2, -2), 1)
+      : p.length > 2 && p.startsWith('*') && p.endsWith('*')
+        ? text(p.slice(1, -1), 2)
+        : text(p),
   )
 }
 

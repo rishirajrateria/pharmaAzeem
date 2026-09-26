@@ -33,7 +33,7 @@ export function SearchBox({
         Search products
       </label>
       <Search
-        className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400"
+        className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-ink-500"
         aria-hidden="true"
       />
       <input

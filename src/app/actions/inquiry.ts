@@ -9,6 +9,23 @@ export type InquiryFormState = { ok: boolean; message?: string; errors?: Record<
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 /**
+ * Lightweight per-IP throttle (in-memory token bucket). Adequate for single-instance
+ * hosting; for serverless / multi-instance deployments put a shared limiter
+ * (e.g. Upstash Ratelimit) or a CAPTCHA in front of this action.
+ */
+const WINDOW_MS = 10 * 60 * 1000
+const MAX_PER_WINDOW = 5
+const buckets = new Map<string, number[]>()
+const isRateLimited = (ip: string) => {
+  const now = Date.now()
+  const hits = (buckets.get(ip) || []).filter((t) => now - t < WINDOW_MS)
+  hits.push(now)
+  buckets.set(ip, hits)
+  if (buckets.size > 5000) buckets.clear()
+  return hits.length > MAX_PER_WINDOW
+}
+
+/**
  * Creates an Inquiry document from the inquiry page, product page or contact form.
  * Runs on the server only – no API keys or DB access are exposed to the browser.
  */
@@ -18,6 +35,10 @@ export async function submitInquiry(
 ): Promise<InquiryFormState> {
   // Honeypot – bots fill every field.
   if (formData.get('website')) return { ok: true, message: 'Thank you!' }
+
+  const h = await headers()
+  const ip = (h.get('x-forwarded-for') || h.get('x-real-ip') || 'unknown').split(',')[0].trim()
+  if (isRateLimited(ip)) return { ok: false, message: 'Too many inquiries from this connection. Please try again in a few minutes or email us directly.' }
 
   const name = String(formData.get('name') || '').trim()
   const email = String(formData.get('email') || '').trim()
@@ -57,7 +78,6 @@ export async function submitInquiry(
 
   try {
     const payload = await getPayloadClient()
-    const h = await headers()
     await payload.create({
       collection: 'inquiries',
       data: {

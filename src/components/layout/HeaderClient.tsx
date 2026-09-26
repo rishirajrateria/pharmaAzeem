@@ -100,6 +100,9 @@ export function HeaderClient({
                 ref={megaRef}
                 onMouseEnter={() => setMega(true)}
                 onMouseLeave={() => setMega(false)}
+                onClick={(e) => {
+                  if ((e.target as HTMLElement).closest('a')) setMega(false)
+                }}
                 onFocus={() => setMega(true)}
                 onBlur={(e) => {
                   if (!megaRef.current?.contains(e.relatedTarget as Node | null)) setMega(false)
@@ -115,7 +118,7 @@ export function HeaderClient({
                 <Link
                   href="/products"
                   className={cn(
-                    'inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
                     isActive('/products') || isActive('/categories')
                       ? 'text-brand-700'
                       : 'text-ink-700',
@@ -192,7 +195,7 @@ export function HeaderClient({
                   key={l.href}
                   href={l.href}
                   className={cn(
-                    'rounded-full px-3.5 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
                     isActive(l.href) ? 'text-brand-700' : 'text-ink-700',
                   )}
                 >

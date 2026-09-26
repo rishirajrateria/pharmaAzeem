@@ -24,7 +24,7 @@ export async function Footer() {
   const addr = settings.contact?.address
   const year = new Date().getFullYear()
   return (
-    <footer className="relative mt-24 overflow-hidden" aria-labelledby="footer-heading">
+    <footer className="relative mt-24 pt-10" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -36,7 +36,10 @@ export async function Footer() {
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
               Certified & licensed
             </span>
-            {certs.slice(0, 6).map((c) => (
+            {certs
+              .filter((c) => !c.validUntil || new Date(c.validUntil) >= new Date())
+              .slice(0, 6)
+              .map((c) => (
               <Link
                 key={c.id}
                 href="/licenses"

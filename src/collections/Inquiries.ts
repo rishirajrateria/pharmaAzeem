@@ -1,6 +1,6 @@
 import type { CollectionAfterChangeHook, CollectionConfig } from 'payload'
 
-import { anyone, isStaff } from '@/access'
+import { isStaff } from '@/access'
 
 /** Email the sales inbox when a new inquiry arrives (works with any configured email adapter). */
 const notifySales: CollectionAfterChangeHook = async ({ doc, operation, req }) => {
@@ -36,7 +36,8 @@ export const Inquiries: CollectionConfig = {
     description:
       'Quote requests submitted from the website (inquiry list, product pages and contact form).',
   },
-  access: { create: anyone, read: isStaff, update: isStaff, delete: isStaff },
+  // Public submissions go through the server action (overrideAccess); the REST API is staff-only.
+  access: { create: isStaff, read: isStaff, update: isStaff, delete: isStaff },
   defaultSort: '-createdAt',
   hooks: { afterChange: [notifySales] },
   fields: [

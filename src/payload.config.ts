@@ -47,6 +47,13 @@ import {
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+if (process.env.NODE_ENV === 'production' && !process.env.PAYLOAD_SECRET) {
+  throw new Error('PAYLOAD_SECRET must be set in production')
+}
+if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_SERVER_URL) {
+  console.warn('[config] NEXT_PUBLIC_SERVER_URL is not set – canonical URLs, sitemap and structured data will point at localhost')
+}
+
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 const dbUrl = process.env.DATABASE_URL || 'file:./data/pharma.db'
 

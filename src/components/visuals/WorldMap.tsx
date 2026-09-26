@@ -56,7 +56,7 @@ export function WorldMap({
                 )}
               />
               {showLabels && pin.featured && (
-                <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800">
+                <span className="absolute left-1/2 top-full mt-1.5 hidden -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800 md:block">
                   {pin.name}
                 </span>
               )}

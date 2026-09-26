@@ -103,7 +103,7 @@ export function HudRings({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'pointer-events-none absolute inset-0 flex items-center justify-center',
+        'pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden',
         className,
       )}
       aria-hidden="true"

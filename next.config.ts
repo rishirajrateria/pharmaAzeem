@@ -12,6 +12,11 @@ const securityHeaders = [
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+  {
+    key: 'Content-Security-Policy',
+    value: "frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; img-src 'self' data: blob: https:; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.public.blob.vercel-storage.com; upgrade-insecure-requests",
+  },
 ]
 
 const nextConfig: NextConfig = {
@@ -32,7 +37,7 @@ const nextConfig: NextConfig = {
       {
         source: '/api/media/file/:path*',
         // Long but not "immutable forever": an error response must not be pinned for a year.
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' }],
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=0, s-maxage=604800, stale-while-revalidate=86400' }],
       },
       {
         source: '/world-dots.svg',
