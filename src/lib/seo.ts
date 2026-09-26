@@ -63,7 +63,7 @@ export const buildMetadata = ({
   const finalDescription = truncate(meta?.description || description || settings?.seo?.defaultDescription || settings?.shortDescription || '', 160)
   const canonical = meta?.canonicalUrl || absUrl(path)
   const ogImageRel = mediaUrl(meta?.image, 'og') || mediaUrl(meta?.image) || mediaUrl(image, 'og') || mediaUrl(image) || mediaUrl(settings?.seo?.defaultImage, 'og')
-  const ogImage = ogImageRel ? absUrl(ogImageRel) : absUrl(`/og?title=${encodeURIComponent(rawTitle)}`)
+  const ogImage = ogImageRel ? absUrl(ogImageRel) : absUrl(`/og?title=${encodeURIComponent(rawTitle)}&subtitle=${encodeURIComponent(truncate(finalDescription, 140))}`)
   const keywords = meta?.keywords
     ? meta.keywords.split(',').map((k) => k.trim()).filter(Boolean)
     : undefined
