@@ -51,6 +51,11 @@ for (const vp of [
           '.reveal{opacity:1!important;transform:none!important;transition:none!important} *{animation-play-state:paused!important}',
       })
       .catch(() => {})
+    // Force lazy images to load so cards are not blank in the capture, then wait for them.
+    await page.evaluate(async () => {
+      document.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = 'eager' })
+      await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r })))
+    }).catch(() => {})
     // trigger reveal animations by scrolling through the page
     await page.evaluate(async () => {
       for (let y = 0; y < document.body.scrollHeight; y += 600) {
@@ -65,7 +70,18 @@ for (const vp of [
     )
     const h1s = await page.locator('h1').count()
     const file = `${vp.name}${r === '/' ? '-home' : r.replace(/[^a-z0-9]+/gi, '-')}.png`
-    await page.screenshot({ path: path.join(out, file), fullPage: true })
+    const height = await page.evaluate(() => document.documentElement.scrollHeight)
+    if (height * (vp.deviceScaleFactor || 1) <= 16000) {
+      await page.screenshot({ path: path.join(out, file), fullPage: true })
+    } else {
+      // Very tall pages exceed Chromium's capture limits → capture viewport tiles instead.
+      const tiles = Math.ceil(height / vp.height)
+      for (let t = 0; t < tiles; t++) {
+        await page.evaluate((y) => window.scrollTo(0, y), t * vp.height)
+        await page.waitForTimeout(150)
+        await page.screenshot({ path: path.join(out, file.replace(/\.png$/, `-tile${String(t + 1).padStart(2, '0')}.png`)) })
+      }
+    }
     results.push({
       vp: vp.name,
       route: r,
