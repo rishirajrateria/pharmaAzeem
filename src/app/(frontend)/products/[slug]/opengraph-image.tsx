@@ -1,6 +1,9 @@
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+
 import { ImageResponse } from 'next/og'
 
-import { dosageFormLabel, rxLabel } from '@/components/product/labels'
+import { AVAILABILITY_LABEL, dosageFormLabel, rxLabel } from '@/components/product/labels'
 import { getProductBySlug, getSiteSettings } from '@/lib/data'
 import { siteName } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
@@ -8,6 +11,8 @@ import { SITE_URL } from '@/lib/utils'
 /**
  * Branded 1200×630 social card for every product. Rendered with Satori (next/og),
  * so styles are inline by necessity – no CMS image fetch, cached with the page.
+ * Geist Regular/Medium/Bold are read from the installed `geist` package (same approach as
+ * the shared /og route); if that fails Satori's built-in font is used at a single weight.
  */
 export const revalidate = 3600
 export const alt = 'Product overview card'
@@ -18,12 +23,52 @@ const RED = '#e11d2e'
 const RED_DARK = '#bd1225'
 const INK = '#0b0a0f'
 const INK_MUTED = '#6b6a78'
+const GREEN = '#22c55e'
+
+type FontSet = { name: string; data: ArrayBuffer; weight: 400 | 500 | 700; style: 'normal' }[]
+let fontsPromise: Promise<FontSet | undefined> | undefined
+
+const loadFonts = () => {
+  if (!fontsPromise) {
+    fontsPromise = (async () => {
+      try {
+        const dir = path.join(process.cwd(), 'node_modules', 'geist', 'dist', 'fonts', 'geist-sans')
+        const toBuffer = (b: Buffer) =>
+          b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer
+        const [regular, medium, bold] = await Promise.all([
+          readFile(path.join(dir, 'Geist-Regular.ttf')),
+          readFile(path.join(dir, 'Geist-Medium.ttf')),
+          readFile(path.join(dir, 'Geist-Bold.ttf')),
+        ])
+        return [
+          { name: 'Geist', data: toBuffer(regular), weight: 400, style: 'normal' },
+          { name: 'Geist', data: toBuffer(medium), weight: 500, style: 'normal' },
+          { name: 'Geist', data: toBuffer(bold), weight: 700, style: 'normal' },
+        ] satisfies FontSet
+      } catch {
+        return undefined
+      }
+    })()
+  }
+  return fontsPromise
+}
+
+/** Hard-cap a label so it can never push the header off the card. */
+const clip = (s: string, max: number) => (s.length <= max ? s : `${s.slice(0, max - 1).trimEnd()}…`)
 
 export default async function OpenGraphImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const [product, settings] = await Promise.all([getProductBySlug(slug), getSiteSettings()])
+  const [product, settings, fonts] = await Promise.all([
+    getProductBySlug(slug),
+    getSiteSettings(),
+    loadFonts(),
+  ])
   const name = siteName(settings)
   const host = SITE_URL.replace(/^https?:\/\//, '')
+  // Header label and footer status come from CMS data (tagline, availability) – no hard-coded claims.
+  const headerLabel = clip(settings.tagline?.trim() || 'Product overview', 40)
+  const availability = product?.availability ? AVAILABILITY_LABEL[product.availability] : null
+  const discontinued = product?.availability === 'discontinued'
 
   const title = product?.title || 'Pharmaceutical product'
   const generic = product
@@ -53,7 +98,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ slu
         flexDirection: 'column',
         position: 'relative',
         background: 'linear-gradient(180deg, #ffffff 0%, #fff4f5 100%)',
-        fontFamily: 'sans-serif',
+        fontFamily: fonts ? 'Geist' : 'sans-serif',
         color: INK,
       }}
     >
@@ -167,10 +212,10 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ slu
             letterSpacing: 4,
             textTransform: 'uppercase',
             color: RED,
-            fontWeight: 600,
+            fontWeight: 500,
           }}
         >
-          WHO-GMP CERTIFIED
+          {headerLabel}
         </div>
       </div>
 
@@ -197,7 +242,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ slu
             letterSpacing: 4,
             textTransform: 'uppercase',
             color: RED,
-            fontWeight: 600,
+            fontWeight: 500,
           }}
         >
           <div
@@ -266,19 +311,21 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ slu
       >
         <div>{host}/products</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: 9999,
-              background: '#22c55e',
-              display: 'flex',
-            }}
-          />
-          <div>Export documentation · CoA with every batch</div>
+          {availability && (
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: 9999,
+                background: discontinued ? INK_MUTED : GREEN,
+                display: 'flex',
+              }}
+            />
+          )}
+          <div>{availability || 'Request a quotation'}</div>
         </div>
       </div>
     </div>,
-    { ...size },
+    { ...size, fonts },
   )
 }

@@ -49,7 +49,7 @@ export function GlobalMapPanel({ countries, regionCount, className, headingId = 
         </div>
 
         <div className="relative mt-6 rounded-3xl border border-white/70 bg-white/40 p-2 sm:p-4">
-          <WorldMap pins={pins} showLabels className="fade-mask-x" />
+          <WorldMap pins={pins} showLabels />
           {/* Floating stat chips */}
           <div className="pointer-events-none absolute inset-x-4 top-4 hidden justify-between md:flex" aria-hidden="true">
             <span className="glass animate-float rounded-2xl px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass">

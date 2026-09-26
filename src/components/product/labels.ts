@@ -54,6 +54,10 @@ export const productHeadline = (
   return line && line !== product.title ? `${product.title} – ${line}` : product.title
 }
 
+/** "WHO-GMP Certificate" → "WHO-GMP" – compact CMS certification names for trust chips. */
+export const shortCertName = (title: string): string =>
+  title.replace(/\s*(certificate|certification)\s*$/i, '').trim() || title
+
 export const rxLabel = (status?: Product['prescriptionStatus']): string | null =>
   status === 'otc' ? 'OTC' : status === 'rx' ? 'Rx' : null
 

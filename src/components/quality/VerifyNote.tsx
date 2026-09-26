@@ -2,13 +2,14 @@ import { ArrowRight, ShieldCheck } from 'lucide-react'
 
 import { Button, Container, Eyebrow, Section } from '@/components/ui'
 import { Reveal } from '@/components/ui/Reveal'
+import type { Certification } from '@/payload-types'
 
 import { pad2 } from './certifications'
 
 const STEPS = [
   {
     title: 'Note the certificate number and issuing body',
-    text: 'Both are printed on every card above. Statutory licences are issued by drug regulators; ISO and system certificates by accredited certification bodies.',
+    text: 'Both are shown on every card above, together with the validity dates. Statutory licences come from drug regulators; certifications and accreditations from independent certification bodies.',
   },
   {
     title: 'Check with the issuer',
@@ -16,14 +17,27 @@ const STEPS = [
   },
   {
     title: 'Ask us for a certified copy',
-    text: 'For registration dossiers we provide notarised or apostilled copies, product-specific CoPPs, Free Sale Certificates and batch Certificates of Analysis.',
+    text: 'For registration dossiers, tell us the products and destination country and we will supply certificate copies and the supporting documents your regulator asks for.',
   },
 ]
 
-const DOSSIER_DOCS = ['WHO-GMP certificate', 'Manufacturing licence', 'Certificate of Pharmaceutical Product (CoPP)', 'Free Sale Certificate', 'Certificate of Analysis (per batch)', 'Stability summary & site master file']
+/** Product- and batch-level documents that are requested per shipment rather than listed as certificates. */
+const REQUEST_DOCS = ['Product-specific export documents – on request', 'Batch Certificates of Analysis – on request']
 
-/** "How to verify" glass note with a three-step checklist and a dossier-documents aside. */
-export function VerifyNote() {
+const MAX_CERT_DOCS = 4
+
+/** Names the certificates that usually go into a dossier: featured licences/certifications first, then the rest. */
+function dossierDocuments(certifications: Certification[]) {
+  const ranked = certifications
+    .filter((c) => c.type === 'license' || c.type === 'certification')
+    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || (a.order ?? 0) - (b.order ?? 0))
+  const titles = [...new Set(ranked.map((c) => c.title.trim()).filter(Boolean))].slice(0, MAX_CERT_DOCS)
+  return [...titles, ...REQUEST_DOCS]
+}
+
+/** "How to verify" glass note with a three-step checklist and a dossier-documents aside (document names come from the CMS). */
+export function VerifyNote({ certifications = [] }: { certifications?: Certification[] }) {
+  const docs = dossierDocuments(certifications)
   return (
     <Section aria-labelledby="verify-title">
       <Container>
@@ -36,7 +50,7 @@ export function VerifyNote() {
                 How to verify a certificate
               </h2>
               <p className="mt-4 max-w-2xl text-ink-600">
-                Every document on this page is issued by a statutory regulator or an accredited certification body, and each can be checked independently of us.
+                Every document on this page names the body that issued it, so each one can be checked independently of us.
               </p>
               <ol className="mt-8 space-y-6" aria-label="Verification steps">
                 {STEPS.map((s, i) => (
@@ -55,10 +69,10 @@ export function VerifyNote() {
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 id="dossier-title" className="mt-5 text-lg font-semibold text-ink-950">
-                Documents we supply for registration dossiers
+                Documents for registration dossiers
               </h3>
               <ul className="mt-4 space-y-2 text-sm text-ink-700" role="list">
-                {DOSSIER_DOCS.map((d) => (
+                {docs.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
                     {d}

@@ -23,13 +23,16 @@ export function RelatedProducts({
           <SectionHeading
             eyebrow="Related products"
             title={<span id="related-heading">You may also need</span>}
-            description="Products our partners often order together, from the same therapeutic range."
+            description="Related products from the same therapeutic range."
           />
           <Link href="/products" className="btn-secondary shrink-0">
             Browse full catalogue <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
-        <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4" role="list">
+        <ul
+          className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4"
+          role="list"
+        >
           {products.map((p, i) => (
             <Reveal as="li" key={p.id} delay={i * 60}>
               <ProductCard product={p} labels={labels} className="h-full" />

@@ -50,7 +50,7 @@ export function InquiryVisual({ listName }: { listName: string }) {
                 </span>
               ))}
             </div>
-            <p className="mt-3 text-[11px] text-white/80">Sent within 1 business day</p>
+            <p className="mt-3 text-[11px] text-white/80">Prepared for your market</p>
           </div>
         </div>
 
@@ -61,7 +61,7 @@ export function InquiryVisual({ listName }: { listName: string }) {
           <Globe className="h-4 w-4 text-brand-600" /> Worldwide export
         </div>
         <div className="absolute -right-3 top-1/3 hidden items-center gap-2 rounded-2xl glass px-3.5 py-2.5 text-xs font-semibold text-ink-900 shadow-glass animate-float-slow [animation-delay:-6s] lg:flex xl:-right-8">
-          <FileCheck className="h-4 w-4 text-brand-600" /> COA · CoPP · MSDS
+          <FileCheck className="h-4 w-4 text-brand-600" /> Registration documents
         </div>
       </div>
     </div>

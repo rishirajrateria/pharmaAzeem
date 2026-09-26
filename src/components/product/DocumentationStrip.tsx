@@ -26,7 +26,7 @@ const DOCS = [
   {
     icon: FlaskConical,
     title: 'Stability data',
-    text: 'Real-time and accelerated studies for ICH zones II, IVa and IVb.',
+    text: 'Real-time and accelerated studies for the relevant ICH climatic zones.',
   },
   {
     icon: ShieldCheck,
@@ -36,7 +36,7 @@ const DOCS = [
   {
     icon: Palette,
     title: 'Artwork & labelling',
-    text: 'Print-ready artwork; local-language and private-label options.',
+    text: 'Print-ready artwork and labelling files; local-language versions on request.',
   },
   {
     icon: FileText,

@@ -14,14 +14,27 @@ export const absUrl = (path = '/') => {
 
 export type MediaSize = 'thumbnail' | 'card' | 'large' | 'og'
 
+/**
+ * Normalises a Payload media URL for next/image: URLs on our own origin become
+ * relative ("/api/media/file/…") so they match `images.localPatterns`; third-party
+ * storage URLs (e.g. Vercel Blob) stay absolute and are covered by `remotePatterns`.
+ */
+export const normalizeMediaUrl = (url: string | null | undefined): string | undefined => {
+  if (!url) return undefined
+  if (url.startsWith(SITE_URL)) return url.slice(SITE_URL.length) || '/'
+  const m = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/.*)$/.exec(url)
+  if (m) return m[3]
+  return url
+}
+
 /** Returns the (relative) URL for a Payload media document at a given size, falling back to the original. */
 export const mediaUrl = (media: Media | number | string | null | undefined, size?: MediaSize): string | undefined => {
   if (!media || typeof media !== 'object') return undefined
   if (size) {
     const s = media.sizes?.[size]
-    if (s?.url) return s.url
+    if (s?.url) return normalizeMediaUrl(s.url)
   }
-  return media.url ?? undefined
+  return normalizeMediaUrl(media.url)
 }
 
 export const mediaAlt = (media: Media | number | string | null | undefined, fallback = ''): string =>

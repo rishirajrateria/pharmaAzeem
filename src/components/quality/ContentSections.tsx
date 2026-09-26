@@ -44,7 +44,9 @@ export function ContentSections({ sections }: { sections?: ContentSection[] | nu
     <Section className="!pt-0">
       <Container className="space-y-20 lg:space-y-28">
         {sections.map((s, i) => {
-          const id = `section-${slugify(s.heading) || i}`
+          // Index-prefixed so two sections with the same heading never share an id.
+          const slug = slugify(s.heading)
+          const id = `section-${i + 1}${slug ? `-${slug}` : ''}`
           const hasImage = Boolean(s.image && typeof s.image === 'object')
           const layout = s.layout || (i % 2 === 0 ? 'imageRight' : 'imageLeft')
           if (layout === 'full' || !hasImage) {

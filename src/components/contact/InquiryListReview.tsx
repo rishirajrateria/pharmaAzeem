@@ -3,6 +3,7 @@
 import { ArrowRight, ClipboardList, Minus, Plus, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 import { MediaPlaceholder } from '@/components/Media'
 import { useHasMounted } from '@/hooks/useHasMounted'
@@ -24,7 +25,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
   const mounted = useHasMounted()
   const lower = listName.toLowerCase()
 
-  if (!mounted) return <ListSkeleton className={className} />
+  if (!mounted) return <ListSkeleton lower={lower} className={className} />
   if (items.length === 0)
     return <EmptyState lower={lower} addLabel={addLabel} className={className} />
 
@@ -105,13 +106,9 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                     >
                       <Minus className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>
-                    <input
-                      type="number"
-                      min={1}
-                      inputMode="numeric"
-                      value={item.quantity}
-                      onChange={(e) => setQuantity(item.id, Number(e.target.value))}
-                      className="w-16 border-x border-ink-100 bg-transparent py-1.5 text-center text-sm font-semibold text-ink-950 outline-none [appearance:textfield] focus-visible:bg-brand-50 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                    <QuantityInput
+                      quantity={item.quantity}
+                      onCommit={(n) => setQuantity(item.id, n)}
                       aria-label={`Quantity for ${item.title}`}
                     />
                     <button
@@ -140,6 +137,42 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
         </Link>
       </div>
     </div>
+  )
+}
+
+/**
+ * Quantity field that tolerates in-progress edits: the visitor can clear the box
+ * and retype without the store clamping '' to 1 (which turned "5" into "15").
+ * Valid whole numbers >= 1 are committed as typed; anything else is kept as a
+ * local draft and snaps back to the last committed quantity on blur.
+ */
+function QuantityInput({
+  quantity,
+  onCommit,
+  'aria-label': ariaLabel,
+}: {
+  quantity: number
+  onCommit: (quantity: number) => void
+  'aria-label': string
+}) {
+  const [draft, setDraft] = useState<string | null>(null)
+  return (
+    <input
+      type="number"
+      min={1}
+      step={1}
+      inputMode="numeric"
+      value={draft ?? String(quantity)}
+      onChange={(e) => {
+        const value = e.target.value
+        setDraft(value)
+        const n = Number(value)
+        if (value.trim() !== '' && Number.isInteger(n) && n >= 1) onCommit(n)
+      }}
+      onBlur={() => setDraft(null)}
+      className="w-16 border-x border-ink-100 bg-transparent py-1.5 text-center text-sm font-semibold text-ink-950 outline-none [appearance:textfield] focus-visible:bg-brand-50 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      aria-label={ariaLabel}
+    />
   )
 }
 
@@ -174,14 +207,15 @@ function EmptyState({
   )
 }
 
-function ListSkeleton({ className }: { className?: string }) {
+function ListSkeleton({ lower, className }: { lower: string; className?: string }) {
   return (
     <div
       className={cn('glass-strong glass-edge rounded-3xl', className)}
+      role="status"
       aria-busy="true"
-      aria-label="Loading your inquiry list"
     >
-      <div className="border-b border-ink-100 px-5 py-4 sm:px-6">
+      <span className="sr-only">Loading your {lower}…</span>
+      <div className="border-b border-ink-100 px-5 py-4 sm:px-6" aria-hidden="true">
         <span className="skeleton block h-3.5 w-40 rounded-full" />
       </div>
       <ul className="divide-y divide-ink-100" aria-hidden="true">

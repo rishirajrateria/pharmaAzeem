@@ -83,8 +83,8 @@ export function SpecTable({ product }: { product: Product }) {
           </table>
         </div>
         <p className="mt-3 text-xs text-ink-500">
-          Specifications conform to the current pharmacopoeial monograph (BP / USP / IP as
-          applicable). Batch-specific values are stated on the Certificate of Analysis.
+          Batch-specific test results are stated on the Certificate of Analysis. Contact us for the
+          complete specification sheet.
         </p>
       </div>
     </div>

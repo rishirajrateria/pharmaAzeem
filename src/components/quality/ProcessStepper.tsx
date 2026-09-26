@@ -19,7 +19,7 @@ export function ProcessStepper({ steps, eyebrow = 'Quality control process', tit
         <SectionHeading
           eyebrow={eyebrow}
           title={<span id="process-title">{title || 'From raw material to released batch'}</span>}
-          description={description || 'Every batch follows the same controlled sequence. Nothing moves to the next stage until Quality Assurance has verified the results of the previous one.'}
+          description={description || 'The controlled sequence each batch follows, from incoming materials to released product.'}
         />
         <ol
           className="relative mt-12 grid gap-8 before:absolute before:bottom-8 before:left-6 before:top-8 before:w-px before:bg-gradient-to-b before:from-brand-300 before:via-brand-200 before:to-transparent lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14 lg:before:hidden"

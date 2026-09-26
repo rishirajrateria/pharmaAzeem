@@ -28,7 +28,7 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
     icon: Send,
   },
   {
-    title: 'Receive quotation within 1 business day',
+    title: 'Receive your quotation',
     description:
       'Our export team replies with pricing for your market, minimum order quantities, lead times and the documents you need for registration.',
     icon: FileCheck,

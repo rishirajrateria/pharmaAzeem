@@ -20,15 +20,15 @@ export const REGION_LABELS: Record<RegionKey, string> = {
 
 /** Short, one-line positioning statement per region – used under region headings. */
 export const REGION_BLURBS: Record<RegionKey, string> = {
-  africa: 'Zone IVb-stable essential medicines for hospital, pharmacy and tender supply across Sub-Saharan and North Africa.',
-  'middle-east': 'GMP-inspected supply with Arabic artwork and halal-compliant excipients for the Gulf and Levant.',
+  africa: 'Essential medicines for hospital, pharmacy and tender supply across Sub-Saharan and North Africa.',
+  'middle-east': 'Arabic artwork and documentation prepared to the requirements of Gulf and Levant regulators.',
   'south-asia': 'Short lead times and fast regulatory responses for our closest export markets.',
-  'south-east-asia': 'ACTD dossiers, halal certification and local-language packs for ASEAN regulators.',
-  'east-asia-pacific': 'Consolidated shipments with extended shelf life for long Pacific transit routes.',
+  'south-east-asia': 'ACTD-format dossiers and local-language packs for ASEAN regulators.',
+  'east-asia-pacific': 'Consolidated shipments planned around long Pacific transit routes.',
   cis: 'Russian-language documentation and EAEU-aligned dossiers for CIS and Central Asian partners.',
   europe: 'Contract manufacturing and CTD-based registrations for European and Balkan partners.',
   'latin-america': 'Spanish and Portuguese dossiers with long-distance cold-chain logistics.',
-  'north-america': 'Development and supply projects built around cGMP alignment.',
+  'north-america': 'Development and supply projects built around US and Canadian regulatory requirements.',
 }
 
 export const REGION_ORDER: RegionKey[] = ['africa', 'middle-east', 'south-asia', 'south-east-asia', 'east-asia-pacific', 'cis', 'europe', 'latin-america', 'north-america']

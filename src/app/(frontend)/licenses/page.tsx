@@ -38,6 +38,8 @@ export default async function LicensesPage() {
   const issuerCount = new Set(certifications.map((c) => c.issuer.trim().toLowerCase())).size
   const lastUpdated = certifications.reduce<string | null>((latest, c) => (!latest || c.updatedAt > latest ? c.updatedAt : latest), null)
   const description = doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
+  /** Summary shown directly under the h1 – falls back to the intro so the page always has one. */
+  const summary = doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
   const chips: HeroChip[] = certifications.length
     ? [
         { icon: 'badge-check', label: 'Valid documents', value: String(validCount) },
@@ -78,7 +80,7 @@ export default async function LicensesPage() {
         crumbs={[{ name: 'Licenses & certifications', path: PATH }]}
         eyebrow={doc.hero.eyebrow || 'Compliance'}
         title={doc.hero.title}
-        subtitle={doc.hero.subtitle}
+        subtitle={summary}
         image={doc.hero.image}
         primaryCta={doc.hero.primaryCta}
         secondaryCta={doc.hero.secondaryCta}
@@ -93,7 +95,7 @@ export default async function LicensesPage() {
             <div className="lg:col-span-7">
               <Eyebrow className="mb-4">Overview</Eyebrow>
               <h2 id="licenses-overview-title" className="heading-2">
-                Every approval behind our products, in one place
+                The approvals behind our products
               </h2>
               {doc.intro ? (
                 <RichText data={doc.intro} className="mt-5 [&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg" />
@@ -108,9 +110,9 @@ export default async function LicensesPage() {
                 <p className="eyebrow">At a glance</p>
                 <dl className="mt-5 grid grid-cols-2 gap-5">
                   {glance.map((g) => (
-                    <div key={g.label}>
-                      <dd className="text-3xl font-semibold tracking-tight text-gradient">{g.value}</dd>
+                    <div key={g.label} className="flex flex-col-reverse">
                       <dt className="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-ink-500">{g.label}</dt>
+                      <dd className="text-3xl font-semibold tracking-tight text-gradient">{g.value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -127,7 +129,7 @@ export default async function LicensesPage() {
 
       <CertificateGallery groups={groups} />
       <ContentSections sections={doc.sections} />
-      <VerifyNote />
+      <VerifyNote certifications={certifications} />
 
       {doc.faqs?.length ? (
         <Section aria-labelledby="licenses-faq-title" className="!pt-0">
@@ -152,7 +154,7 @@ export default async function LicensesPage() {
         id="licenses-cta"
         eyebrow="Registration support"
         title="Need certificate copies for a registration dossier?"
-        description="Tell us the products and destination country, and we will prepare notarised or apostilled certificate copies, CoPPs and Free Sale Certificates for your submission."
+        description="Tell us the products and destination country, and we will prepare the certificate copies and supporting documents your submission requires."
         primary={{ label: 'Request certificate copies', href: '/contact' }}
         secondary={{ label: 'See our quality system', href: '/quality' }}
       />

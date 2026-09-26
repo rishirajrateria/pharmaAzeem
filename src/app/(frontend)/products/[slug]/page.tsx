@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { RichText } from '@/components/RichText'
-import { AddToListPanel } from '@/components/product/AddToListPanel'
+import { AddToListPanel, type TrustItem } from '@/components/product/AddToListPanel'
 import { DocumentationStrip } from '@/components/product/DocumentationStrip'
 import { InquireSection } from '@/components/product/InquireSection'
 import { KeyFacts, buildKeyFacts } from '@/components/product/KeyFacts'
@@ -19,6 +19,7 @@ import {
   genericLine,
   productHeadline,
   rxLabel,
+  shortCertName,
   toGalleryImages,
 } from '@/components/product/labels'
 import { toInquiryItem } from '@/components/catalog/ProductCard'
@@ -29,6 +30,7 @@ import { getCommerceLabels, resolvePrice } from '@/lib/commerce'
 import {
   getAllProductsSlim,
   getCategoryAncestors,
+  getCertifications,
   getProductBySlug,
   getRelatedProducts,
   getSiteSettings,
@@ -83,9 +85,10 @@ export default async function ProductPage({ params }: { params: Params }) {
   const price = resolvePrice(product, labels)
   const populatedCats = (product.categories || []).filter(isCategory)
   const primaryCat = populatedCats[0]
-  const [related, ancestors] = await Promise.all([
+  const [related, ancestors, certifications] = await Promise.all([
     getRelatedProducts(product, 8),
     primaryCat ? getCategoryAncestors(primaryCat) : Promise.resolve([] as Category[]),
+    getCertifications({ featured: true }),
   ])
 
   const headline = productHeadline(product)
@@ -161,6 +164,16 @@ export default async function ProductPage({ params }: { params: Params }) {
 
   const availability = product.availability ? AVAILABILITY_LABEL[product.availability] : null
 
+  // Buy-box assurance chips: certification names come from the CMS (featured certifications);
+  // the remaining chips only name document types, so no unverifiable claim is hard-coded.
+  const trust: TrustItem[] = [
+    ...certifications
+      .slice(0, 2)
+      .map((c) => ({ icon: 'shield' as const, label: shortCertName(c.title) })),
+    { icon: 'file', label: 'Certificate of Analysis per batch' },
+    { icon: 'globe', label: 'Export documentation' },
+  ]
+
   return (
     <>
       <JsonLd
@@ -182,10 +195,12 @@ export default async function ProductPage({ params }: { params: Params }) {
         )}
       />
 
-      {/* Hero: gallery + buy box */}
+      {/* Hero: gallery + buy box. `overflow-x-clip` (not `overflow-hidden`) keeps decorative spill
+          off the horizontal axis without turning the section into a scrollport, so the gallery's
+          `lg:sticky` still sticks to the viewport. */}
       <section
         aria-labelledby="product-title"
-        className="relative overflow-hidden pt-6 sm:pt-8 lg:pt-12"
+        className="relative overflow-x-clip pt-6 sm:pt-8 lg:pt-12"
       >
         <Orbs variant="intense" />
         <Container>
@@ -259,6 +274,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                 product={toInquiryItem(product)}
                 price={price}
                 labels={{ addLabel: labels.addLabel, addedLabel: labels.addedLabel }}
+                trust={trust}
                 className="mt-7"
               />
 

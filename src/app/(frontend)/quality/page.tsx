@@ -39,6 +39,8 @@ export default async function QualityPage() {
   const featured = certifications.filter((c) => c.featured)
   const strip = (featured.length >= 3 ? featured : certifications).slice(0, 5)
   const description = doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
+  /** Summary shown directly under the h1 – falls back to the intro so the page always has one. */
+  const summary = doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
   const chips: HeroChip[] = (doc.stats || []).slice(0, 2).map((s, i) => ({ icon: CHIP_ICONS[i], label: s.label, value: `${s.value}${s.suffix || ''}` }))
 
   return (
@@ -61,7 +63,7 @@ export default async function QualityPage() {
         crumbs={[{ name: 'Quality', path: PATH }]}
         eyebrow={doc.hero.eyebrow || 'Quality assurance'}
         title={doc.hero.title}
-        subtitle={doc.hero.subtitle}
+        subtitle={summary}
         image={doc.hero.image}
         primaryCta={doc.hero.primaryCta}
         secondaryCta={doc.hero.secondaryCta}
@@ -78,7 +80,7 @@ export default async function QualityPage() {
                 <div className="lg:col-span-4">
                   <Eyebrow className="mb-4">Overview</Eyebrow>
                   <h2 id="quality-overview-title" className="heading-2">
-                    An independent quality organisation
+                    Our approach to quality
                   </h2>
                 </div>
                 <div className="lg:col-span-8">
@@ -125,7 +127,7 @@ export default async function QualityPage() {
         id="quality-cta"
         eyebrow="Documentation"
         title="Request our quality documentation"
-        description="Certificates of Analysis, stability summaries, GMP certificates, site master file and product dossiers – prepared for your regulatory submission and shared within one business day."
+        description="Certificates of Analysis, stability summaries, site master file, product dossiers and copies of the certificates listed on our licenses page – tell us which products and market you are registering and we will prepare the documentation for your submission."
         primary={{ label: 'Request quality documentation', href: '/contact' }}
         secondary={{ label: 'Browse products', href: '/products' }}
       />

@@ -57,7 +57,6 @@ export function CountryMapCard({ country, siblings = [], className }: { country:
             height={mapMeta.height * 8}
             className="h-auto w-full select-none opacity-90"
             style={{ transform, transformOrigin }}
-            loading="lazy"
             decoding="async"
             draggable={false}
           />
@@ -72,8 +71,8 @@ export function CountryMapCard({ country, siblings = [], className }: { country:
             className="group absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
             style={{ left: `${(x * 100).toFixed(2)}%`, top: `${(y * 100).toFixed(2)}%` }}
           >
-            <span className="absolute inset-0.5 rounded-full bg-brand-500/70 shadow-[0_0_0_2px_white] transition group-hover:bg-brand-600" />
-            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 transition group-hover:opacity-100">{s.name}</span>
+            <span className="absolute inset-0.5 rounded-full bg-brand-500/70 shadow-[0_0_0_2px_white] transition group-hover:bg-brand-600 group-focus-visible:bg-brand-600" />
+            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">{s.name}</span>
           </Link>
         ))}
 

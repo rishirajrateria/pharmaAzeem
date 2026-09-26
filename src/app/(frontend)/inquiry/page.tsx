@@ -42,7 +42,7 @@ export default async function InquiryPage() {
   const title = page.hero?.title || 'Request a quotation'
   const summary =
     page.hero?.subtitle ||
-    `Send your ${lower} to ${name} and receive a quotation with pricing, minimum order quantities and lead times within one business day.`
+    `Send your ${lower} to ${name} and receive a quotation with pricing, minimum order quantities and lead times for your market.`
 
   return (
     <>
@@ -59,7 +59,7 @@ export default async function InquiryPage() {
           howToJsonLd({
             path: PATH,
             name: `How to request a pharmaceutical quotation from ${name}`,
-            description: `Add products to your ${lower}, send it with your contact details and receive a quotation with pricing, MOQs and lead times within one business day.`,
+            description: `Add products to your ${lower}, send it with your contact details and receive a quotation with pricing, MOQs and lead times for your market.`,
             steps: HOW_IT_WORKS_STEPS.map(({ title: t, description }) => ({
               title: t,
               description,
@@ -72,10 +72,10 @@ export default async function InquiryPage() {
         crumbs={[{ name: title, path: PATH }]}
         eyebrow={page.hero?.eyebrow || 'Inquiry'}
         title={title}
-        subtitle={page.hero?.subtitle}
+        subtitle={summary}
         intro={page.intro}
         image={page.hero?.image}
-        badge={{ title: 'Quotation within 1 business day', subtitle: 'No payment required' }}
+        badge={{ title: 'One quotation for your whole list', subtitle: 'No payment required' }}
         visual={<InquiryVisual listName={listName} />}
       >
         <ReassuranceChips className="mt-7" />

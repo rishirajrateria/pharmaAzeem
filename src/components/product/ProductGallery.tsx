@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
+import { useState, type MouseEvent } from 'react'
 
 import { MediaPlaceholder } from '@/components/Media'
 import { Badge } from '@/components/ui'
@@ -22,24 +22,22 @@ type Props = {
 /**
  * Product image gallery. Main image sits in a glass frame with a CSS zoom on hover
  * (transform-origin follows the pointer); a thumbnail row switches the image.
- * Minimal client JS: one state value, one pointer handler.
+ * Minimal client JS: one state value, one pointer handler that only touches CSS variables.
  */
 export function ProductGallery({ images, title, badges = [], rx, className }: Props) {
   const [active, setActive] = useState(0)
-  const [origin, setOrigin] = useState<{ x: number; y: number }>({ x: 50, y: 50 })
-  const frameRef = useRef<HTMLDivElement>(null)
   const current = images[active] ?? images[0]
   const many = images.length > 1
 
-  const onMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
-    const el = frameRef.current
-    if (!el) return
+  // The zoom origin is written straight to the frame's CSS custom properties – no React state,
+  // so a hover (dozens of mousemove events per second) never re-renders the gallery.
+  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget
     const r = el.getBoundingClientRect()
-    setOrigin({
-      x: ((e.clientX - r.left) / r.width) * 100,
-      y: ((e.clientY - r.top) / r.height) * 100,
-    })
-  }, [])
+    if (!r.width || !r.height) return
+    el.style.setProperty('--zoom-x', `${((e.clientX - r.left) / r.width) * 100}%`)
+    el.style.setProperty('--zoom-y', `${((e.clientY - r.top) / r.height) * 100}%`)
+  }
 
   return (
     <div className={cn('relative', className)}>
@@ -57,10 +55,8 @@ export function ProductGallery({ images, title, badges = [], rx, className }: Pr
       <figure className="m-0">
         <div className="gradient-border rounded-[2rem]">
           <div
-            ref={frameRef}
             onMouseMove={current ? onMove : undefined}
-            className="group relative aspect-square overflow-hidden rounded-[2rem] glass-strong glass-edge shadow-glass-lg"
-            style={{ '--zoom-x': `${origin.x}%`, '--zoom-y': `${origin.y}%` } as CSSProperties}
+            className="group relative aspect-square overflow-hidden rounded-[2rem] glass-strong glass-edge shadow-glass-lg [--zoom-x:50%] [--zoom-y:50%]"
           >
             <div
               className="pointer-events-none absolute inset-0 dots-pattern opacity-40 fade-mask-y"

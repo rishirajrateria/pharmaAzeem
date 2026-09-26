@@ -89,7 +89,7 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
           </div>
           <div>
             <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-400">Valid until</dt>
-            <dd className="mt-0.5 text-ink-900">{validUntil ? <time dateTime={cert.validUntil!.slice(0, 10)}>{validUntil}</time> : 'No expiry'}</dd>
+            <dd className="mt-0.5 text-ink-900">{validUntil ? <time dateTime={cert.validUntil!.slice(0, 10)}>{validUntil}</time> : '—'}</dd>
           </div>
         </dl>
 

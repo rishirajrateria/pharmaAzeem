@@ -8,7 +8,7 @@ const DEFAULT_STEPS: Step[] = [
   { title: 'Market assessment', description: 'We review your product list against local registration requirements and our existing approvals.' },
   { title: 'Dossier & samples', description: 'Regulatory affairs prepares dossiers, CoPPs and samples for submission by your licence holder.' },
   { title: 'Registration & artwork', description: 'We respond to regulator queries and finalise market-specific artwork in your language.' },
-  { title: 'First shipment', description: 'Pre-shipment inspection, export documentation and dispatch – typically within 30–45 days of order.' },
+  { title: 'First shipment', description: 'Pre-shipment inspection, export documentation and dispatch to your nominated port or airport.' },
 ]
 
 /** Numbered stepper – vertical on mobile, a connected horizontal track from lg up. */

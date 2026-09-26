@@ -37,7 +37,7 @@ export const CERT_TYPE_META: Record<CertType, CertTypeMeta> = {
     anchor: 'certifications',
     icon: 'badge-check',
     description:
-      'Independent certificates confirming that our facilities, quality system and products meet WHO-GMP, ISO and export-registration requirements.',
+      'Independent certificates issued by regulators and certification bodies confirming that our facilities, quality system and products meet the standards they audit against.',
   },
   accreditation: {
     label: 'Accreditations',

@@ -38,7 +38,7 @@ export function InquireSection({ product, contact }: Props) {
             </h2>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
               Share your quantities and destination and our export desk will reply with pricing,
-              lead time and the documents your regulator expects – usually within one business day.
+              lead time and the documents your regulator expects.
             </p>
 
             <h3 className="mt-8 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
@@ -123,7 +123,7 @@ export function InquireSection({ product, contact }: Props) {
                 submitLabel="Send inquiry"
                 compact
                 className="mt-6"
-                successMessage={`Thank you – we have received your inquiry about ${product.title} and will reply within one business day.`}
+                successMessage={`Thank you – we have received your inquiry about ${product.title}. Our export desk will get back to you shortly.`}
               />
             </div>
           </div>

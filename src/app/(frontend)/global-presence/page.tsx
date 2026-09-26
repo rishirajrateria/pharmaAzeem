@@ -36,7 +36,7 @@ const getData = async () => {
 export async function generateMetadata(): Promise<Metadata> {
   const { page, countries, settings } = await getData()
   const title = page.meta?.title || page.hero?.title || 'Global presence – pharmaceutical exporter'
-  const description = page.hero?.subtitle || truncate(richTextToPlain(page.intro), 160) || `${siteName(settings)} exports WHO-GMP certified medicines to ${countries.length}+ countries.`
+  const description = page.hero?.subtitle || truncate(richTextToPlain(page.intro), 160) || `${siteName(settings)} exports pharmaceutical products to ${countries.length} countries worldwide.`
   return buildMetadata({ settings, path: PATH, title, description, image: page.hero?.image, meta: page.meta, modifiedTime: page.updatedAt })
 }
 
@@ -207,7 +207,7 @@ export default async function GlobalPresencePage() {
           <div className="glass-subtle relative overflow-hidden rounded-4xl p-6 sm:p-10 lg:p-14">
             <div className="pointer-events-none absolute inset-0 dots-pattern opacity-50" aria-hidden="true" />
             <div className="relative">
-              <SectionHeading eyebrow="How we onboard a new market" title={<span id="process-heading">From first call to first container in four steps</span>} description="A repeatable process refined over dozens of market launches – typically 30–45 days from confirmed order to dispatch once products are registered." className="mb-10" />
+              <SectionHeading eyebrow="How we onboard a new market" title={<span id="process-heading">From first call to first container in four steps</span>} description="A repeatable process refined over many market launches – from the first assessment of your product list to the first shipment." className="mb-10" />
               <OnboardingSteps steps={page.process} />
             </div>
           </div>
@@ -231,7 +231,7 @@ export default async function GlobalPresencePage() {
       <CtaBand
         eyebrow="Open a new market"
         title="Don't see your country yet? We can register there."
-        description="Send us your product list and target market. Our regulatory team will assess the requirements and outline a registration and supply plan within a few business days."
+        description="Send us your product list and target market. Our regulatory team will assess the requirements and outline a registration and supply plan for you."
         primary={{ label: 'Inquire now', href: '/inquiry' }}
         secondary={{ label: 'Talk to the export team', href: '/contact' }}
       />

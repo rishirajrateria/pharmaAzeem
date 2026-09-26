@@ -1,6 +1,14 @@
 'use client'
 
-import { FileCheck, Globe, MessageSquareText, Minus, Plus, ShieldCheck } from 'lucide-react'
+import {
+  FileCheck,
+  Globe,
+  MessageSquareText,
+  Minus,
+  Plus,
+  ShieldCheck,
+  type LucideIcon,
+} from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -19,14 +27,18 @@ type Props = {
   inquireHref?: string
   /** Renders a fixed bottom bar on small screens once the panel scrolls out of view. */
   stickyBar?: boolean
+  /** Assurance chips under the buttons – pass CMS-sourced labels, never hard-coded claims. */
+  trust?: TrustItem[]
   className?: string
 }
 
-const TRUST = [
-  { icon: ShieldCheck, label: 'WHO-GMP manufactured' },
-  { icon: FileCheck, label: 'CoA with every batch' },
-  { icon: Globe, label: 'Export documentation' },
-]
+export type TrustItem = { icon: 'shield' | 'file' | 'globe'; label: string }
+
+const TRUST_ICON: Record<TrustItem['icon'], LucideIcon> = {
+  shield: ShieldCheck,
+  file: FileCheck,
+  globe: Globe,
+}
 
 /**
  * The "buy box": price, quantity stepper, add-to-list button and a secondary
@@ -39,6 +51,7 @@ export function AddToListPanel({
   labels,
   inquireHref = '#inquire',
   stickyBar = true,
+  trust = [],
   className,
 }: Props) {
   const [qty, setQty] = useState(1)
@@ -143,8 +156,7 @@ export function AddToListPanel({
             </div>
             {price.kind === 'inquire' && (
               <p className="max-w-[16rem] text-xs leading-relaxed text-ink-500">
-                Prices depend on quantity and destination – request a quotation and we reply within
-                one business day.
+                Prices depend on quantity and destination – request a quotation.
               </p>
             )}
           </div>
@@ -169,19 +181,24 @@ export function AddToListPanel({
             about this product
           </a>
 
-          <ul
-            className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-ink-100 pt-4"
-            aria-label="Assurances"
-          >
-            {TRUST.map(({ icon: I, label }) => (
-              <li
-                key={label}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-700"
-              >
-                <I className="h-3.5 w-3.5 text-brand-600" aria-hidden="true" /> {label}
-              </li>
-            ))}
-          </ul>
+          {trust.length > 0 && (
+            <ul
+              className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-ink-100 pt-4"
+              aria-label="Assurances"
+            >
+              {trust.map(({ icon, label }) => {
+                const I = TRUST_ICON[icon]
+                return (
+                  <li
+                    key={label}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-700"
+                  >
+                    <I className="h-3.5 w-3.5 text-brand-600" aria-hidden="true" /> {label}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
         </div>
       </div>
 

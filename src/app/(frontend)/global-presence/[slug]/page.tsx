@@ -36,11 +36,15 @@ export async function generateStaticParams() {
 
 const pageTitle = (name: string) => `Pharmaceutical Supplier & Exporter to ${name}`
 
+/** Neutral fallback when the editor has not written a summary – no certification or SLA claims. */
+const defaultSummary = (company: string, countryName: string) => `${company} supplies pharmaceutical products to licensed importers, distributors and healthcare institutions in ${countryName}.`
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
   const [country, settings] = await Promise.all([getCountryBySlug(slug), getSiteSettings()])
-  if (!country) return { title: 'Market not found', robots: { index: false, follow: false } }
-  const description = country.summary || truncate(richTextToPlain(country.description), 160) || `${siteName(settings)} supplies WHO-GMP certified medicines to healthcare partners in ${country.name}.`
+  // Markets flagged as not served are excluded from the index, sitemap and static params – keep the page consistent.
+  if (!country || !country.served) return { title: 'Market not found', robots: { index: false, follow: false } }
+  const description = country.summary || truncate(richTextToPlain(country.description), 160) || defaultSummary(siteName(settings), country.name)
   return buildMetadata({
     settings,
     path: countryPath(country),
@@ -55,14 +59,14 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function CountryPage({ params }: { params: Params }) {
   const { slug } = await params
   const [country, settings, served] = await Promise.all([getCountryBySlug(slug), getSiteSettings(), getCountries({ served: true })])
-  if (!country) notFound()
+  if (!country || !country.served) notFound()
 
   const labels = getCommerceLabels(settings)
   const name = siteName(settings)
   const path = countryPath(country)
   const region = regionLabel(country.region)
   const regulator = regulatorShort(country.regulatoryAuthority)
-  const summary = country.summary || `${name} supplies WHO-GMP certified medicines to licensed importers, distributors and healthcare institutions in ${country.name}.`
+  const summary = country.summary || defaultSummary(name, country.name)
 
   const categories = (country.popularCategories || []).filter((c): c is Category => typeof c === 'object' && c !== null && Boolean(c.path))
   const picked = (country.popularProducts || []).filter((p): p is Product => typeof p === 'object' && p !== null && p._status === 'published')
@@ -128,7 +132,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                   </li>
                 )}
                 <li className="chip !py-1.5">
-                  <Check className="h-3.5 w-3.5" aria-hidden="true" /> WHO-GMP certified supply
+                  <Check className="h-3.5 w-3.5" aria-hidden="true" /> Export documentation included
                 </li>
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -170,7 +174,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                 <RichText data={country.description} className="mt-6 max-w-3xl" />
               ) : (
                 <p className="lead mt-6 max-w-3xl">
-                  Our regulatory affairs team prepares dossiers in the format required by the {country.regulatoryAuthority || 'national regulator'}, supplies Certificates of Pharmaceutical Product and stability data, and ships registered products with complete export documentation.
+                  Our regulatory affairs team prepares dossiers in the format required by the {country.regulatoryAuthority || 'national regulator'}, provides product certificates and stability data on request, and ships registered products with complete export documentation.
                 </p>
               )}
             </article>
@@ -233,7 +237,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                 View all products <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4" role="list">
+            <ul className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 lg:grid-cols-4" role="list">
               {products.map((p, i) => (
                 <Reveal as="li" key={p.id} delay={i * 60} className="h-full">
                   <ProductCard product={p} labels={labels} className="h-full" />
@@ -268,10 +272,10 @@ export default async function CountryPage({ params }: { params: Params }) {
                   Talk to our {country.name} desk
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-600">
-                  Tell us which products and quantities you need for {country.name}. Our export team replies within one business day with availability, registration status and a quotation.
+                  Tell us which products and quantities you need for {country.name}. Our export team will come back to you with availability, registration status and a quotation.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-ink-700" role="list">
-                  {[`Dossiers prepared for the ${regulator || 'national regulator'}`, 'CoPP, GMP certificate and stability data on request', 'Sea, air and cold-chain freight with full export documentation'].map((t) => (
+                  {[`Dossiers prepared for the ${regulator || 'national regulator'}`, 'Product certificates and stability data on request', 'Sea, air and cold-chain freight with full export documentation'].map((t) => (
                     <li key={t} className="flex items-start gap-3">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-200">
                         <Check className="h-3 w-3" aria-hidden="true" />
@@ -307,7 +311,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                 )}
               </div>
               <div className="glass rounded-3xl p-5 sm:p-7">
-                <InquiryForm source="contact-form" includeList={false} compact submitLabel="Send inquiry" successMessage={`Thank you – our ${country.name} desk will reply within one business day.`} />
+                <InquiryForm source="contact-form" includeList={false} compact submitLabel="Send inquiry" successMessage={`Thank you – our ${country.name} desk will be in touch shortly.`} />
               </div>
             </div>
           </div>

@@ -20,14 +20,14 @@ export function CertificationStrip({ certifications }: { certifications: Certifi
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="Certified & licensed"
-            title={<span id="certs-title">Audited by regulators, verified by partners</span>}
-            description="Our licences and certificates are issued by statutory authorities and accredited bodies. Every one can be verified using its certificate number."
+            title={<span id="certs-title">Licences and certificates you can verify</span>}
+            description="Each document below names its issuing body and validity period, so partners and regulators can check it independently."
           />
           <Button href="/licenses" variant="secondary" className="shrink-0">
             All licenses & certifications <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
-        <ul className={cn('mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3', cols)} role="list">
+        <ul className={cn('mt-10 grid gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3', cols)} role="list">
           {certifications.map((c, i) => {
             const status = certStatus(c)
             return (

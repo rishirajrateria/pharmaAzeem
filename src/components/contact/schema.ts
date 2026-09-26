@@ -15,7 +15,6 @@ export const howToJsonLd = (args: {
   '@id': `${absUrl(args.path)}#howto`,
   name: args.name,
   description: args.description,
-  totalTime: 'P1D',
   estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: 0 },
   step: args.steps.map((s, i) => ({
     '@type': 'HowToStep',

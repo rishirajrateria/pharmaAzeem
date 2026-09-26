@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  useCallback,
   useId,
   useRef,
   useState,
@@ -16,6 +15,10 @@ export type ProductTab = { id: string; label: string; content: ReactNode; count?
 
 const readHash = () => window.location.hash.replace('#', '')
 const serverHash = () => ''
+const subscribeHash = (onChange: () => void) => {
+  window.addEventListener('hashchange', onChange)
+  return () => window.removeEventListener('hashchange', onChange)
+}
 
 /**
  * Accessible tabs (WAI-ARIA tabs pattern with roving tabindex and arrow keys).
@@ -35,18 +38,19 @@ export function ProductTabs({
   const baseId = useId()
   const refs = useRef<(HTMLButtonElement | null)[]>([])
 
-  // Deep-link support: /products/x#faqs opens the FAQ tab (and a later hash change re-targets it).
-  const subscribeHash = useCallback((onChange: () => void) => {
-    const handler = () => {
-      setSelected(null)
-      onChange()
-    }
-    window.addEventListener('hashchange', handler)
-    return () => window.removeEventListener('hashchange', handler)
-  }, [])
+  // Deep-link support: /products/x#faqs opens the FAQ tab and a later hash change to another tab
+  // id re-targets it. Hashes that do not name a tab (#inquire from the buy box, the mobile bar…)
+  // leave the current tab alone instead of resetting to the first one.
+  const indexOf = (id: string) => tabs.findIndex((t) => t.id === id)
   const hash = useSyncExternalStore(subscribeHash, readHash, serverHash)
-  const hashIndex = tabs.findIndex((t) => t.id === hash)
-  const active = selected ?? (hashIndex >= 0 ? hashIndex : 0)
+  const [prevHash, setPrevHash] = useState(hash)
+  if (hash !== prevHash) {
+    setPrevHash(hash)
+    const next = indexOf(hash)
+    if (next >= 0) setSelected(next)
+    else if (selected === null) setSelected(Math.max(0, indexOf(prevHash)))
+  }
+  const active = selected ?? Math.max(0, indexOf(hash))
   const setActive = (i: number) => setSelected(i)
 
   const focusTab = (i: number) => {

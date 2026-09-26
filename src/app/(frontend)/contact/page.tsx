@@ -81,10 +81,10 @@ export default async function ContactPage() {
         crumbs={[{ name: 'Contact', path: PATH }]}
         eyebrow={page.hero?.eyebrow || 'Contact'}
         title={title}
-        subtitle={page.hero?.subtitle}
+        subtitle={summary}
         intro={page.intro}
         image={page.hero?.image}
-        badge={{ title: 'Replies within 1 business day', subtitle: contact?.businessHours }}
+        badge={{ title: 'Direct reply from our team', subtitle: contact?.businessHours }}
       >
         {(primaryCta || secondaryCta) && (
           <div className="mt-8 flex flex-wrap gap-3">

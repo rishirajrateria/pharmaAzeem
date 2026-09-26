@@ -81,10 +81,10 @@ function Card({
 
 type CardProps = { className?: string; /** Reveal animation delay in ms. */ delay?: number }
 
+const LABEL_CLASS = 'font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink-400'
+
 const Label = ({ children }: { children: ReactNode }) => (
-  <dt className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink-400">
-    {children}
-  </dt>
+  <dt className={LABEL_CLASS}>{children}</dt>
 )
 
 /* ------------------------------------------------------------------ */
@@ -145,6 +145,11 @@ export function HeadOfficeCard({
 /* Email & phone                                                       */
 /* ------------------------------------------------------------------ */
 
+/**
+ * One name/value row of the card. The row <div> holds only <dt> + <dd> (the only
+ * grouping HTML allows inside a <dl>), so the icon lives in the <dt>; a subgrid
+ * lets the label sit beside the icon and the <dd> fill the value cell under it.
+ */
 function Row({
   icon: Icon,
   label,
@@ -155,14 +160,17 @@ function Row({
   children: ReactNode
 }) {
   return (
-    <div className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-        <Icon className="h-4 w-4" aria-hidden="true" />
-      </span>
-      <div className="min-w-0">
-        <Label>{label}</Label>
-        <dd className="mt-0.5 truncate text-sm">{children}</dd>
-      </div>
+    <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-[auto_auto] items-center gap-x-3 gap-y-0.5 py-3 first:pt-0 last:pb-0">
+      <dt className="col-span-2 row-span-2 grid grid-cols-subgrid grid-rows-subgrid items-center">
+        <span
+          className="row-span-2 flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600"
+          aria-hidden="true"
+        >
+          <Icon className="h-4 w-4" />
+        </span>
+        <span className={LABEL_CLASS}>{label}</span>
+      </dt>
+      <dd className="col-start-2 row-start-2 min-w-0 truncate text-sm">{children}</dd>
     </div>
   )
 }
