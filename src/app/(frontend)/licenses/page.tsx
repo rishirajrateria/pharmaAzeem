@@ -32,14 +32,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function LicensesPage() {
-  const [doc, certifications] = await Promise.all([getPageGlobal('licenses-page'), getCertifications()])
+  const [doc, certifications] = await Promise.all([
+    getPageGlobal('licenses-page'),
+    getCertifications(),
+  ])
   const groups = groupCertifications(certifications)
   const validCount = certifications.filter((c) => certStatus(c) === 'valid').length
   const issuerCount = new Set(certifications.map((c) => c.issuer.trim().toLowerCase())).size
-  const lastUpdated = certifications.reduce<string | null>((latest, c) => (!latest || c.updatedAt > latest ? c.updatedAt : latest), null)
-  const description = doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
+  const lastUpdated = certifications.reduce<string | null>(
+    (latest, c) => (!latest || c.updatedAt > latest ? c.updatedAt : latest),
+    null,
+  )
+  const description =
+    doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
   /** Summary shown directly under the h1 – falls back to the intro so the page always has one. */
-  const summary = doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
+  const summary =
+    doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
   const chips: HeroChip[] = certifications.length
     ? [
         { icon: 'badge-check', label: 'Valid documents', value: String(validCount) },
@@ -69,7 +77,11 @@ export default async function LicensesPage() {
           }),
           certifications.length
             ? itemListJsonLd(
-                certifications.map((c) => ({ name: `${c.title} – ${c.issuer}`, path: `${PATH}#${certAnchor(c)}`, image: mediaUrl(c.image, 'card') })),
+                certifications.map((c) => ({
+                  name: `${c.title} – ${c.issuer}`,
+                  path: `${PATH}#${certAnchor(c)}`,
+                  image: mediaUrl(c.image, 'card'),
+                })),
                 'Licenses, certifications and accreditations',
               )
             : null,
@@ -98,27 +110,43 @@ export default async function LicensesPage() {
                 The approvals behind our products
               </h2>
               {doc.intro ? (
-                <RichText data={doc.intro} className="mt-5 [&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg" />
+                <RichText
+                  data={doc.intro}
+                  className="mt-5 [&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg"
+                />
               ) : (
-                <p className="mt-5 lead">The licences, certificates and registrations that authorise our manufacturing and support product registration in partner markets.</p>
+                <p className="mt-5 lead">
+                  The licences, certificates and registrations that authorise our manufacturing and
+                  support product registration in partner markets.
+                </p>
               )}
               <GroupJumpNav groups={groups} className="mt-8" />
             </div>
             <div className="lg:col-span-5">
               <div className="relative overflow-hidden rounded-[2rem] glass-strong glass-edge p-6 sm:p-8">
-                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.7),transparent)]" aria-hidden="true" />
+                <div
+                  className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.7),transparent)]"
+                  aria-hidden="true"
+                />
                 <p className="eyebrow">At a glance</p>
                 <dl className="mt-5 grid grid-cols-2 gap-5">
                   {glance.map((g) => (
                     <div key={g.label} className="flex flex-col-reverse">
-                      <dt className="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-ink-500">{g.label}</dt>
-                      <dd className="text-3xl font-semibold tracking-tight text-gradient">{g.value}</dd>
+                      <dt className="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-ink-500">
+                        {g.label}
+                      </dt>
+                      <dd className="text-3xl font-semibold tracking-tight text-gradient">
+                        {g.value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
                 {lastUpdated && (
                   <p className="mt-6 border-t border-ink-100 pt-4 text-xs text-ink-500">
-                    Register last updated <time dateTime={lastUpdated}>{formatDate(lastUpdated, { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+                    Register last updated{' '}
+                    <time dateTime={lastUpdated}>
+                      {formatDate(lastUpdated, { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </time>
                   </p>
                 )}
               </div>

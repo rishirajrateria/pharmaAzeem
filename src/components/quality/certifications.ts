@@ -7,7 +7,13 @@ import type { Certification, Media } from '@/payload-types'
 
 export type CertType = Certification['type']
 
-export const CERT_TYPE_ORDER: CertType[] = ['license', 'certification', 'accreditation', 'registration', 'membership']
+export const CERT_TYPE_ORDER: CertType[] = [
+  'license',
+  'certification',
+  'accreditation',
+  'registration',
+  'membership',
+]
 
 export type CertTypeMeta = {
   /** Plural group heading. */
@@ -44,21 +50,24 @@ export const CERT_TYPE_META: Record<CertType, CertTypeMeta> = {
     singular: 'Accreditation',
     anchor: 'accreditations',
     icon: 'award',
-    description: 'Formal recognition by accreditation bodies of our laboratories, testing methods and technical competence.',
+    description:
+      'Formal recognition by accreditation bodies of our laboratories, testing methods and technical competence.',
   },
   registration: {
     label: 'Product registrations',
     singular: 'Product registration',
     anchor: 'product-registrations',
     icon: 'file-check',
-    description: 'Registrations and trade approvals that allow our products to be imported, marketed and sold in partner countries.',
+    description:
+      'Registrations and trade approvals that allow our products to be imported, marketed and sold in partner countries.',
   },
   membership: {
     label: 'Memberships',
     singular: 'Membership',
     anchor: 'memberships',
     icon: 'handshake',
-    description: 'Industry associations and export promotion councils of which we are a registered member.',
+    description:
+      'Industry associations and export promotion councils of which we are a registered member.',
   },
 }
 
@@ -66,12 +75,19 @@ export type CertGroup = CertTypeMeta & { type: CertType; items: Certification[] 
 
 /** Groups certifications by `type` in a fixed, meaningful order; empty groups are dropped. */
 export const groupCertifications = (certs: Certification[]): CertGroup[] =>
-  CERT_TYPE_ORDER.map((type) => ({ type, ...CERT_TYPE_META[type], items: certs.filter((c) => c.type === type) })).filter((g) => g.items.length > 0)
+  CERT_TYPE_ORDER.map((type) => ({
+    type,
+    ...CERT_TYPE_META[type],
+    items: certs.filter((c) => c.type === type),
+  })).filter((g) => g.items.length > 0)
 
 export type CertStatus = 'valid' | 'expired'
 
 /** A certificate is "valid" while `validUntil` is missing or still in the future (inclusive of that day). */
-export const certStatus = (cert: Pick<Certification, 'validUntil'>, now = Date.now()): CertStatus => {
+export const certStatus = (
+  cert: Pick<Certification, 'validUntil'>,
+  now = Date.now(),
+): CertStatus => {
   if (!cert.validUntil) return 'valid'
   const until = new Date(cert.validUntil)
   if (Number.isNaN(until.getTime())) return 'valid'

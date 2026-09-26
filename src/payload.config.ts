@@ -56,7 +56,10 @@ const dbUrl = process.env.DATABASE_URL || 'file:./data/pharma.db'
  * (Neon, Supabase, RDS…) for serverless / multi-instance production.
  */
 const db = dbUrl.startsWith('postgres')
-  ? postgresAdapter({ pool: { connectionString: dbUrl }, push: process.env.NODE_ENV !== 'production' })
+  ? postgresAdapter({
+      pool: { connectionString: dbUrl },
+      push: process.env.NODE_ENV !== 'production',
+    })
   : sqliteAdapter({ client: { url: dbUrl }, push: true })
 
 /** Email: SMTP when configured; otherwise Payload logs emails to the console. */
@@ -85,14 +88,19 @@ const plugins: Plugin[] = [
       return t ? `${t} | Azeem Pharmaceuticals` : 'Azeem Pharmaceuticals'
     },
     generateDescription: ({ doc }) =>
-      doc?.shortDescription || doc?.summary || doc?.hero?.subtitle || doc?.description?.root?.children?.[0]?.children?.[0]?.text || '',
+      doc?.shortDescription ||
+      doc?.summary ||
+      doc?.hero?.subtitle ||
+      doc?.description?.root?.children?.[0]?.children?.[0]?.text ||
+      '',
     generateImage: ({ doc }) => {
       const first = Array.isArray(doc?.images) ? doc.images[0] : doc?.image || doc?.hero?.image
       return typeof first === 'object' && first ? first.id : first || ''
     },
     generateURL: ({ doc, collectionSlug, globalSlug }) => {
       if (collectionSlug === 'products') return `${serverURL}/products/${doc?.slug}`
-      if (collectionSlug === 'categories') return `${serverURL}/categories/${doc?.path || doc?.slug}`
+      if (collectionSlug === 'categories')
+        return `${serverURL}/categories/${doc?.path || doc?.slug}`
       if (collectionSlug === 'countries') return `${serverURL}/global-presence/${doc?.slug}`
       if (globalSlug === 'homepage') return serverURL
       if (globalSlug) return `${serverURL}/${globalSlug.replace(/-page$/, '')}`
@@ -117,7 +125,10 @@ export default buildConfig({
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
     components: {
-      graphics: { Logo: '@/components/admin/Logo#AdminLogo', Icon: '@/components/admin/Logo#AdminIcon' },
+      graphics: {
+        Logo: '@/components/admin/Logo#AdminLogo',
+        Icon: '@/components/admin/Logo#AdminIcon',
+      },
       beforeDashboard: ['@/components/admin/Dashboard#BeforeDashboard'],
     },
     meta: {
@@ -126,7 +137,16 @@ export default buildConfig({
     },
     dateFormat: 'dd MMM yyyy, HH:mm',
   },
-  collections: [Products, Categories, Inquiries, Countries, Certifications, Facilities, Media, Users],
+  collections: [
+    Products,
+    Categories,
+    Inquiries,
+    Countries,
+    Certifications,
+    Facilities,
+    Media,
+    Users,
+  ],
   globals: [
     SiteSettings,
     Homepage,

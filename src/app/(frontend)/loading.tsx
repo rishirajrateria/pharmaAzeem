@@ -28,7 +28,10 @@ export default function Loading() {
           <div className="glass rounded-[2rem] p-3">
             <div className="skeleton aspect-[4/3] w-full rounded-[1.5rem]" />
           </div>
-          <div className="glass absolute -bottom-4 left-4 h-14 w-40 rounded-2xl" aria-hidden="true" />
+          <div
+            className="glass absolute -bottom-4 left-4 h-14 w-40 rounded-2xl"
+            aria-hidden="true"
+          />
         </div>
       </div>
 

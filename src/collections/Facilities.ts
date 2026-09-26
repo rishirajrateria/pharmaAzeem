@@ -12,7 +12,8 @@ export const Facilities: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'type', 'city', 'country', 'order'],
     group: 'Content',
-    description: 'Manufacturing plants, R&D centres and warehouses shown on the Manufacturing page.',
+    description:
+      'Manufacturing plants, R&D centres and warehouses shown on the Manufacturing page.',
   },
   access: { read: anyone, create: isStaff, update: isStaff, delete: isStaff },
   defaultSort: 'order',

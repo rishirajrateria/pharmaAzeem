@@ -15,7 +15,11 @@ export async function Header() {
       logo={mediaUrl(settings.logo)}
       nav={toNav(tree)}
       labels={{ listName: labels.listName, ctaLabel: labels.ctaLabel }}
-      announcement={settings.announcement?.enabled ? { text: settings.announcement.text || '', url: settings.announcement.url || undefined } : null}
+      announcement={
+        settings.announcement?.enabled
+          ? { text: settings.announcement.text || '', url: settings.announcement.url || undefined }
+          : null
+      }
       phone={settings.contact?.phone || undefined}
       email={settings.contact?.email || undefined}
     />

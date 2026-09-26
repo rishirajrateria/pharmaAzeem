@@ -7,10 +7,20 @@ import { mediaUrl } from '@/lib/utils'
 import { Logo } from './Logo'
 import { PRIMARY_LINKS } from './nav'
 
-const SOCIAL_LABEL: Record<string, string> = { linkedin: 'LinkedIn', facebook: 'Facebook', instagram: 'Instagram', x: 'X (Twitter)', youtube: 'YouTube', whatsapp: 'WhatsApp' }
+const SOCIAL_LABEL: Record<string, string> = {
+  linkedin: 'LinkedIn',
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  x: 'X (Twitter)',
+  youtube: 'YouTube',
+  whatsapp: 'WhatsApp',
+}
 
 export async function Footer() {
-  const [{ settings, tree }, certs] = await Promise.all([getLayoutData(), getCertifications({ featured: true })])
+  const [{ settings, tree }, certs] = await Promise.all([
+    getLayoutData(),
+    getCertifications({ featured: true }),
+  ])
   const addr = settings.contact?.address
   const year = new Date().getFullYear()
   return (
@@ -23,9 +33,15 @@ export async function Footer() {
         {/* Trust strip */}
         {certs.length > 0 && (
           <div className="glass -mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-3xl px-6 py-4 text-center">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">Certified & licensed</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
+              Certified & licensed
+            </span>
             {certs.slice(0, 6).map((c) => (
-              <Link key={c.id} href="/licenses" className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700">
+              <Link
+                key={c.id}
+                href="/licenses"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700"
+              >
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
                 {c.title}
               </Link>
@@ -35,21 +51,32 @@ export async function Footer() {
 
         <div className="grid gap-12 py-16 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo siteName={settings.siteName} tagline={settings.tagline} logo={mediaUrl(settings.logo)} />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-600">{settings.shortDescription}</p>
+            <Logo
+              siteName={settings.siteName}
+              tagline={settings.tagline}
+              logo={mediaUrl(settings.logo)}
+            />
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-600">
+              {settings.shortDescription}
+            </p>
             <ul className="mt-6 space-y-2.5 text-sm text-ink-700">
               {addr?.city && (
                 <li className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                   <span>
-                    {[addr.street, addr.city, addr.state, addr.postalCode, addr.country].filter(Boolean).join(', ')}
+                    {[addr.street, addr.city, addr.state, addr.postalCode, addr.country]
+                      .filter(Boolean)
+                      .join(', ')}
                   </span>
                 </li>
               )}
               {settings.contact?.phone && (
                 <li className="flex items-center gap-2.5">
                   <Phone className="h-4 w-4 text-brand-600" />
-                  <a href={`tel:${settings.contact.phone.replace(/\s+/g, '')}`} className="hover:text-brand-700">
+                  <a
+                    href={`tel:${settings.contact.phone.replace(/\s+/g, '')}`}
+                    className="hover:text-brand-700"
+                  >
                     {settings.contact.phone}
                   </a>
                 </li>
@@ -66,7 +93,9 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">Products</h3>
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+              Products
+            </h3>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <Link href="/products" className="text-ink-800 hover:text-brand-700">
@@ -75,7 +104,10 @@ export async function Footer() {
               </li>
               {tree.slice(0, 8).map((c) => (
                 <li key={c.id}>
-                  <Link href={`/categories/${c.path}`} className="text-ink-800 hover:text-brand-700">
+                  <Link
+                    href={`/categories/${c.path}`}
+                    className="text-ink-800 hover:text-brand-700"
+                  >
                     {c.title}
                   </Link>
                 </li>
@@ -84,7 +116,9 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">Company</h3>
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+              Company
+            </h3>
             <ul className="mt-4 space-y-2 text-sm">
               {PRIMARY_LINKS.map((l) => (
                 <li key={l.href}>
@@ -102,17 +136,27 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">Stay connected</h3>
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+              Stay connected
+            </h3>
             <ul className="mt-4 space-y-2 text-sm">
               {(settings.contact?.socials || []).map((s) => (
                 <li key={s.id || s.url}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-ink-800 hover:text-brand-700">
-                    {SOCIAL_LABEL[s.platform] || s.platform} <ArrowUpRight className="h-3.5 w-3.5" />
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-ink-800 hover:text-brand-700"
+                  >
+                    {SOCIAL_LABEL[s.platform] || s.platform}{' '}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 </li>
               ))}
             </ul>
-            {settings.contact?.businessHours && <p className="mt-6 text-xs text-ink-500">{settings.contact.businessHours}</p>}
+            {settings.contact?.businessHours && (
+              <p className="mt-6 text-xs text-ink-500">{settings.contact.businessHours}</p>
+            )}
           </div>
         </div>
 

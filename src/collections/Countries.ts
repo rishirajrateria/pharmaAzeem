@@ -38,24 +38,58 @@ export const Countries: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'isoCode', type: 'text', required: true, maxLength: 2, admin: { width: '25%', description: 'ISO 3166-1 alpha-2, e.g. KE' } },
+        {
+          name: 'isoCode',
+          type: 'text',
+          required: true,
+          maxLength: 2,
+          admin: { width: '25%', description: 'ISO 3166-1 alpha-2, e.g. KE' },
+        },
         { name: 'flag', type: 'text', admin: { width: '25%', description: 'Emoji flag 🇰🇪' } },
-        { name: 'region', type: 'select', options: REGIONS, required: true, admin: { width: '50%' } },
+        {
+          name: 'region',
+          type: 'select',
+          options: REGIONS,
+          required: true,
+          admin: { width: '50%' },
+        },
       ],
     },
     {
       type: 'row',
       fields: [
-        { name: 'served', type: 'checkbox', defaultValue: true, admin: { width: '33%', description: 'Currently exporting here.' } },
-        { name: 'featured', type: 'checkbox', defaultValue: false, admin: { width: '33%', description: 'Highlight on the home page map.' } },
-        { name: 'sinceYear', type: 'number', admin: { width: '34%', description: 'First year of operations.' } },
+        {
+          name: 'served',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: { width: '33%', description: 'Currently exporting here.' },
+        },
+        {
+          name: 'featured',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: { width: '33%', description: 'Highlight on the home page map.' },
+        },
+        {
+          name: 'sinceYear',
+          type: 'number',
+          admin: { width: '34%', description: 'First year of operations.' },
+        },
       ],
     },
     {
       type: 'row',
       fields: [
-        { name: 'lat', type: 'number', admin: { width: '50%', description: 'Latitude for the map pin.' } },
-        { name: 'lng', type: 'number', admin: { width: '50%', description: 'Longitude for the map pin.' } },
+        {
+          name: 'lat',
+          type: 'number',
+          admin: { width: '50%', description: 'Latitude for the map pin.' },
+        },
+        {
+          name: 'lng',
+          type: 'number',
+          admin: { width: '50%', description: 'Longitude for the map pin.' },
+        },
       ],
     },
     {
@@ -67,14 +101,26 @@ export const Countries: CollectionConfig = {
             {
               name: 'regulatoryAuthority',
               type: 'text',
-              admin: { description: 'National medicines regulator, e.g. "Pharmacy and Poisons Board (PPB)".' },
+              admin: {
+                description:
+                  'National medicines regulator, e.g. "Pharmacy and Poisons Board (PPB)".',
+              },
             },
             {
               name: 'summary',
               type: 'textarea',
-              admin: { description: 'Short paragraph shown on cards and used as the default meta description.' },
+              admin: {
+                description:
+                  'Short paragraph shown on cards and used as the default meta description.',
+              },
             },
-            { name: 'description', type: 'richText', admin: { description: 'Country page body: registration support, logistics, partnerships…' } },
+            {
+              name: 'description',
+              type: 'richText',
+              admin: {
+                description: 'Country page body: registration support, logistics, partnerships…',
+              },
+            },
             {
               name: 'highlights',
               type: 'array',

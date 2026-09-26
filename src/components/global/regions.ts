@@ -20,20 +20,34 @@ export const REGION_LABELS: Record<RegionKey, string> = {
 
 /** Short, one-line positioning statement per region – used under region headings. */
 export const REGION_BLURBS: Record<RegionKey, string> = {
-  africa: 'Essential medicines for hospital, pharmacy and tender supply across Sub-Saharan and North Africa.',
-  'middle-east': 'Arabic artwork and documentation prepared to the requirements of Gulf and Levant regulators.',
+  africa:
+    'Essential medicines for hospital, pharmacy and tender supply across Sub-Saharan and North Africa.',
+  'middle-east':
+    'Arabic artwork and documentation prepared to the requirements of Gulf and Levant regulators.',
   'south-asia': 'Short lead times and fast regulatory responses for our closest export markets.',
   'south-east-asia': 'ACTD-format dossiers and local-language packs for ASEAN regulators.',
   'east-asia-pacific': 'Consolidated shipments planned around long Pacific transit routes.',
   cis: 'Russian-language documentation and EAEU-aligned dossiers for CIS and Central Asian partners.',
   europe: 'Contract manufacturing and CTD-based registrations for European and Balkan partners.',
   'latin-america': 'Spanish and Portuguese dossiers with long-distance cold-chain logistics.',
-  'north-america': 'Development and supply projects built around US and Canadian regulatory requirements.',
+  'north-america':
+    'Development and supply projects built around US and Canadian regulatory requirements.',
 }
 
-export const REGION_ORDER: RegionKey[] = ['africa', 'middle-east', 'south-asia', 'south-east-asia', 'east-asia-pacific', 'cis', 'europe', 'latin-america', 'north-america']
+export const REGION_ORDER: RegionKey[] = [
+  'africa',
+  'middle-east',
+  'south-asia',
+  'south-east-asia',
+  'east-asia-pacific',
+  'cis',
+  'europe',
+  'latin-america',
+  'north-america',
+]
 
-export const regionLabel = (region: string | null | undefined) => (region && REGION_LABELS[region as RegionKey]) || 'Worldwide'
+export const regionLabel = (region: string | null | undefined) =>
+  (region && REGION_LABELS[region as RegionKey]) || 'Worldwide'
 
 export const regionAnchor = (region: string) => `region-${region}`
 
@@ -45,7 +59,9 @@ export const groupByRegion = (countries: Country[]): RegionGroup[] =>
     key,
     label: REGION_LABELS[key],
     blurb: REGION_BLURBS[key],
-    countries: countries.filter((c) => c.region === key).sort((a, b) => a.name.localeCompare(b.name)),
+    countries: countries
+      .filter((c) => c.region === key)
+      .sort((a, b) => a.name.localeCompare(b.name)),
   })).filter((g) => g.countries.length > 0)
 
 /** "National Agency for Food and Drug Administration and Control (NAFDAC)" → "NAFDAC" */
@@ -58,6 +74,8 @@ export const regulatorShort = (authority: string | null | undefined) => {
 export const countryPath = (country: Pick<Country, 'slug'>) => `/global-presence/${country.slug}`
 
 export const earliestYear = (countries: Country[]) => {
-  const years = countries.map((c) => c.sinceYear).filter((y): y is number => typeof y === 'number' && y > 1900)
+  const years = countries
+    .map((c) => c.sinceYear)
+    .filter((y): y is number => typeof y === 'number' && y > 1900)
   return years.length ? Math.min(...years) : undefined
 }

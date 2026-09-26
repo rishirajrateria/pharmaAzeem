@@ -17,7 +17,8 @@ type Props = {
 }
 
 /** "WHO-GMP Certificate" → "WHO-GMP" for compact trust chips. */
-const shortCertName = (title: string) => title.replace(/\s*(certificate|certification)\s*$/i, '').trim()
+const shortCertName = (title: string) =>
+  title.replace(/\s*(certificate|certification)\s*$/i, '').trim()
 
 const FLOAT_POSITIONS = [
   '-left-2 top-[10%] sm:-left-8',
@@ -36,8 +37,14 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
   // Trust chips come only from CMS data (featured certifications + the countries stat) – never hard-coded claims.
   const hasCerts = certifications.length > 0
   const countryStat = stats?.find((s) => /countr/i.test(s.label))
-  const trust: { icon: LucideIcon; label: string }[] = certifications.slice(0, 2).map((c) => ({ icon: ShieldCheck, label: shortCertName(c.title) }))
-  if (countryStat) trust.push({ icon: Globe, label: `${countryStat.value}${countryStat.suffix ?? ''} ${countryStat.label.toLowerCase()}` })
+  const trust: { icon: LucideIcon; label: string }[] = certifications
+    .slice(0, 2)
+    .map((c) => ({ icon: ShieldCheck, label: shortCertName(c.title) }))
+  if (countryStat)
+    trust.push({
+      icon: Globe,
+      label: `${countryStat.value}${countryStat.suffix ?? ''} ${countryStat.label.toLowerCase()}`,
+    })
   else if (countryCount > 0) trust.push({ icon: Globe, label: `${countryCount}+ countries served` })
 
   const floating = (stats || []).slice(0, 3)
@@ -45,7 +52,10 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
   return (
     <section className="noise relative overflow-hidden" aria-labelledby="hero-title">
       <Orbs variant="intense" />
-      <div className="grid-pattern fade-mask-y absolute inset-0 -z-10 opacity-50" aria-hidden="true" />
+      <div
+        className="grid-pattern fade-mask-y absolute inset-0 -z-10 opacity-50"
+        aria-hidden="true"
+      />
 
       <Container className="flex min-h-[88vh] items-center py-14 sm:py-20 lg:py-24">
         <div className="grid w-full items-center gap-16 lg:grid-cols-12 lg:gap-8">
@@ -63,7 +73,11 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
             <h1 id="hero-title" className="display-1 mt-6 text-ink-950">
               <Highlight text={hero.title} highlight={hero.highlight} />
             </h1>
-            {hero.subtitle && <p className="lead mt-6 max-w-xl animate-fade-up [animation-delay:120ms]">{hero.subtitle}</p>}
+            {hero.subtitle && (
+              <p className="lead mt-6 max-w-xl animate-fade-up [animation-delay:120ms]">
+                {hero.subtitle}
+              </p>
+            )}
 
             {(primary || secondary) && (
               <div className="mt-8 flex flex-wrap items-center gap-3 animate-fade-up [animation-delay:200ms]">
@@ -83,9 +97,14 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
             {trust.length > 0 && (
               <div className="mt-10 animate-fade-up [animation-delay:280ms]">
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-400">
-                  {hasCerts ? 'Certified, audited and trusted worldwide' : 'Supplying partners worldwide'}
+                  {hasCerts
+                    ? 'Certified, audited and trusted worldwide'
+                    : 'Supplying partners worldwide'}
                 </p>
-                <ul className="mt-3 flex flex-wrap items-center gap-2" aria-label={hasCerts ? 'Certifications and reach' : 'Global reach'}>
+                <ul
+                  className="mt-3 flex flex-wrap items-center gap-2"
+                  aria-label={hasCerts ? 'Certifications and reach' : 'Global reach'}
+                >
                   {trust.map((t) => (
                     <li key={t.label} className="chip !bg-white/70 !py-1.5 shadow-glass">
                       <t.icon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -100,11 +119,17 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
           {/* Visual composition */}
           <div className="relative lg:col-span-6">
             <div className="relative mx-auto aspect-[5/6] w-full max-w-[22rem] sm:max-w-[28rem] lg:max-w-[32rem]">
-              <div className="absolute inset-0 scale-[0.72] sm:scale-90 lg:scale-100" aria-hidden="true">
+              <div
+                className="absolute inset-0 scale-[0.72] sm:scale-90 lg:scale-100"
+                aria-hidden="true"
+              >
                 <HudRings />
               </div>
               <MoleculeField className="absolute -right-6 -top-8 w-52 opacity-80 sm:-right-10 sm:w-72" />
-              <div className="absolute -bottom-6 -left-8 h-40 w-40 rounded-full bg-brand-gradient opacity-20 blur-2xl" aria-hidden="true" />
+              <div
+                className="absolute -bottom-6 -left-8 h-40 w-40 rounded-full bg-brand-gradient opacity-20 blur-2xl"
+                aria-hidden="true"
+              />
 
               {/* Rotated glass frame with hero image */}
               <div className="absolute inset-x-[9%] top-[5%] bottom-[5%] animate-float-slow">
@@ -119,8 +144,14 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
                       className="h-full w-full"
                       imgClassName="object-cover"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/10" aria-hidden="true" />
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" aria-hidden="true" />
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/10"
+                      aria-hidden="true"
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
+                      aria-hidden="true"
+                    />
                   </div>
                 </div>
               </div>
@@ -133,7 +164,9 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
                       {s.value}
                       {s.suffix}
                     </p>
-                    <p className="mt-1.5 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">{s.label}</p>
+                    <p className="mt-1.5 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                      {s.label}
+                    </p>
                   </div>
                 </div>
               ))}

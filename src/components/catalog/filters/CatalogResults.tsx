@@ -8,7 +8,13 @@ import { cn } from '@/lib/utils'
 import { FilterSidebar } from './FilterSidebar'
 import { MobileFilters, MobileFiltersTrigger } from './MobileFilters'
 import { Pagination } from './Pagination'
-import { describeFilters, PAGE_SIZE, resultRange, SORT_OPTIONS, type ParsedFilters } from './parseFilters'
+import {
+  describeFilters,
+  PAGE_SIZE,
+  resultRange,
+  SORT_OPTIONS,
+  type ParsedFilters,
+} from './parseFilters'
 import { ProductGrid } from './ProductGrid'
 import { SearchBox } from './SearchBox'
 import { SortSelect } from './SortSelect'
@@ -34,7 +40,18 @@ type Props = {
  * category page: sticky glass sidebar (slide-over on mobile), toolbar with
  * search + sort + result count, product grid and pagination.
  */
-export function CatalogResults({ basePath, filters, facets, result, labels, suggestions, scopeLabel, priorityCount, id = 'catalog', className }: Props) {
+export function CatalogResults({
+  basePath,
+  filters,
+  facets,
+  result,
+  labels,
+  suggestions,
+  scopeLabel,
+  priorityCount,
+  id = 'catalog',
+  className,
+}: Props) {
   const { totalDocs, totalPages, docs } = result
   const page = result.page ?? filters.page
   const limit = result.limit ?? PAGE_SIZE
@@ -45,8 +62,17 @@ export function CatalogResults({ basePath, filters, facets, result, labels, sugg
   const noun = totalDocs === 1 ? 'product' : 'products'
 
   return (
-    <div id={id} className={cn('scroll-mt-28 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8', className)}>
-      <aside className="scrollbar-thin max-lg:contents lg:sticky lg:top-28 lg:-mx-1 lg:max-h-[calc(100dvh-8rem)] lg:self-start lg:overflow-y-auto lg:px-1 lg:pb-4" aria-label="Product filters">
+    <div
+      id={id}
+      className={cn(
+        'scroll-mt-28 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8',
+        className,
+      )}
+    >
+      <aside
+        className="scrollbar-thin max-lg:contents lg:sticky lg:top-28 lg:-mx-1 lg:max-h-[calc(100dvh-8rem)] lg:self-start lg:overflow-y-auto lg:px-1 lg:pb-4"
+        aria-label="Product filters"
+      >
         <MobileFilters resultsLabel={`Show ${totalDocs} ${noun}`}>
           <FilterSidebar basePath={basePath} filters={filters} facets={facets} />
         </MobileFilters>
@@ -59,24 +85,53 @@ export function CatalogResults({ basePath, filters, facets, result, labels, sugg
             <p className="text-sm text-ink-600" role="status">
               {totalDocs > 0 ? (
                 <>
-                  Showing <span className="font-semibold text-ink-950">{from}–{to}</span> of <span className="font-semibold text-ink-950">{totalDocs}</span> {noun}
+                  Showing{' '}
+                  <span className="font-semibold text-ink-950">
+                    {from}–{to}
+                  </span>{' '}
+                  of <span className="font-semibold text-ink-950">{totalDocs}</span> {noun}
                   {scopeLabel ? ` ${scopeLabel}` : ''}
                 </>
               ) : (
-                <>No {noun} found{scopeLabel ? ` ${scopeLabel}` : ''}</>
+                <>
+                  No {noun} found{scopeLabel ? ` ${scopeLabel}` : ''}
+                </>
               )}
-              {summary && <span className="block text-xs text-ink-500 sm:inline sm:before:mx-2 sm:before:content-['·']">{summary}</span>}
+              {summary && (
+                <span className="block text-xs text-ink-500 sm:inline sm:before:mx-2 sm:before:content-['·']">
+                  {summary}
+                </span>
+              )}
             </p>
             <div className="flex items-center gap-2">
               <MobileFiltersTrigger activeCount={filters.active.length} />
-              <SortSelect basePath={basePath} value={filters.sort} options={sortOptions} baseParams={sortBaseParams} />
+              <SortSelect
+                basePath={basePath}
+                value={filters.sort}
+                options={sortOptions}
+                baseParams={sortBaseParams}
+              />
             </div>
           </div>
         </div>
 
-        <ProductGrid products={docs} labels={labels} basePath={basePath} filters={filters} suggestions={suggestions} priorityCount={priorityCount} className="mt-6" />
+        <ProductGrid
+          products={docs}
+          labels={labels}
+          basePath={basePath}
+          filters={filters}
+          suggestions={suggestions}
+          priorityCount={priorityCount}
+          className="mt-6"
+        />
 
-        <Pagination basePath={basePath} filters={filters} page={page} totalPages={totalPages} className="mt-10" />
+        <Pagination
+          basePath={basePath}
+          filters={filters}
+          page={page}
+          totalPages={totalPages}
+          className="mt-10"
+        />
       </div>
     </div>
   )

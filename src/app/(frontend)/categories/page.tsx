@@ -40,19 +40,31 @@ const FAQS = [
 ]
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [settings, tree, all] = await Promise.all([getSiteSettings(), getCategoryTree(), getAllProductsSlim()])
+  const [settings, tree, all] = await Promise.all([
+    getSiteSettings(),
+    getCategoryTree(),
+    getAllProductsSlim(),
+  ])
   const name = siteName(settings)
   return buildMetadata({
     settings,
     path: BASE,
     title: `${TITLE} – Browse ${name} products by therapeutic area`,
-    description: `Explore ${all.length} ${name} medicines across ${tree.length} therapeutic categories and ${countDescendants(tree)} sub-categories – ${joinProse(tree.slice(0, 5).map((c) => c.title.toLowerCase()), 5)} and more.`,
+    description: `Explore ${all.length} ${name} medicines across ${tree.length} therapeutic categories and ${countDescendants(tree)} sub-categories – ${joinProse(
+      tree.slice(0, 5).map((c) => c.title.toLowerCase()),
+      5,
+    )} and more.`,
   })
 }
 
 /** /categories – overview of the whole category tree. Static, revalidated hourly and on content change. */
 export default async function CategoriesIndexPage() {
-  const [settings, tree, all, facets] = await Promise.all([getSiteSettings(), getCategoryTree(), getAllProductsSlim(), getProductFacets()])
+  const [settings, tree, all, facets] = await Promise.all([
+    getSiteSettings(),
+    getCategoryTree(),
+    getAllProductsSlim(),
+    getProductFacets(),
+  ])
   const labels = getCommerceLabels(settings)
   const name = siteName(settings)
   const subCount = countDescendants(tree)
@@ -70,9 +82,19 @@ export default async function CategoriesIndexPage() {
     <>
       <JsonLd
         data={graph(
-          webPageJsonLd({ path: BASE, name: TITLE, description, type: 'CollectionPage', dateModified: lastModified }),
+          webPageJsonLd({
+            path: BASE,
+            name: TITLE,
+            description,
+            type: 'CollectionPage',
+            dateModified: lastModified,
+          }),
           itemListJsonLd(
-            tree.map((c) => ({ name: c.title, path: `/categories/${c.path}`, image: mediaUrl(c.image, 'card') })),
+            tree.map((c) => ({
+              name: c.title,
+              path: `/categories/${c.path}`,
+              image: mediaUrl(c.image, 'card'),
+            })),
             `${name} product categories`,
           ),
         )}
@@ -102,7 +124,11 @@ export default async function CategoriesIndexPage() {
 
       <Section className="!pt-0" aria-labelledby="categories-grid-title">
         <Container>
-          <SectionHeading eyebrow="Therapeutic areas" title={<span id="categories-grid-title">Choose a category</span>} description="Each tile shows the number of products in that area and its most important sub-categories." />
+          <SectionHeading
+            eyebrow="Therapeutic areas"
+            title={<span id="categories-grid-title">Choose a category</span>}
+            description="Each tile shows the number of products in that area and its most important sub-categories."
+          />
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {tree.map((c, i) => (
               <Reveal key={c.id} as="li" delay={Math.min(i, 8) * 60}>
@@ -116,9 +142,16 @@ export default async function CategoriesIndexPage() {
       <Section className="!pt-0" aria-labelledby="category-index-title">
         <Container>
           <div className="glass relative overflow-hidden rounded-[2.25rem] p-6 sm:p-10 lg:p-12">
-            <div className="absolute inset-0 grid-pattern opacity-40 fade-mask-y" aria-hidden="true" />
+            <div
+              className="absolute inset-0 grid-pattern opacity-40 fade-mask-y"
+              aria-hidden="true"
+            />
             <div className="relative">
-              <SectionHeading eyebrow="Complete index" title={<span id="category-index-title">Every category and sub-category</span>} description="A full A–Z map of the catalogue – useful when you already know the drug class you are sourcing." />
+              <SectionHeading
+                eyebrow="Complete index"
+                title={<span id="category-index-title">Every category and sub-category</span>}
+                description="A full A–Z map of the catalogue – useful when you already know the drug class you are sourcing."
+              />
               <div className="mt-10 columns-1 gap-8 sm:columns-2 lg:columns-3 [&>*]:break-inside-avoid">
                 {tree.map((c) => (
                   <div key={c.id} className="mb-8">
@@ -129,21 +162,31 @@ export default async function CategoriesIndexPage() {
                       <Link href={`/categories/${c.path}`} className="hover:text-brand-700">
                         {c.title}
                       </Link>
-                      <span className="font-mono text-[11px] font-medium text-ink-400">{c.productCount}</span>
+                      <span className="font-mono text-[11px] font-medium text-ink-400">
+                        {c.productCount}
+                      </span>
                     </h3>
                     {c.children.length > 0 && (
                       <ul className="mt-2.5 space-y-1.5 border-l border-brand-200/70 pl-4">
                         {c.children.map((s) => (
                           <li key={s.id}>
-                            <Link href={`/categories/${s.path}`} className="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700">
+                            <Link
+                              href={`/categories/${s.path}`}
+                              className="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700"
+                            >
                               {s.title}
-                              <span className="font-mono text-[10px] text-ink-400">{s.productCount}</span>
+                              <span className="font-mono text-[10px] text-ink-400">
+                                {s.productCount}
+                              </span>
                             </Link>
                             {s.children.length > 0 && (
                               <ul className="mt-1 space-y-1 pl-4">
                                 {s.children.map((t) => (
                                   <li key={t.id}>
-                                    <Link href={`/categories/${t.path}`} className="text-xs text-ink-600 hover:text-brand-700">
+                                    <Link
+                                      href={`/categories/${t.path}`}
+                                      className="text-xs text-ink-600 hover:text-brand-700"
+                                    >
                                       {t.title}
                                     </Link>
                                   </li>
@@ -157,8 +200,12 @@ export default async function CategoriesIndexPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline">
-                Or browse the whole catalogue with filters <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+              >
+                Or browse the whole catalogue with filters{' '}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -168,7 +215,11 @@ export default async function CategoriesIndexPage() {
       <Section className="!pt-0" aria-labelledby="categories-faq-title">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <SectionHeading eyebrow="FAQ" title={<span id="categories-faq-title">How the catalogue works</span>} description="Quick answers for buyers navigating the range for the first time." />
+            <SectionHeading
+              eyebrow="FAQ"
+              title={<span id="categories-faq-title">How the catalogue works</span>}
+              description="Quick answers for buyers navigating the range for the first time."
+            />
             <FaqAccordion faqs={FAQS} />
           </div>
         </Container>

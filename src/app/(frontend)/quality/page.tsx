@@ -35,13 +35,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function QualityPage() {
-  const [doc, certifications] = await Promise.all([getPageGlobal('quality-page'), getCertifications()])
+  const [doc, certifications] = await Promise.all([
+    getPageGlobal('quality-page'),
+    getCertifications(),
+  ])
   const featured = certifications.filter((c) => c.featured)
   const strip = (featured.length >= 3 ? featured : certifications).slice(0, 5)
-  const description = doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
+  const description =
+    doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
   /** Summary shown directly under the h1 – falls back to the intro so the page always has one. */
-  const summary = doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
-  const chips: HeroChip[] = (doc.stats || []).slice(0, 2).map((s, i) => ({ icon: CHIP_ICONS[i], label: s.label, value: `${s.value}${s.suffix || ''}` }))
+  const summary =
+    doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 200) || doc.meta?.description || null
+  const chips: HeroChip[] = (doc.stats || [])
+    .slice(0, 2)
+    .map((s, i) => ({ icon: CHIP_ICONS[i], label: s.label, value: `${s.value}${s.suffix || ''}` }))
 
   return (
     <>
@@ -84,7 +91,10 @@ export default async function QualityPage() {
                   </h2>
                 </div>
                 <div className="lg:col-span-8">
-                  <RichText data={doc.intro} className="[&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg" />
+                  <RichText
+                    data={doc.intro}
+                    className="[&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg"
+                  />
                 </div>
               </div>
             )}

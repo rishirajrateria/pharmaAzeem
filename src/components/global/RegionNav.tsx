@@ -15,7 +15,9 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
 
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return
-    const sections = items.map((i) => document.getElementById(i.anchor)).filter((el): el is HTMLElement => Boolean(el))
+    const sections = items
+      .map((i) => document.getElementById(i.anchor))
+      .filter((el): el is HTMLElement => Boolean(el))
     if (!sections.length) return
     const visible = new Map<string, number>()
     const obs = new IntersectionObserver(
@@ -36,7 +38,10 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
   }, [items])
 
   return (
-    <nav aria-label="Regions" className={cn('sticky top-28 z-30 -mx-4 px-4 sm:mx-0 sm:px-0', className)}>
+    <nav
+      aria-label="Regions"
+      className={cn('sticky top-28 z-30 -mx-4 px-4 sm:mx-0 sm:px-0', className)}
+    >
       <ul className="scrollbar-thin glass-strong glass-edge flex snap-x gap-1 overflow-x-auto rounded-full p-1.5 shadow-glass-lg">
         {items.map((item) => {
           const isActive = active === item.anchor
@@ -47,11 +52,20 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
                   'inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-xs font-semibold tracking-tight transition-all duration-300 sm:text-sm',
-                  isActive ? 'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]' : 'text-ink-700 hover:bg-brand-50 hover:text-brand-700',
+                  isActive
+                    ? 'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]'
+                    : 'text-ink-700 hover:bg-brand-50 hover:text-brand-700',
                 )}
               >
                 {item.label}
-                <span className={cn('rounded-full px-1.5 py-0.5 font-mono text-[10px] leading-none', isActive ? 'bg-white/20 text-white' : 'bg-brand-50 text-brand-700')}>{item.count}</span>
+                <span
+                  className={cn(
+                    'rounded-full px-1.5 py-0.5 font-mono text-[10px] leading-none',
+                    isActive ? 'bg-white/20 text-white' : 'bg-brand-50 text-brand-700',
+                  )}
+                >
+                  {item.count}
+                </span>
               </a>
             </li>
           )

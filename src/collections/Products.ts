@@ -68,14 +68,22 @@ export const Products: CollectionConfig = {
     return paths
   }, true),
   fields: [
-    { name: 'title', type: 'text', required: true, admin: { description: 'Brand / product name, e.g. "Azicin 500".' } },
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      admin: { description: 'Brand / product name, e.g. "Azicin 500".' },
+    },
     slugField(),
     {
       name: 'genericName',
       type: 'text',
       required: true,
       index: true,
-      admin: { description: 'Generic / INN name, e.g. "Azithromycin". Used in headings, search and structured data.' },
+      admin: {
+        description:
+          'Generic / INN name, e.g. "Azithromycin". Used in headings, search and structured data.',
+      },
     },
     {
       name: 'categories',
@@ -86,14 +94,18 @@ export const Products: CollectionConfig = {
       admin: {
         position: 'sidebar',
         sortOptions: 'path',
-        description: 'Pick a sub-category where possible; the product also appears in all parent categories.',
+        description:
+          'Pick a sub-category where possible; the product also appears in all parent categories.',
       },
     },
     {
       name: 'featured',
       type: 'checkbox',
       defaultValue: false,
-      admin: { position: 'sidebar', description: 'Show in the home page "Featured products" section.' },
+      admin: {
+        position: 'sidebar',
+        description: 'Show in the home page "Featured products" section.',
+      },
     },
     {
       name: 'badges',
@@ -120,13 +132,26 @@ export const Products: CollectionConfig = {
               type: 'textarea',
               maxLength: 240,
               required: true,
-              admin: { description: 'One-line summary shown on cards, search results and as the default meta description.' },
+              admin: {
+                description:
+                  'One-line summary shown on cards, search results and as the default meta description.',
+              },
             },
             {
               type: 'row',
               fields: [
-                { name: 'dosageForm', type: 'select', options: toOptions(DOSAGE_FORMS), admin: { width: '34%' }, index: true },
-                { name: 'strength', type: 'text', admin: { width: '33%', description: 'e.g. 500 mg' } },
+                {
+                  name: 'dosageForm',
+                  type: 'select',
+                  options: toOptions(DOSAGE_FORMS),
+                  admin: { width: '34%' },
+                  index: true,
+                },
+                {
+                  name: 'strength',
+                  type: 'text',
+                  admin: { width: '33%', description: 'e.g. 500 mg' },
+                },
                 {
                   name: 'prescriptionStatus',
                   type: 'select',
@@ -143,22 +168,45 @@ export const Products: CollectionConfig = {
             {
               type: 'row',
               fields: [
-                { name: 'route', type: 'select', options: toOptions(ROUTES_OF_ADMINISTRATION), admin: { width: '34%' } },
-                { name: 'packSize', type: 'text', admin: { width: '33%', description: 'e.g. 10 x 10 blister' } },
-                { name: 'packaging', type: 'text', admin: { width: '33%', description: 'e.g. Alu-Alu blister, HDPE bottle' } },
+                {
+                  name: 'route',
+                  type: 'select',
+                  options: toOptions(ROUTES_OF_ADMINISTRATION),
+                  admin: { width: '34%' },
+                },
+                {
+                  name: 'packSize',
+                  type: 'text',
+                  admin: { width: '33%', description: 'e.g. 10 x 10 blister' },
+                },
+                {
+                  name: 'packaging',
+                  type: 'text',
+                  admin: { width: '33%', description: 'e.g. Alu-Alu blister, HDPE bottle' },
+                },
               ],
             },
             {
               type: 'row',
               fields: [
-                { name: 'shelfLife', type: 'text', admin: { width: '50%', description: 'e.g. 24 months' } },
-                { name: 'storage', type: 'text', admin: { width: '50%', description: 'e.g. Store below 25°C, protect from light' } },
+                {
+                  name: 'shelfLife',
+                  type: 'text',
+                  admin: { width: '50%', description: 'e.g. 24 months' },
+                },
+                {
+                  name: 'storage',
+                  type: 'text',
+                  admin: { width: '50%', description: 'e.g. Store below 25°C, protect from light' },
+                },
               ],
             },
             {
               name: 'activeIngredients',
               type: 'array',
-              admin: { description: 'Composition. Published as structured data (schema.org/Drug).' },
+              admin: {
+                description: 'Composition. Published as structured data (schema.org/Drug).',
+              },
               fields: [
                 {
                   type: 'row',
@@ -169,11 +217,18 @@ export const Products: CollectionConfig = {
                 },
               ],
             },
-            { name: 'therapeuticClass', type: 'text', admin: { description: 'e.g. Macrolide antibiotic' } },
+            {
+              name: 'therapeuticClass',
+              type: 'text',
+              admin: { description: 'e.g. Macrolide antibiotic' },
+            },
             {
               name: 'specifications',
               type: 'array',
-              admin: { description: 'Extra key/value rows shown in the specification table.', initCollapsed: true },
+              admin: {
+                description: 'Extra key/value rows shown in the specification table.',
+                initCollapsed: true,
+              },
               fields: [
                 {
                   type: 'row',
@@ -189,8 +244,16 @@ export const Products: CollectionConfig = {
         {
           label: 'Description',
           fields: [
-            { name: 'description', type: 'richText', admin: { description: 'Full product description.' } },
-            { name: 'indications', type: 'richText', admin: { description: 'Uses / indications.' } },
+            {
+              name: 'description',
+              type: 'richText',
+              admin: { description: 'Full product description.' },
+            },
+            {
+              name: 'indications',
+              type: 'richText',
+              admin: { description: 'Uses / indications.' },
+            },
             {
               name: 'keyBenefits',
               type: 'array',
@@ -204,7 +267,10 @@ export const Products: CollectionConfig = {
               relationTo: 'products',
               hasMany: true,
               filterOptions: ({ id }) => (id ? { id: { not_equals: id } } : true),
-              admin: { description: 'Hand-picked suggestions. If empty, products from the same category are suggested automatically.' },
+              admin: {
+                description:
+                  'Hand-picked suggestions. If empty, products from the same category are suggested automatically.',
+              },
             },
           ],
         },
@@ -217,7 +283,12 @@ export const Products: CollectionConfig = {
               type: 'row',
               fields: [
                 { name: 'price', type: 'number', min: 0, admin: { width: '34%', step: 0.01 } },
-                { name: 'compareAtPrice', type: 'number', min: 0, admin: { width: '33%', step: 0.01, description: 'Strike-through price.' } },
+                {
+                  name: 'compareAtPrice',
+                  type: 'number',
+                  min: 0,
+                  admin: { width: '33%', step: 0.01, description: 'Strike-through price.' },
+                },
                 {
                   name: 'priceUnit',
                   type: 'text',
@@ -239,8 +310,19 @@ export const Products: CollectionConfig = {
               type: 'row',
               fields: [
                 { name: 'sku', type: 'text', index: true, admin: { width: '34%' } },
-                { name: 'minOrderQuantity', type: 'number', min: 1, defaultValue: 1, admin: { width: '33%' } },
-                { name: 'stock', type: 'number', min: 0, admin: { width: '33%', description: 'Leave empty for "made to order".' } },
+                {
+                  name: 'minOrderQuantity',
+                  type: 'number',
+                  min: 1,
+                  defaultValue: 1,
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'stock',
+                  type: 'number',
+                  min: 0,
+                  admin: { width: '33%', description: 'Leave empty for "made to order".' },
+                },
               ],
             },
             {

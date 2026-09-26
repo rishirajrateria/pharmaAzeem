@@ -24,7 +24,12 @@ export const revalidate = 3600
 const PATH = '/about'
 
 const getData = () =>
-  Promise.all([getPageGlobal('about-page'), getSiteSettings(), getCertifications({ featured: true }), getFacilities()])
+  Promise.all([
+    getPageGlobal('about-page'),
+    getSiteSettings(),
+    getCertifications({ featured: true }),
+    getFacilities(),
+  ])
 
 export async function generateMetadata(): Promise<Metadata> {
   const [doc, settings] = await Promise.all([getPageGlobal('about-page'), getSiteSettings()])
@@ -48,11 +53,28 @@ export default async function AboutPage() {
   const facts: KeyFact[] = [
     settings.legalName ? { label: 'Legal name', value: settings.legalName } : null,
     settings.foundingYear ? { label: 'Founded', value: String(settings.foundingYear) } : null,
-    addr?.city ? { label: 'Headquarters', value: [addr.city, addr.state, addr.country].filter(Boolean).join(', ') } : null,
+    addr?.city
+      ? {
+          label: 'Headquarters',
+          value: [addr.city, addr.state, addr.country].filter(Boolean).join(', '),
+        }
+      : null,
     settings.employeeCount ? { label: 'Team', value: `${settings.employeeCount} people` } : null,
-    facilities.length ? { label: 'Facilities', value: `${facilities.length} (${[...new Set(facilities.map((f) => f.city).filter(Boolean))].join(', ')})` } : null,
+    facilities.length
+      ? {
+          label: 'Facilities',
+          value: `${facilities.length} (${[...new Set(facilities.map((f) => f.city).filter(Boolean))].join(', ')})`,
+        }
+      : null,
     certifications.length
-      ? { label: 'Certified', value: certifications.slice(0, 3).map((c) => c.title).join(' · ') + (certifications.length > 3 ? ` +${certifications.length - 3}` : '') }
+      ? {
+          label: 'Certified',
+          value:
+            certifications
+              .slice(0, 3)
+              .map((c) => c.title)
+              .join(' · ') + (certifications.length > 3 ? ` +${certifications.length - 3}` : ''),
+        }
       : null,
   ].filter((f): f is KeyFact => f !== null)
 
@@ -76,7 +98,12 @@ export default async function AboutPage() {
     <>
       <JsonLd data={jsonLd} />
 
-      <AboutHero hero={doc.hero} settings={settings} facilityCount={facilities.length} certification={gmp?.title} />
+      <AboutHero
+        hero={doc.hero}
+        settings={settings}
+        facilityCount={facilities.length}
+        certification={gmp?.title}
+      />
 
       <IntroPanel intro={doc.intro} foundingYear={settings.foundingYear} facts={facts} />
 

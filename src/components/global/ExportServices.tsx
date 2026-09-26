@@ -6,12 +6,41 @@ import { Reveal } from '../ui/Reveal'
 type Service = NonNullable<GlobalPresencePage['exportServices']>[number]
 
 const DEFAULT_SERVICES: Service[] = [
-  { title: 'Product registration', icon: 'file-check', description: 'CTD / eCTD dossiers, stability data, CoPPs, samples and regulator query responses.' },
-  { title: 'Tender supply', icon: 'clipboard-list', description: 'Government and institutional tenders with pre-shipment inspection and full documentation.' },
-  { title: 'Private label', icon: 'package', description: 'Your brand, our formulations – artwork in local languages and market-specific packs.' },
-  { title: 'Logistics', icon: 'ship', description: 'FCL, LCL and air freight with cold-chain options and the Incoterms of your choice.' },
-  { title: 'Local-language support', icon: 'globe', description: 'Artwork, leaflets and documentation prepared in the languages your market requires.' },
-  { title: 'After-sales', icon: 'headset', description: 'Dedicated account managers, pharmacovigilance support and complaint handling.' },
+  {
+    title: 'Product registration',
+    icon: 'file-check',
+    description:
+      'CTD / eCTD dossiers, stability data, CoPPs, samples and regulator query responses.',
+  },
+  {
+    title: 'Tender supply',
+    icon: 'clipboard-list',
+    description:
+      'Government and institutional tenders with pre-shipment inspection and full documentation.',
+  },
+  {
+    title: 'Private label',
+    icon: 'package',
+    description:
+      'Your brand, our formulations – artwork in local languages and market-specific packs.',
+  },
+  {
+    title: 'Logistics',
+    icon: 'ship',
+    description:
+      'FCL, LCL and air freight with cold-chain options and the Incoterms of your choice.',
+  },
+  {
+    title: 'Local-language support',
+    icon: 'globe',
+    description:
+      'Artwork, leaflets and documentation prepared in the languages your market requires.',
+  },
+  {
+    title: 'After-sales',
+    icon: 'headset',
+    description: 'Dedicated account managers, pharmacovigilance support and complaint handling.',
+  },
 ]
 
 /** Icon grid of export services. Falls back to sensible defaults when the CMS list is empty. */
@@ -26,7 +55,9 @@ export function ExportServices({ services }: { services?: Service[] | null }) {
               <Icon name={s.icon} className="h-5 w-5" />
             </span>
             <h3 className="mt-5 text-lg font-semibold text-ink-950">{s.title}</h3>
-            {s.description && <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.description}</p>}
+            {s.description && (
+              <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.description}</p>
+            )}
           </article>
         </Reveal>
       ))}

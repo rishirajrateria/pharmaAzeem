@@ -4,15 +4,58 @@ import { cn } from '@/lib/utils'
  * Decorative molecule / hexagon lattice drawn in SVG — a futuristic pharma motif.
  * Uses stroke-dasharray animation for a "drawing" feel. Cheap: one SVG, few nodes.
  */
-export function MoleculeField({ className, animated = true }: { className?: string; animated?: boolean }) {
+export function MoleculeField({
+  className,
+  animated = true,
+}: {
+  className?: string
+  animated?: boolean
+}) {
   const nodes = [
-    [40, 60], [120, 30], [200, 70], [280, 40], [360, 90], [90, 150], [170, 130], [250, 160], [330, 140], [60, 240], [140, 220], [230, 250], [310, 230], [390, 200],
+    [40, 60],
+    [120, 30],
+    [200, 70],
+    [280, 40],
+    [360, 90],
+    [90, 150],
+    [170, 130],
+    [250, 160],
+    [330, 140],
+    [60, 240],
+    [140, 220],
+    [230, 250],
+    [310, 230],
+    [390, 200],
   ]
   const links = [
-    [0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [1, 6], [2, 7], [3, 8], [5, 6], [6, 7], [7, 8], [5, 9], [6, 10], [7, 11], [8, 12], [9, 10], [10, 11], [11, 12], [12, 13], [4, 8],
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [0, 5],
+    [1, 6],
+    [2, 7],
+    [3, 8],
+    [5, 6],
+    [6, 7],
+    [7, 8],
+    [5, 9],
+    [6, 10],
+    [7, 11],
+    [8, 12],
+    [9, 10],
+    [10, 11],
+    [11, 12],
+    [12, 13],
+    [4, 8],
   ]
   return (
-    <svg viewBox="0 0 420 280" className={cn('h-auto w-full', className)} aria-hidden="true" fill="none">
+    <svg
+      viewBox="0 0 420 280"
+      className={cn('h-auto w-full', className)}
+      aria-hidden="true"
+      fill="none"
+    >
       <defs>
         <linearGradient id="mf-g" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0%" stopColor="#e11d2e" stopOpacity="0.9" />
@@ -36,7 +79,15 @@ export function MoleculeField({ className, animated = true }: { className?: stri
       ))}
       {nodes.map(([x, y], i) => (
         <g key={i}>
-          <circle cx={x} cy={y} r={i % 3 === 0 ? 7 : 4.5} fill="white" stroke="#e11d2e" strokeOpacity="0.6" strokeWidth="1.2" />
+          <circle
+            cx={x}
+            cy={y}
+            r={i % 3 === 0 ? 7 : 4.5}
+            fill="white"
+            stroke="#e11d2e"
+            strokeOpacity="0.6"
+            strokeWidth="1.2"
+          />
           {i % 3 === 0 && <circle cx={x} cy={y} r={2.5} fill="#e11d2e" />}
         </g>
       ))}
@@ -47,7 +98,13 @@ export function MoleculeField({ className, animated = true }: { className?: stri
 /** Concentric HUD rings – used behind hero visuals. */
 export function HudRings({ className }: { className?: string }) {
   return (
-    <div className={cn('pointer-events-none absolute inset-0 flex items-center justify-center', className)} aria-hidden="true">
+    <div
+      className={cn(
+        'pointer-events-none absolute inset-0 flex items-center justify-center',
+        className,
+      )}
+      aria-hidden="true"
+    >
       <div className="absolute h-[34rem] w-[34rem] animate-spin-slower rounded-full border border-dashed border-brand-300/40" />
       <div className="absolute h-[26rem] w-[26rem] animate-spin-slow rounded-full border border-brand-200/60" />
       <div className="absolute h-[18rem] w-[18rem] rounded-full border border-brand-300/30" />

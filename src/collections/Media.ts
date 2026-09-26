@@ -28,10 +28,32 @@ export const Media: CollectionConfig = {
     formatOptions: { format: 'webp', options: { quality: 82 } },
     adminThumbnail: 'thumbnail',
     imageSizes: [
-      { name: 'thumbnail', width: 320, height: 320, fit: 'inside', formatOptions: { format: 'webp', options: { quality: 80 } } },
-      { name: 'card', width: 720, fit: 'inside', formatOptions: { format: 'webp', options: { quality: 82 } } },
-      { name: 'large', width: 1400, fit: 'inside', formatOptions: { format: 'webp', options: { quality: 82 } } },
-      { name: 'og', width: 1200, height: 630, fit: 'cover', formatOptions: { format: 'jpeg', options: { quality: 82 } } },
+      {
+        name: 'thumbnail',
+        width: 320,
+        height: 320,
+        fit: 'inside',
+        formatOptions: { format: 'webp', options: { quality: 80 } },
+      },
+      {
+        name: 'card',
+        width: 720,
+        fit: 'inside',
+        formatOptions: { format: 'webp', options: { quality: 82 } },
+      },
+      {
+        name: 'large',
+        width: 1400,
+        fit: 'inside',
+        formatOptions: { format: 'webp', options: { quality: 82 } },
+      },
+      {
+        name: 'og',
+        width: 1200,
+        height: 630,
+        fit: 'cover',
+        formatOptions: { format: 'jpeg', options: { quality: 82 } },
+      },
     ],
   },
 }

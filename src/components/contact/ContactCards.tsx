@@ -83,9 +83,7 @@ type CardProps = { className?: string; /** Reveal animation delay in ms. */ dela
 
 const LABEL_CLASS = 'font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink-400'
 
-const Label = ({ children }: { children: ReactNode }) => (
-  <dt className={LABEL_CLASS}>{children}</dt>
-)
+const Label = ({ children }: { children: ReactNode }) => <dt className={LABEL_CLASS}>{children}</dt>
 
 /* ------------------------------------------------------------------ */
 /* Head office                                                         */

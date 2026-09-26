@@ -63,7 +63,12 @@ export const statsField = (name = 'stats'): Field => ({
     {
       type: 'row',
       fields: [
-        { name: 'value', type: 'text', required: true, admin: { width: '33%', description: 'e.g. 40' } },
+        {
+          name: 'value',
+          type: 'text',
+          required: true,
+          admin: { width: '33%', description: 'e.g. 40' },
+        },
         { name: 'suffix', type: 'text', admin: { width: '33%', description: 'e.g. + or %' } },
         { name: 'label', type: 'text', required: true, admin: { width: '34%' } },
       ],

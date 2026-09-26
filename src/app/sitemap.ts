@@ -15,11 +15,17 @@ type Entry = MetadataRoute.Sitemap[number]
 type Freq = NonNullable<Entry['changeFrequency']>
 
 const latest = (...dates: (string | null | undefined)[]) => {
-  const ts = dates.filter((d): d is string => Boolean(d)).map((d) => new Date(d).getTime()).filter((t) => !Number.isNaN(t))
+  const ts = dates
+    .filter((d): d is string => Boolean(d))
+    .map((d) => new Date(d).getTime())
+    .filter((t) => !Number.isNaN(t))
   return ts.length ? new Date(Math.max(...ts)) : undefined
 }
 
-const entry = (path: string, opts: { lastModified?: Date; changeFrequency?: Freq; priority?: number; images?: string[] } = {}): Entry => {
+const entry = (
+  path: string,
+  opts: { lastModified?: Date; changeFrequency?: Freq; priority?: number; images?: string[] } = {},
+): Entry => {
   const url = absUrl(path)
   return {
     url,
@@ -32,14 +38,30 @@ const entry = (path: string, opts: { lastModified?: Date; changeFrequency?: Freq
 }
 
 /** True when the document should appear in the sitemap (indexable and canonical to itself). */
-const indexable = (doc: { meta?: { noIndex?: boolean | null; canonicalUrl?: string | null } | null }, path: string) => {
+const indexable = (
+  doc: { meta?: { noIndex?: boolean | null; canonicalUrl?: string | null } | null },
+  path: string,
+) => {
   if (doc.meta?.noIndex) return false
   const canonical = doc.meta?.canonicalUrl?.trim()
   return !canonical || canonical.replace(/\/$/, '') === absUrl(path)
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [categories, products, countries, home, productsPage, about, quality, manufacturing, global, licenses, contact, inquiry] = await Promise.all([
+  const [
+    categories,
+    products,
+    countries,
+    home,
+    productsPage,
+    about,
+    quality,
+    manufacturing,
+    global,
+    licenses,
+    contact,
+    inquiry,
+  ] = await Promise.all([
     getAllCategories(),
     getAllProductsFull(),
     getCountries({ served: true }),
@@ -59,19 +81,70 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const countryDates = countries.map((c) => c.updatedAt)
 
   const staticPages: Entry[] = [
-    entry('/', { lastModified: latest(home.updatedAt, ...productDates), changeFrequency: 'daily', priority: 1 }),
-    entry('/products', { lastModified: latest(productsPage.updatedAt, ...productDates), changeFrequency: 'daily', priority: 0.9 }),
-    entry('/categories', { lastModified: latest(...categoryDates), changeFrequency: 'weekly', priority: 0.8 }),
-    entry('/about', { lastModified: latest(about.updatedAt), changeFrequency: 'monthly', priority: 0.7 }),
-    entry('/manufacturing', { lastModified: latest(manufacturing.updatedAt), changeFrequency: 'monthly', priority: 0.7 }),
-    entry('/quality', { lastModified: latest(quality.updatedAt), changeFrequency: 'monthly', priority: 0.7 }),
-    entry('/global-presence', { lastModified: latest(global.updatedAt, ...countryDates), changeFrequency: 'weekly', priority: 0.7 }),
-    entry('/licenses', { lastModified: latest(licenses.updatedAt), changeFrequency: 'monthly', priority: 0.6 }),
-    entry('/contact', { lastModified: latest(contact.updatedAt), changeFrequency: 'monthly', priority: 0.6 }),
-    entry('/inquiry', { lastModified: latest(inquiry.updatedAt), changeFrequency: 'monthly', priority: 0.5 }),
+    entry('/', {
+      lastModified: latest(home.updatedAt, ...productDates),
+      changeFrequency: 'daily',
+      priority: 1,
+    }),
+    entry('/products', {
+      lastModified: latest(productsPage.updatedAt, ...productDates),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    }),
+    entry('/categories', {
+      lastModified: latest(...categoryDates),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }),
+    entry('/about', {
+      lastModified: latest(about.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }),
+    entry('/manufacturing', {
+      lastModified: latest(manufacturing.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }),
+    entry('/quality', {
+      lastModified: latest(quality.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }),
+    entry('/global-presence', {
+      lastModified: latest(global.updatedAt, ...countryDates),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }),
+    entry('/licenses', {
+      lastModified: latest(licenses.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }),
+    entry('/contact', {
+      lastModified: latest(contact.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }),
+    entry('/inquiry', {
+      lastModified: latest(inquiry.updatedAt),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    }),
   ].filter((e, i) => {
     // Respect noIndex on the page globals (index i maps to the same order as above).
-    const docs = [home, productsPage, null, about, manufacturing, quality, global, licenses, contact, inquiry]
+    const docs = [
+      home,
+      productsPage,
+      null,
+      about,
+      manufacturing,
+      quality,
+      global,
+      licenses,
+      contact,
+      inquiry,
+    ]
     return !docs[i]?.meta?.noIndex
   })
 
@@ -101,7 +174,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const countryEntries: Entry[] = countries
     .filter((c) => indexable(c, countryPath(c)))
-    .map((c) => entry(countryPath(c), { lastModified: latest(c.updatedAt), changeFrequency: 'monthly', priority: 0.6 }))
+    .map((c) =>
+      entry(countryPath(c), {
+        lastModified: latest(c.updatedAt),
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      }),
+    )
 
   return [...staticPages, ...categoryEntries, ...productEntries, ...countryEntries]
 }

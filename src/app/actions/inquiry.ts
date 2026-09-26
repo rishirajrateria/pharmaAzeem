@@ -12,7 +12,10 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
  * Creates an Inquiry document from the inquiry page, product page or contact form.
  * Runs on the server only – no API keys or DB access are exposed to the browser.
  */
-export async function submitInquiry(_prev: InquiryFormState, formData: FormData): Promise<InquiryFormState> {
+export async function submitInquiry(
+  _prev: InquiryFormState,
+  formData: FormData,
+): Promise<InquiryFormState> {
   // Honeypot – bots fill every field.
   if (formData.get('website')) return { ok: true, message: 'Thank you!' }
 
@@ -22,7 +25,8 @@ export async function submitInquiry(_prev: InquiryFormState, formData: FormData)
   const company = String(formData.get('company') || '').trim()
   const country = String(formData.get('country') || '').trim()
   const message = String(formData.get('message') || '').trim()
-  const source = (String(formData.get('source') || 'inquiry-list') as 'inquiry-list' | 'product-page' | 'contact-form')
+  const source = String(formData.get('source') || 'inquiry-list') as
+    'inquiry-list' | 'product-page' | 'contact-form'
   const pageUrl = String(formData.get('pageUrl') || '').slice(0, 500)
 
   const errors: Record<string, string> = {}
@@ -48,19 +52,34 @@ export async function submitInquiry(_prev: InquiryFormState, formData: FormData)
   if (source !== 'contact-form' && items.length === 0 && message.length < 5) {
     errors.message = 'Tell us which products you are interested in.'
   }
-  if (Object.keys(errors).length) return { ok: false, errors, message: 'Please fix the highlighted fields.' }
+  if (Object.keys(errors).length)
+    return { ok: false, errors, message: 'Please fix the highlighted fields.' }
 
   try {
     const payload = await getPayloadClient()
     const h = await headers()
     await payload.create({
       collection: 'inquiries',
-      data: { name, email, phone, company, country, message, source, items, pageUrl: pageUrl || h.get('referer') || '' },
+      data: {
+        name,
+        email,
+        phone,
+        company,
+        country,
+        message,
+        source,
+        items,
+        pageUrl: pageUrl || h.get('referer') || '',
+      },
       overrideAccess: true,
     })
     return { ok: true }
   } catch (err) {
     console.error('submitInquiry failed', err)
-    return { ok: false, message: 'Something went wrong while sending your inquiry. Please try again or email us directly.' }
+    return {
+      ok: false,
+      message:
+        'Something went wrong while sending your inquiry. Please try again or email us directly.',
+    }
   }
 }

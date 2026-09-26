@@ -21,7 +21,10 @@ export const revalidate = 3600
 const PATH = '/manufacturing'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [settings, doc] = await Promise.all([getSiteSettings(), getPageGlobal('manufacturing-page')])
+  const [settings, doc] = await Promise.all([
+    getSiteSettings(),
+    getPageGlobal('manufacturing-page'),
+  ])
   return buildMetadata({
     settings,
     path: PATH,
@@ -34,17 +37,42 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ManufacturingPage() {
-  const [doc, facilities, certifications] = await Promise.all([getPageGlobal('manufacturing-page'), getFacilities(), getCertifications({ featured: true })])
+  const [doc, facilities, certifications] = await Promise.all([
+    getPageGlobal('manufacturing-page'),
+    getFacilities(),
+    getCertifications({ featured: true }),
+  ])
 
-  const description = doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
-  const lastUpdated = facilities.reduce<string>((latest, f) => (f.updatedAt > latest ? f.updatedAt : latest), doc.updatedAt || '') || null
+  const description =
+    doc.meta?.description || doc.hero.subtitle || truncate(richTextToPlain(doc.intro), 300)
+  const lastUpdated =
+    facilities.reduce<string>(
+      (latest, f) => (f.updatedAt > latest ? f.updatedAt : latest),
+      doc.updatedAt || '',
+    ) || null
   const gmp = certifications.find((c) => /gmp/i.test(c.title))
   const firstStat = doc.stats?.[0]
 
   const chips: HeroChip[] = [
-    facilities.length ? { icon: 'factory', label: 'Sites', value: `${facilities.length} ${facilities.length === 1 ? 'facility' : 'facilities'}` } : null,
-    firstStat ? { icon: 'gauge', label: firstStat.label, value: `${firstStat.value}${firstStat.suffix || ''}` } : null,
-    gmp ? { icon: 'badge-check', label: 'Certified', value: gmp.title } : certifications.length ? { icon: 'badge-check', label: 'Certifications', value: String(certifications.length) } : null,
+    facilities.length
+      ? {
+          icon: 'factory',
+          label: 'Sites',
+          value: `${facilities.length} ${facilities.length === 1 ? 'facility' : 'facilities'}`,
+        }
+      : null,
+    firstStat
+      ? {
+          icon: 'gauge',
+          label: firstStat.label,
+          value: `${firstStat.value}${firstStat.suffix || ''}`,
+        }
+      : null,
+    gmp
+      ? { icon: 'badge-check', label: 'Certified', value: gmp.title }
+      : certifications.length
+        ? { icon: 'badge-check', label: 'Certifications', value: String(certifications.length) }
+        : null,
   ].filter((c): c is HeroChip => Boolean(c))
 
   return (
@@ -62,7 +90,11 @@ export default async function ManufacturingPage() {
           }),
           facilities.length
             ? itemListJsonLd(
-                facilities.map((f) => ({ name: f.name, path: `${PATH}#${facilityAnchor(f)}`, image: mediaUrl(facilityImages(f)[0], 'card') })),
+                facilities.map((f) => ({
+                  name: f.name,
+                  path: `${PATH}#${facilityAnchor(f)}`,
+                  image: mediaUrl(facilityImages(f)[0], 'card'),
+                })),
                 'Manufacturing facilities',
               )
             : null,
@@ -96,7 +128,9 @@ export default async function ManufacturingPage() {
               <div className="lg:col-span-4">
                 <SectionHeading
                   eyebrow="FAQ"
-                  title={<span id="manufacturing-faq-title">Manufacturing questions, answered</span>}
+                  title={
+                    <span id="manufacturing-faq-title">Manufacturing questions, answered</span>
+                  }
                   description="What distributors, private-label partners and auditors most often ask about our plants, capacity and lead times."
                 />
               </div>

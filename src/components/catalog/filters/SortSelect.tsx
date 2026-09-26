@@ -13,7 +13,19 @@ type Option = { value: ProductSort; label: string }
  * Sort control. Pushes `?sort=` to the router (keeping every other param).
  * Wrapped in a GET form so it still works with JavaScript disabled.
  */
-export function SortSelect({ basePath, value, options, baseParams, className }: { basePath: string; value: ProductSort; options: Option[]; baseParams: [string, string][]; className?: string }) {
+export function SortSelect({
+  basePath,
+  value,
+  options,
+  baseParams,
+  className,
+}: {
+  basePath: string
+  value: ProductSort
+  options: Option[]
+  baseParams: [string, string][]
+  className?: string
+}) {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
   const id = useId()
@@ -30,7 +42,10 @@ export function SortSelect({ basePath, value, options, baseParams, className }: 
       {baseParams.map(([k, v], i) => (
         <input key={`${k}-${i}`} type="hidden" name={k} value={v} />
       ))}
-      <label htmlFor={id} className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-ink-500">
+      <label
+        htmlFor={id}
+        className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-ink-500"
+      >
         <ArrowUpDown className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="hidden sm:inline">Sort by</span>
         <span className="sr-only sm:hidden">Sort by</span>

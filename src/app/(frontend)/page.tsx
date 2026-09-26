@@ -16,7 +16,16 @@ import {
 } from '@/components/home'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { getCommerceLabels } from '@/lib/commerce'
-import { getAllProductsSlim, getCategoryTree, getCertifications, getCountries, getFacilities, getFeaturedProducts, getHomepage, getSiteSettings } from '@/lib/data'
+import {
+  getAllProductsSlim,
+  getCategoryTree,
+  getCertifications,
+  getCountries,
+  getFacilities,
+  getFeaturedProducts,
+  getHomepage,
+  getSiteSettings,
+} from '@/lib/data'
 import { buildMetadata, graph, itemListJsonLd, siteName, webPageJsonLd } from '@/lib/seo'
 import { mediaUrl } from '@/lib/utils'
 
@@ -28,7 +37,8 @@ export async function generateMetadata(): Promise<Metadata> {
     settings,
     path: '/',
     title: settings.seo?.defaultTitle || siteName(settings),
-    description: home.hero.subtitle || settings.seo?.defaultDescription || settings.shortDescription,
+    description:
+      home.hero.subtitle || settings.seo?.defaultDescription || settings.shortDescription,
     image: home.hero.image,
     meta: home.meta,
     absoluteTitle: Boolean(home.meta?.title),
@@ -37,19 +47,24 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [settings, home, tree, products, countries, certifications, facilities, allProducts] = await Promise.all([
-    getSiteSettings(),
-    getHomepage(),
-    getCategoryTree(),
-    getFeaturedProducts(8),
-    getCountries({ served: true }),
-    getCertifications({ featured: true }),
-    getFacilities(),
-    getAllProductsSlim(), // cached – already fetched by getCategoryTree, so this is free
-  ])
+  const [settings, home, tree, products, countries, certifications, facilities, allProducts] =
+    await Promise.all([
+      getSiteSettings(),
+      getHomepage(),
+      getCategoryTree(),
+      getFeaturedProducts(8),
+      getCountries({ served: true }),
+      getCertifications({ featured: true }),
+      getFacilities(),
+      getAllProductsSlim(), // cached – already fetched by getCategoryTree, so this is free
+    ])
   const labels = getCommerceLabels(settings)
   const name = siteName(settings)
-  const description = home.meta?.description || home.hero.subtitle || settings.seo?.defaultDescription || settings.shortDescription
+  const description =
+    home.meta?.description ||
+    home.hero.subtitle ||
+    settings.seo?.defaultDescription ||
+    settings.shortDescription
   const totalProducts = allProducts.length
 
   return (
@@ -65,13 +80,22 @@ export default async function HomePage() {
           }),
           products.length > 0 &&
             itemListJsonLd(
-              products.map((p) => ({ name: p.title, path: `/products/${p.slug}`, image: mediaUrl(p.images?.[0], 'card') })),
+              products.map((p) => ({
+                name: p.title,
+                path: `/products/${p.slug}`,
+                image: mediaUrl(p.images?.[0], 'card'),
+              })),
               'Featured products',
             ),
         )}
       />
 
-      <Hero hero={home.hero} stats={home.stats} certifications={certifications} countryCount={countries.length} />
+      <Hero
+        hero={home.hero}
+        stats={home.stats}
+        certifications={certifications}
+        countryCount={countries.length}
+      />
       <StatsBand stats={home.stats} />
       <FeaturedCategories categories={tree} totalProducts={totalProducts} />
       <FeaturedProducts products={products} labels={labels} />

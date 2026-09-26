@@ -10,7 +10,13 @@ import { Reveal } from '../ui/Reveal'
 const MAX_TILES = 9
 
 /** Top-level therapeutic categories as glass tiles + a "browse everything" tile. */
-export function FeaturedCategories({ categories, totalProducts }: { categories: CategoryNode[]; totalProducts: number }) {
+export function FeaturedCategories({
+  categories,
+  totalProducts,
+}: {
+  categories: CategoryNode[]
+  totalProducts: number
+}) {
   if (!categories.length) return null
   const shown = categories.slice(0, MAX_TILES)
   const hidden = categories.length - shown.length
@@ -44,12 +50,21 @@ export function FeaturedCategories({ categories, totalProducts }: { categories: 
                 <Layers className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="relative mt-8">
-                <span className="block text-lg font-semibold text-ink-950">{hidden > 0 ? `${hidden} more ${hidden === 1 ? 'category' : 'categories'}` : 'Full catalogue'}</span>
+                <span className="block text-lg font-semibold text-ink-950">
+                  {hidden > 0
+                    ? `${hidden} more ${hidden === 1 ? 'category' : 'categories'}`
+                    : 'Full catalogue'}
+                </span>
                 <span className="mt-1 block text-sm text-ink-600">
-                  Filter {totalProducts > 0 ? `${totalProducts}+ ` : ''}formulations by dosage form, route and prescription status.
+                  Filter {totalProducts > 0 ? `${totalProducts}+ ` : ''}formulations by dosage form,
+                  route and prescription status.
                 </span>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700">
-                  Explore the catalogue <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  Explore the catalogue{' '}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </span>
               </span>
             </Link>

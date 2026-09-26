@@ -18,7 +18,15 @@ const useMobileFilters = create<{ open: boolean; setOpen: (open: boolean) => voi
   setOpen: (open) => set({ open }),
 }))
 
-export function MobileFiltersTrigger({ label = 'Filters', activeCount = 0, className }: { label?: string; activeCount?: number; className?: string }) {
+export function MobileFiltersTrigger({
+  label = 'Filters',
+  activeCount = 0,
+  className,
+}: {
+  label?: string
+  activeCount?: number
+  className?: string
+}) {
   const open = useMobileFilters((s) => s.open)
   const setOpen = useMobileFilters((s) => s.setOpen)
   return (
@@ -40,9 +48,20 @@ export function MobileFiltersTrigger({ label = 'Filters', activeCount = 0, class
   )
 }
 
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])'
 
-export function MobileFilters({ children, title = 'Filters', resultsLabel, className }: { children: ReactNode; title?: string; resultsLabel?: string; className?: string }) {
+export function MobileFilters({
+  children,
+  title = 'Filters',
+  resultsLabel,
+  className,
+}: {
+  children: ReactNode
+  title?: string
+  resultsLabel?: string
+  className?: string
+}) {
   const open = useMobileFilters((s) => s.open)
   const setOpen = useMobileFilters((s) => s.setOpen)
   const pathname = usePathname()
@@ -66,7 +85,9 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
         return
       }
       if (e.key !== 'Tab' || !panel) return
-      const focusable = [...panel.querySelectorAll<HTMLElement>(FOCUSABLE)].filter((el) => el.offsetParent !== null)
+      const focusable = [...panel.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
+        (el) => el.offsetParent !== null,
+      )
       if (focusable.length === 0) {
         e.preventDefault()
         panel.focus()
@@ -93,10 +114,20 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
   }, [open, setOpen])
 
   return (
-    <div id="catalog-filters-panel" className={cn('max-lg:fixed max-lg:inset-0 max-lg:z-[60] lg:contents', !open && 'max-lg:pointer-events-none', className)}>
+    <div
+      id="catalog-filters-panel"
+      className={cn(
+        'max-lg:fixed max-lg:inset-0 max-lg:z-[60] lg:contents',
+        !open && 'max-lg:pointer-events-none',
+        className,
+      )}
+    >
       {/* Backdrop – mobile only */}
       <div
-        className={cn('absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden', open ? 'opacity-100' : 'opacity-0')}
+        className={cn(
+          'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden',
+          open ? 'opacity-100' : 'opacity-0',
+        )}
         onClick={() => setOpen(false)}
         aria-hidden="true"
       />
@@ -109,16 +140,25 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
         className={cn(
           'outline-none max-lg:absolute max-lg:inset-y-0 max-lg:left-0 max-lg:flex max-lg:w-[min(22rem,92vw)] max-lg:flex-col max-lg:glass-strong max-lg:shadow-glass-lg',
           'max-lg:transition-[transform,visibility] max-lg:duration-500 max-lg:ease-[var(--ease-out-expo)]',
-          open ? 'max-lg:visible max-lg:translate-x-0' : 'max-lg:invisible max-lg:-translate-x-full',
+          open
+            ? 'max-lg:visible max-lg:translate-x-0'
+            : 'max-lg:invisible max-lg:-translate-x-full',
         )}
       >
         <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4 lg:hidden">
           <p className="text-base font-semibold text-ink-950">{title}</p>
-          <button type="button" onClick={() => setOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50" aria-label="Close filters">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50"
+            aria-label="Close filters"
+          >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
-        <div className="scrollbar-thin max-lg:flex-1 max-lg:overflow-y-auto max-lg:px-4 max-lg:py-4">{children}</div>
+        <div className="scrollbar-thin max-lg:flex-1 max-lg:overflow-y-auto max-lg:px-4 max-lg:py-4">
+          {children}
+        </div>
         <div className="border-t border-ink-100 p-4 lg:hidden">
           <button type="button" onClick={() => setOpen(false)} className="btn-primary w-full">
             {resultsLabel || 'Show results'}

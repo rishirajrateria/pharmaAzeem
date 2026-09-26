@@ -1,4 +1,13 @@
-import { ArrowRight, Factory, FlaskConical, MapPin, Microscope, TestTubes, Warehouse, type LucideIcon } from 'lucide-react'
+import {
+  ArrowRight,
+  Factory,
+  FlaskConical,
+  MapPin,
+  Microscope,
+  TestTubes,
+  Warehouse,
+  type LucideIcon,
+} from 'lucide-react'
 import Link from 'next/link'
 
 import { Container, Section, SectionHeading } from '@/components/ui'
@@ -38,12 +47,19 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
             const place = [f.city, f.country].filter(Boolean).join(', ')
             const forms = (f.dosageForms || []).slice(0, 3)
             return (
-              <Reveal as="li" key={f.id} delay={i * 60} className="glass-card glass-edge flex flex-col p-5 sm:p-6">
+              <Reveal
+                as="li"
+                key={f.id}
+                delay={i * 60}
+                className="glass-card glass-edge flex flex-col p-5 sm:p-6"
+              >
                 <div className="flex items-center justify-between gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                     <TypeIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">{t.label}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">
+                    {t.label}
+                  </span>
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-ink-950">
                   <Link href="/manufacturing" className="hover:text-brand-700">
@@ -56,7 +72,11 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
                     {place}
                   </p>
                 )}
-                {f.summary && <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-600">{f.summary}</p>}
+                {f.summary && (
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-600">
+                    {f.summary}
+                  </p>
+                )}
                 {forms.length > 0 && (
                   <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Dosage forms">
                     {forms.map((d) => (
@@ -64,7 +84,11 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
                         {d}
                       </li>
                     ))}
-                    {(f.dosageForms?.length || 0) > 3 && <li className="chip !py-0.5 text-ink-500">+{(f.dosageForms?.length || 0) - 3} more</li>}
+                    {(f.dosageForms?.length || 0) > 3 && (
+                      <li className="chip !py-0.5 text-ink-500">
+                        +{(f.dosageForms?.length || 0) - 3} more
+                      </li>
+                    )}
                   </ul>
                 )}
                 {(f.establishedYear || f.areaSqm) && (

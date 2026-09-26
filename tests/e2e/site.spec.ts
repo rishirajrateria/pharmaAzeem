@@ -1,6 +1,17 @@
 import { expect, test } from '@playwright/test'
 
-const pages = ['/', '/products', '/categories', '/about', '/quality', '/manufacturing', '/global-presence', '/licenses', '/contact', '/inquiry']
+const pages = [
+  '/',
+  '/products',
+  '/categories',
+  '/about',
+  '/quality',
+  '/manufacturing',
+  '/global-presence',
+  '/licenses',
+  '/contact',
+  '/inquiry',
+]
 
 for (const path of pages) {
   test(`renders ${path} with a single h1, metadata and JSON-LD`, async ({ page }) => {
@@ -13,12 +24,16 @@ for (const path of pages) {
     expect(ld.length).toBeGreaterThan(0)
     for (const json of ld) expect(() => JSON.parse(json)).not.toThrow()
     // No horizontal overflow
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1)
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+    )
     expect(overflow).toBeFalsy()
   })
 }
 
-test('product page exposes Product/Drug structured data and the inquiry flow works', async ({ page }) => {
+test('product page exposes Product/Drug structured data and the inquiry flow works', async ({
+  page,
+}) => {
   await page.goto('/products')
   const first = page.locator('article a[href^="/products/"]').first()
   const href = await first.getAttribute('href')
@@ -29,9 +44,15 @@ test('product page exposes Product/Drug structured data and the inquiry flow wor
   expect(ld).toContain('"Drug"')
   expect(ld).toContain('BreadcrumbList')
   // Add to inquiry list → drawer opens
-  await page.getByRole('button', { name: /add to inquiry list/i }).first().click()
+  await page
+    .getByRole('button', { name: /add to inquiry list/i })
+    .first()
+    .click()
   await expect(page.getByRole('dialog', { name: /inquiry list/i })).toBeVisible()
-  await page.getByRole('link', { name: /inquire now/i }).first().click()
+  await page
+    .getByRole('link', { name: /inquire now/i })
+    .first()
+    .click()
   await expect(page).toHaveURL(/\/inquiry/)
 })
 
@@ -46,7 +67,13 @@ test('category filters work via URL params', async ({ page }) => {
 })
 
 test('machine-readable endpoints exist', async ({ request }) => {
-  for (const path of ['/sitemap.xml', '/robots.txt', '/llms.txt', '/llms-full.txt', '/manifest.webmanifest']) {
+  for (const path of [
+    '/sitemap.xml',
+    '/robots.txt',
+    '/llms.txt',
+    '/llms-full.txt',
+    '/manifest.webmanifest',
+  ]) {
     const res = await request.get(path)
     expect(res.status(), path).toBe(200)
   }

@@ -22,15 +22,39 @@ export function LogoMark({ className }: { className?: string }) {
       <g transform="rotate(-45 20 20)">
         <rect x="8" y="14.5" width="24" height="11" rx="5.5" fill="#fff" />
         <rect x="8" y="14.5" width="12" height="11" rx="5.5" fill="#fff" opacity="0.5" />
-        <line x1="20" y1="14.5" x2="20" y2="25.5" stroke="#e11d2e" strokeOpacity="0.5" strokeWidth="1.2" />
+        <line
+          x1="20"
+          y1="14.5"
+          x2="20"
+          y2="25.5"
+          stroke="#e11d2e"
+          strokeOpacity="0.5"
+          strokeWidth="1.2"
+        />
       </g>
     </svg>
   )
 }
 
-export function Logo({ siteName, tagline, logo, className, invert }: { siteName: string; tagline?: string | null; logo?: string; className?: string; invert?: boolean }) {
+export function Logo({
+  siteName,
+  tagline,
+  logo,
+  className,
+  invert,
+}: {
+  siteName: string
+  tagline?: string | null
+  logo?: string
+  className?: string
+  invert?: boolean
+}) {
   return (
-    <Link href="/" className={cn('group flex items-center gap-3', className)} aria-label={`${siteName} – home`}>
+    <Link
+      href="/"
+      className={cn('group flex items-center gap-3', className)}
+      aria-label={`${siteName} – home`}
+    >
       {logo ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={logo} alt={siteName} className="h-9 w-auto" width={120} height={36} />
@@ -38,8 +62,24 @@ export function Logo({ siteName, tagline, logo, className, invert }: { siteName:
         <LogoMark className="transition-transform duration-500 group-hover:rotate-[-8deg]" />
       )}
       <span className="flex flex-col leading-none">
-        <span className={cn('text-[17px] font-semibold tracking-tight', invert ? 'text-white' : 'text-ink-950')}>{siteName}</span>
-        {tagline && <span className={cn('mt-1 font-mono text-[10px] uppercase tracking-[0.18em]', invert ? 'text-white/60' : 'text-ink-500')}>{tagline}</span>}
+        <span
+          className={cn(
+            'text-[17px] font-semibold tracking-tight',
+            invert ? 'text-white' : 'text-ink-950',
+          )}
+        >
+          {siteName}
+        </span>
+        {tagline && (
+          <span
+            className={cn(
+              'mt-1 font-mono text-[10px] uppercase tracking-[0.18em]',
+              invert ? 'text-white/60' : 'text-ink-500',
+            )}
+          >
+            {tagline}
+          </span>
+        )}
       </span>
     </Link>
   )

@@ -21,13 +21,23 @@ export function WhyChooseUs({ cards }: { cards?: Homepage['whyUs'] }) {
           {cards.map((c, i) => (
             <Reveal as="li" key={c.id || i} delay={i * 60} className="flex">
               <GlassCard className="glass-edge group relative w-full overflow-hidden">
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-gradient opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-20" aria-hidden="true" />
+                <div
+                  className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-gradient opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-20"
+                  aria-hidden="true"
+                />
                 <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_12px_28px_-10px_rgb(225_29_46_/_0.8)]">
                   <Icon name={c.icon} className="h-5.5 w-5.5" />
                 </span>
                 <h3 className="relative mt-6 text-lg font-semibold text-ink-950">{c.title}</h3>
-                {c.description && <p className="relative mt-2 text-sm leading-relaxed text-ink-600">{c.description}</p>}
-                <span className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-brand-400/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                {c.description && (
+                  <p className="relative mt-2 text-sm leading-relaxed text-ink-600">
+                    {c.description}
+                  </p>
+                )}
+                <span
+                  className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-brand-400/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  aria-hidden="true"
+                />
               </GlassCard>
             </Reveal>
           ))}

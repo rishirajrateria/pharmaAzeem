@@ -22,7 +22,10 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
     <Section className="!pt-0" aria-labelledby="about-trust">
       <Container>
         <div className="glass-strong glass-edge relative overflow-hidden rounded-[2rem] p-6 sm:p-10">
-          <div className="pointer-events-none absolute inset-0 dots-pattern opacity-40 fade-mask-x" aria-hidden="true" />
+          <div
+            className="pointer-events-none absolute inset-0 dots-pattern opacity-40 fade-mask-x"
+            aria-hidden="true"
+          />
           <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
             <div className="lg:col-span-4">
               <Eyebrow>Certified &amp; trusted</Eyebrow>
@@ -30,7 +33,8 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                 Compliance you can verify
               </h2>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-600">
-                Certificate numbers, validity dates and scans of our licenses and certifications are published on the licenses page, so you can check them for your regulatory file.
+                Certificate numbers, validity dates and scans of our licenses and certifications are
+                published on the licenses page, so you can check them for your regulatory file.
               </p>
               <Link href="/licenses" className="btn-secondary mt-6">
                 View all licenses <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -57,7 +61,9 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                       </span>
                     )}
                     <span className="min-w-0">
-                      <span className="block truncate text-sm font-semibold text-ink-950 group-hover:text-brand-700">{c.title}</span>
+                      <span className="block truncate text-sm font-semibold text-ink-950 group-hover:text-brand-700">
+                        {c.title}
+                      </span>
                       <span className="block truncate text-xs text-ink-500">
                         {TYPE_LABEL[c.type]} · {c.issuer}
                       </span>

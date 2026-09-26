@@ -17,7 +17,12 @@ export type CatalogSearchParams = Record<string, string | string[] | undefined>
 /** Facet groups, in sidebar order. `param` is the URL key, `facet` the key in {@link Facets}. */
 export const FACET_GROUPS = [
   { param: 'form', facet: 'dosageForm', label: 'Dosage form', queryKey: 'dosageForm' },
-  { param: 'rx', facet: 'prescriptionStatus', label: 'Prescription status', queryKey: 'prescriptionStatus' },
+  {
+    param: 'rx',
+    facet: 'prescriptionStatus',
+    label: 'Prescription status',
+    queryKey: 'prescriptionStatus',
+  },
   { param: 'route', facet: 'route', label: 'Route of administration', queryKey: 'route' },
   { param: 'badge', facet: 'badges', label: 'Highlights', queryKey: 'badges' },
 ] as const
@@ -73,7 +78,10 @@ export type ParsedFilters = {
   /** Normalised query string (without `page`) – the base every link is derived from. */
   params: URLSearchParams
   /** Ready to spread into `getProducts()` (add `categoryIds` yourself). */
-  query: Pick<ProductQuery, 'dosageForm' | 'prescriptionStatus' | 'route' | 'badges' | 'q' | 'sort' | 'page' | 'limit'>
+  query: Pick<
+    ProductQuery,
+    'dosageForm' | 'prescriptionStatus' | 'route' | 'badges' | 'q' | 'sort' | 'page' | 'limit'
+  >
 }
 
 const toList = (raw: string | string[] | undefined): string[] => {
@@ -90,10 +98,14 @@ const toList = (raw: string | string[] | undefined): string[] => {
   return out
 }
 
-const first = (raw: string | string[] | undefined): string => (Array.isArray(raw) ? raw[0] || '' : raw || '')
+const first = (raw: string | string[] | undefined): string =>
+  Array.isArray(raw) ? raw[0] || '' : raw || ''
 
 /** Turns Next.js `searchParams` into a sanitised, normalised filter state. */
-export function parseFilters(searchParams: CatalogSearchParams = {}, opts: { pageSize?: number } = {}): ParsedFilters {
+export function parseFilters(
+  searchParams: CatalogSearchParams = {},
+  opts: { pageSize?: number } = {},
+): ParsedFilters {
   const values = {} as Record<FacetParam, string[]>
   const params = new URLSearchParams()
   const active: ActiveFilter[] = []
@@ -155,7 +167,12 @@ const toHref = (basePath: string, params: URLSearchParams) => {
 }
 
 /** Href with one facet value toggled on/off (resets to page 1). */
-export function toggleHref(basePath: string, filters: ParsedFilters, param: FacetParam, value: string) {
+export function toggleHref(
+  basePath: string,
+  filters: ParsedFilters,
+  param: FacetParam,
+  value: string,
+) {
   const next = new URLSearchParams(filters.params)
   const current = next.getAll(param)
   next.delete(param)
@@ -214,7 +231,11 @@ export function describeFilters(filters: ParsedFilters) {
   const parts: string[] = []
   if (filters.q) parts.push(`Search results for “${filters.q}”`)
   const facetLabels = filters.active.filter((a) => a.param !== 'q').map((a) => a.label)
-  if (facetLabels.length) parts.push(facetLabels.slice(0, 3).join(' · ') + (facetLabels.length > 3 ? ` +${facetLabels.length - 3}` : ''))
+  if (facetLabels.length)
+    parts.push(
+      facetLabels.slice(0, 3).join(' · ') +
+        (facetLabels.length > 3 ? ` +${facetLabels.length - 3}` : ''),
+    )
   return parts.join(' – ')
 }
 

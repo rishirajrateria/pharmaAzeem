@@ -2,17 +2,43 @@
  * Tiny Markdown → Lexical converter for seed content.
  * Supports: "## Heading", "### Heading", "- bullet", "1. numbered", blank-line separated paragraphs, **bold**.
  */
-type TextNode = { type: 'text'; text: string; format: number; style: string; mode: 'normal'; detail: number; version: 1 }
+type TextNode = {
+  type: 'text'
+  text: string
+  format: number
+  style: string
+  mode: 'normal'
+  detail: number
+  version: 1
+}
 type Node = Record<string, unknown>
 
-const text = (t: string, format = 0): TextNode => ({ type: 'text', text: t, format, style: '', mode: 'normal', detail: 0, version: 1 })
+const text = (t: string, format = 0): TextNode => ({
+  type: 'text',
+  text: t,
+  format,
+  style: '',
+  mode: 'normal',
+  detail: 0,
+  version: 1,
+})
 
 const inline = (line: string): TextNode[] => {
   const parts = line.split(/(\*\*[^*]+\*\*)/g).filter(Boolean)
-  return parts.map((p) => (p.startsWith('**') && p.endsWith('**') ? text(p.slice(2, -2), 1) : text(p)))
+  return parts.map((p) =>
+    p.startsWith('**') && p.endsWith('**') ? text(p.slice(2, -2), 1) : text(p),
+  )
 }
 
-const block = (type: string, children: Node[], extra: Node = {}): Node => ({ type, format: '', indent: 0, version: 1, direction: 'ltr', children, ...extra })
+const block = (type: string, children: Node[], extra: Node = {}): Node => ({
+  type,
+  format: '',
+  indent: 0,
+  version: 1,
+  direction: 'ltr',
+  children,
+  ...extra,
+})
 
 export const md = (source: string): any => {
   const lines = source.trim().split('\n')

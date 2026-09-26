@@ -36,6 +36,9 @@ const lin = {
   y: ((REGION.lat.max - 28.6139) / (REGION.lat.max - REGION.lat.min)) * height,
 }
 const meta = { width, height, region: REGION, points: points.length, probe, linear: lin }
-fs.writeFileSync(path.resolve('src/data/world-map.json'), JSON.stringify({ width, height, region: REGION }, null, 2))
+fs.writeFileSync(
+  path.resolve('src/data/world-map.json'),
+  JSON.stringify({ width, height, region: REGION }, null, 2),
+)
 console.log(JSON.stringify(meta, null, 2))
 console.log(`SVG size: ${(Buffer.byteLength(svg) / 1024).toFixed(1)} KB`)

@@ -39,7 +39,11 @@ export const getCommerceLabels = (settings?: SiteSetting | null): CommerceLabels
 
 export const formatPrice = (amount: number, currency = 'USD') => {
   try {
-    return new Intl.NumberFormat('en', { style: 'currency', currency, maximumFractionDigits: 2 }).format(amount)
+    return new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency,
+      maximumFractionDigits: 2,
+    }).format(amount)
   } catch {
     return `${currency} ${amount.toFixed(2)}`
   }
@@ -47,20 +51,32 @@ export const formatPrice = (amount: number, currency = 'USD') => {
 
 export type PriceDisplay =
   | { kind: 'inquire'; label: string }
-  | { kind: 'price'; amount: number; formatted: string; compareAt?: string; unit?: string; currency: string }
+  | {
+      kind: 'price'
+      amount: number
+      formatted: string
+      compareAt?: string
+      unit?: string
+      currency: string
+    }
 
 /** Decides whether a product shows a price or the "Inquire for pricing" label. */
-export const resolvePrice = (product: Pick<Product, 'price' | 'compareAtPrice' | 'priceUnit' | 'showPrice'>, labels: CommerceLabels): PriceDisplay => {
+export const resolvePrice = (
+  product: Pick<Product, 'price' | 'compareAtPrice' | 'priceUnit' | 'showPrice'>,
+  labels: CommerceLabels,
+): PriceDisplay => {
   const override = product.showPrice || 'default'
   const hasPrice = typeof product.price === 'number' && product.price > 0
-  const show = override === 'always' ? hasPrice : override === 'never' ? false : labels.showPrices && hasPrice
+  const show =
+    override === 'always' ? hasPrice : override === 'never' ? false : labels.showPrices && hasPrice
   if (!show) return { kind: 'inquire', label: labels.priceFallbackLabel }
   return {
     kind: 'price',
     amount: product.price as number,
     formatted: formatPrice(product.price as number, labels.currency),
     compareAt:
-      typeof product.compareAtPrice === 'number' && product.compareAtPrice > (product.price as number)
+      typeof product.compareAtPrice === 'number' &&
+      product.compareAtPrice > (product.price as number)
         ? formatPrice(product.compareAtPrice, labels.currency)
         : undefined,
     unit: product.priceUnit || undefined,

@@ -9,10 +9,19 @@ import { Button, Container, SectionHeading } from '../ui'
 import { Reveal } from '../ui/Reveal'
 
 /** Featured formulations – 1 / 2 / 3 / 4 column glass grid (single column on the narrowest phones). */
-export function FeaturedProducts({ products, labels }: { products: Product[]; labels: CommerceLabels }) {
+export function FeaturedProducts({
+  products,
+  labels,
+}: {
+  products: Product[]
+  labels: CommerceLabels
+}) {
   if (!products.length) return null
   return (
-    <section aria-label="Featured products" className="relative pb-16 pt-2 sm:pb-20 lg:pb-28 lg:pt-4">
+    <section
+      aria-label="Featured products"
+      className="relative pb-16 pt-2 sm:pb-20 lg:pb-28 lg:pt-4"
+    >
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -35,7 +44,10 @@ export function FeaturedProducts({ products, labels }: { products: Product[]; la
 
         <p className="mt-8 text-center text-sm text-ink-500">
           Add products to your {labels.listName.toLowerCase()} and{' '}
-          <Link href="/inquiry" className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-600">
+          <Link
+            href="/inquiry"
+            className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-4 hover:decoration-brand-600"
+          >
             request a quotation
           </Link>{' '}
           for pricing, minimum order quantities and lead times.

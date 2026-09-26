@@ -10,7 +10,10 @@ const notifySales: CollectionAfterChangeHook = async ({ doc, operation, req }) =
     const to = settings?.contact?.inquiryEmail || settings?.contact?.email
     if (!to) return doc
     const items = (doc.items || [])
-      .map((i: { productName?: string; quantity?: number }) => `• ${i.productName ?? 'Product'} × ${i.quantity ?? 1}`)
+      .map(
+        (i: { productName?: string; quantity?: number }) =>
+          `• ${i.productName ?? 'Product'} × ${i.quantity ?? 1}`,
+      )
       .join('\n')
     await req.payload.sendEmail({
       to,
@@ -30,7 +33,8 @@ export const Inquiries: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'company', 'country', 'status', 'createdAt'],
     group: 'Sales',
-    description: 'Quote requests submitted from the website (inquiry list, product pages and contact form).',
+    description:
+      'Quote requests submitted from the website (inquiry list, product pages and contact form).',
   },
   access: { create: anyone, read: isStaff, update: isStaff, delete: isStaff },
   defaultSort: '-createdAt',
@@ -84,14 +88,27 @@ export const Inquiries: CollectionConfig = {
         {
           type: 'row',
           fields: [
-            { name: 'product', type: 'relationship', relationTo: 'products', admin: { width: '50%' } },
+            {
+              name: 'product',
+              type: 'relationship',
+              relationTo: 'products',
+              admin: { width: '50%' },
+            },
             { name: 'productName', type: 'text', admin: { width: '30%' } },
             { name: 'quantity', type: 'number', min: 1, defaultValue: 1, admin: { width: '20%' } },
           ],
         },
       ],
     },
-    { name: 'adminNotes', type: 'textarea', admin: { description: 'Internal notes – never shown publicly.' } },
-    { name: 'pageUrl', type: 'text', admin: { readOnly: true, description: 'Page the inquiry was sent from.' } },
+    {
+      name: 'adminNotes',
+      type: 'textarea',
+      admin: { description: 'Internal notes – never shown publicly.' },
+    },
+    {
+      name: 'pageUrl',
+      type: 'text',
+      admin: { readOnly: true, description: 'Page the inquiry was sent from.' },
+    },
   ],
 }

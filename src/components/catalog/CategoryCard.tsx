@@ -7,16 +7,36 @@ import { cn } from '@/lib/utils'
 import { Media } from '../Media'
 import { Icon } from '../ui/Icon'
 
-type Props = { category: Category & { productCount?: number; children?: { id: number; title: string; path?: string | null }[] }; className?: string; compact?: boolean }
+type Props = {
+  category: Category & {
+    productCount?: number
+    children?: { id: number; title: string; path?: string | null }[]
+  }
+  className?: string
+  compact?: boolean
+}
 
 /** Glass category tile with icon, product count and sub-category chips. */
 export function CategoryCard({ category, className, compact }: Props) {
   const href = `/categories/${category.path}`
   return (
-    <article className={cn('group glass-card relative flex flex-col overflow-hidden !p-0', className)}>
+    <article
+      className={cn('group glass-card relative flex flex-col overflow-hidden !p-0', className)}
+    >
       {!compact && category.image && (
-        <Link href={href} className="relative block aspect-[16/9] overflow-hidden" aria-hidden="true" tabIndex={-1}>
-          <Media media={category.image} size="card" fill sizes="(max-width: 768px) 100vw, 33vw" imgClassName="transition-transform duration-700 group-hover:scale-105" />
+        <Link
+          href={href}
+          className="relative block aspect-[16/9] overflow-hidden"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <Media
+            media={category.image}
+            size="card"
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            imgClassName="transition-transform duration-700 group-hover:scale-105"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
         </Link>
       )}
@@ -34,20 +54,29 @@ export function CategoryCard({ category, className, compact }: Props) {
             {category.title}
           </Link>
         </h3>
-        {category.shortDescription && <p className="mt-1.5 line-clamp-2 text-sm text-ink-600">{category.shortDescription}</p>}
+        {category.shortDescription && (
+          <p className="mt-1.5 line-clamp-2 text-sm text-ink-600">{category.shortDescription}</p>
+        )}
         {typeof category.productCount === 'number' && (
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600">{category.productCount} products</p>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600">
+            {category.productCount} products
+          </p>
         )}
         {category.children && category.children.length > 0 && (
           <ul className="relative z-10 mt-4 flex flex-wrap gap-1.5">
             {category.children.slice(0, 4).map((s) => (
               <li key={s.id}>
-                <Link href={`/categories/${s.path}`} className="chip !py-0.5 hover:border-brand-400 hover:bg-white">
+                <Link
+                  href={`/categories/${s.path}`}
+                  className="chip !py-0.5 hover:border-brand-400 hover:bg-white"
+                >
                   {s.title}
                 </Link>
               </li>
             ))}
-            {category.children.length > 4 && <li className="chip !py-0.5 text-ink-500">+{category.children.length - 4} more</li>}
+            {category.children.length > 4 && (
+              <li className="chip !py-0.5 text-ink-500">+{category.children.length - 4} more</li>
+            )}
           </ul>
         )}
       </div>

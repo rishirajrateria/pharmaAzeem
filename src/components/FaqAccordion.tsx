@@ -10,7 +10,15 @@ type Faq = { question: string; answer: string; id?: string | null }
 /**
  * Native <details> accordion (no JS, crawlable, accessible) + FAQPage JSON-LD.
  */
-export function FaqAccordion({ faqs, className, withJsonLd = true }: { faqs?: Faq[] | null; className?: string; withJsonLd?: boolean }) {
+export function FaqAccordion({
+  faqs,
+  className,
+  withJsonLd = true,
+}: {
+  faqs?: Faq[] | null
+  className?: string
+  withJsonLd?: boolean
+}) {
   if (!faqs?.length) return null
   const ld = withJsonLd ? faqJsonLd(faqs) : null
   return (

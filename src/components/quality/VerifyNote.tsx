@@ -22,7 +22,10 @@ const STEPS = [
 ]
 
 /** Product- and batch-level documents that are requested per shipment rather than listed as certificates. */
-const REQUEST_DOCS = ['Product-specific export documents – on request', 'Batch Certificates of Analysis – on request']
+const REQUEST_DOCS = [
+  'Product-specific export documents – on request',
+  'Batch Certificates of Analysis – on request',
+]
 
 const MAX_CERT_DOCS = 4
 
@@ -30,8 +33,15 @@ const MAX_CERT_DOCS = 4
 function dossierDocuments(certifications: Certification[]) {
   const ranked = certifications
     .filter((c) => c.type === 'license' || c.type === 'certification')
-    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || (a.order ?? 0) - (b.order ?? 0))
-  const titles = [...new Set(ranked.map((c) => c.title.trim()).filter(Boolean))].slice(0, MAX_CERT_DOCS)
+    .sort(
+      (a, b) =>
+        Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
+        (a.order ?? 0) - (b.order ?? 0),
+    )
+  const titles = [...new Set(ranked.map((c) => c.title.trim()).filter(Boolean))].slice(
+    0,
+    MAX_CERT_DOCS,
+  )
   return [...titles, ...REQUEST_DOCS]
 }
 
@@ -43,19 +53,25 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
       <Container>
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] glass-red glass-edge p-6 sm:p-10 lg:grid lg:grid-cols-12 lg:gap-14 lg:p-14">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.22),transparent)]" aria-hidden="true" />
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.22),transparent)]"
+              aria-hidden="true"
+            />
             <div className="relative lg:col-span-7">
               <Eyebrow className="mb-4">Verification</Eyebrow>
               <h2 id="verify-title" className="heading-2">
                 How to verify a certificate
               </h2>
               <p className="mt-4 max-w-2xl text-ink-600">
-                Every document on this page names the body that issued it, so each one can be checked independently of us.
+                Every document on this page names the body that issued it, so each one can be
+                checked independently of us.
               </p>
               <ol className="mt-8 space-y-6" aria-label="Verification steps">
                 {STEPS.map((s, i) => (
                   <li key={s.title} className="flex gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-gradient font-mono text-xs font-semibold text-white shadow-glow">{pad2(i + 1)}</span>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-gradient font-mono text-xs font-semibold text-white shadow-glow">
+                      {pad2(i + 1)}
+                    </span>
                     <div>
                       <h3 className="font-semibold text-ink-950">{s.title}</h3>
                       <p className="mt-1 text-sm leading-relaxed text-ink-600">{s.text}</p>
@@ -64,7 +80,10 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
                 ))}
               </ol>
             </div>
-            <aside className="relative mt-10 rounded-3xl glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0" aria-labelledby="dossier-title">
+            <aside
+              className="relative mt-10 rounded-3xl glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0"
+              aria-labelledby="dossier-title"
+            >
               <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
@@ -74,7 +93,10 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               <ul className="mt-4 space-y-2 text-sm text-ink-700" role="list">
                 {docs.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
+                      aria-hidden="true"
+                    />
                     {d}
                   </li>
                 ))}

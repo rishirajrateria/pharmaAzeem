@@ -43,14 +43,20 @@ export function CtaBand({ cta, settings }: { cta?: Homepage['cta']; settings: Si
               <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-700">
                 {phone && (
                   <li>
-                    <a href={`tel:${phone.replace(/\s+/g, '')}`} className="inline-flex items-center gap-2 hover:text-brand-700">
+                    <a
+                      href={`tel:${phone.replace(/\s+/g, '')}`}
+                      className="inline-flex items-center gap-2 hover:text-brand-700"
+                    >
                       <Phone className="h-4 w-4 text-brand-600" aria-hidden="true" /> {phone}
                     </a>
                   </li>
                 )}
                 {email && (
                   <li>
-                    <a href={`mailto:${email}`} className="inline-flex items-center gap-2 hover:text-brand-700">
+                    <a
+                      href={`mailto:${email}`}
+                      className="inline-flex items-center gap-2 hover:text-brand-700"
+                    >
                       <Mail className="h-4 w-4 text-brand-600" aria-hidden="true" /> {email}
                     </a>
                   </li>

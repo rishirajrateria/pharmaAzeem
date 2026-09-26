@@ -43,7 +43,10 @@ export const Categories: CollectionConfig = {
   defaultSort: 'order',
   hooks: {
     beforeChange: [computePath],
-    ...revalidateCollection((doc) => [`/categories/${doc.path}`, '/categories', '/products', '/'], true),
+    ...revalidateCollection(
+      (doc) => [`/categories/${doc.path}`, '/categories', '/products', '/'],
+      true,
+    ),
   },
   fields: [
     { name: 'title', type: 'text', required: true },
@@ -54,7 +57,8 @@ export const Categories: CollectionConfig = {
       relationTo: 'categories',
       admin: {
         position: 'sidebar',
-        description: 'Leave empty for a top-level category. Choose a parent to create a sub-category.',
+        description:
+          'Leave empty for a top-level category. Choose a parent to create a sub-category.',
       },
       filterOptions: ({ id }) => (id ? { id: { not_equals: id } } : true),
     },
@@ -68,8 +72,18 @@ export const Categories: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'featured', type: 'checkbox', defaultValue: false, admin: { width: '50%', description: 'Show on the home page.' } },
-        { name: 'order', type: 'number', defaultValue: 0, admin: { width: '50%', description: 'Lower numbers appear first.' } },
+        {
+          name: 'featured',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: { width: '50%', description: 'Show on the home page.' },
+        },
+        {
+          name: 'order',
+          type: 'number',
+          defaultValue: 0,
+          admin: { width: '50%', description: 'Lower numbers appear first.' },
+        },
       ],
     },
     {
@@ -82,12 +96,18 @@ export const Categories: CollectionConfig = {
               name: 'shortDescription',
               type: 'textarea',
               maxLength: 220,
-              admin: { description: 'One or two sentences shown on cards and as the default meta description.' },
+              admin: {
+                description:
+                  'One or two sentences shown on cards and as the default meta description.',
+              },
             },
             {
               name: 'description',
               type: 'richText',
-              admin: { description: 'Long-form category description (shown below the product grid – great for SEO).' },
+              admin: {
+                description:
+                  'Long-form category description (shown below the product grid – great for SEO).',
+              },
             },
             { name: 'image', type: 'upload', relationTo: 'media' },
             {
@@ -99,7 +119,9 @@ export const Categories: CollectionConfig = {
             {
               name: 'highlights',
               type: 'array',
-              admin: { description: 'Short bullet points (e.g. "WHO-GMP certified", "40+ formulations").' },
+              admin: {
+                description: 'Short bullet points (e.g. "WHO-GMP certified", "40+ formulations").',
+              },
               fields: [{ name: 'text', type: 'text', required: true }],
             },
             faqsField(),

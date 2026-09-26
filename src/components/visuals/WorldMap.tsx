@@ -15,28 +15,66 @@ export const projectPin = (lat: number, lng: number) => {
  * Dotted world map with pulsing pins. The dot field is a static, cacheable SVG
  * loaded via <img>; pins are absolutely positioned HTML so they can be links.
  */
-export function WorldMap({ pins, className, showLabels = false }: { pins: MapPin[]; className?: string; showLabels?: boolean }) {
+export function WorldMap({
+  pins,
+  className,
+  showLabels = false,
+}: {
+  pins: MapPin[]
+  className?: string
+  showLabels?: boolean
+}) {
   const aspect = `${mapMeta.width} / ${mapMeta.height}`
   return (
     <div className={cn('relative w-full select-none', className)} style={{ aspectRatio: aspect }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/world-dots.svg" alt="" width={mapMeta.width * 8} height={mapMeta.height * 8} className="h-full w-full" loading="lazy" decoding="async" draggable={false} />
+      <img
+        src="/world-dots.svg"
+        alt=""
+        width={mapMeta.width * 8}
+        height={mapMeta.height * 8}
+        className="h-full w-full"
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+      />
       {pins
         .filter((p) => typeof p.lat === 'number' && typeof p.lng === 'number')
         .map((pin) => {
           const pos = projectPin(pin.lat, pin.lng)
           const dot = (
             <>
-              <span className={cn('absolute inset-0 rounded-full bg-brand-500/60 animate-pulse-ring', !pin.featured && 'opacity-60')} />
-              <span className={cn('absolute inset-0 rounded-full bg-brand-600 shadow-[0_0_0_2px_white,0_0_12px_rgb(225_29_46_/_0.8)]')} />
+              <span
+                className={cn(
+                  'absolute inset-0 rounded-full bg-brand-500/60 animate-pulse-ring',
+                  !pin.featured && 'opacity-60',
+                )}
+              />
+              <span
+                className={cn(
+                  'absolute inset-0 rounded-full bg-brand-600 shadow-[0_0_0_2px_white,0_0_12px_rgb(225_29_46_/_0.8)]',
+                )}
+              />
               {showLabels && pin.featured && (
-                <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800">{pin.name}</span>
+                <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800">
+                  {pin.name}
+                </span>
               )}
             </>
           )
-          const cls = cn('group absolute -translate-x-1/2 -translate-y-1/2 rounded-full', pin.featured ? 'h-2.5 w-2.5 sm:h-3 sm:w-3' : 'h-2 w-2')
+          const cls = cn(
+            'group absolute -translate-x-1/2 -translate-y-1/2 rounded-full',
+            pin.featured ? 'h-2.5 w-2.5 sm:h-3 sm:w-3' : 'h-2 w-2',
+          )
           return pin.href ? (
-            <a key={pin.name} href={pin.href} title={pin.name} aria-label={pin.name} className={cls} style={pos}>
+            <a
+              key={pin.name}
+              href={pin.href}
+              title={pin.name}
+              aria-label={pin.name}
+              className={cls}
+              style={pos}
+            >
               {dot}
             </a>
           ) : (

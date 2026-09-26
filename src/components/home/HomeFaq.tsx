@@ -23,7 +23,10 @@ export function HomeFaq({ faqs }: { faqs?: Homepage['faqs'] }) {
               />
               <p className="mt-6 text-sm text-ink-600">
                 Can&apos;t find what you need?{' '}
-                <Link href="/contact" className="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline"
+                >
                   Talk to our export team <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               </p>

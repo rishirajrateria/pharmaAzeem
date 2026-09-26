@@ -4,7 +4,15 @@ import Link from 'next/link'
 import type { Facets } from '@/lib/data'
 import { cn } from '@/lib/utils'
 
-import { clearHref, facetValueLabel, removeHref, toggleHref, visibleFacetGroups, type FacetParam, type ParsedFilters } from './parseFilters'
+import {
+  clearHref,
+  facetValueLabel,
+  removeHref,
+  toggleHref,
+  visibleFacetGroups,
+  type FacetParam,
+  type ParsedFilters,
+} from './parseFilters'
 
 const VISIBLE_OPTIONS = 7
 
@@ -13,7 +21,17 @@ const VISIBLE_OPTIONS = 7
  * a query param, groups are native <details> (collapsible without JS) and the
  * active filters row lets visitors remove one filter at a time.
  */
-export function FilterSidebar({ basePath, filters, facets, className }: { basePath: string; filters: ParsedFilters; facets: Facets; className?: string }) {
+export function FilterSidebar({
+  basePath,
+  filters,
+  facets,
+  className,
+}: {
+  basePath: string
+  filters: ParsedFilters
+  facets: Facets
+  className?: string
+}) {
   const groups = visibleFacetGroups(facets)
   const activeCount = filters.active.length
 
@@ -22,10 +40,17 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-ink-900">
           Filters
-          {activeCount > 0 && <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-gradient px-1.5 font-mono text-[10px] text-white">{activeCount}</span>}
+          {activeCount > 0 && (
+            <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-gradient px-1.5 font-mono text-[10px] text-white">
+              {activeCount}
+            </span>
+          )}
         </h2>
         {filters.hasFilters && (
-          <Link href={clearHref(basePath, filters)} className="text-xs font-medium text-brand-700 underline-offset-4 hover:underline">
+          <Link
+            href={clearHref(basePath, filters)}
+            className="text-xs font-medium text-brand-700 underline-offset-4 hover:underline"
+          >
             Clear all
           </Link>
         )}
@@ -62,13 +87,28 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-ink-950">
                   <span>
                     {g.label}
-                    {selected.length > 0 && <span className="ml-2 font-mono text-[10px] font-medium text-brand-600">{selected.length} selected</span>}
+                    {selected.length > 0 && (
+                      <span className="ml-2 font-mono text-[10px] font-medium text-brand-600">
+                        {selected.length} selected
+                      </span>
+                    )}
                   </span>
-                  <ChevronDown className="h-4 w-4 text-ink-400 transition-transform duration-300 group-open/facet:rotate-180" aria-hidden="true" />
+                  <ChevronDown
+                    className="h-4 w-4 text-ink-400 transition-transform duration-300 group-open/facet:rotate-180"
+                    aria-hidden="true"
+                  />
                 </summary>
                 <ul className="mt-3 space-y-1">
                   {head.map((o) => (
-                    <FacetOption key={o.value} basePath={basePath} filters={filters} param={g.param as FacetParam} value={o.value} count={o.count} selected={selected.includes(o.value)} />
+                    <FacetOption
+                      key={o.value}
+                      basePath={basePath}
+                      filters={filters}
+                      param={g.param as FacetParam}
+                      value={o.value}
+                      count={o.count}
+                      selected={selected.includes(o.value)}
+                    />
                   ))}
                 </ul>
                 {tail.length > 0 && (
@@ -79,7 +119,15 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
                     </summary>
                     <ul className="space-y-1">
                       {tail.map((o) => (
-                        <FacetOption key={o.value} basePath={basePath} filters={filters} param={g.param as FacetParam} value={o.value} count={o.count} selected={selected.includes(o.value)} />
+                        <FacetOption
+                          key={o.value}
+                          basePath={basePath}
+                          filters={filters}
+                          param={g.param as FacetParam}
+                          value={o.value}
+                          count={o.count}
+                          selected={selected.includes(o.value)}
+                        />
                       ))}
                     </ul>
                   </details>
@@ -95,8 +143,14 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
           <MessageCircleQuestion className="h-4 w-4 text-brand-600" aria-hidden="true" />
           Need help choosing?
         </p>
-        <p className="mt-1 text-xs leading-relaxed text-ink-600">Tell our export team the molecules, strengths and market you need – we will shortlist the right formulations and dossiers.</p>
-        <Link href="/contact" className="mt-3 inline-flex text-xs font-semibold text-brand-700 underline-offset-4 hover:underline">
+        <p className="mt-1 text-xs leading-relaxed text-ink-600">
+          Tell our export team the molecules, strengths and market you need – we will shortlist the
+          right formulations and dossiers.
+        </p>
+        <Link
+          href="/contact"
+          className="mt-3 inline-flex text-xs font-semibold text-brand-700 underline-offset-4 hover:underline"
+        >
           Talk to a specialist →
         </Link>
       </div>
@@ -104,7 +158,21 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
   )
 }
 
-function FacetOption({ basePath, filters, param, value, count, selected }: { basePath: string; filters: ParsedFilters; param: FacetParam; value: string; count: number; selected: boolean }) {
+function FacetOption({
+  basePath,
+  filters,
+  param,
+  value,
+  count,
+  selected,
+}: {
+  basePath: string
+  filters: ParsedFilters
+  param: FacetParam
+  value: string
+  count: number
+  selected: boolean
+}) {
   const label = facetValueLabel(value)
   return (
     <li>
@@ -114,13 +182,17 @@ function FacetOption({ basePath, filters, param, value, count, selected }: { bas
         aria-label={`${selected ? 'Remove' : 'Add'} filter ${label} (${count})`}
         className={cn(
           'group/opt flex items-center gap-2.5 rounded-xl px-2 py-1.5 text-sm transition',
-          selected ? 'bg-white/80 font-medium text-brand-700' : 'text-ink-700 hover:bg-white/60 hover:text-ink-950',
+          selected
+            ? 'bg-white/80 font-medium text-brand-700'
+            : 'text-ink-700 hover:bg-white/60 hover:text-ink-950',
         )}
       >
         <span
           className={cn(
             'flex h-4 w-4 shrink-0 items-center justify-center rounded-[5px] border transition',
-            selected ? 'border-brand-600 bg-brand-gradient text-white' : 'border-ink-300 bg-white group-hover/opt:border-brand-400',
+            selected
+              ? 'border-brand-600 bg-brand-gradient text-white'
+              : 'border-ink-300 bg-white group-hover/opt:border-brand-400',
           )}
           aria-hidden="true"
         >

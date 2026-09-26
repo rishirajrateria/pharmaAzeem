@@ -36,7 +36,10 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
             <Container>
               {layout === 'full' ? (
                 <Reveal className="glass-strong glass-edge relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
-                  <div className="pointer-events-none absolute inset-0 dots-pattern opacity-30 fade-mask-x" aria-hidden="true" />
+                  <div
+                    className="pointer-events-none absolute inset-0 dots-pattern opacity-30 fade-mask-x"
+                    aria-hidden="true"
+                  />
                   <div className="relative grid gap-8 lg:grid-cols-12">
                     <div className="lg:col-span-4">
                       {s.eyebrow && <Eyebrow>{s.eyebrow}</Eyebrow>}
@@ -46,7 +49,12 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
                     </div>
                     <div className="lg:col-span-8">
                       <RichText data={s.body} />
-                      {bullets.length > 0 && <BulletList bullets={bullets} className={cn(s.body && 'mt-6', 'sm:grid-cols-2')} />}
+                      {bullets.length > 0 && (
+                        <BulletList
+                          bullets={bullets}
+                          className={cn(s.body && 'mt-6', 'sm:grid-cols-2')}
+                        />
+                      )}
                     </div>
                   </div>
                 </Reveal>
@@ -60,10 +68,27 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
                     <RichText data={s.body} className="mt-5" />
                     {bullets.length > 0 && <BulletList bullets={bullets} className="mt-6" />}
                   </Reveal>
-                  <Reveal delay={90} className={cn('relative', layout === 'imageLeft' && 'lg:order-1')}>
-                    <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-brand-100/50 blur-2xl" aria-hidden="true" />
-                    <div className={cn('glass glass-edge rounded-[2rem] p-2.5 shadow-glass-lg', layout === 'imageLeft' ? 'rotate-[1.5deg]' : 'rotate-[-1.5deg]')}>
-                      <Media media={s.image} size="large" fill sizes="(max-width: 1024px) 100vw, 50vw" className="aspect-[4/3] rounded-[1.5rem] bg-white" />
+                  <Reveal
+                    delay={90}
+                    className={cn('relative', layout === 'imageLeft' && 'lg:order-1')}
+                  >
+                    <div
+                      className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-brand-100/50 blur-2xl"
+                      aria-hidden="true"
+                    />
+                    <div
+                      className={cn(
+                        'glass glass-edge rounded-[2rem] p-2.5 shadow-glass-lg',
+                        layout === 'imageLeft' ? 'rotate-[1.5deg]' : 'rotate-[-1.5deg]',
+                      )}
+                    >
+                      <Media
+                        media={s.image}
+                        size="large"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="aspect-[4/3] rounded-[1.5rem] bg-white"
+                      />
                     </div>
                   </Reveal>
                 </div>
@@ -76,7 +101,13 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
   )
 }
 
-function BulletList({ bullets, className }: { bullets: { text: string; id?: string | null }[]; className?: string }) {
+function BulletList({
+  bullets,
+  className,
+}: {
+  bullets: { text: string; id?: string | null }[]
+  className?: string
+}) {
   return (
     <ul className={cn('grid gap-3', className)} role="list">
       {bullets.map((b, i) => (

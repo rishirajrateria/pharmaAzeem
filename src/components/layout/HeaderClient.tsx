@@ -23,7 +23,16 @@ type Props = {
   email?: string
 }
 
-export function HeaderClient({ siteName, tagline, logo, nav, labels, announcement, phone, email }: Props) {
+export function HeaderClient({
+  siteName,
+  tagline,
+  logo,
+  nav,
+  labels,
+  announcement,
+  phone,
+  email,
+}: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mega, setMega] = useState(false)
@@ -62,7 +71,10 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
         <div className="bg-brand-gradient text-white">
           <div className="container-x flex h-9 items-center justify-center gap-2 text-center text-xs font-medium tracking-wide">
             {announcement.url ? (
-              <Link href={announcement.url} className="inline-flex items-center gap-1.5 hover:underline">
+              <Link
+                href={announcement.url}
+                className="inline-flex items-center gap-1.5 hover:underline"
+              >
                 {announcement.text} <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             ) : (
@@ -83,23 +95,34 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
 
             {/* Desktop nav */}
             <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-              <div className="relative" onMouseEnter={() => setMega(true)} onMouseLeave={() => setMega(false)}>
+              <div
+                className="relative"
+                onMouseEnter={() => setMega(true)}
+                onMouseLeave={() => setMega(false)}
+              >
                 <Link
                   href="/products"
                   className={cn(
                     'inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
-                    isActive('/products') || isActive('/categories') ? 'text-brand-700' : 'text-ink-700',
+                    isActive('/products') || isActive('/categories')
+                      ? 'text-brand-700'
+                      : 'text-ink-700',
                   )}
                   aria-haspopup="true"
                   aria-expanded={mega}
                 >
-                  Products <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', mega && 'rotate-180')} />
+                  Products{' '}
+                  <ChevronDown
+                    className={cn('h-3.5 w-3.5 transition-transform', mega && 'rotate-180')}
+                  />
                 </Link>
                 {/* Mega menu */}
                 <div
                   className={cn(
                     'absolute left-1/2 top-full z-50 w-[min(60rem,calc(100vw-3rem))] -translate-x-1/2 pt-4 transition-all duration-300',
-                    mega ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0',
+                    mega
+                      ? 'visible translate-y-0 opacity-100'
+                      : 'invisible -translate-y-2 opacity-0',
                   )}
                 >
                   <div className="glass-strong rounded-3xl p-4 shadow-glass-lg">
@@ -111,7 +134,9 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
                               <Icon name={c.icon} className="h-4.5 w-4.5" />
                             </span>
                             <span>
-                              <span className="block text-sm font-semibold text-ink-950">{c.title}</span>
+                              <span className="block text-sm font-semibold text-ink-950">
+                                {c.title}
+                              </span>
                               <span className="block text-xs text-ink-500">{c.count} products</span>
                             </span>
                           </Link>
@@ -119,7 +144,10 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
                             <ul className="mt-2 flex flex-wrap gap-1 pl-12">
                               {c.children.slice(0, 5).map((s) => (
                                 <li key={s.id}>
-                                  <Link href={s.path} className="rounded-full border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700">
+                                  <Link
+                                    href={s.path}
+                                    className="rounded-full border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700"
+                                  >
                                     {s.title}
                                   </Link>
                                 </li>
@@ -130,10 +158,16 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
                       ))}
                     </div>
                     <div className="mt-3 flex items-center justify-between border-t border-ink-100 px-3 pt-3">
-                      <Link href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline">
+                      <Link
+                        href="/products"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+                      >
                         Browse full catalogue <ArrowRight className="h-4 w-4" />
                       </Link>
-                      <Link href="/products?focus=search" className="inline-flex items-center gap-1.5 text-xs text-ink-500 hover:text-ink-900">
+                      <Link
+                        href="/products?focus=search"
+                        className="inline-flex items-center gap-1.5 text-xs text-ink-500 hover:text-ink-900"
+                      >
                         <Search className="h-3.5 w-3.5" /> Search products
                       </Link>
                     </div>
@@ -174,8 +208,20 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
       </div>
 
       {/* Mobile menu */}
-      <div className={cn('fixed inset-0 z-[60] lg:hidden', open ? 'pointer-events-auto' : 'pointer-events-none')} aria-hidden={!open}>
-        <div className={cn('absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300', open ? 'opacity-100' : 'opacity-0')} onClick={() => setOpen(false)} />
+      <div
+        className={cn(
+          'fixed inset-0 z-[60] lg:hidden',
+          open ? 'pointer-events-auto' : 'pointer-events-none',
+        )}
+        aria-hidden={!open}
+      >
+        <div
+          className={cn(
+            'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300',
+            open ? 'opacity-100' : 'opacity-0',
+          )}
+          onClick={() => setOpen(false)}
+        />
         <div
           className={cn(
             'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col glass-strong shadow-glass-lg transition-transform duration-500 ease-[var(--ease-out-expo)]',
@@ -187,21 +233,34 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
         >
           <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4">
             <Logo siteName={siteName} tagline={tagline} logo={logo} />
-            <button type="button" onClick={() => setOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50" aria-label="Close menu">
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50"
+              aria-label="Close menu"
+            >
               <X className="h-5 w-5" />
             </button>
           </div>
           <nav className="scrollbar-thin flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
-            <p className="px-3 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">Products</p>
+            <p className="px-3 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
+              Products
+            </p>
             <ul className="space-y-1">
               <li>
-                <Link href="/products" className="flex items-center justify-between rounded-2xl px-3 py-2.5 text-sm font-semibold text-ink-900 hover:bg-brand-50">
+                <Link
+                  href="/products"
+                  className="flex items-center justify-between rounded-2xl px-3 py-2.5 text-sm font-semibold text-ink-900 hover:bg-brand-50"
+                >
                   All products <ArrowRight className="h-4 w-4 text-brand-600" />
                 </Link>
               </li>
               {nav.map((c) => (
                 <li key={c.id}>
-                  <Link href={c.path} className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50">
+                  <Link
+                    href={c.path}
+                    className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50"
+                  >
                     <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                       <Icon name={c.icon} className="h-4 w-4" />
                     </span>
@@ -211,11 +270,19 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
                 </li>
               ))}
             </ul>
-            <p className="px-3 pb-2 pt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">Company</p>
+            <p className="px-3 pb-2 pt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
+              Company
+            </p>
             <ul className="space-y-1">
               {PRIMARY_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className={cn('block rounded-2xl px-3 py-2.5 text-sm hover:bg-brand-50', isActive(l.href) ? 'text-brand-700 font-semibold' : 'text-ink-800')}>
+                  <Link
+                    href={l.href}
+                    className={cn(
+                      'block rounded-2xl px-3 py-2.5 text-sm hover:bg-brand-50',
+                      isActive(l.href) ? 'text-brand-700 font-semibold' : 'text-ink-800',
+                    )}
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -228,12 +295,18 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
             </Link>
             <div className="flex flex-col gap-1.5 text-xs text-ink-600">
               {phone && (
-                <a href={`tel:${phone.replace(/\s+/g, '')}`} className="inline-flex items-center gap-2 hover:text-brand-700">
+                <a
+                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                  className="inline-flex items-center gap-2 hover:text-brand-700"
+                >
                   <Phone className="h-3.5 w-3.5" /> {phone}
                 </a>
               )}
               {email && (
-                <a href={`mailto:${email}`} className="inline-flex items-center gap-2 hover:text-brand-700">
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex items-center gap-2 hover:text-brand-700"
+                >
                   <Mail className="h-3.5 w-3.5" /> {email}
                 </a>
               )}

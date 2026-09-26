@@ -1,4 +1,4 @@
-import { getSiteSettings } from '@/lib/data'
+import { getPageGlobal, getSiteSettings } from '@/lib/data'
 import { siteName } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 
@@ -9,8 +9,12 @@ export const dynamic = 'force-static'
 const pad = (lines: string[]) => lines.map((l) => `  ${l}`).join('\n')
 
 export async function GET() {
-  const settings = await getSiteSettings().catch(() => null)
+  const [settings, contactPage] = await Promise.all([
+    getSiteSettings().catch(() => null),
+    getPageGlobal('contact-page').catch(() => null),
+  ])
   const name = siteName(settings)
+  const departments = (contactPage?.departments || []).map((d) => d.name.trim()).filter(Boolean)
   const addr = settings?.contact?.address
   const location = [addr?.city, addr?.state, addr?.country].filter(Boolean).join(', ')
   const email = settings?.contact?.email?.replace('@', ' [at] ')
@@ -18,15 +22,20 @@ export async function GET() {
 
   const body = [
     '/* TEAM */',
-    pad([
-      `Company: ${name}${settings?.legalName && settings.legalName !== name ? ` (${settings.legalName})` : ''}`,
-      'Team: Export & business development, regulatory affairs, quality assurance, digital',
-      email ? `Contact: ${email}` : null,
-      location ? `Location: ${location}` : null,
-    ].filter((l): l is string => Boolean(l))),
+    pad(
+      [
+        `Company: ${name}${settings?.legalName && settings.legalName !== name ? ` (${settings.legalName})` : ''}`,
+        departments.length ? `Team: ${departments.join(', ')}` : null,
+        email ? `Contact: ${email}` : null,
+        location ? `Location: ${location}` : null,
+      ].filter((l): l is string => Boolean(l)),
+    ),
     '',
     '/* THANKS */',
-    pad(['Our distribution partners, hospitals and regulators in every market we serve.', 'The open-source communities behind Next.js, React, Payload CMS and Tailwind CSS.']),
+    pad([
+      'Our distribution partners, hospitals and regulators in every market we serve.',
+      'The open-source communities behind Next.js, React, Payload CMS and Tailwind CSS.',
+    ]),
     '',
     '/* SITE */',
     pad([

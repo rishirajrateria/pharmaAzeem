@@ -22,7 +22,15 @@ type Props = {
 }
 
 /** Responsive 1 / 2 / 3 / 4 column grid of product cards (single column below 420px) with a helpful empty state. */
-export function ProductGrid({ products, labels, basePath, filters, suggestions = [], priorityCount = 0, className }: Props) {
+export function ProductGrid({
+  products,
+  labels,
+  basePath,
+  filters,
+  suggestions = [],
+  priorityCount = 0,
+  className,
+}: Props) {
   if (products.length === 0) {
     return (
       <div className={cn('space-y-10', className)}>
@@ -32,9 +40,12 @@ export function ProductGrid({ products, labels, basePath, filters, suggestions =
             <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl glass-red text-brand-600">
               <SearchX className="h-7 w-7" aria-hidden="true" />
             </span>
-            <h3 className="heading-3 mt-5">No products match {filters.q ? <>“{filters.q}”</> : 'these filters'}</h3>
+            <h3 className="heading-3 mt-5">
+              No products match {filters.q ? <>“{filters.q}”</> : 'these filters'}
+            </h3>
             <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-600">
-              Try a broader search, remove a filter, or tell us what you are looking for – not every formulation in the portfolio is listed online.
+              Try a broader search, remove a filter, or tell us what you are looking for – not every
+              formulation in the portfolio is listed online.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               {filters.hasFilters && (
@@ -70,10 +81,21 @@ export function ProductGrid({ products, labels, basePath, filters, suggestions =
   }
 
   return (
-    <ul className={cn('grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4', className)} aria-label="Products">
+    <ul
+      className={cn(
+        'grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4',
+        className,
+      )}
+      aria-label="Products"
+    >
       {products.map((p, i) => (
         <Reveal key={p.id} as="li" delay={Math.min(i, 7) * 60}>
-          <ProductCard product={p} labels={labels} priority={i < priorityCount} className="h-full" />
+          <ProductCard
+            product={p}
+            labels={labels}
+            priority={i < priorityCount}
+            className="h-full"
+          />
         </Reveal>
       ))}
     </ul>

@@ -30,10 +30,18 @@ export function QualityPillars({ pillars }: { pillars?: Pillar[] | null }) {
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
                     <Icon name={p.icon} className="h-5 w-5" />
                   </span>
-                  <span className="font-mono text-xs tracking-[0.2em] text-ink-300">{pad2(i + 1)}</span>
+                  <span className="font-mono text-xs tracking-[0.2em] text-ink-300">
+                    {pad2(i + 1)}
+                  </span>
                 </div>
-                <h3 className="relative mt-6 text-lg font-semibold leading-snug text-ink-950">{p.title}</h3>
-                {p.description && <p className="relative mt-2 text-sm leading-relaxed text-ink-600">{p.description}</p>}
+                <h3 className="relative mt-6 text-lg font-semibold leading-snug text-ink-950">
+                  {p.title}
+                </h3>
+                {p.description && (
+                  <p className="relative mt-2 text-sm leading-relaxed text-ink-600">
+                    {p.description}
+                  </p>
+                )}
               </article>
             </Reveal>
           ))}

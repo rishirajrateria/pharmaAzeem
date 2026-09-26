@@ -13,4 +13,5 @@ export const REGION_LABEL: Record<string, string> = {
 
 export const REGION_ORDER = Object.keys(REGION_LABEL)
 
-export const regionLabel = (value: string) => REGION_LABEL[value] || value.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+export const regionLabel = (value: string) =>
+  REGION_LABEL[value] || value.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())

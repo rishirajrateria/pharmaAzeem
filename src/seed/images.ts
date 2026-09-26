@@ -10,7 +10,8 @@ import sharp from 'sharp'
 
 const OUT = path.resolve(process.cwd(), 'data/seed-images')
 
-const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+const esc = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 const defs = `
 <defs>
@@ -30,7 +31,15 @@ const backdrop = (w: number, h: number) => `
 <rect width="${w}" height="${h}" fill="url(#orb2)"/>
 <rect width="${w}" height="${h}" fill="url(#dots)"/>`
 
-const label = (x: number, y: number, w: number, brand: string, generic: string, strength: string, form: string) => `
+const label = (
+  x: number,
+  y: number,
+  w: number,
+  brand: string,
+  generic: string,
+  strength: string,
+  form: string,
+) => `
 <g>
   <rect x="${x}" y="${y}" width="${w}" height="150" rx="22" fill="url(#glass)" stroke="#fff" stroke-opacity=".9"/>
   <rect x="${x + 22}" y="${y + 22}" width="46" height="46" rx="12" fill="url(#red)"/>
@@ -147,7 +156,10 @@ const ART: Record<string, string> = {
   Other: artBox,
 }
 
-export async function productImage(file: string, opts: { brand: string; generic: string; strength: string; form: string }) {
+export async function productImage(
+  file: string,
+  opts: { brand: string; generic: string; strength: string; form: string },
+) {
   fs.mkdirSync(OUT, { recursive: true })
   const out = path.join(OUT, file)
   if (fs.existsSync(out)) return out
@@ -162,7 +174,10 @@ export async function productImage(file: string, opts: { brand: string; generic:
 }
 
 /** Abstract branded visuals for hero / section images. */
-export async function abstractImage(file: string, variant: 'facility' | 'lab' | 'globe' | 'quality' | 'team' | 'warehouse' | 'hero') {
+export async function abstractImage(
+  file: string,
+  variant: 'facility' | 'lab' | 'globe' | 'quality' | 'team' | 'warehouse' | 'hero',
+) {
   fs.mkdirSync(OUT, { recursive: true })
   const out = path.join(OUT, file)
   if (fs.existsSync(out)) return out
@@ -187,7 +202,18 @@ export async function abstractImage(file: string, variant: 'facility' | 'lab' | 
         <ellipse cx="800" cy="500" rx="300" ry="110" fill="none" stroke="#e11d2e" stroke-opacity=".35" stroke-width="4"/>
         <ellipse cx="800" cy="500" rx="110" ry="300" fill="none" stroke="#e11d2e" stroke-opacity=".35" stroke-width="4"/>
         <circle cx="800" cy="500" r="300" fill="none" stroke="url(#red)" stroke-width="8"/>
-        ${[[650, 420], [900, 380], [760, 620], [960, 560], [700, 520]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="14" fill="url(#red)"/><circle cx="${x}" cy="${y}" r="28" fill="none" stroke="#e11d2e" stroke-opacity=".35" stroke-width="3"/>`).join('')}
+        ${[
+          [650, 420],
+          [900, 380],
+          [760, 620],
+          [960, 560],
+          [700, 520],
+        ]
+          .map(
+            ([x, y]) =>
+              `<circle cx="${x}" cy="${y}" r="14" fill="url(#red)"/><circle cx="${x}" cy="${y}" r="28" fill="none" stroke="#e11d2e" stroke-opacity=".35" stroke-width="3"/>`,
+          )
+          .join('')}
       </g>`,
     quality: `
       <g filter="url(#shadow)">

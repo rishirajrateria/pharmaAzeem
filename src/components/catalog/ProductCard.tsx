@@ -9,7 +9,14 @@ import { AddToInquiryButton } from '../inquiry/AddToInquiryButton'
 import { Badge } from '../ui'
 import { PriceTag } from './PriceTag'
 
-const BADGE_LABEL: Record<string, string> = { new: 'New', 'best-seller': 'Best seller', 'who-gmp': 'WHO-GMP', 'export-ready': 'Export ready', 'sugar-free': 'Sugar free', pediatric: 'Pediatric' }
+const BADGE_LABEL: Record<string, string> = {
+  new: 'New',
+  'best-seller': 'Best seller',
+  'who-gmp': 'WHO-GMP',
+  'export-ready': 'Export ready',
+  'sugar-free': 'Sugar free',
+  pediatric: 'Pediatric',
+}
 
 export function toInquiryItem(product: Product) {
   return {
@@ -27,13 +34,30 @@ export function toInquiryItem(product: Product) {
  * Catalogue card. Server component (fast, no JS) except the small "add" button.
  * `labels` comes from Site Settings so wording ("Add to inquiry list" / "Add to cart") is configurable.
  */
-export function ProductCard({ product, labels, priority, className }: { product: Product; labels: CommerceLabels | ReturnType<typeof getCommerceLabels>; priority?: boolean; className?: string }) {
+export function ProductCard({
+  product,
+  labels,
+  priority,
+  className,
+}: {
+  product: Product
+  labels: CommerceLabels | ReturnType<typeof getCommerceLabels>
+  priority?: boolean
+  className?: string
+}) {
   const price = resolvePrice(product, labels)
   const href = `/products/${product.slug}`
-  const category = product.categories?.find((c) => typeof c === 'object') as { title: string; path?: string | null } | undefined
+  const category = product.categories?.find((c) => typeof c === 'object') as
+    { title: string; path?: string | null } | undefined
   return (
-    <article className={cn('group glass-card relative flex flex-col overflow-hidden !p-0', className)}>
-      <Link href={href} className="relative block aspect-square overflow-hidden bg-white" aria-label={product.title}>
+    <article
+      className={cn('group glass-card relative flex flex-col overflow-hidden !p-0', className)}
+    >
+      <Link
+        href={href}
+        className="relative block aspect-square overflow-hidden bg-white"
+        aria-label={product.title}
+      >
         <Media
           media={product.images?.[0]}
           size="card"
@@ -59,9 +83,16 @@ export function ProductCard({ product, labels, priority, className }: { product:
         )}
       </Link>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        {category && <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">{category.title}</p>}
+        {category && (
+          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">
+            {category.title}
+          </p>
+        )}
         <h3 className="text-base font-semibold leading-snug text-ink-950">
-          <Link href={href} className="after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
+          <Link
+            href={href}
+            className="after:absolute after:inset-0 after:content-[''] hover:text-brand-700"
+          >
             {product.title}
           </Link>
         </h3>
@@ -72,7 +103,12 @@ export function ProductCard({ product, labels, priority, className }: { product:
         </div>
         <div className="relative z-10 mt-4 flex items-center justify-between gap-3 border-t border-ink-100 pt-4">
           <PriceTag price={price} size="sm" />
-          <AddToInquiryButton product={toInquiryItem(product)} label={labels.addLabel} addedLabel={labels.addedLabel} variant="icon" />
+          <AddToInquiryButton
+            product={toInquiryItem(product)}
+            label={labels.addLabel}
+            addedLabel={labels.addedLabel}
+            variant="icon"
+          />
         </div>
       </div>
     </article>

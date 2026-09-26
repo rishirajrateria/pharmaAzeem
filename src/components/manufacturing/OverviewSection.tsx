@@ -9,7 +9,15 @@ import { countByType } from './facilities'
  * Intro rich text (left: eyebrow + h2, right: prose) followed by the count-up <Stats> band
  * and a compact "facility mix" strip derived from the facilities collection.
  */
-export function OverviewSection({ intro, stats, facilities }: { intro?: ManufacturingPage['intro']; stats?: ManufacturingPage['stats']; facilities: Facility[] }) {
+export function OverviewSection({
+  intro,
+  stats,
+  facilities,
+}: {
+  intro?: ManufacturingPage['intro']
+  stats?: ManufacturingPage['stats']
+  facilities: Facility[]
+}) {
   if (!intro && !stats?.length) return null
   const mix = countByType(facilities)
   return (
@@ -27,14 +35,18 @@ export function OverviewSection({ intro, stats, facilities }: { intro?: Manufact
                   {mix.map((m) => (
                     <li key={m.type} className="chip !py-1">
                       <m.icon className="h-3.5 w-3.5" aria-hidden="true" />
-                      <span className="font-mono">{m.count}</span> {m.count === 1 ? m.label : m.plural}
+                      <span className="font-mono">{m.count}</span>{' '}
+                      {m.count === 1 ? m.label : m.plural}
                     </li>
                   ))}
                 </ul>
               )}
             </div>
             <div className="lg:col-span-8">
-              <RichText data={intro} className="[&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg" />
+              <RichText
+                data={intro}
+                className="[&_p]:text-base [&_p]:leading-relaxed sm:[&_p]:text-lg"
+              />
             </div>
           </div>
         ) : (

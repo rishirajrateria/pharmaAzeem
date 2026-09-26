@@ -40,7 +40,8 @@ export const seoTab = (): Tab => ({
           name: 'canonicalUrl',
           type: 'text',
           admin: {
-            description: 'Optional. Override the canonical URL (absolute). Leave blank to use the page URL.',
+            description:
+              'Optional. Override the canonical URL (absolute). Leave blank to use the page URL.',
             width: '70%',
           },
         },

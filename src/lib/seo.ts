@@ -41,7 +41,8 @@ export type BuildMetadataArgs = {
 /* Metadata                                                            */
 /* ------------------------------------------------------------------ */
 
-export const siteName = (settings?: SiteSetting | null) => settings?.siteName || 'Azeem Pharmaceuticals'
+export const siteName = (settings?: SiteSetting | null) =>
+  settings?.siteName || 'Azeem Pharmaceuticals'
 
 /** Builds a complete Next.js Metadata object with canonical, OG, Twitter, robots and hreflang. */
 export const buildMetadata = ({
@@ -59,13 +60,33 @@ export const buildMetadata = ({
   const name = siteName(settings)
   const template = settings?.seo?.titleTemplate || `%s | ${name}`
   const rawTitle = meta?.title || title
-  const finalTitle = absoluteTitle || rawTitle.includes(name) ? rawTitle : template.replace('%s', rawTitle)
-  const finalDescription = truncate(meta?.description || description || settings?.seo?.defaultDescription || settings?.shortDescription || '', 160)
+  const finalTitle =
+    absoluteTitle || rawTitle.includes(name) ? rawTitle : template.replace('%s', rawTitle)
+  const finalDescription = truncate(
+    meta?.description ||
+      description ||
+      settings?.seo?.defaultDescription ||
+      settings?.shortDescription ||
+      '',
+    160,
+  )
   const canonical = meta?.canonicalUrl || absUrl(path)
-  const ogImageRel = mediaUrl(meta?.image, 'og') || mediaUrl(meta?.image) || mediaUrl(image, 'og') || mediaUrl(image) || mediaUrl(settings?.seo?.defaultImage, 'og')
-  const ogImage = ogImageRel ? absUrl(ogImageRel) : absUrl(`/og?title=${encodeURIComponent(rawTitle)}&subtitle=${encodeURIComponent(truncate(finalDescription, 140))}`)
+  const ogImageRel =
+    mediaUrl(meta?.image, 'og') ||
+    mediaUrl(meta?.image) ||
+    mediaUrl(image, 'og') ||
+    mediaUrl(image) ||
+    mediaUrl(settings?.seo?.defaultImage, 'og')
+  const ogImage = ogImageRel
+    ? absUrl(ogImageRel)
+    : absUrl(
+        `/og?title=${encodeURIComponent(rawTitle)}&subtitle=${encodeURIComponent(truncate(finalDescription, 140))}`,
+      )
   const keywords = meta?.keywords
-    ? meta.keywords.split(',').map((k) => k.trim()).filter(Boolean)
+    ? meta.keywords
+        .split(',')
+        .map((k) => k.trim())
+        .filter(Boolean)
     : undefined
   const noIndex = Boolean(meta?.noIndex)
 
@@ -85,21 +106,33 @@ export const buildMetadata = ({
       url: canonical,
       locale: 'en_US',
       images: [{ url: ogImage, width: 1200, height: 630, alt: rawTitle }],
-      ...(type === 'article' && { publishedTime: publishedTime ?? undefined, modifiedTime: modifiedTime ?? undefined }),
+      ...(type === 'article' && {
+        publishedTime: publishedTime ?? undefined,
+        modifiedTime: modifiedTime ?? undefined,
+      }),
     },
     twitter: {
       card: 'summary_large_image',
       title: finalTitle,
       description: finalDescription,
       images: [ogImage],
-      ...(settings?.seo?.twitterHandle && { site: settings.seo.twitterHandle, creator: settings.seo.twitterHandle }),
+      ...(settings?.seo?.twitterHandle && {
+        site: settings.seo.twitterHandle,
+        creator: settings.seo.twitterHandle,
+      }),
     },
     robots: noIndex
       ? { index: false, follow: false }
       : {
           index: true,
           follow: true,
-          googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+          googleBot: {
+            index: true,
+            follow: true,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+            'max-video-preview': -1,
+          },
         },
     other: modifiedTime ? { 'last-modified': modifiedTime } : undefined,
   }
@@ -114,7 +147,10 @@ export type JsonLdObject = Record<string, unknown>
 export const ORG_ID = `${SITE_URL}/#organization`
 export const WEBSITE_ID = `${SITE_URL}/#website`
 
-export const organizationJsonLd = (settings: SiteSetting | null | undefined, extras: { countries?: Country[]; certifications?: { title: string; issuer: string }[] } = {}): JsonLdObject => {
+export const organizationJsonLd = (
+  settings: SiteSetting | null | undefined,
+  extras: { countries?: Country[]; certifications?: { title: string; issuer: string }[] } = {},
+): JsonLdObject => {
   const name = siteName(settings)
   const logo = mediaUrl(settings?.logo)
   const addr = settings?.contact?.address
@@ -129,7 +165,9 @@ export const organizationJsonLd = (settings: SiteSetting | null | undefined, ext
     logo: logo ? { '@type': 'ImageObject', url: absUrl(logo) } : undefined,
     description: settings?.shortDescription || settings?.seo?.defaultDescription || undefined,
     foundingDate: settings?.foundingYear ? String(settings.foundingYear) : undefined,
-    numberOfEmployees: settings?.employeeCount ? { '@type': 'QuantitativeValue', value: settings.employeeCount } : undefined,
+    numberOfEmployees: settings?.employeeCount
+      ? { '@type': 'QuantitativeValue', value: settings.employeeCount }
+      : undefined,
     email: settings?.contact?.email || undefined,
     telephone: settings?.contact?.phone || undefined,
     address: addr?.city
@@ -155,10 +193,18 @@ export const organizationJsonLd = (settings: SiteSetting | null | undefined, ext
         ]
       : undefined,
     sameAs: sameAs.length ? sameAs : undefined,
-    knowsAbout: settings?.seo?.knowsAbout?.length ? settings.seo.knowsAbout.map((k) => k.topic) : undefined,
-    areaServed: extras.countries?.length ? extras.countries.map((c) => ({ '@type': 'Country', name: c.name })) : 'Worldwide',
+    knowsAbout: settings?.seo?.knowsAbout?.length
+      ? settings.seo.knowsAbout.map((k) => k.topic)
+      : undefined,
+    areaServed: extras.countries?.length
+      ? extras.countries.map((c) => ({ '@type': 'Country', name: c.name }))
+      : 'Worldwide',
     hasCredential: extras.certifications?.length
-      ? extras.certifications.map((c) => ({ '@type': 'EducationalOccupationalCredential', name: c.title, recognizedBy: { '@type': 'Organization', name: c.issuer } }))
+      ? extras.certifications.map((c) => ({
+          '@type': 'EducationalOccupationalCredential',
+          name: c.title,
+          recognizedBy: { '@type': 'Organization', name: c.issuer },
+        }))
       : undefined,
   }
 }
@@ -194,7 +240,14 @@ export const webPageJsonLd = (args: {
   path: string
   name: string
   description?: string | null
-  type?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage' | 'ItemPage' | 'FAQPage' | 'MedicalWebPage'
+  type?:
+    | 'WebPage'
+    | 'AboutPage'
+    | 'ContactPage'
+    | 'CollectionPage'
+    | 'ItemPage'
+    | 'FAQPage'
+    | 'MedicalWebPage'
   image?: string
   dateModified?: string | null
   datePublished?: string | null
@@ -212,7 +265,9 @@ export const webPageJsonLd = (args: {
   datePublished: args.datePublished || undefined,
 })
 
-export const faqJsonLd = (faqs: { question: string; answer: string }[] | null | undefined): JsonLdObject | null => {
+export const faqJsonLd = (
+  faqs: { question: string; answer: string }[] | null | undefined,
+): JsonLdObject | null => {
   if (!faqs?.length) return null
   return {
     '@type': 'FAQPage',
@@ -225,12 +280,22 @@ export const faqJsonLd = (faqs: { question: string; answer: string }[] | null | 
 }
 
 /** schema.org Product + Drug for a pharmaceutical product page. */
-export const productJsonLd = (product: Product, settings: SiteSetting | null | undefined): JsonLdObject => {
+export const productJsonLd = (
+  product: Product,
+  settings: SiteSetting | null | undefined,
+): JsonLdObject => {
   const labels = getCommerceLabels(settings)
   const price = resolvePrice(product, labels)
-  const images = (product.images || []).map((m) => mediaUrl(m, 'large') || mediaUrl(m)).filter(Boolean).map((u) => absUrl(u as string))
-  const category = product.categories?.map((c) => (typeof c === 'object' ? c.title : null)).filter(Boolean).join(' > ')
-  const description = product.shortDescription || truncate(richTextToPlain(product.description), 300)
+  const images = (product.images || [])
+    .map((m) => mediaUrl(m, 'large') || mediaUrl(m))
+    .filter(Boolean)
+    .map((u) => absUrl(u as string))
+  const category = product.categories
+    ?.map((c) => (typeof c === 'object' ? c.title : null))
+    .filter(Boolean)
+    .join(' > ')
+  const description =
+    product.shortDescription || truncate(richTextToPlain(product.description), 300)
   const availabilityMap: Record<string, string> = {
     'in-stock': 'https://schema.org/InStock',
     'made-to-order': 'https://schema.org/MadeToOrder',
@@ -253,17 +318,34 @@ export const productJsonLd = (product: Product, settings: SiteSetting | null | u
     dosageForm: product.dosageForm || undefined,
     administrationRoute: product.route || undefined,
     drugClass: product.therapeuticClass || undefined,
-    prescriptionStatus: product.prescriptionStatus === 'otc' ? 'https://schema.org/OTC' : 'https://schema.org/PrescriptionOnly',
+    prescriptionStatus:
+      product.prescriptionStatus === 'otc'
+        ? 'https://schema.org/OTC'
+        : 'https://schema.org/PrescriptionOnly',
     activeIngredient: product.activeIngredients?.length
-      ? product.activeIngredients.map((a) => (a.strength ? `${a.name} ${a.strength}` : a.name)).join(', ')
+      ? product.activeIngredients
+          .map((a) => (a.strength ? `${a.name} ${a.strength}` : a.name))
+          .join(', ')
       : product.genericName,
     additionalProperty: [
       product.strength && { '@type': 'PropertyValue', name: 'Strength', value: product.strength },
       product.packSize && { '@type': 'PropertyValue', name: 'Pack size', value: product.packSize },
-      product.packaging && { '@type': 'PropertyValue', name: 'Packaging', value: product.packaging },
-      product.shelfLife && { '@type': 'PropertyValue', name: 'Shelf life', value: product.shelfLife },
+      product.packaging && {
+        '@type': 'PropertyValue',
+        name: 'Packaging',
+        value: product.packaging,
+      },
+      product.shelfLife && {
+        '@type': 'PropertyValue',
+        name: 'Shelf life',
+        value: product.shelfLife,
+      },
       product.storage && { '@type': 'PropertyValue', name: 'Storage', value: product.storage },
-      ...(product.specifications || []).map((s) => ({ '@type': 'PropertyValue', name: s.label, value: s.value })),
+      ...(product.specifications || []).map((s) => ({
+        '@type': 'PropertyValue',
+        name: s.label,
+        value: s.value,
+      })),
     ].filter(Boolean),
     offers:
       price.kind === 'price'
@@ -275,7 +357,9 @@ export const productJsonLd = (product: Product, settings: SiteSetting | null | u
             availability: availabilityMap[product.availability || 'in-stock'],
             seller: { '@id': ORG_ID },
             businessFunction: 'http://purl.org/goodrelations/v1#Sell',
-            eligibleQuantity: product.minOrderQuantity ? { '@type': 'QuantitativeValue', minValue: product.minOrderQuantity } : undefined,
+            eligibleQuantity: product.minOrderQuantity
+              ? { '@type': 'QuantitativeValue', minValue: product.minOrderQuantity }
+              : undefined,
           }
         : {
             '@type': 'Offer',
@@ -283,12 +367,18 @@ export const productJsonLd = (product: Product, settings: SiteSetting | null | u
             availability: availabilityMap[product.availability || 'in-stock'],
             seller: { '@id': ORG_ID },
             businessFunction: 'http://purl.org/goodrelations/v1#Sell',
-            priceSpecification: { '@type': 'PriceSpecification', description: labels.priceFallbackLabel },
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              description: labels.priceFallbackLabel,
+            },
           },
   }
 }
 
-export const itemListJsonLd = (items: { name: string; path: string; image?: string }[], name?: string): JsonLdObject => ({
+export const itemListJsonLd = (
+  items: { name: string; path: string; image?: string }[],
+  name?: string,
+): JsonLdObject => ({
   '@type': 'ItemList',
   name: name || undefined,
   numberOfItems: items.length,
@@ -311,20 +401,29 @@ export const categoryJsonLd = (category: Category, products: Product[]): JsonLdO
     dateModified: category.updatedAt,
   }),
   itemListJsonLd(
-    products.map((p) => ({ name: p.title, path: `/products/${p.slug}`, image: mediaUrl(p.images?.[0], 'card') })),
+    products.map((p) => ({
+      name: p.title,
+      path: `/products/${p.slug}`,
+      image: mediaUrl(p.images?.[0], 'card'),
+    })),
     `${category.title} products`,
   ),
 ]
 
 /** A country landing page → Service offered to that area. */
-export const countryServiceJsonLd = (country: Country, settings: SiteSetting | null | undefined): JsonLdObject => ({
+export const countryServiceJsonLd = (
+  country: Country,
+  settings: SiteSetting | null | undefined,
+): JsonLdObject => ({
   '@type': 'Service',
   '@id': `${absUrl(`/global-presence/${country.slug}`)}#service`,
   name: `Pharmaceutical supply & export to ${country.name}`,
   serviceType: 'Pharmaceutical manufacturing and export',
   provider: { '@id': ORG_ID },
   areaServed: { '@type': 'Country', name: country.name, identifier: country.isoCode },
-  description: country.summary || `${siteName(settings)} supplies WHO-GMP certified medicines to healthcare partners in ${country.name}.`,
+  description:
+    country.summary ||
+    `${siteName(settings)} supplies WHO-GMP certified medicines to healthcare partners in ${country.name}.`,
   url: absUrl(`/global-presence/${country.slug}`),
 })
 

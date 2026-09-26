@@ -19,7 +19,11 @@ export const AdminLogo: React.FC = () => (
     </svg>
     <div style={{ lineHeight: 1.1 }}>
       <div style={{ fontWeight: 600, fontSize: 18 }}>Azeem Pharmaceuticals</div>
-      <div style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.6 }}>Website admin</div>
+      <div
+        style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.6 }}
+      >
+        Website admin
+      </div>
     </div>
   </div>
 )

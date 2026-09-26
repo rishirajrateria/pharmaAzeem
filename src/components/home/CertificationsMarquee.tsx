@@ -32,10 +32,17 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
           <p className="eyebrow">
             <Award className="h-3.5 w-3.5" aria-hidden="true" /> Certified &amp; audited
           </p>
-          <p className="mt-2 text-sm text-ink-600">Browse the licences and certificates behind our quality systems – copies are available on request.</p>
+          <p className="mt-2 text-sm text-ink-600">
+            Browse the licences and certificates behind our quality systems – copies are available
+            on request.
+          </p>
         </div>
-        <Link href="/licenses" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline">
-          View all licenses &amp; certifications <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <Link
+          href="/licenses"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+        >
+          View all licenses &amp; certifications{' '}
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </Container>
 
@@ -44,7 +51,11 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
           {items.map((c, i) => {
             const copy = i >= certifications.length
             return (
-              <li key={`${c.id}-${i}`} className={copy ? 'pr-4 motion-reduce:hidden' : 'pr-4'} aria-hidden={copy || undefined}>
+              <li
+                key={`${c.id}-${i}`}
+                className={copy ? 'pr-4 motion-reduce:hidden' : 'pr-4'}
+                aria-hidden={copy || undefined}
+              >
                 <Link
                   href="/licenses"
                   tabIndex={copy ? -1 : undefined}
@@ -64,7 +75,10 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
                   <span className="whitespace-nowrap">
                     <span className="block text-sm font-semibold text-ink-950">{c.title}</span>
                     <span className="block text-[11px] text-ink-500">
-                      <span className="font-mono uppercase tracking-wider text-brand-600">{TYPE_LABEL[c.type]}</span> · {c.issuer}
+                      <span className="font-mono uppercase tracking-wider text-brand-600">
+                        {TYPE_LABEL[c.type]}
+                      </span>{' '}
+                      · {c.issuer}
                     </span>
                   </span>
                 </Link>

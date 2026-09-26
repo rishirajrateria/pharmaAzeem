@@ -15,7 +15,11 @@ type Cta = { label?: string | null; url?: string | null } | null | undefined
 
 export type HeroChip = { icon: string; label: string; value: string }
 
-const CHIP_POSITIONS = ['-left-2 top-6 sm:-left-8 sm:top-10', '-right-2 bottom-8 sm:-right-8 sm:bottom-12', 'left-6 -bottom-5 sm:left-10']
+const CHIP_POSITIONS = [
+  '-left-2 top-6 sm:-left-8 sm:top-10',
+  '-right-2 bottom-8 sm:-right-8 sm:bottom-12',
+  'left-6 -bottom-5 sm:left-10',
+]
 const CHIP_DELAYS = ['[animation-delay:-2s]', '[animation-delay:-5s]', '[animation-delay:-8s]']
 
 /**
@@ -49,15 +53,22 @@ export function PageHero({
   chips?: HeroChip[]
   children?: ReactNode
 }) {
-  const pick = (cta: Cta, fallback?: { label: string; url: string }) => (cta?.label && cta.url ? { label: cta.label, url: cta.url } : fallback)
+  const pick = (cta: Cta, fallback?: { label: string; url: string }) =>
+    cta?.label && cta.url ? { label: cta.label, url: cta.url } : fallback
   const primary = pick(primaryCta, fallbackPrimary)
   const secondary = pick(secondaryCta, fallbackSecondary)
   const hasImage = Boolean(image && typeof image === 'object')
 
   return (
-    <section className="relative isolate overflow-hidden pb-14 pt-6 sm:pb-20 sm:pt-10 lg:pb-28" aria-labelledby="page-hero-title">
+    <section
+      className="relative isolate overflow-hidden pb-14 pt-6 sm:pb-20 sm:pt-10 lg:pb-28"
+      aria-labelledby="page-hero-title"
+    >
       <Orbs variant="intense" />
-      <div className="pointer-events-none absolute inset-0 -z-10 grid-pattern fade-mask-y opacity-70" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 grid-pattern fade-mask-y opacity-70"
+        aria-hidden="true"
+      />
       <Container>
         <Breadcrumbs crumbs={crumbs} className="mb-8 sm:mb-12" />
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
@@ -90,14 +101,24 @@ export function PageHero({
               <div className="glass glass-edge -rotate-2 animate-float-slow rounded-[2rem] p-2.5 shadow-glass-lg sm:p-3">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-brand-50 via-white to-brand-100">
                   {hasImage ? (
-                    <Media media={image} size="large" fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="h-full w-full" />
+                    <Media
+                      media={image}
+                      size="large"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="h-full w-full"
+                    />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center p-8">
                       <div className="absolute inset-0 dots-pattern opacity-70" />
                       <MoleculeField className="relative max-h-full" />
                     </div>
                   )}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent" aria-hidden="true" />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
 
@@ -114,8 +135,12 @@ export function PageHero({
                     <Icon name={chip.icon} className="h-4 w-4" />
                   </span>
                   <span className="pr-1">
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">{chip.label}</span>
-                    <span className="block text-sm font-semibold leading-tight text-ink-950">{chip.value}</span>
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                      {chip.label}
+                    </span>
+                    <span className="block text-sm font-semibold leading-tight text-ink-950">
+                      {chip.value}
+                    </span>
                   </span>
                 </div>
               ))}

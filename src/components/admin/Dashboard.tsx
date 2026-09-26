@@ -14,19 +14,25 @@ export const BeforeDashboard: React.FC = () => (
     <h2 style={{ margin: 0, fontSize: 18 }}>Welcome to the website admin</h2>
     <ul style={{ margin: '12px 0 0', paddingLeft: 18, lineHeight: 1.7, fontSize: 14 }}>
       <li>
-        <strong>Catalogue → Categories</strong>: create top-level categories, then sub-categories by choosing a <em>Parent</em>. Each has its own SEO tab.
+        <strong>Catalogue → Categories</strong>: create top-level categories, then sub-categories by
+        choosing a <em>Parent</em>. Each has its own SEO tab.
       </li>
       <li>
-        <strong>Catalogue → Products</strong>: add products, assign categories, fill details/description/FAQs and the SEO tab, then <em>Publish</em>.
+        <strong>Catalogue → Products</strong>: add products, assign categories, fill
+        details/description/FAQs and the SEO tab, then <em>Publish</em>.
       </li>
       <li>
-        <strong>Site Settings → Commerce</strong>: turn on <em>Show prices</em> to replace &quot;Inquire for pricing&quot; with real prices; edit button labels.
+        <strong>Site Settings → Commerce</strong>: turn on <em>Show prices</em> to replace
+        &quot;Inquire for pricing&quot; with real prices; edit button labels.
       </li>
       <li>
-        <strong>Sales → Inquiries</strong>: every quote request from the website lands here (and is emailed when SMTP is configured).
+        <strong>Sales → Inquiries</strong>: every quote request from the website lands here (and is
+        emailed when SMTP is configured).
       </li>
       <li>
-        <strong>Pages</strong>: edit the copy, stats, FAQs and SEO of every site page. <strong>Countries</strong>, <strong>Licenses</strong> and <strong>Facilities</strong> power the Global presence, Licenses and Manufacturing pages.
+        <strong>Pages</strong>: edit the copy, stats, FAQs and SEO of every site page.{' '}
+        <strong>Countries</strong>, <strong>Licenses</strong> and <strong>Facilities</strong> power
+        the Global presence, Licenses and Manufacturing pages.
       </li>
     </ul>
   </div>

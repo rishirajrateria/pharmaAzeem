@@ -16,7 +16,9 @@ export function GroupJumpNav({ groups, className }: { groups: CertGroup[]; class
             <a href={`#${g.anchor}`} className="chip !py-1.5 hover:border-brand-400 hover:bg-white">
               <Icon name={g.icon} className="h-3.5 w-3.5" />
               {g.label}
-              <span className="rounded-full bg-brand-600 px-1.5 font-mono text-[10px] leading-4 text-white">{g.items.length}</span>
+              <span className="rounded-full bg-brand-600 px-1.5 font-mono text-[10px] leading-4 text-white">
+                {g.items.length}
+              </span>
             </a>
           </li>
         ))}
@@ -33,7 +35,10 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
         <Container>
           <div className="glass-strong rounded-[2rem] p-8 text-center sm:p-12">
             <h2 className="heading-3">Certificate list being updated</h2>
-            <p className="mx-auto mt-3 max-w-xl text-ink-600">Our current licences and certificates are available on request while this page is refreshed.</p>
+            <p className="mx-auto mt-3 max-w-xl text-ink-600">
+              Our current licences and certificates are available on request while this page is
+              refreshed.
+            </p>
           </div>
         </Container>
       </Section>
@@ -41,12 +46,23 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
   }
   return (
     <div className="relative isolate">
-      <div className="pointer-events-none absolute inset-0 -z-10 dots-pattern fade-mask-y opacity-40" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 dots-pattern fade-mask-y opacity-40"
+        aria-hidden="true"
+      />
       {groups.map((g, gi) => (
-        <section key={g.type} id={g.anchor} className="scroll-mt-24 py-10 sm:py-14" aria-labelledby={`${g.anchor}-title`}>
+        <section
+          key={g.type}
+          id={g.anchor}
+          className="scroll-mt-24 py-10 sm:py-14"
+          aria-labelledby={`${g.anchor}-title`}
+        >
           <Container>
             <div className="flex items-start gap-5">
-              <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient font-mono text-sm font-semibold text-white shadow-glow sm:flex" aria-hidden="true">
+              <span
+                className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient font-mono text-sm font-semibold text-white shadow-glow sm:flex"
+                aria-hidden="true"
+              >
                 {pad2(gi + 1)}
               </span>
               <SectionHeading

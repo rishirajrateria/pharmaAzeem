@@ -32,7 +32,13 @@ const pageGlobal = ({ slug, label, path, extraFields = [], defaults }: PageArgs)
         tabs: [
           {
             label: 'Content',
-            fields: [hero, { name: 'intro', type: 'richText', admin: { description: 'Opening paragraph(s).' } }, ...extraFields, sectionsField(), faqsField()],
+            fields: [
+              hero,
+              { name: 'intro', type: 'richText', admin: { description: 'Opening paragraph(s).' } },
+              ...extraFields,
+              sectionsField(),
+              faqsField(),
+            ],
           },
           seoTab(),
         ],
@@ -134,7 +140,11 @@ export const ManufacturingPage = pageGlobal({
       fields: [
         { name: 'heading', type: 'text' },
         { name: 'body', type: 'textarea' },
-        { name: 'bullets', type: 'array', fields: [{ name: 'text', type: 'text', required: true }] },
+        {
+          name: 'bullets',
+          type: 'array',
+          fields: [{ name: 'text', type: 'text', required: true }],
+        },
       ],
     },
   ],
@@ -168,7 +178,10 @@ export const ContactPage = pageGlobal({
     {
       name: 'departments',
       type: 'array',
-      admin: { initCollapsed: true, description: 'Extra contact points (Exports, Regulatory, HR…).' },
+      admin: {
+        initCollapsed: true,
+        description: 'Extra contact points (Exports, Regulatory, HR…).',
+      },
       fields: [
         {
           type: 'row',
@@ -180,7 +193,11 @@ export const ContactPage = pageGlobal({
         },
       ],
     },
-    { name: 'formSuccessMessage', type: 'textarea', defaultValue: 'Thank you! Our team will get back to you within one business day.' },
+    {
+      name: 'formSuccessMessage',
+      type: 'textarea',
+      defaultValue: 'Thank you! Our team will get back to you within one business day.',
+    },
   ],
 })
 
@@ -197,6 +214,10 @@ export const InquiryPage = pageGlobal({
   path: '/inquiry',
   defaults: { title: 'Request a quotation', eyebrow: 'Inquiry' },
   extraFields: [
-    { name: 'formSuccessMessage', type: 'textarea', defaultValue: 'Your inquiry has been received. We will send you a quotation shortly.' },
+    {
+      name: 'formSuccessMessage',
+      type: 'textarea',
+      defaultValue: 'Your inquiry has been received. We will send you a quotation shortly.',
+    },
   ],
 })

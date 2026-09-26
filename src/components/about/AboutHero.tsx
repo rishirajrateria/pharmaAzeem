@@ -34,7 +34,9 @@ function FloatChip({
         <IconCmp className="h-4 w-4" aria-hidden="true" />
       </span>
       <span className="leading-tight">
-        <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">{label}</span>
+        <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+          {label}
+        </span>
         <span className="block text-sm font-semibold text-ink-950">{value}</span>
       </span>
     </div>
@@ -56,23 +58,34 @@ type Props = {
 export function AboutHero({ hero, settings, facilityCount, certification }: Props) {
   const title = hero?.title || `About ${settings.siteName}`
   const primary = resolveCta(hero?.primaryCta, { label: 'Talk to our team', url: '/contact' })
-  const secondary = resolveCta(hero?.secondaryCta, { label: 'Explore manufacturing', url: '/manufacturing' })
+  const secondary = resolveCta(hero?.secondaryCta, {
+    label: 'Explore manufacturing',
+    url: '/manufacturing',
+  })
   const imageAlt = `${settings.siteName} team and facilities`
 
   return (
     <section className="relative overflow-hidden pt-6 sm:pt-10" aria-labelledby="about-hero-title">
       <Orbs variant="intense" />
-      <div className="pointer-events-none absolute inset-0 -z-10 grid-pattern fade-mask-y opacity-70" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 grid-pattern fade-mask-y opacity-70"
+        aria-hidden="true"
+      />
       <Container>
         <Breadcrumbs crumbs={[{ name: 'About', path: '/about' }]} />
         <div className="mt-8 grid items-center gap-14 pb-16 sm:pb-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
           <div className="lg:col-span-6 xl:col-span-6">
             {hero?.eyebrow && <Eyebrow className="animate-fade-up">{hero.eyebrow}</Eyebrow>}
-            <h1 id="about-hero-title" className="display-2 mt-4 animate-fade-up [animation-delay:80ms]">
+            <h1
+              id="about-hero-title"
+              className="display-2 mt-4 animate-fade-up [animation-delay:80ms]"
+            >
               {title}
             </h1>
             {hero?.subtitle && (
-              <p className="lead mt-5 max-w-2xl animate-fade-up [animation-delay:160ms]">{hero.subtitle}</p>
+              <p className="lead mt-5 max-w-2xl animate-fade-up [animation-delay:160ms]">
+                {hero.subtitle}
+              </p>
             )}
             <div className="mt-8 flex flex-wrap gap-3 animate-fade-up [animation-delay:240ms]">
               <Button href={primary.url}>
@@ -85,21 +98,29 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
             <dl className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm animate-fade-up [animation-delay:320ms]">
               {settings.foundingYear && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">Since</dt>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                    Since
+                  </dt>
                   <dd className="font-semibold text-ink-900">{settings.foundingYear}</dd>
                 </div>
               )}
               {settings.contact?.address?.city && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">HQ</dt>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                    HQ
+                  </dt>
                   <dd className="font-semibold text-ink-900">
-                    {[settings.contact.address.city, settings.contact.address.country].filter(Boolean).join(', ')}
+                    {[settings.contact.address.city, settings.contact.address.country]
+                      .filter(Boolean)
+                      .join(', ')}
                   </dd>
                 </div>
               )}
               {settings.legalName && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">Legal entity</dt>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                    Legal entity
+                  </dt>
                   <dd className="font-semibold text-ink-900">{settings.legalName}</dd>
                 </div>
               )}
@@ -119,7 +140,10 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
                   className="aspect-[4/5] rounded-[1.5rem] bg-white"
                 />
-                <div className="pointer-events-none absolute inset-2.5 rounded-[1.5rem] ring-1 ring-inset ring-white/70" aria-hidden="true" />
+                <div
+                  className="pointer-events-none absolute inset-2.5 rounded-[1.5rem] ring-1 ring-inset ring-white/70"
+                  aria-hidden="true"
+                />
               </div>
               {certification && (
                 <FloatChip

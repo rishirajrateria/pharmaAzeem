@@ -14,13 +14,24 @@ type Props = { country: Country; className?: string; compact?: boolean }
  */
 export function CountryCard({ country, className, compact }: Props) {
   const href = countryPath(country)
-  const cats = (country.popularCategories || []).filter((c): c is Category => typeof c === 'object' && c !== null && Boolean(c.path))
+  const cats = (country.popularCategories || []).filter(
+    (c): c is Category => typeof c === 'object' && c !== null && Boolean(c.path),
+  )
   const regulator = regulatorShort(country.regulatoryAuthority)
   return (
-    <article className={cn('group glass-card relative flex flex-col', compact ? 'p-4' : 'p-5 sm:p-6', className)}>
+    <article
+      className={cn(
+        'group glass-card relative flex flex-col',
+        compact ? 'p-4' : 'p-5 sm:p-6',
+        className,
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <span
-          className={cn('flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white to-brand-50 leading-none shadow-glass ring-1 ring-brand-100', compact ? 'h-11 w-11 text-2xl' : 'h-14 w-14 text-3xl sm:text-4xl')}
+          className={cn(
+            'flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white to-brand-50 leading-none shadow-glass ring-1 ring-brand-100',
+            compact ? 'h-11 w-11 text-2xl' : 'h-14 w-14 text-3xl sm:text-4xl',
+          )}
           aria-hidden="true"
         >
           {country.flag || country.isoCode}
@@ -30,7 +41,10 @@ export function CountryCard({ country, className, compact }: Props) {
         </span>
       </div>
       <h3 className={cn('font-semibold text-ink-950', compact ? 'mt-3 text-base' : 'mt-4 text-lg')}>
-        <Link href={href} className="after:absolute after:inset-0 after:content-[''] hover:text-brand-700">
+        <Link
+          href={href}
+          className="after:absolute after:inset-0 after:content-[''] hover:text-brand-700"
+        >
           {country.name}
         </Link>
       </h3>
@@ -41,19 +55,28 @@ export function CountryCard({ country, className, compact }: Props) {
       </p>
       {country.regulatoryAuthority && (
         <p className="mt-2 line-clamp-2 text-sm text-ink-600" title={country.regulatoryAuthority}>
-          <span className="font-medium text-ink-800">Regulator:</span> {compact ? regulator : truncate(country.regulatoryAuthority, 72)}
+          <span className="font-medium text-ink-800">Regulator:</span>{' '}
+          {compact ? regulator : truncate(country.regulatoryAuthority, 72)}
         </p>
       )}
       {!compact && cats.length > 0 && (
-        <ul className="relative z-10 mt-4 flex flex-wrap gap-1.5" aria-label={`Categories in demand in ${country.name}`}>
+        <ul
+          className="relative z-10 mt-4 flex flex-wrap gap-1.5"
+          aria-label={`Categories in demand in ${country.name}`}
+        >
           {cats.slice(0, 3).map((c) => (
             <li key={c.id}>
-              <Link href={`/categories/${c.path}`} className="chip !py-0.5 hover:border-brand-400 hover:bg-white">
+              <Link
+                href={`/categories/${c.path}`}
+                className="chip !py-0.5 hover:border-brand-400 hover:bg-white"
+              >
                 {c.title}
               </Link>
             </li>
           ))}
-          {cats.length > 3 && <li className="chip !py-0.5 text-ink-500">+{cats.length - 3} more</li>}
+          {cats.length > 3 && (
+            <li className="chip !py-0.5 text-ink-500">+{cats.length - 3} more</li>
+          )}
         </ul>
       )}
     </article>

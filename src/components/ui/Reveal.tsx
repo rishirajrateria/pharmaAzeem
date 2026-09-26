@@ -25,7 +25,13 @@ const getObserver = () => {
   return observer
 }
 
-export function Reveal({ delay = 0, className, as: Tag = 'div', children, ...p }: { delay?: number; as?: 'div' | 'section' | 'li' | 'article' | 'span' } & ComponentProps<'div'>) {
+export function Reveal({
+  delay = 0,
+  className,
+  as: Tag = 'div',
+  children,
+  ...p
+}: { delay?: number; as?: 'div' | 'section' | 'li' | 'article' | 'span' } & ComponentProps<'div'>) {
   const ref = useRef<HTMLElement | null>(null)
   useEffect(() => {
     const el = ref.current
@@ -40,7 +46,12 @@ export function Reveal({ delay = 0, className, as: Tag = 'div', children, ...p }
   }, [])
   const Comp = Tag as ElementType
   return (
-    <Comp ref={ref} className={cn('reveal', className)} style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties} {...p}>
+    <Comp
+      ref={ref}
+      className={cn('reveal', className)}
+      style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties}
+      {...p}
+    >
       {children}
     </Comp>
   )

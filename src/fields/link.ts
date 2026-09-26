@@ -9,7 +9,11 @@ export const ctaField = (name: string, label?: string): GroupField => ({
       type: 'row',
       fields: [
         { name: 'label', type: 'text', admin: { width: '50%' } },
-        { name: 'url', type: 'text', admin: { width: '50%', description: 'Relative (/products) or absolute URL.' } },
+        {
+          name: 'url',
+          type: 'text',
+          admin: { width: '50%', description: 'Relative (/products) or absolute URL.' },
+        },
       ],
     },
   ],

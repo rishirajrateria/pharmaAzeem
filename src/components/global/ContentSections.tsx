@@ -44,7 +44,12 @@ export function ContentSections({ sections }: { sections?: CmsSection[] | null }
               {hasImage && (
                 <Reveal delay={120} className={cn(layout === 'imageLeft' && 'lg:order-1')}>
                   <div className="glass rounded-3xl p-2 shadow-glass-lg">
-                    <Media media={s.image} size="large" sizes="(max-width: 1024px) 100vw, 50vw" className="aspect-[4/3] w-full rounded-2xl object-cover" />
+                    <Media
+                      media={s.image}
+                      size="large"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="aspect-[4/3] w-full rounded-2xl object-cover"
+                    />
                   </div>
                 </Reveal>
               )}

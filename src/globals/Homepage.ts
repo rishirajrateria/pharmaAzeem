@@ -24,9 +24,22 @@ export const Homepage: GlobalConfig = {
               name: 'hero',
               type: 'group',
               fields: [
-                { name: 'eyebrow', type: 'text', defaultValue: 'WHO-GMP certified manufacturer & exporter' },
-                { name: 'title', type: 'text', required: true, defaultValue: 'Trusted medicines for a healthier world' },
-                { name: 'highlight', type: 'text', admin: { description: 'Word(s) from the title to render with a red gradient.' } },
+                {
+                  name: 'eyebrow',
+                  type: 'text',
+                  defaultValue: 'WHO-GMP certified manufacturer & exporter',
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  required: true,
+                  defaultValue: 'Trusted medicines for a healthier world',
+                },
+                {
+                  name: 'highlight',
+                  type: 'text',
+                  admin: { description: 'Word(s) from the title to render with a red gradient.' },
+                },
                 { name: 'subtitle', type: 'textarea' },
                 ctaField('primaryCta', 'Primary button'),
                 ctaField('secondaryCta', 'Secondary button'),
@@ -57,7 +70,11 @@ export const Homepage: GlobalConfig = {
               label: 'Worldwide operations section',
               fields: [
                 { name: 'eyebrow', type: 'text', defaultValue: 'Global presence' },
-                { name: 'heading', type: 'text', defaultValue: 'Delivering quality medicines to 40+ countries' },
+                {
+                  name: 'heading',
+                  type: 'text',
+                  defaultValue: 'Delivering quality medicines to 40+ countries',
+                },
                 { name: 'body', type: 'textarea' },
               ],
             },
@@ -87,7 +104,11 @@ export const Homepage: GlobalConfig = {
                   type: 'row',
                   fields: [
                     { name: 'author', type: 'text', required: true, admin: { width: '50%' } },
-                    { name: 'role', type: 'text', admin: { width: '50%', description: 'e.g. Procurement Head, MedPlus Kenya' } },
+                    {
+                      name: 'role',
+                      type: 'text',
+                      admin: { width: '50%', description: 'e.g. Procurement Head, MedPlus Kenya' },
+                    },
                   ],
                 },
               ],
@@ -97,7 +118,11 @@ export const Homepage: GlobalConfig = {
               type: 'group',
               label: 'Bottom call-to-action',
               fields: [
-                { name: 'heading', type: 'text', defaultValue: 'Looking for a reliable pharmaceutical partner?' },
+                {
+                  name: 'heading',
+                  type: 'text',
+                  defaultValue: 'Looking for a reliable pharmaceutical partner?',
+                },
                 { name: 'body', type: 'textarea' },
                 ctaField('primaryCta', 'Primary button'),
                 ctaField('secondaryCta', 'Secondary button'),

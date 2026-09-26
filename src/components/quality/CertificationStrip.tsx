@@ -13,7 +13,12 @@ import { CERT_TYPE_META, certAnchor, certStatus } from './certifications'
 /** Strip of featured certifications as glass tiles (title + issuer), each linking to its card on /licenses. */
 export function CertificationStrip({ certifications }: { certifications: Certification[] }) {
   if (!certifications.length) return null
-  const cols = certifications.length >= 5 ? 'lg:grid-cols-5' : certifications.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
+  const cols =
+    certifications.length >= 5
+      ? 'lg:grid-cols-5'
+      : certifications.length === 4
+        ? 'lg:grid-cols-4'
+        : 'lg:grid-cols-3'
   return (
     <Section aria-labelledby="certs-title" className="!pt-0">
       <Container>
@@ -27,7 +32,10 @@ export function CertificationStrip({ certifications }: { certifications: Certifi
             All licenses & certifications <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
-        <ul className={cn('mt-10 grid gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3', cols)} role="list">
+        <ul
+          className={cn('mt-10 grid gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3', cols)}
+          role="list"
+        >
           {certifications.map((c, i) => {
             const status = certStatus(c)
             return (
@@ -52,10 +60,14 @@ export function CertificationStrip({ certifications }: { certifications: Certifi
                       }
                     />
                   </span>
-                  <h3 className="mt-4 text-sm font-semibold leading-snug text-ink-950 group-hover:text-brand-700">{c.title}</h3>
+                  <h3 className="mt-4 text-sm font-semibold leading-snug text-ink-950 group-hover:text-brand-700">
+                    {c.title}
+                  </h3>
                   <p className="mt-1 line-clamp-2 text-xs text-ink-500">{c.issuer}</p>
                   <span className="mt-auto pt-4">
-                    <Badge tone={status === 'valid' ? 'success' : 'ink'}>{status === 'valid' ? 'Valid' : 'Expired'}</Badge>
+                    <Badge tone={status === 'valid' ? 'success' : 'ink'}>
+                      {status === 'valid' ? 'Valid' : 'Expired'}
+                    </Badge>
                   </span>
                 </Link>
               </Reveal>

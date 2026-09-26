@@ -5,7 +5,10 @@ import type { Media } from '@/payload-types'
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000').replace(/\/$/, '')
+export const SITE_URL = (process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000').replace(
+  /\/$/,
+  '',
+)
 
 export const absUrl = (path = '/') => {
   if (/^https?:\/\//.test(path)) return path
@@ -28,7 +31,10 @@ export const normalizeMediaUrl = (url: string | null | undefined): string | unde
 }
 
 /** Returns the (relative) URL for a Payload media document at a given size, falling back to the original. */
-export const mediaUrl = (media: Media | number | string | null | undefined, size?: MediaSize): string | undefined => {
+export const mediaUrl = (
+  media: Media | number | string | null | undefined,
+  size?: MediaSize,
+): string | undefined => {
   if (!media || typeof media !== 'object') return undefined
   if (size) {
     const s = media.sizes?.[size]
@@ -37,8 +43,10 @@ export const mediaUrl = (media: Media | number | string | null | undefined, size
   return normalizeMediaUrl(media.url)
 }
 
-export const mediaAlt = (media: Media | number | string | null | undefined, fallback = ''): string =>
-  media && typeof media === 'object' ? media.alt || fallback : fallback
+export const mediaAlt = (
+  media: Media | number | string | null | undefined,
+  fallback = '',
+): string => (media && typeof media === 'object' ? media.alt || fallback : fallback)
 
 export const mediaDims = (media: Media | number | string | null | undefined, size?: MediaSize) => {
   if (!media || typeof media !== 'object') return { width: undefined, height: undefined }
@@ -66,14 +74,24 @@ export const richTextToPlain = (doc: unknown): string => {
     if (typeof node.text === 'string') out.push(node.text)
     if (Array.isArray(node.children)) {
       node.children.forEach((c) => walk(c as LexNode))
-      if (typeof node.type === 'string' && ['paragraph', 'heading', 'listitem', 'quote'].includes(node.type)) out.push('\n')
+      if (
+        typeof node.type === 'string' &&
+        ['paragraph', 'heading', 'listitem', 'quote'].includes(node.type)
+      )
+        out.push('\n')
     }
   }
   walk(((doc as { root?: LexNode }).root ?? doc) as LexNode)
-  return out.join('').replace(/\n{2,}/g, '\n').trim()
+  return out
+    .join('')
+    .replace(/\n{2,}/g, '\n')
+    .trim()
 }
 
-export const formatDate = (value: string | null | undefined, opts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' }) => {
+export const formatDate = (
+  value: string | null | undefined,
+  opts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' },
+) => {
   if (!value) return ''
   try {
     return new Intl.DateTimeFormat('en-GB', opts).format(new Date(value))
@@ -94,7 +112,8 @@ export const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase(
 
 /** Returns the id from a relationship value (populated doc or raw id). */
 export const relId = (v: unknown): number | undefined => {
-  if (v && typeof v === 'object' && 'id' in v && typeof (v as { id: unknown }).id === 'number') return (v as { id: number }).id
+  if (v && typeof v === 'object' && 'id' in v && typeof (v as { id: unknown }).id === 'number')
+    return (v as { id: number }).id
   if (typeof v === 'number') return v
   return undefined
 }

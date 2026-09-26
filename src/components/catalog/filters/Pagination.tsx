@@ -21,19 +21,40 @@ const pageList = (current: number, total: number): (number | 'gap')[] => {
 }
 
 /** Server-rendered pagination. Links carry every active filter; prev/next get `rel` hints. */
-export function Pagination({ basePath, filters, page, totalPages, className }: { basePath: string; filters: ParsedFilters; page: number; totalPages: number; className?: string }) {
+export function Pagination({
+  basePath,
+  filters,
+  page,
+  totalPages,
+  className,
+}: {
+  basePath: string
+  filters: ParsedFilters
+  page: number
+  totalPages: number
+  className?: string
+}) {
   if (totalPages <= 1) return null
   const items = pageList(page, totalPages)
-  const linkBase = 'inline-flex h-10 min-w-10 items-center justify-center rounded-full px-3 text-sm font-medium transition'
+  const linkBase =
+    'inline-flex h-10 min-w-10 items-center justify-center rounded-full px-3 text-sm font-medium transition'
   return (
-    <nav aria-label="Pagination" className={cn('flex flex-wrap items-center justify-between gap-3', className)}>
+    <nav
+      aria-label="Pagination"
+      className={cn('flex flex-wrap items-center justify-between gap-3', className)}
+    >
       <p className="text-xs text-ink-500">
         Page <span className="font-semibold text-ink-900">{page}</span> of {totalPages}
       </p>
       <ul className="flex flex-wrap items-center gap-1.5">
         <li>
           {page > 1 ? (
-            <Link href={pageHref(basePath, filters, page - 1)} rel="prev" className={cn(linkBase, 'glass text-ink-800 hover:text-brand-700')} aria-label="Previous page">
+            <Link
+              href={pageHref(basePath, filters, page - 1)}
+              rel="prev"
+              className={cn(linkBase, 'glass text-ink-800 hover:text-brand-700')}
+              aria-label="Previous page"
+            >
               <ChevronLeft className="h-4 w-4" aria-hidden="true" />
               <span className="ml-1 hidden sm:inline">Previous</span>
             </Link>
@@ -52,7 +73,13 @@ export function Pagination({ basePath, filters, page, totalPages, className }: {
           ) : (
             <li key={it}>
               {it === page ? (
-                <span className={cn(linkBase, 'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]')} aria-current="page">
+                <span
+                  className={cn(
+                    linkBase,
+                    'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]',
+                  )}
+                  aria-current="page"
+                >
                   {it}
                 </span>
               ) : (
@@ -70,7 +97,12 @@ export function Pagination({ basePath, filters, page, totalPages, className }: {
         )}
         <li>
           {page < totalPages ? (
-            <Link href={pageHref(basePath, filters, page + 1)} rel="next" className={cn(linkBase, 'glass text-ink-800 hover:text-brand-700')} aria-label="Next page">
+            <Link
+              href={pageHref(basePath, filters, page + 1)}
+              rel="next"
+              className={cn(linkBase, 'glass text-ink-800 hover:text-brand-700')}
+              aria-label="Next page"
+            >
               <span className="mr-1 hidden sm:inline">Next</span>
               <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </Link>

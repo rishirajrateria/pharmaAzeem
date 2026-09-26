@@ -10,7 +10,10 @@ export const leadershipJsonLd = (people: AboutPage['leadership']): JsonLdObject[
     const photo = mediaUrl(p.photo, 'card') || mediaUrl(p.photo)
     return {
       '@type': 'Person',
-      '@id': `${absUrl('/about')}#person-${(p.id || p.name).toString().toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      '@id': `${absUrl('/about')}#person-${(p.id || p.name)
+        .toString()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')}`,
       name: p.name,
       jobTitle: p.role,
       description: p.bio || undefined,

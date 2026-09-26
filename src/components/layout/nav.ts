@@ -1,7 +1,15 @@
 import type { CategoryNode } from '@/lib/data'
 
 /** Slim, serialisable navigation tree passed to client components. */
-export type NavCategory = { id: number; title: string; path: string; icon?: string | null; count: number; description?: string | null; children: NavCategory[] }
+export type NavCategory = {
+  id: number
+  title: string
+  path: string
+  icon?: string | null
+  count: number
+  description?: string | null
+  children: NavCategory[]
+}
 
 export const toNav = (nodes: CategoryNode[], depth = 0): NavCategory[] =>
   nodes.map((n) => ({

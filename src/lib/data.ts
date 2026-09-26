@@ -2,7 +2,14 @@ import { cache } from 'react'
 
 import type { Where } from 'payload'
 
-import type { Category, Certification, Country, Facility, Product, SiteSetting } from '@/payload-types'
+import type {
+  Category,
+  Certification,
+  Country,
+  Facility,
+  Product,
+  SiteSetting,
+} from '@/payload-types'
 
 import { getPayloadClient } from './payload'
 import { relId } from './utils'
@@ -44,11 +51,18 @@ export const getPageGlobal = cache(async <T extends PageGlobalSlug>(slug: T) => 
 
 export type CategoryNode = Category & { children: CategoryNode[]; productCount: number }
 
-const sortCats = (a: Category, b: Category) => (a.order ?? 0) - (b.order ?? 0) || a.title.localeCompare(b.title)
+const sortCats = (a: Category, b: Category) =>
+  (a.order ?? 0) - (b.order ?? 0) || a.title.localeCompare(b.title)
 
 export const getAllCategories = cache(async (): Promise<Category[]> => {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({ collection: 'categories', limit: 500, depth: 1, pagination: false, sort: 'order' })
+  const { docs } = await payload.find({
+    collection: 'categories',
+    limit: 500,
+    depth: 1,
+    pagination: false,
+    sort: 'order',
+  })
   return docs.sort(sortCats)
 })
 
@@ -74,13 +88,23 @@ export const getCategoryTree = cache(async (): Promise<CategoryNode[]> => {
 
 export const getCategoryByPath = cache(async (path: string): Promise<Category | null> => {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({ collection: 'categories', where: { path: { equals: path } }, limit: 1, depth: 1 })
+  const { docs } = await payload.find({
+    collection: 'categories',
+    where: { path: { equals: path } },
+    limit: 1,
+    depth: 1,
+  })
   return docs[0] ?? null
 })
 
 export const getCategoryBySlug = cache(async (slug: string): Promise<Category | null> => {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({ collection: 'categories', where: { slug: { equals: slug } }, limit: 1, depth: 1 })
+  const { docs } = await payload.find({
+    collection: 'categories',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 1,
+  })
   return docs[0] ?? null
 })
 
@@ -116,12 +140,15 @@ export const getCategoryAncestors = cache(async (category: Category): Promise<Ca
 /** Direct children of a category. */
 export const getChildCategories = cache(async (categoryId: number | null): Promise<Category[]> => {
   const cats = await getAllCategories()
-  return cats.filter((c) => (categoryId === null ? !relId(c.parent) : relId(c.parent) === categoryId))
+  return cats.filter((c) =>
+    categoryId === null ? !relId(c.parent) : relId(c.parent) === categoryId,
+  )
 })
 
 /* ---------------- Products ---------------- */
 
-export type ProductSort = 'featured' | 'newest' | 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc'
+export type ProductSort =
+  'featured' | 'newest' | 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc'
 
 export type ProductQuery = {
   categoryIds?: number[]
@@ -150,7 +177,8 @@ export const getProducts = cache(async (query: ProductQuery = {}) => {
   const and: Where[] = [{ _status: { equals: 'published' } }]
   if (query.categoryIds?.length) and.push({ categories: { in: query.categoryIds } })
   if (query.dosageForm?.length) and.push({ dosageForm: { in: query.dosageForm } })
-  if (query.prescriptionStatus?.length) and.push({ prescriptionStatus: { in: query.prescriptionStatus } })
+  if (query.prescriptionStatus?.length)
+    and.push({ prescriptionStatus: { in: query.prescriptionStatus } })
   if (query.route?.length) and.push({ route: { in: query.route } })
   if (query.badges?.length) and.push({ badges: { in: query.badges } })
   if (query.featured) and.push({ featured: { equals: true } })
@@ -177,17 +205,22 @@ export const getProducts = cache(async (query: ProductQuery = {}) => {
   })
 })
 
-export const getProductBySlug = cache(async (slug: string, opts: { draft?: boolean } = {}): Promise<Product | null> => {
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'products',
-    where: { slug: { equals: slug }, ...(opts.draft ? {} : { _status: { equals: 'published' } }) },
-    limit: 1,
-    depth: 2,
-    draft: opts.draft,
-  })
-  return docs[0] ?? null
-})
+export const getProductBySlug = cache(
+  async (slug: string, opts: { draft?: boolean } = {}): Promise<Product | null> => {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'products',
+      where: {
+        slug: { equals: slug },
+        ...(opts.draft ? {} : { _status: { equals: 'published' } }),
+      },
+      limit: 1,
+      depth: 2,
+      draft: opts.draft,
+    })
+    return docs[0] ?? null
+  },
+)
 
 export const getFeaturedProducts = cache(async (limit = 8): Promise<Product[]> => {
   const { docs } = await getProducts({ featured: true, limit, sort: 'featured' })
@@ -199,13 +232,22 @@ export const getFeaturedProducts = cache(async (limit = 8): Promise<Product[]> =
 
 /** Related products: hand-picked first, then same category, then anything else. */
 export const getRelatedProducts = cache(async (product: Product, limit = 8): Promise<Product[]> => {
-  const picked = (product.relatedProducts || []).filter((p): p is Product => typeof p === 'object' && p !== null && (p as Product)._status === 'published')
+  const picked = (product.relatedProducts || []).filter(
+    (p): p is Product =>
+      typeof p === 'object' && p !== null && (p as Product)._status === 'published',
+  )
   const result: Product[] = [...picked]
   const seen = new Set([product.id, ...picked.map((p) => p.id)])
   if (result.length < limit) {
-    const catIds = (product.categories || []).map(relId).filter((x): x is number => typeof x === 'number')
+    const catIds = (product.categories || [])
+      .map(relId)
+      .filter((x): x is number => typeof x === 'number')
     if (catIds.length) {
-      const { docs } = await getProducts({ categoryIds: catIds, limit: limit + 4, sort: 'featured' })
+      const { docs } = await getProducts({
+        categoryIds: catIds,
+        limit: limit + 4,
+        sort: 'featured',
+      })
       for (const d of docs) {
         if (result.length >= limit) break
         if (!seen.has(d.id)) {
@@ -280,15 +322,21 @@ export type Facets = {
 /** Filter facets (with counts) for a category scope. */
 export const getProductFacets = cache(async (categoryIds?: number[]): Promise<Facets> => {
   const docs = await getAllProductsSlim()
-  const scope = categoryIds?.length ? docs.filter((p) => (p.categories || []).some((c) => categoryIds.includes(relId(c) ?? -1))) : docs
-  const count = (pick: (p: (typeof docs)[number]) => (string | null | undefined)[] | string | null | undefined) => {
+  const scope = categoryIds?.length
+    ? docs.filter((p) => (p.categories || []).some((c) => categoryIds.includes(relId(c) ?? -1)))
+    : docs
+  const count = (
+    pick: (p: (typeof docs)[number]) => (string | null | undefined)[] | string | null | undefined,
+  ) => {
     const m = new Map<string, number>()
     scope.forEach((p) => {
       const v = pick(p)
       const arr = Array.isArray(v) ? v : [v]
       arr.forEach((x) => x && m.set(x, (m.get(x) ?? 0) + 1))
     })
-    return [...m.entries()].map(([value, c]) => ({ value, count: c })).sort((a, b) => b.count - a.count || a.value.localeCompare(b.value))
+    return [...m.entries()]
+      .map(([value, c]) => ({ value, count: c }))
+      .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value))
   }
   return {
     dosageForm: count((p) => p.dosageForm),
@@ -300,32 +348,61 @@ export const getProductFacets = cache(async (categoryIds?: number[]): Promise<Fa
 
 /* ---------------- Countries / Certifications / Facilities ---------------- */
 
-export const getCountries = cache(async (opts: { served?: boolean; featured?: boolean } = {}): Promise<Country[]> => {
-  const payload = await getPayloadClient()
-  const and: Where[] = []
-  if (opts.served !== undefined) and.push({ served: { equals: opts.served } })
-  if (opts.featured !== undefined) and.push({ featured: { equals: opts.featured } })
-  const where: Where = { and }
-  const { docs } = await payload.find({ collection: 'countries', where, limit: 300, pagination: false, sort: 'name', depth: 1 })
-  return docs
-})
+export const getCountries = cache(
+  async (opts: { served?: boolean; featured?: boolean } = {}): Promise<Country[]> => {
+    const payload = await getPayloadClient()
+    const and: Where[] = []
+    if (opts.served !== undefined) and.push({ served: { equals: opts.served } })
+    if (opts.featured !== undefined) and.push({ featured: { equals: opts.featured } })
+    const where: Where = { and }
+    const { docs } = await payload.find({
+      collection: 'countries',
+      where,
+      limit: 300,
+      pagination: false,
+      sort: 'name',
+      depth: 1,
+    })
+    return docs
+  },
+)
 
 export const getCountryBySlug = cache(async (slug: string): Promise<Country | null> => {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({ collection: 'countries', where: { slug: { equals: slug } }, limit: 1, depth: 2 })
+  const { docs } = await payload.find({
+    collection: 'countries',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 2,
+  })
   return docs[0] ?? null
 })
 
-export const getCertifications = cache(async (opts: { featured?: boolean } = {}): Promise<Certification[]> => {
-  const payload = await getPayloadClient()
-  const where: Where = opts.featured !== undefined ? { featured: { equals: opts.featured } } : {}
-  const { docs } = await payload.find({ collection: 'certifications', where, limit: 200, pagination: false, sort: 'order', depth: 1 })
-  return docs
-})
+export const getCertifications = cache(
+  async (opts: { featured?: boolean } = {}): Promise<Certification[]> => {
+    const payload = await getPayloadClient()
+    const where: Where = opts.featured !== undefined ? { featured: { equals: opts.featured } } : {}
+    const { docs } = await payload.find({
+      collection: 'certifications',
+      where,
+      limit: 200,
+      pagination: false,
+      sort: 'order',
+      depth: 1,
+    })
+    return docs
+  },
+)
 
 export const getFacilities = cache(async (): Promise<Facility[]> => {
   const payload = await getPayloadClient()
-  const { docs } = await payload.find({ collection: 'facilities', limit: 100, pagination: false, sort: 'order', depth: 2 })
+  const { docs } = await payload.find({
+    collection: 'facilities',
+    limit: 100,
+    pagination: false,
+    sort: 'order',
+    depth: 2,
+  })
   return docs
 })
 

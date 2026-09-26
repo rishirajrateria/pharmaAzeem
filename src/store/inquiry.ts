@@ -45,15 +45,24 @@ export const useInquiry = create<InquiryState>()(
           const existing = s.items.find((i) => i.id === item.id)
           if (existing) {
             return {
-              items: s.items.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + (item.quantity ?? 1) } : i)),
+              items: s.items.map((i) =>
+                i.id === item.id ? { ...i, quantity: i.quantity + (item.quantity ?? 1) } : i,
+              ),
               isOpen: true,
             }
           }
-          return { items: [...s.items, { ...item, quantity: item.quantity ?? 1, addedAt: Date.now() }], isOpen: true }
+          return {
+            items: [...s.items, { ...item, quantity: item.quantity ?? 1, addedAt: Date.now() }],
+            isOpen: true,
+          }
         }),
       remove: (id) => set((s) => ({ items: s.items.filter((i) => i.id !== id) })),
       setQuantity: (id, quantity) =>
-        set((s) => ({ items: s.items.map((i) => (i.id === id ? { ...i, quantity: Math.max(1, Math.floor(quantity) || 1) } : i)) })),
+        set((s) => ({
+          items: s.items.map((i) =>
+            i.id === id ? { ...i, quantity: Math.max(1, Math.floor(quantity) || 1) } : i,
+          ),
+        })),
       clear: () => set({ items: [] }),
       has: (id) => get().items.some((i) => i.id === id),
     }),
