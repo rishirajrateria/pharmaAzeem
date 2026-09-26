@@ -130,7 +130,6 @@ Azefix 200 contains cefixime, a third-generation oral cephalosporin with excelle
     featured: true,
     price: 8.4,
     meta: {
-      title: 'Cefixime 200 mg Tablets Manufacturer & Exporter | Azefix 200',
       description:
         'Buy Cefixime 200 mg tablets in bulk from a WHO-GMP certified manufacturer. Third-generation cephalosporin for UTI, ENT and respiratory infections. CoPP & dossiers available.',
       keywords:
@@ -252,7 +251,6 @@ Azicin 500 delivers a complete 3-day course of azithromycin – a long-acting ma
     featured: true,
     price: 3.9,
     meta: {
-      title: 'Azithromycin 500 mg Tablets Manufacturer & Supplier | Azicin 500',
       description:
         'Azithromycin 500 mg film-coated tablets from a WHO-GMP certified macrolide manufacturer. 3-day course packs, bulk export and private label.',
       keywords:
@@ -473,7 +471,6 @@ Artemether is sensitive to heat and moisture; production is carried out under co
     featured: true,
     price: 1.6,
     meta: {
-      title: 'Artemether Lumefantrine 80/480 mg Tablets Manufacturer | Azemal AL',
       description:
         'Artemether 80 mg + lumefantrine 480 mg ACT tablets from a WHO-GMP certified antimalarial manufacturer. Adult and pediatric packs, tender supply to Africa and Asia.',
       keywords:

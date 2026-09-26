@@ -56,7 +56,7 @@ test('product page exposes Product/Drug structured data and the inquiry flow wor
 
 test('category filters work via URL params', async ({ page }) => {
   await page.goto('/categories')
-  const link = page.locator('main a[href^="/categories/"]').first()
+  const link = page.locator('main article h3 a[href^="/categories/"]').first()
   await link.click()
   await expect(page).toHaveURL(/\/categories\//)
   await expect(page.locator('h1')).toHaveCount(1)
