@@ -39,7 +39,7 @@ export function Leadership({ leadership }: Props) {
         <SectionHeading
           eyebrow="Leadership"
           title={<span id="about-leadership">The people behind the company</span>}
-          description="An experienced team of pharmacists, formulation scientists, quality professionals and international trade specialists."
+          description="The team responsible for the company's direction, operations, quality and partnerships."
         />
         <ul className={`mt-12 grid gap-5 sm:grid-cols-2 ${cols}`} role="list">
           {leadership.map((p, i) => {

@@ -27,7 +27,7 @@ export function AboutCta({ settings }: { settings: SiteSetting }) {
                 Let&apos;s bring quality medicines to your market
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-                Whether you distribute, run hospitals or supply tenders, our team will help you register and source the right products – with complete documentation and dependable lead times.
+                Whether you distribute, run hospitals or supply tenders, our team can help you identify the right products and the documentation your market requires.
               </p>
             </div>
             <div className="flex flex-col gap-3 lg:col-span-4">

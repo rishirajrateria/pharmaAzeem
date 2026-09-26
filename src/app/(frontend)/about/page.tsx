@@ -60,7 +60,7 @@ export default async function AboutPage() {
     {
       ...webPageJsonLd({
         path: PATH,
-        name: doc.meta?.title || doc.hero.title,
+        name: doc.meta?.title || doc.hero?.title || `About ${settings.siteName}`,
         description,
         type: 'AboutPage',
         image: mediaUrl(doc.hero?.image, 'large'),

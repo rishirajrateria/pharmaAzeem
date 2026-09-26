@@ -30,7 +30,7 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                 Compliance you can verify
               </h2>
               <p className="mt-3 text-[15px] leading-relaxed text-ink-600">
-                Our licenses and certifications are audited regularly and available for your regulatory file. Certificate numbers, validity dates and scans are published on the licenses page.
+                Certificate numbers, validity dates and scans of our licenses and certifications are published on the licenses page, so you can check them for your regulatory file.
               </p>
               <Link href="/licenses" className="btn-secondary mt-6">
                 View all licenses <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -16,6 +16,8 @@ const TYPE: Record<Facility['type'], { label: string; icon: LucideIcon }> = {
 /** Compact overview of the company's facilities, linking to the manufacturing page. */
 export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
   if (!facilities.length) return null
+  const cities = [...new Set(facilities.map((f) => f.city).filter(Boolean))].join(', ')
+  const noun = facilities.length === 1 ? 'facility' : 'facilities'
   return (
     <Section className="!pt-0" aria-labelledby="about-facilities">
       <Container>
@@ -23,7 +25,7 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
           <SectionHeading
             eyebrow="Infrastructure"
             title={<span id="about-facilities">Where our medicines are made</span>}
-            description={`${facilities.length} purpose-built ${facilities.length === 1 ? 'facility' : 'facilities'} operating under one pharmaceutical quality system.`}
+            description={`Our ${facilities.length} ${noun}${cities ? ` in ${cities}` : ''} at a glance – capabilities, capacities and certifications are detailed on the manufacturing page.`}
           />
           <Link href="/manufacturing" className="btn-secondary shrink-0">
             Explore manufacturing <ArrowRight className="h-4 w-4" aria-hidden="true" />

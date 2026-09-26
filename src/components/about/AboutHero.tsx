@@ -42,7 +42,8 @@ function FloatChip({
 }
 
 type Props = {
-  hero: AboutPage['hero']
+  /** May be missing at runtime when the about-page global has never been saved. */
+  hero?: AboutPage['hero'] | null
   settings: SiteSetting
   facilityCount: number
   certification?: string | null
@@ -53,8 +54,9 @@ type Props = {
  * frame with HUD rings and glass "stat chips".
  */
 export function AboutHero({ hero, settings, facilityCount, certification }: Props) {
-  const primary = resolveCta(hero.primaryCta, { label: 'Talk to our team', url: '/contact' })
-  const secondary = resolveCta(hero.secondaryCta, { label: 'Explore manufacturing', url: '/manufacturing' })
+  const title = hero?.title || `About ${settings.siteName}`
+  const primary = resolveCta(hero?.primaryCta, { label: 'Talk to our team', url: '/contact' })
+  const secondary = resolveCta(hero?.secondaryCta, { label: 'Explore manufacturing', url: '/manufacturing' })
   const imageAlt = `${settings.siteName} team and facilities`
 
   return (
@@ -65,11 +67,11 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
         <Breadcrumbs crumbs={[{ name: 'About', path: '/about' }]} />
         <div className="mt-8 grid items-center gap-14 pb-16 sm:pb-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
           <div className="lg:col-span-6 xl:col-span-6">
-            {hero.eyebrow && <Eyebrow className="animate-fade-up">{hero.eyebrow}</Eyebrow>}
+            {hero?.eyebrow && <Eyebrow className="animate-fade-up">{hero.eyebrow}</Eyebrow>}
             <h1 id="about-hero-title" className="display-2 mt-4 animate-fade-up [animation-delay:80ms]">
-              {hero.title}
+              {title}
             </h1>
-            {hero.subtitle && (
+            {hero?.subtitle && (
               <p className="lead mt-5 max-w-2xl animate-fade-up [animation-delay:160ms]">{hero.subtitle}</p>
             )}
             <div className="mt-8 flex flex-wrap gap-3 animate-fade-up [animation-delay:240ms]">
@@ -109,22 +111,24 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
             <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg">
               <div className="glass glass-edge relative rotate-[-2.5deg] animate-float-slow rounded-[2rem] p-2.5 shadow-glass-lg">
                 <Media
-                  media={hero.image}
+                  media={hero?.image}
                   size="large"
                   fill
                   priority
-                  alt={mediaAlt(hero.image, imageAlt)}
+                  alt={mediaAlt(hero?.image, imageAlt)}
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
                   className="aspect-[4/5] rounded-[1.5rem] bg-white"
                 />
                 <div className="pointer-events-none absolute inset-2.5 rounded-[1.5rem] ring-1 ring-inset ring-white/70" aria-hidden="true" />
               </div>
-              <FloatChip
-                icon={ShieldCheck}
-                label={certification ? 'Certified' : 'Quality assured'}
-                value={certification || 'Every batch tested'}
-                className="left-0 top-6 animate-float sm:-left-8"
-              />
+              {certification && (
+                <FloatChip
+                  icon={ShieldCheck}
+                  label="Certified"
+                  value={certification}
+                  className="left-0 top-6 animate-float sm:-left-8"
+                />
+              )}
               {settings.employeeCount && (
                 <FloatChip
                   icon={Users}
