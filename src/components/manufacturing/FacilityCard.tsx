@@ -37,7 +37,7 @@ export function FacilityCard({ facility, index, flip }: { facility: Facility; in
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/30 via-transparent to-transparent" aria-hidden="true" />
             </div>
           )}
-          <span className="pointer-events-none absolute left-4 top-4 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-white drop-shadow sm:left-6 sm:top-6" aria-hidden="true">
+          <span className="pointer-events-none absolute left-4 top-4 rounded-full glass-strong px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700 shadow-glass sm:left-6 sm:top-6" aria-hidden="true">
             Facility {pad2(index + 1)}
           </span>
         </div>
@@ -67,7 +67,7 @@ export function FacilityCard({ facility, index, flip }: { facility: Facility; in
           {facility.summary && <p className="mt-4 text-[15px] leading-relaxed text-ink-600 sm:text-base">{facility.summary}</p>}
 
           {facility.capacity?.length ? (
-            <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Capacity">
+            <dl className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:grid-cols-3" aria-label="Capacity">
               {facility.capacity.map((c, i) => (
                 <div key={c.id || i} className="glass-subtle rounded-2xl px-3.5 py-3">
                   <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">{c.label}</dt>
@@ -139,15 +139,19 @@ export function FacilityCard({ facility, index, flip }: { facility: Facility; in
             <dl className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-ink-500" aria-label="Facility facts">
               {facility.establishedYear && (
                 <div className="flex items-center gap-1.5">
-                  <CalendarDays className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
-                  <dt className="font-mono uppercase tracking-[0.14em] text-ink-400">Established</dt>
+                  <dt className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.14em] text-ink-400">
+                    <CalendarDays className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
+                    Established
+                  </dt>
                   <dd className="font-mono font-semibold text-ink-800">{facility.establishedYear}</dd>
                 </div>
               )}
               {area && (
                 <div className="flex items-center gap-1.5">
-                  <Ruler className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
-                  <dt className="font-mono uppercase tracking-[0.14em] text-ink-400">Built-up area</dt>
+                  <dt className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.14em] text-ink-400">
+                    <Ruler className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
+                    Built-up area
+                  </dt>
                   <dd className="font-mono font-semibold text-ink-800">{area}</dd>
                 </div>
               )}

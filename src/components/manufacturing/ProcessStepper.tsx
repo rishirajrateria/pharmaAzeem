@@ -30,7 +30,7 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
         </div>
 
         <ol
-          className="relative mt-12 grid gap-6 before:absolute before:bottom-10 before:left-6 before:top-10 before:w-px before:bg-gradient-to-b before:from-brand-300 before:via-brand-200 before:to-transparent md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12 lg:before:hidden"
+          className="relative mt-12 grid gap-6 before:absolute before:bottom-10 before:left-6 before:top-10 before:w-px before:bg-gradient-to-b before:from-brand-300 before:via-brand-200 before:to-transparent md:grid-cols-2 md:before:hidden lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12"
           aria-label="Manufacturing stages"
         >
           {steps.map((s, i) => {

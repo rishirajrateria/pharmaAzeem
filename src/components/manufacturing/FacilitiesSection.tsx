@@ -29,11 +29,11 @@ export function FacilitiesSection({ facilities, certifications }: { facilities: 
           <SectionHeading
             eyebrow="Our facilities"
             title={<span id="manufacturing-facilities-title">Inside our manufacturing facilities</span>}
-            description={`${facilities.length} purpose-built ${facilities.length === 1 ? 'facility' : 'facilities'} operating under one pharmaceutical quality system. Jump to a facility below or scroll through the full tour.`}
+            description={`${facilities.length === 1 ? 'Our facility' : `Our ${facilities.length} facilities`} at a glance: capabilities, capacity, dosage forms and certifications for each site. Jump to a facility below or scroll through the full tour.`}
           />
           {certs.length > 0 && (
             <div className="lg:max-w-sm lg:shrink-0">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">All sites operate under</p>
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">Featured certifications</p>
               <ul className="flex flex-wrap gap-1.5" aria-label="Featured certifications" role="list">
                 {certs.map((c) => (
                   <li key={c.id}>

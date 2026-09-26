@@ -7,7 +7,7 @@ import type { ManufacturingPage } from '@/payload-types'
 
 const HOW = [
   { title: 'Share your brief', text: 'Product profile, target markets and volumes.' },
-  { title: 'Feasibility in a week', text: 'Formulation, regulatory route and indicative costing.' },
+  { title: 'Feasibility review', text: 'Formulation, regulatory route and indicative costing.' },
   { title: 'Develop & register', text: 'Artwork, stability, dossier and pilot batches.' },
   { title: 'Scale production', text: 'Commercial batches released under our quality system.' },
 ]

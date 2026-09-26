@@ -38,7 +38,7 @@ export function ProductCard({ product, labels, priority, className }: { product:
           media={product.images?.[0]}
           size="card"
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          sizes="(max-width: 420px) 92vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           priority={priority}
           className="h-full w-full"
           imgClassName="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"

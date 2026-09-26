@@ -42,7 +42,7 @@ export default async function ManufacturingPage() {
   const firstStat = doc.stats?.[0]
 
   const chips: HeroChip[] = [
-    facilities.length ? { icon: 'factory', label: 'Facilities', value: `${facilities.length} purpose-built` } : null,
+    facilities.length ? { icon: 'factory', label: 'Sites', value: `${facilities.length} ${facilities.length === 1 ? 'facility' : 'facilities'}` } : null,
     firstStat ? { icon: 'gauge', label: firstStat.label, value: `${firstStat.value}${firstStat.suffix || ''}` } : null,
     gmp ? { icon: 'badge-check', label: 'Certified', value: gmp.title } : certifications.length ? { icon: 'badge-check', label: 'Certifications', value: String(certifications.length) } : null,
   ].filter((c): c is HeroChip => Boolean(c))
@@ -111,7 +111,7 @@ export default async function ManufacturingPage() {
       <CtaBand
         eyebrow="Work with us"
         title="Audit our plants or launch your own brand"
-        description="Schedule a facility audit, request our site master file, or brief us on a private-label project. Our contract manufacturing team replies within one business day."
+        description="Schedule a facility audit, request our site master file, or brief us on a private-label project. Our contract manufacturing team will follow up with next steps."
         primary={{ label: 'Contact our team', href: '/contact' }}
         secondary={{ label: 'View licenses & certificates', href: '/licenses' }}
       />
