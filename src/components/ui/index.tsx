@@ -17,8 +17,13 @@ export const Section = ({ className, children, ...p }: ComponentProps<'section'>
 
 export const Eyebrow = ({ className, children, ...p }: ComponentProps<'p'>) => (
   <p className={cn('eyebrow', className)} {...p}>
-    <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-600 shadow-[0_0_0_4px_rgb(225_29_46_/_0.15)]" />
+    <span aria-hidden="true" className="text-brand-400">
+      [
+    </span>
     {children}
+    <span aria-hidden="true" className="text-brand-400">
+      ]
+    </span>
   </p>
 )
 

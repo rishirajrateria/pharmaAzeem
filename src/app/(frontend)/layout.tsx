@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { body, dataMono, display } from '@/fonts'
 import Script from 'next/script'
 
 import { Footer } from '@/components/layout/Footer'
@@ -66,7 +65,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const ga = settings.seo?.gaMeasurementId
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable} ${dataMono.variable}`}
+    >
       <body className="mesh-bg min-h-dvh font-sans">
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>

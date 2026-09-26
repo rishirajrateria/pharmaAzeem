@@ -5,8 +5,9 @@
    Red + white minimal palette, soft gradients, glassmorphism.
 ------------------------------------------------------------------- */
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--body-font-raw), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--display-font-raw), var(--font-sans);
+  --font-mono: var(--mono-font-raw), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-brand-50: #fff1f2;
   --color-brand-100: #ffe1e4;
@@ -40,6 +41,11 @@
   --radius-2xl: 1.25rem;
   --radius-3xl: 1.75rem;
   --radius-4xl: 2.25rem;
+  /* Signature asymmetric radius — two corners rounded, two square. Used on cards, chips
+     and secondary buttons instead of a uniform border-radius or a full pill on everything;
+     the capsule (rounded-full) shape is reserved for the primary CTA and the nav bar only. */
+  --radius-signature: 1.5rem 0.25rem 1.5rem 0.25rem;
+  --radius-signature-sm: 0.875rem 0.1875rem 0.875rem 0.1875rem;
 
   --shadow-glass: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 8px 32px -8px rgb(225 29 46 / 0.12), 0 2px 8px -2px rgb(11 10 15 / 0.06);
   --shadow-glass-lg: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 24px 64px -16px rgb(225 29 46 / 0.18), 0 8px 24px -8px rgb(11 10 15 / 0.08);
@@ -129,6 +135,7 @@
   }
   h1, h2, h3, h4 {
     @apply text-ink-950 tracking-tight;
+    font-family: var(--font-display);
     text-wrap: balance;
   }
   p {
@@ -184,16 +191,28 @@
 }
 /* Glass card with hover lift + glow */
 @utility glass-card {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.78), rgb(255 255 255 / 0.5));
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgb(255 255 255 / 0.8);
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.72));
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow: var(--shadow-glass);
-  border-radius: var(--radius-3xl);
+  border-radius: var(--radius-signature);
+  position: relative;
   transition:
     transform 0.5s var(--ease-out-expo),
     box-shadow 0.5s var(--ease-out-expo),
     border-color 0.4s ease;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-brand-500), transparent 70%);
+    opacity: 0.7;
+  }
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-glass-lg);
@@ -317,10 +336,13 @@
    Components
 ------------------------------------------------------------------- */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-tight whitespace-nowrap transition-all duration-300 select-none disabled:opacity-50 disabled:pointer-events-none;
+  @apply inline-flex items-center justify-center gap-2 rounded-(--radius-signature-sm) px-6 py-3 font-display text-sm font-semibold tracking-tight whitespace-nowrap transition-all duration-300 select-none disabled:opacity-50 disabled:pointer-events-none;
 }
+/* The one deliberate capsule in the system: a primary action literally shaped like a
+   pharmaceutical capsule. Every other control uses the asymmetric signature radius instead,
+   so roundness reads as an intentional choice rather than a blanket default. */
 @utility btn-primary {
-  @apply btn text-white;
+  @apply btn text-white rounded-full;
   background-image: linear-gradient(120deg, var(--color-brand-700) 0%, var(--color-brand-600) 50%, var(--color-brand-500) 100%);
   background-size: 200% 200%;
   box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.25) inset, 0 10px 30px -10px rgb(225 29 46 / 0.7);
@@ -338,10 +360,12 @@
   @apply btn text-white bg-ink-950 hover:bg-ink-800;
 }
 @utility chip {
-  @apply inline-flex items-center gap-1.5 rounded-full border border-brand-200/70 bg-white/70 px-3 py-1 text-xs font-medium text-brand-700 backdrop-blur;
+  @apply inline-flex items-center gap-1.5 rounded-(--radius-signature-sm) border border-brand-200/70 bg-white/70 px-3 py-1 text-xs font-medium text-brand-700 backdrop-blur;
 }
+/* Eyebrow label: a bracketed field tag (like a spec-sheet or label annotation) instead of the
+   ubiquitous "coloured dot + uppercase text" notification-style marker. */
 @utility eyebrow {
-  @apply inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-brand-600;
+  @apply inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-600;
 }
 @utility container-x {
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;

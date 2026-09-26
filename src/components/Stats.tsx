@@ -71,7 +71,7 @@ export function Stats({
         <div
           key={s.id || i}
           className={cn(
-            'flex flex-col rounded-3xl px-5 py-6',
+            'flex flex-col rounded-(--radius-signature-sm) px-5 py-6',
             variant === 'glass' && 'glass',
             variant === 'dark' && 'glass-dark',
             variant === 'plain' && 'border border-ink-100 bg-white',
