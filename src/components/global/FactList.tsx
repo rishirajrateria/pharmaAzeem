@@ -12,7 +12,7 @@ export function FactList({ facts, className, columns = 3 }: { facts: Fact[]; cla
   return (
     <dl className={cn('grid gap-px overflow-hidden rounded-3xl border border-white/70 bg-brand-100/40 shadow-glass', columns === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2', className)}>
       {facts.map((f) => (
-        <div key={f.label} className="glass-subtle flex gap-3 bg-white/70 p-5">
+        <div key={f.label} className="flex gap-3 bg-white/75 p-5 backdrop-blur">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
             <Icon name={f.icon} className="h-4 w-4" />
           </span>

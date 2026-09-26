@@ -27,8 +27,9 @@ export function CountryMapCard({ country, siblings = [], className }: { country:
   const pos = hasPin ? projectPin(country.lat as number, country.lng as number) : { left: '50%', top: '50%' }
   const px = pct(pos.left)
   const py = pct(pos.top)
-  const tx = clamp(0.5, 1 - (1 - px) * ZOOM, px * ZOOM)
-  const ty = clamp(0.5, 1 - (1 - py) * sh, py * sh)
+  // Keep the map covering the frame where possible, but never push the pin (and its label) into the frame edges.
+  const tx = Math.min(0.82, Math.max(0.18, clamp(0.5, 1 - (1 - px) * ZOOM, px * ZOOM)))
+  const ty = Math.min(0.8, Math.max(0.2, clamp(0.5, 1 - (1 - py) * sh, py * sh)))
   const yCur = (1 - h) / 2 + py * h
   const transform = `translate(${((tx - px) * 100).toFixed(3)}%, ${(((ty - yCur) / h) * 100).toFixed(3)}%) scale(${ZOOM})`
   const transformOrigin = `${(px * 100).toFixed(3)}% ${(py * 100).toFixed(3)}%`
@@ -47,7 +48,7 @@ export function CountryMapCard({ country, siblings = [], className }: { country:
     <div className={cn('glass-strong glass-edge relative overflow-hidden rounded-4xl p-2 shadow-glass-lg sm:p-3', className)}>
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-white/80 via-brand-50/60 to-white/60">
         <div className="pointer-events-none absolute inset-0 grid-pattern opacity-50" aria-hidden="true" />
-        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+        <div className="fade-mask-y absolute inset-0 flex items-center" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/world-dots.svg"
@@ -61,7 +62,6 @@ export function CountryMapCard({ country, siblings = [], className }: { country:
             draggable={false}
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 fade-mask-y" aria-hidden="true" />
 
         {neighbours.map(({ country: s, x, y }) => (
           <Link

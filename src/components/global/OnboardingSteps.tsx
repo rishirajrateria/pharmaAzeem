@@ -16,7 +16,6 @@ export function OnboardingSteps({ steps }: { steps?: Step[] | null }) {
   const list = steps?.length ? steps : DEFAULT_STEPS
   return (
     <ol className="relative grid gap-4 lg:grid-cols-4 lg:gap-6" role="list">
-      <div className="pointer-events-none absolute left-7 top-8 hidden h-[calc(100%-4rem)] w-px bg-gradient-to-b from-brand-400/60 via-brand-200 to-transparent lg:hidden" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-x-12 top-9 hidden h-px bg-gradient-to-r from-transparent via-brand-300 to-transparent lg:block" aria-hidden="true" />
       {list.map((s, i) => (
         <Reveal as="li" key={s.id || s.title} delay={i * 90} className="relative">

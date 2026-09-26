@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
  * Below `lg` the filter sidebar lives in a slide-over. The trigger (in the results
  * toolbar) and the panel (wrapping the server-rendered sidebar) sit in different
  * places in the DOM, so they share a tiny store instead of duplicating the markup.
- * On `lg`+ the panel is static – the sidebar renders exactly once either way.
+ * On `lg`+ the panel is static – the sidebar is rendered exactly once either way.
  */
 const useMobileFilters = create<{ open: boolean; setOpen: (open: boolean) => void }>((set) => ({
   open: false,
@@ -45,15 +45,13 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
   const setOpen = useMobileFilters((s) => s.setOpen)
   const pathname = usePathname()
 
-  // A category link inside the sidebar navigates to another page – close the sheet.
+  // Navigating to another page (e.g. a category link inside the sidebar) closes the sheet.
   useEffect(() => {
     setOpen(false)
   }, [pathname, setOpen])
 
   useEffect(() => {
-    if (!open) return
-    const mq = window.matchMedia('(min-width: 1024px)')
-    if (mq.matches) return
+    if (!open || window.matchMedia('(min-width: 1024px)').matches) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
     window.addEventListener('keydown', onKey)
     document.documentElement.style.overflow = 'hidden'
@@ -64,8 +62,8 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
   }, [open, setOpen])
 
   return (
-    <div id="catalog-filters-panel" className={cn('lg:contents', open ? 'fixed inset-0 z-[60]' : 'hidden', className)}>
-      {/* Backdrop (mobile only) */}
+    <div id="catalog-filters-panel" className={cn('max-lg:fixed max-lg:inset-0 max-lg:z-[60] lg:contents', !open && 'max-lg:pointer-events-none', className)}>
+      {/* Backdrop – mobile only */}
       <div
         className={cn('absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden', open ? 'opacity-100' : 'opacity-0')}
         onClick={() => setOpen(false)}
@@ -76,9 +74,9 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
         aria-modal={open ? true : undefined}
         aria-label={open ? title : undefined}
         className={cn(
-          'absolute inset-y-0 left-0 flex w-[min(22rem,92vw)] flex-col glass-strong shadow-glass-lg transition-transform duration-500 ease-[var(--ease-out-expo)]',
-          'lg:static lg:block lg:w-auto lg:bg-none lg:shadow-none lg:backdrop-blur-none lg:border-0 lg:transition-none',
-          open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+          'max-lg:absolute max-lg:inset-y-0 max-lg:left-0 max-lg:flex max-lg:w-[min(22rem,92vw)] max-lg:flex-col max-lg:glass-strong max-lg:shadow-glass-lg',
+          'max-lg:transition-[transform,visibility] max-lg:duration-500 max-lg:ease-[var(--ease-out-expo)]',
+          open ? 'max-lg:visible max-lg:translate-x-0' : 'max-lg:invisible max-lg:-translate-x-full',
         )}
       >
         <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4 lg:hidden">
@@ -87,7 +85,7 @@ export function MobileFilters({ children, title = 'Filters', resultsLabel, class
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
-        <div className="scrollbar-thin flex-1 overflow-y-auto px-4 py-4 lg:overflow-visible lg:p-0">{children}</div>
+        <div className="scrollbar-thin max-lg:flex-1 max-lg:overflow-y-auto max-lg:px-4 max-lg:py-4">{children}</div>
         <div className="border-t border-ink-100 p-4 lg:hidden">
           <button type="button" onClick={() => setOpen(false)} className="btn-primary w-full">
             {resultsLabel || 'Show results'}

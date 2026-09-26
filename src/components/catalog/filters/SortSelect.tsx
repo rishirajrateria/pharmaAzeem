@@ -36,6 +36,7 @@ export function SortSelect({ basePath, value, options, baseParams, className }: 
         <span className="sr-only sm:hidden">Sort by</span>
       </label>
       <select
+        key={value}
         id={id}
         name="sort"
         defaultValue={value}

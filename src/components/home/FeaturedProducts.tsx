@@ -5,14 +5,14 @@ import type { CommerceLabels } from '@/lib/commerce'
 import type { Product } from '@/payload-types'
 
 import { ProductCard } from '../catalog/ProductCard'
-import { Button, Container, Section, SectionHeading } from '../ui'
+import { Button, Container, SectionHeading } from '../ui'
 import { Reveal } from '../ui/Reveal'
 
 /** Featured formulations – 2 / 3 / 4 column glass grid. */
 export function FeaturedProducts({ products, labels }: { products: Product[]; labels: CommerceLabels }) {
   if (!products.length) return null
   return (
-    <Section aria-label="Featured products" className="pt-0 sm:pt-0 lg:pt-4">
+    <section aria-label="Featured products" className="relative pb-16 pt-2 sm:pb-20 lg:pb-28 lg:pt-4">
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
@@ -41,6 +41,6 @@ export function FeaturedProducts({ products, labels }: { products: Product[]; la
           – we reply with pricing, MOQ and lead times within one business day.
         </p>
       </Container>
-    </Section>
+    </section>
   )
 }
