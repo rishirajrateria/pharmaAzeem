@@ -67,7 +67,7 @@ export function ManufacturingTeaser({ section, facilities }: { section?: Homepag
               )}
             </div>
             {typeCounts.length > 0 && (
-              <dl className="relative z-10 -mt-6 mx-2 grid grid-cols-2 gap-2.5 sm:mx-4 sm:grid-cols-3">
+              <dl className="relative z-10 -mt-6 mx-2 grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2 sm:mx-4 sm:grid-cols-3">
                 {typeCounts.map((t) => (
                   <div key={t.type} className="glass-strong glass-edge flex items-center gap-3 rounded-2xl px-3.5 py-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">

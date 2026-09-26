@@ -33,7 +33,7 @@ export function CatalogCta({ ctaLabel, listName, title, description, className }
         <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
           {[
             { icon: ClipboardList, term: `Step 1 · Build your ${listName.toLowerCase()}`, desc: 'Use the “+” on any product card or the add button on a product page.' },
-            { icon: Mail, term: `Step 2 · ${ctaLabel}`, desc: 'Add your company details and destination country – we reply within one business day.' },
+            { icon: Mail, term: `Step 2 · ${ctaLabel}`, desc: 'Add your company details and destination country – our export team replies with a quotation.' },
           ].map((s) => (
             <div key={s.term} className="glass-dark rounded-2xl p-4">
               <dt className="flex items-center gap-2 text-sm font-semibold text-white">

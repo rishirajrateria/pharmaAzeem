@@ -25,7 +25,7 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
           {activeCount > 0 && <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-gradient px-1.5 font-mono text-[10px] text-white">{activeCount}</span>}
         </h2>
         {filters.hasFilters && (
-          <Link href={clearHref(basePath, filters)} rel="nofollow" className="text-xs font-medium text-brand-700 underline-offset-4 hover:underline">
+          <Link href={clearHref(basePath, filters)} className="text-xs font-medium text-brand-700 underline-offset-4 hover:underline">
             Clear all
           </Link>
         )}
@@ -37,7 +37,6 @@ export function FilterSidebar({ basePath, filters, facets, className }: { basePa
             <li key={`${a.param}-${a.value}`}>
               <Link
                 href={removeHref(basePath, filters, a)}
-                rel="nofollow"
                 className="chip !bg-brand-600 !border-brand-600 !text-white hover:!bg-brand-700"
                 aria-label={`Remove filter: ${a.group} ${a.label}`}
               >
@@ -111,7 +110,6 @@ function FacetOption({ basePath, filters, param, value, count, selected }: { bas
     <li>
       <Link
         href={toggleHref(basePath, filters, param, value)}
-        rel="nofollow"
         aria-current={selected ? 'true' : undefined}
         aria-label={`${selected ? 'Remove' : 'Add'} filter ${label} (${count})`}
         className={cn(

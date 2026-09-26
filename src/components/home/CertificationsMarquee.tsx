@@ -17,6 +17,8 @@ const TYPE_LABEL: Record<Certification['type'], string> = {
 /**
  * Infinite CSS marquee of certifications / licences. The list is repeated an even number of
  * times so the -50% keyframe loops seamlessly; copies are aria-hidden and unfocusable.
+ * Under `prefers-reduced-motion` the marquee becomes a plain horizontal scroller (mask and
+ * copies removed) so every item stays reachable by mouse, touch and keyboard.
  */
 export function CertificationsMarquee({ certifications }: { certifications: Certification[] }) {
   if (!certifications.length) return null
@@ -30,19 +32,19 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
           <p className="eyebrow">
             <Award className="h-3.5 w-3.5" aria-hidden="true" /> Certified &amp; audited
           </p>
-          <p className="mt-2 text-sm text-ink-600">Every licence and certificate is available for download and verification.</p>
+          <p className="mt-2 text-sm text-ink-600">Browse the licences and certificates behind our quality systems – copies are available on request.</p>
         </div>
         <Link href="/licenses" className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline">
           View all licenses &amp; certifications <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </Container>
 
-      <div className="group fade-mask-x relative mt-6 overflow-hidden">
-        <ul className="flex w-max animate-marquee motion-reduce:animate-none group-hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
+      <div className="group fade-mask-x relative mt-6 overflow-hidden motion-reduce:overflow-x-auto motion-reduce:pb-3 motion-reduce:mask-none">
+        <ul className="flex w-max animate-marquee motion-reduce:animate-none motion-reduce:px-4 group-hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
           {items.map((c, i) => {
             const copy = i >= certifications.length
             return (
-              <li key={`${c.id}-${i}`} className="pr-4" aria-hidden={copy || undefined}>
+              <li key={`${c.id}-${i}`} className={copy ? 'pr-4 motion-reduce:hidden' : 'pr-4'} aria-hidden={copy || undefined}>
                 <Link
                   href="/licenses"
                   tabIndex={copy ? -1 : undefined}

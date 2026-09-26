@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Globe, ShieldCheck, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Globe, ShieldCheck, type LucideIcon } from 'lucide-react'
 
 import type { Certification, Homepage } from '@/payload-types'
 import { cn } from '@/lib/utils'
@@ -33,13 +33,12 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
   const primary = hero.primaryCta?.label && hero.primaryCta.url ? hero.primaryCta : null
   const secondary = hero.secondaryCta?.label && hero.secondaryCta.url ? hero.secondaryCta : null
 
+  // Trust chips come only from CMS data (featured certifications + the countries stat) – never hard-coded claims.
+  const hasCerts = certifications.length > 0
   const countryStat = stats?.find((s) => /countr/i.test(s.label))
   const trust: { icon: LucideIcon; label: string }[] = certifications.slice(0, 2).map((c) => ({ icon: ShieldCheck, label: shortCertName(c.title) }))
-  if (trust.length === 0) trust.push({ icon: ShieldCheck, label: 'WHO-GMP certified' }, { icon: BadgeCheck, label: 'ISO 9001:2015' })
-  trust.push({
-    icon: Globe,
-    label: countryStat ? `${countryStat.value}${countryStat.suffix ?? ''} ${countryStat.label.toLowerCase()}` : `${countryCount}+ countries served`,
-  })
+  if (countryStat) trust.push({ icon: Globe, label: `${countryStat.value}${countryStat.suffix ?? ''} ${countryStat.label.toLowerCase()}` })
+  else if (countryCount > 0) trust.push({ icon: Globe, label: `${countryCount}+ countries served` })
 
   const floating = (stats || []).slice(0, 3)
 
@@ -81,17 +80,21 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
               </div>
             )}
 
-            <div className="mt-10 animate-fade-up [animation-delay:280ms]">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-400">Certified, audited and trusted worldwide</p>
-              <ul className="mt-3 flex flex-wrap items-center gap-2" aria-label="Certifications and reach">
-                {trust.map((t) => (
-                  <li key={t.label} className="chip !bg-white/70 !py-1.5 shadow-glass">
-                    <t.icon className="h-3.5 w-3.5" aria-hidden="true" />
-                    {t.label}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {trust.length > 0 && (
+              <div className="mt-10 animate-fade-up [animation-delay:280ms]">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-400">
+                  {hasCerts ? 'Certified, audited and trusted worldwide' : 'Supplying partners worldwide'}
+                </p>
+                <ul className="mt-3 flex flex-wrap items-center gap-2" aria-label={hasCerts ? 'Certifications and reach' : 'Global reach'}>
+                  {trust.map((t) => (
+                    <li key={t.label} className="chip !bg-white/70 !py-1.5 shadow-glass">
+                      <t.icon className="h-3.5 w-3.5" aria-hidden="true" />
+                      {t.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Visual composition */}

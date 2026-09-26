@@ -27,7 +27,7 @@ import {
   getSiteSettings,
 } from '@/lib/data'
 import { buildMetadata, categoryJsonLd, graph, siteName } from '@/lib/seo'
-import { relId, richTextToPlain, truncate } from '@/lib/utils'
+import { absUrl, relId, richTextToPlain, truncate } from '@/lib/utils'
 
 type Props = { params: Promise<{ slug: string[] }>; searchParams: Promise<CatalogSearchParams> }
 
@@ -116,9 +116,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     ...(facets.dosageForm.length ? [{ value: facets.dosageForm.length, label: 'dosage forms' }] : []),
   ]
 
+  // The WebPage node must point at the same URL as the canonical (`?page=N` for plain pagination).
+  const [collectionPage, ...jsonLdRest] = categoryJsonLd(category, result.docs)
+  const canonicalUrl = absUrl(canonicalPath(basePath, filters))
+  const pageJsonLd = { ...collectionPage, '@id': `${canonicalUrl}#webpage`, url: canonicalUrl }
+
   return (
     <>
-      <JsonLd data={graph(...categoryJsonLd(category, result.docs))} />
+      <JsonLd data={graph(pageJsonLd, ...jsonLdRest)} />
 
       <CatalogHero
         crumbs={crumbs}

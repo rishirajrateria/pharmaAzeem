@@ -154,20 +154,101 @@ const listNames = (items: string[]) => {
   if (a.length <= 1) return a.join('')
   return `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`
 }
-const firstSentence = (text: string | null | undefined, max = 220) => {
-  const t = clean(text)
-  if (!t) return ''
-  const m = t.match(/^(.+?[.!?])(\s|$)/)
-  return truncate(m ? m[1] : t, max)
+
+/* ---- Lexical → Markdown (keeps headings, lists, links, emphasis and tables) ---- */
+
+type LexNode = {
+  type?: string
+  text?: string
+  format?: number | string
+  tag?: string
+  listType?: string
+  url?: string
+  fields?: { url?: string; linkType?: string } | null
+  children?: LexNode[]
 }
 
-/** Lexical rich text → Markdown-ish paragraphs (one blank line between blocks). */
-const richToMd = (doc: unknown) =>
-  richTextToPlain(doc)
-    .split('\n')
-    .map((l) => l.trim())
-    .filter(Boolean)
-    .join('\n\n')
+const inlineMd = (node: LexNode): string => {
+  if (typeof node.text === 'string') {
+    let t = node.text
+    if (!t.trim()) return t
+    const f = typeof node.format === 'number' ? node.format : 0
+    if (f & 16) t = `\`${t}\``
+    if (f & 1) t = `**${t}**`
+    if (f & 2) t = `*${t}*`
+    if (f & 4) t = `~~${t}~~`
+    return t
+  }
+  if (node.type === 'linebreak') return '\n'
+  if (node.type === 'tab') return ' '
+  const inner = (node.children || []).map(inlineMd).join('')
+  if (node.type === 'link' || node.type === 'autolink') {
+    const url = node.fields?.url || node.url
+    return url && node.fields?.linkType !== 'internal' ? `[${inner}](${url})` : inner
+  }
+  return inner
+}
+
+const blockMd = (node: LexNode, depth: number): string[] => {
+  switch (node.type) {
+    case 'heading': {
+      // Rich text always sits inside a "###" document section – keep its headings one level below.
+      const level = Number((node.tag || 'h3').replace(/\D/g, '')) || 3
+      return [`${'#'.repeat(Math.min(6, Math.max(4, level + 2)))} ${clean(inlineMd(node))}`]
+    }
+    case 'paragraph': {
+      const t = inlineMd(node).trim()
+      return t ? [t] : []
+    }
+    case 'quote': {
+      const t = inlineMd(node).trim()
+      return t ? [t.split('\n').map((l) => `> ${l}`).join('\n')] : []
+    }
+    case 'list': {
+      const ordered = node.listType === 'number'
+      const items = (node.children || []).map((li, i) => {
+        const nested = (li.children || []).filter((c) => c.type === 'list')
+        const own: LexNode = { ...li, children: (li.children || []).filter((c) => c.type !== 'list') }
+        const text = inlineMd(own).trim()
+        const line = text ? `${'  '.repeat(depth)}${ordered ? `${i + 1}.` : '-'} ${text}` : ''
+        return [line, ...nested.flatMap((n) => blockMd(n, depth + 1))].filter(Boolean).join('\n')
+      })
+      return items.length ? [items.filter(Boolean).join('\n')] : []
+    }
+    case 'horizontalrule':
+      return ['---']
+    case 'table': {
+      const rows = (node.children || []).map((r) => (r.children || []).map((c) => cell(inlineMd(c))))
+      if (!rows.length) return []
+      const [head, ...body] = rows
+      return [[`| ${head.join(' | ')} |`, `| ${head.map(() => '---').join(' | ')} |`, ...body.map((r) => `| ${r.join(' | ')} |`)].join('\n')]
+    }
+    case 'upload':
+    case 'block':
+    case 'relationship':
+      return []
+    default: {
+      if (node.children?.length) return node.children.flatMap((c) => blockMd(c, depth))
+      const t = inlineMd(node).trim()
+      return t ? [t] : []
+    }
+  }
+}
+
+/** Lexical rich text → Markdown. Falls back to plain text for anything unexpected. */
+const richToMd = (doc: unknown): string => {
+  if (!doc || typeof doc !== 'object') return ''
+  try {
+    const root = ((doc as { root?: LexNode }).root ?? doc) as LexNode
+    return (root.children || [])
+      .flatMap((c) => blockMd(c, 0))
+      .filter(Boolean)
+      .join('\n\n')
+      .trim()
+  } catch {
+    return richTextToPlain(doc)
+  }
+}
 
 const table = (rows: (readonly [string, string | null | undefined])[]) => {
   const filled = rows.filter(([, v]) => clean(v))
@@ -191,7 +272,7 @@ const titled = (items: { title: string; description?: string | null }[] | null |
 type Faq = { question: string; answer: string }
 const faqBlock = (faqs: Faq[] | null | undefined, heading = 'Frequently asked questions', level = '###') => {
   if (!faqs?.length) return ''
-  return [`${level} ${heading}`, '', ...faqs.map((f) => `**Q: ${clean(f.question)}**\n\nA: ${clean(f.answer)}`)].join('\n\n')
+  return [`${level} ${heading}`, ...faqs.map((f) => `**Q: ${clean(f.question)}**\n\nA: ${clean(f.answer)}`)].join('\n\n')
 }
 
 type Stat = { value: string; suffix?: string | null; label: string }
@@ -212,12 +293,24 @@ export const productHeading = (p: Pick<Product, 'title' | 'genericName' | 'stren
   return spec ? `${clean(p.title)} – ${spec}` : clean(p.title)
 }
 
+/** One-line factual summary for the blockquote: derived from settings + live counts, never truncated mid-sentence. */
 const summaryLine = (d: LlmsData) => {
   const s = d.settings
   const name = siteName(s)
   const tagline = clean(s.tagline)
-  const sentence = firstSentence(s.shortDescription, 200) || `${name} is a pharmaceutical manufacturer and exporter of generic medicines.`
-  return tagline && !sentence.toLowerCase().includes(tagline.toLowerCase()) ? `${tagline}. ${sentence}` : sentence
+  const addr = s.contact?.address
+  const hq = [addr?.city, addr?.country].map(clean).filter(Boolean).join(', ')
+  const gmp = d.certifications.find((c) => /gmp/i.test(c.title))
+  const quality = gmp ? (/who[\s-]*gmp/i.test(gmp.title) ? 'A WHO-GMP certified' : 'A GMP certified') : 'A'
+  const details = [
+    `${d.products.length} products in ${d.categories.length} categories`,
+    d.certifications.length ? `${d.certifications.length} licenses and certifications` : null,
+    d.countries.length ? `supplying ${d.countries.length} countries` : null,
+  ].filter(Boolean)
+  const where = hq ? ` based in ${hq}` : ''
+  const since = s.foundingYear ? ` (est. ${s.foundingYear})` : ''
+  const line = `${quality} pharmaceutical manufacturer and exporter${where}${since} with ${details.join(', ')}.`
+  return tagline ? `${name} — ${tagline}. ${line}` : `${name}. ${line}`
 }
 
 const companyParagraph = (d: LlmsData) => {
@@ -570,9 +663,12 @@ export const buildLlmsFull = (d: LlmsData): string => {
 
   /* Home */
   const home = p.home
+  const homeTitle = clean(home.hero?.title)
+  const highlight = clean(home.hero?.highlight)
+  const homeHeading = homeTitle && highlight && !homeTitle.toLowerCase().includes(highlight.toLowerCase()) ? `${homeTitle} ${highlight}` : homeTitle || name
   out.push(
     blocks(
-      `## ${clean(home.hero?.title)}${clean(home.hero?.highlight) ? ` ${clean(home.hero.highlight)}` : ''}`.trim() || `## ${name}`,
+      `## ${homeHeading}`,
       `URL: ${absUrl('/')}`,
       clean(home.hero?.subtitle),
       statsBlock(home.stats),

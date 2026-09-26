@@ -89,9 +89,9 @@ export async function GET(request: NextRequest) {
         }}
       >
         {/* Ambient red / pink orbs */}
-        <div style={{ position: 'absolute', left: -220, top: -280, width: 780, height: 780, borderRadius: 9999, backgroundImage: 'radial-gradient(closest-side, rgba(255,102,117,0.38), rgba(255,102,117,0))' }} />
-        <div style={{ position: 'absolute', right: -240, top: -140, width: 680, height: 680, borderRadius: 9999, backgroundImage: 'radial-gradient(closest-side, rgba(225,29,46,0.24), rgba(225,29,46,0))' }} />
-        <div style={{ position: 'absolute', left: 420, bottom: -420, width: 760, height: 760, borderRadius: 9999, backgroundImage: 'radial-gradient(closest-side, rgba(255,199,205,0.7), rgba(255,199,205,0))' }} />
+        <div style={{ position: 'absolute', left: -220, top: -280, width: 780, height: 780, borderRadius: 9999, backgroundImage: 'radial-gradient(circle, rgba(255,102,117,0.42) 0%, rgba(255,102,117,0) 70%)' }} />
+        <div style={{ position: 'absolute', right: -240, top: -140, width: 680, height: 680, borderRadius: 9999, backgroundImage: 'radial-gradient(circle, rgba(225,29,46,0.26) 0%, rgba(225,29,46,0) 70%)' }} />
+        <div style={{ position: 'absolute', left: 420, bottom: -420, width: 760, height: 760, borderRadius: 9999, backgroundImage: 'radial-gradient(circle, rgba(255,199,205,0.75) 0%, rgba(255,199,205,0) 70%)' }} />
         {/* Dot grid texture */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(225,29,46,0.14) 1.6px, rgba(225,29,46,0) 1.6px)', backgroundSize: '26px 26px', opacity: 0.8 }} />
         {/* Corner HUD rings */}

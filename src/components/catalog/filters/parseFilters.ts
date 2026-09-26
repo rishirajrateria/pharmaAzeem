@@ -29,7 +29,7 @@ const VALUE_LABELS: Record<string, string> = {
   otc: 'Over the counter (OTC)',
   new: 'New launch',
   'best-seller': 'Best seller',
-  'who-gmp': 'WHO-GMP certified',
+  'who-gmp': 'WHO-GMP',
   'export-ready': 'Export ready',
   'sugar-free': 'Sugar free',
   pediatric: 'Pediatric',

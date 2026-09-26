@@ -21,7 +21,7 @@ type Props = {
   className?: string
 }
 
-/** Responsive 2 / 3 / 4 column grid of product cards with a helpful empty state. */
+/** Responsive 1 / 2 / 3 / 4 column grid of product cards (single column below 420px) with a helpful empty state. */
 export function ProductGrid({ products, labels, basePath, filters, suggestions = [], priorityCount = 0, className }: Props) {
   if (products.length === 0) {
     return (
@@ -34,7 +34,7 @@ export function ProductGrid({ products, labels, basePath, filters, suggestions =
             </span>
             <h3 className="heading-3 mt-5">No products match {filters.q ? <>“{filters.q}”</> : 'these filters'}</h3>
             <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-600">
-              Try a broader search, remove a filter, or tell us what you are looking for – our portfolio exceeds what is listed online and we regularly develop formulations on request.
+              Try a broader search, remove a filter, or tell us what you are looking for – not every formulation in the portfolio is listed online.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               {filters.hasFilters && (
@@ -56,7 +56,7 @@ export function ProductGrid({ products, labels, basePath, filters, suggestions =
             <h3 id="catalog-suggestions" className="heading-3">
               You may be looking for
             </h3>
-            <ul className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 sm:gap-5">
+            <ul className="mt-5 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
               {suggestions.slice(0, 4).map((p) => (
                 <li key={p.id}>
                   <ProductCard product={p} labels={labels} className="h-full" />
@@ -70,7 +70,7 @@ export function ProductGrid({ products, labels, basePath, filters, suggestions =
   }
 
   return (
-    <ul className={cn('grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4', className)} aria-label="Products">
+    <ul className={cn('grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4', className)} aria-label="Products">
       {products.map((p, i) => (
         <Reveal key={p.id} as="li" delay={Math.min(i, 7) * 60}>
           <ProductCard product={p} labels={labels} priority={i < priorityCount} className="h-full" />

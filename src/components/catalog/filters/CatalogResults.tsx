@@ -46,7 +46,7 @@ export function CatalogResults({ basePath, filters, facets, result, labels, sugg
 
   return (
     <div id={id} className={cn('scroll-mt-28 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8', className)}>
-      <aside className="scrollbar-thin lg:sticky lg:top-28 lg:-mx-1 lg:max-h-[calc(100dvh-8rem)] lg:self-start lg:overflow-y-auto lg:px-1 lg:pb-4" aria-label="Product filters">
+      <aside className="scrollbar-thin max-lg:contents lg:sticky lg:top-28 lg:-mx-1 lg:max-h-[calc(100dvh-8rem)] lg:self-start lg:overflow-y-auto lg:px-1 lg:pb-4" aria-label="Product filters">
         <MobileFilters resultsLabel={`Show ${totalDocs} ${noun}`}>
           <FilterSidebar basePath={basePath} filters={filters} facets={facets} />
         </MobileFilters>

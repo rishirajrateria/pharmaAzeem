@@ -34,7 +34,7 @@ export function AboutTeaser({ intro, settings }: { intro?: Homepage['intro']; se
               </div>
             </div>
             {facts.length > 0 && (
-              <dl className="relative z-10 -mt-8 ml-4 mr-4 grid grid-cols-2 gap-3 sm:-mt-10 sm:ml-8 sm:mr-0 sm:max-w-md">
+              <dl className="relative z-10 -mt-8 ml-4 mr-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:-mt-10 sm:ml-8 sm:mr-0 sm:max-w-md">
                 {facts.map((f) => (
                   <div key={f.label} className="glass-strong glass-edge rounded-2xl px-4 py-3">
                     <dt className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">

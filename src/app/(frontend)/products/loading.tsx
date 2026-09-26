@@ -28,7 +28,7 @@ export default function Loading() {
         </div>
         <div>
           <div className="skeleton h-24 rounded-3xl" />
-          <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4" aria-hidden="true">
+          <ul className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4" aria-hidden="true">
             {Array.from({ length: 8 }).map((_, i) => (
               <li key={i} className="glass overflow-hidden rounded-3xl">
                 <div className="skeleton aspect-square w-full" />

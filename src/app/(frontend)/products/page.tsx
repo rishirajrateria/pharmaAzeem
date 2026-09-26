@@ -75,7 +75,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       <JsonLd
         data={graph(
           webPageJsonLd({
-            path: BASE,
+            path: canonicalPath(BASE, filters),
             name: title,
             description,
             type: 'CollectionPage',
