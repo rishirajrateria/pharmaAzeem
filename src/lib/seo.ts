@@ -111,8 +111,8 @@ export const buildMetadata = ({
 
 export type JsonLdObject = Record<string, unknown>
 
-const ORG_ID = `${SITE_URL}/#organization`
-const WEBSITE_ID = `${SITE_URL}/#website`
+export const ORG_ID = `${SITE_URL}/#organization`
+export const WEBSITE_ID = `${SITE_URL}/#website`
 
 export const organizationJsonLd = (settings: SiteSetting | null | undefined, extras: { countries?: Country[]; certifications?: { title: string; issuer: string }[] } = {}): JsonLdObject => {
   const name = siteName(settings)

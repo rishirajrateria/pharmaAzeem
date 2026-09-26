@@ -47,15 +47,16 @@ export const truncate = (text: string | null | undefined, max = 160) => {
 export const richTextToPlain = (doc: unknown): string => {
   if (!doc || typeof doc !== 'object') return ''
   const out: string[] = []
-  const walk = (node: any) => {
+  type LexNode = { text?: unknown; type?: unknown; children?: unknown }
+  const walk = (node: LexNode | null | undefined) => {
     if (!node) return
     if (typeof node.text === 'string') out.push(node.text)
     if (Array.isArray(node.children)) {
-      node.children.forEach(walk)
-      if (['paragraph', 'heading', 'listitem', 'quote'].includes(node.type)) out.push('\n')
+      node.children.forEach((c) => walk(c as LexNode))
+      if (typeof node.type === 'string' && ['paragraph', 'heading', 'listitem', 'quote'].includes(node.type)) out.push('\n')
     }
   }
-  walk((doc as any).root ?? doc)
+  walk(((doc as { root?: LexNode }).root ?? doc) as LexNode)
   return out.join('').replace(/\n{2,}/g, '\n').trim()
 }
 
@@ -80,7 +81,7 @@ export const titleCase = (s: string) => s.replace(/\b\w/g, (c) => c.toUpperCase(
 
 /** Returns the id from a relationship value (populated doc or raw id). */
 export const relId = (v: unknown): number | undefined => {
-  if (v && typeof v === 'object' && 'id' in (v as any)) return (v as any).id as number
+  if (v && typeof v === 'object' && 'id' in v && typeof (v as { id: unknown }).id === 'number') return (v as { id: number }).id
   if (typeof v === 'number') return v
   return undefined
 }

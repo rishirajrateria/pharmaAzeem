@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { slugField } from 'payload'
 
-import { anyone, isStaff, publishedOrStaff } from '@/access'
+import { isStaff, publishedOrStaff } from '@/access'
 import { faqsField } from '@/fields/faqs'
 import { seoTab } from '@/fields/seo'
 import { revalidateCollection } from '@/hooks/revalidate'

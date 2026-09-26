@@ -31,15 +31,21 @@ export function HeaderClient({ siteName, tagline, logo, nav, labels, announcemen
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
-    onScroll()
+    const raf = window.requestAnimationFrame(onScroll)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
-  useEffect(() => {
+  // Close menus when the route changes (state adjustment during render – no effect needed).
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setOpen(false)
     setMega(false)
-  }, [pathname])
+  }
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? 'hidden' : ''

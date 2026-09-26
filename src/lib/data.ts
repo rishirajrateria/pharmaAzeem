@@ -1,5 +1,7 @@
 import { cache } from 'react'
 
+import type { Where } from 'payload'
+
 import type { Category, Certification, Country, Facility, Product, SiteSetting } from '@/payload-types'
 
 import { getPayloadClient } from './payload'
@@ -145,7 +147,7 @@ const sortMap: Record<ProductSort, string> = {
 
 export const getProducts = cache(async (query: ProductQuery = {}) => {
   const payload = await getPayloadClient()
-  const and: any[] = [{ _status: { equals: 'published' } }]
+  const and: Where[] = [{ _status: { equals: 'published' } }]
   if (query.categoryIds?.length) and.push({ categories: { in: query.categoryIds } })
   if (query.dosageForm?.length) and.push({ dosageForm: { in: query.dosageForm } })
   if (query.prescriptionStatus?.length) and.push({ prescriptionStatus: { in: query.prescriptionStatus } })
@@ -300,9 +302,10 @@ export const getProductFacets = cache(async (categoryIds?: number[]): Promise<Fa
 
 export const getCountries = cache(async (opts: { served?: boolean; featured?: boolean } = {}): Promise<Country[]> => {
   const payload = await getPayloadClient()
-  const where: any = { and: [] }
-  if (opts.served !== undefined) where.and.push({ served: { equals: opts.served } })
-  if (opts.featured !== undefined) where.and.push({ featured: { equals: opts.featured } })
+  const and: Where[] = []
+  if (opts.served !== undefined) and.push({ served: { equals: opts.served } })
+  if (opts.featured !== undefined) and.push({ featured: { equals: opts.featured } })
+  const where: Where = { and }
   const { docs } = await payload.find({ collection: 'countries', where, limit: 300, pagination: false, sort: 'name', depth: 1 })
   return docs
 })
@@ -315,7 +318,7 @@ export const getCountryBySlug = cache(async (slug: string): Promise<Country | nu
 
 export const getCertifications = cache(async (opts: { featured?: boolean } = {}): Promise<Certification[]> => {
   const payload = await getPayloadClient()
-  const where: any = opts.featured !== undefined ? { featured: { equals: opts.featured } } : {}
+  const where: Where = opts.featured !== undefined ? { featured: { equals: opts.featured } } : {}
   const { docs } = await payload.find({ collection: 'certifications', where, limit: 200, pagination: false, sort: 'order', depth: 1 })
   return docs
 })

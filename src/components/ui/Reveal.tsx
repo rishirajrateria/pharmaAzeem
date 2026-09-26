@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, type ComponentProps } from 'react'
+import { useEffect, useRef, type ComponentProps, type ElementType } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -38,7 +38,7 @@ export function Reveal({ delay = 0, className, as: Tag = 'div', children, ...p }
     obs.observe(el)
     return () => obs.unobserve(el)
   }, [])
-  const Comp = Tag as any
+  const Comp = Tag as ElementType
   return (
     <Comp ref={ref} className={cn('reveal', className)} style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties} {...p}>
       {children}

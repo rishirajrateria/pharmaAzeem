@@ -20,7 +20,7 @@ export const BeforeDashboard: React.FC = () => (
         <strong>Catalogue → Products</strong>: add products, assign categories, fill details/description/FAQs and the SEO tab, then <em>Publish</em>.
       </li>
       <li>
-        <strong>Site Settings → Commerce</strong>: turn on <em>Show prices</em> to replace "Inquire for pricing" with real prices; edit button labels.
+        <strong>Site Settings → Commerce</strong>: turn on <em>Show prices</em> to replace &quot;Inquire for pricing&quot; with real prices; edit button labels.
       </li>
       <li>
         <strong>Sales → Inquiries</strong>: every quote request from the website lands here (and is emailed when SMTP is configured).

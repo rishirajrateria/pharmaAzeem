@@ -5,7 +5,7 @@ import { Media } from '@/components/Media'
 import { Button, Container, Eyebrow } from '@/components/ui'
 import { HudRings } from '@/components/visuals/MoleculeField'
 import { Orbs } from '@/components/visuals/Orbs'
-import { cn } from '@/lib/utils'
+import { cn, mediaAlt } from '@/lib/utils'
 import type { AboutPage, SiteSetting } from '@/payload-types'
 
 type Cta = { label?: string | null; url?: string | null } | undefined
@@ -113,7 +113,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
                   size="large"
                   fill
                   priority
-                  alt={hero.image && typeof hero.image === 'object' && hero.image.alt ? hero.image.alt : imageAlt}
+                  alt={mediaAlt(hero.image, imageAlt)}
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
                   className="aspect-[4/5] rounded-[1.5rem] bg-white"
                 />
