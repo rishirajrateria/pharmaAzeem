@@ -59,7 +59,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
   const [product, settings] = await Promise.all([getProductBySlug(slug), getSiteSettings()])
-  if (!product) return { title: 'Product not found', robots: { index: false, follow: false } }
+  if (!product) notFound()
   return buildMetadata({
     settings,
     path: `/products/${product.slug}`,

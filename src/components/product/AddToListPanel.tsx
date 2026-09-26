@@ -114,7 +114,7 @@ export function AddToListPanel({
         value={qty}
         onChange={(e) => setQty(clamp(Number(e.target.value)))}
         className={cn(
-          'border-x border-ink-100 bg-transparent text-center text-sm font-semibold text-ink-950 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none',
+          'border-x border-ink-100 bg-transparent text-center text-sm font-semibold text-ink-950 focus-visible:ring-2 focus-visible:ring-brand-500 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none',
           size === 'md' ? 'h-12 w-16' : 'h-10 w-12',
         )}
         aria-label="Quantity"

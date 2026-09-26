@@ -91,7 +91,7 @@ export const buildMetadata = ({
   const noIndex = Boolean(meta?.noIndex)
 
   return {
-    title: finalTitle,
+    title: { absolute: finalTitle },
     description: finalDescription,
     keywords,
     alternates: {
@@ -155,7 +155,9 @@ export const organizationJsonLd = (
   const logo = mediaUrl(settings?.logo)
   const addr = settings?.contact?.address
   const socials = (settings?.contact?.socials || []).map((s) => s.url)
-  const sameAs = [...socials, ...(settings?.seo?.sameAs || []).map((s) => s.url)].filter(Boolean)
+  const sameAs = [
+    ...new Set([...socials, ...(settings?.seo?.sameAs || []).map((s) => s.url)].filter(Boolean)),
+  ]
   return {
     '@type': ['Organization', 'MedicalOrganization'],
     '@id': ORG_ID,
@@ -347,6 +349,7 @@ export const productJsonLd = (
         value: s.value,
       })),
     ].filter(Boolean),
+    // Offers are only emitted when a real price is shown; Google requires price + currency on Offer.
     offers:
       price.kind === 'price'
         ? {
@@ -361,17 +364,7 @@ export const productJsonLd = (
               ? { '@type': 'QuantitativeValue', minValue: product.minOrderQuantity }
               : undefined,
           }
-        : {
-            '@type': 'Offer',
-            url: absUrl(`/products/${product.slug}`),
-            availability: availabilityMap[product.availability || 'in-stock'],
-            seller: { '@id': ORG_ID },
-            businessFunction: 'http://purl.org/goodrelations/v1#Sell',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              description: labels.priceFallbackLabel,
-            },
-          },
+        : undefined,
   }
 }
 

@@ -31,7 +31,8 @@ const nextConfig: NextConfig = {
       { source: '/(.*)', headers: securityHeaders },
       {
         source: '/api/media/file/:path*',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+        // Long but not "immutable forever": an error response must not be pinned for a year.
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' }],
       },
       {
         source: '/world-dots.svg',

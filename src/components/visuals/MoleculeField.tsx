@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 import { cn } from '@/lib/utils'
 
 /**
@@ -11,6 +13,7 @@ export function MoleculeField({
   className?: string
   animated?: boolean
 }) {
+  const gid = `mf-g-${useId().replace(/:/g, '')}`
   const nodes = [
     [40, 60],
     [120, 30],
@@ -57,7 +60,7 @@ export function MoleculeField({
       fill="none"
     >
       <defs>
-        <linearGradient id="mf-g" x1="0" x2="1" y1="0" y2="1">
+        <linearGradient id={gid} x1="0" x2="1" y1="0" y2="1">
           <stop offset="0%" stopColor="#e11d2e" stopOpacity="0.9" />
           <stop offset="100%" stopColor="#ff6675" stopOpacity="0.5" />
         </linearGradient>
@@ -69,7 +72,7 @@ export function MoleculeField({
           y1={nodes[a][1]}
           x2={nodes[b][0]}
           y2={nodes[b][1]}
-          stroke="url(#mf-g)"
+          stroke={`url(#${gid})`}
           strokeWidth="1"
           strokeOpacity="0.5"
           strokeDasharray={animated ? '6 6' : undefined}

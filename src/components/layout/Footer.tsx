@@ -122,7 +122,11 @@ export async function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               {PRIMARY_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-ink-800 hover:text-brand-700">
+                  <Link
+                    prefetch={false}
+                    href={l.href}
+                    className="text-ink-800 hover:text-brand-700"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -165,13 +169,13 @@ export async function Footer() {
             © {year} {settings.legalName || settings.siteName}. All rights reserved.
           </p>
           <p className="flex flex-wrap gap-4">
-            <Link href="/sitemap.xml" className="hover:text-brand-700">
+            <Link prefetch={false} href="/sitemap.xml" className="hover:text-brand-700">
               Sitemap
             </Link>
-            <Link href="/llms.txt" className="hover:text-brand-700">
+            <Link prefetch={false} href="/llms.txt" className="hover:text-brand-700">
               llms.txt
             </Link>
-            <Link href="/admin" className="hover:text-brand-700">
+            <Link prefetch={false} href="/admin" className="hover:text-brand-700">
               Admin
             </Link>
           </p>

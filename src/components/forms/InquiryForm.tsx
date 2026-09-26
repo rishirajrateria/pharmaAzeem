@@ -1,7 +1,7 @@
 'use client'
 
 import { CircleCheck, Loader2, Send } from 'lucide-react'
-import { useActionState, useEffect } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
 
 import { submitInquiry, type InquiryFormState } from '@/app/actions/inquiry'
 import { useHasMounted } from '@/hooks/useHasMounted'
@@ -44,6 +44,13 @@ export function InquiryForm({
     if (state.ok && includeList) clear()
   }, [state.ok, includeList, clear])
 
+  // Move focus to the first invalid field after a failed submit (WCAG 3.3.1 / 2.4.3).
+  const formRef = useRef<HTMLFormElement>(null)
+  useEffect(() => {
+    if (state.ok || !state.errors) return
+    formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus()
+  }, [state])
+
   if (state.ok) {
     return (
       <div
@@ -70,7 +77,7 @@ export function InquiryForm({
   const err = state.errors || {}
 
   return (
-    <form action={action} className={cn('space-y-4', className)} noValidate>
+    <form ref={formRef} action={action} className={cn('space-y-4', className)} noValidate>
       <input
         type="text"
         name="website"

@@ -51,8 +51,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params
   const [country, settings] = await Promise.all([getCountryBySlug(slug), getSiteSettings()])
   // Markets flagged as not served are excluded from the index, sitemap and static params – keep the page consistent.
-  if (!country || !country.served)
-    return { title: 'Market not found', robots: { index: false, follow: false } }
+  if (!country || !country.served) notFound()
   const description =
     country.summary ||
     truncate(richTextToPlain(country.description), 160) ||

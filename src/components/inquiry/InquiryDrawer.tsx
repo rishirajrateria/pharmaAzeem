@@ -3,7 +3,9 @@
 import { ArrowRight, Minus, Plus, Trash2, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
+
+import { useModalFocus } from '@/hooks/useModalFocus'
 
 import { useHasMounted } from '@/hooks/useHasMounted'
 import { useInquiry } from '@/store/inquiry'
@@ -21,16 +23,8 @@ export function InquiryDrawer({ labels }: Props) {
   const { items, isOpen, close, remove, setQuantity, clear } = useInquiry()
   const mounted = useHasMounted()
 
-  useEffect(() => {
-    if (!isOpen) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
-    window.addEventListener('keydown', onKey)
-    document.documentElement.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.documentElement.style.overflow = ''
-    }
-  }, [isOpen, close])
+  const panelRef = useRef<HTMLElement>(null)
+  useModalFocus(isOpen, panelRef, close)
 
   const list = mounted ? items : []
 
@@ -38,6 +32,7 @@ export function InquiryDrawer({ labels }: Props) {
     <div
       className={cn('fixed inset-0 z-[70]', isOpen ? 'pointer-events-auto' : 'pointer-events-none')}
       aria-hidden={!isOpen}
+      inert={!isOpen}
     >
       <div
         className={cn(
@@ -47,9 +42,11 @@ export function InquiryDrawer({ labels }: Props) {
         onClick={close}
       />
       <aside
+        ref={panelRef}
+        tabIndex={-1}
         className={cn(
-          'absolute inset-y-0 right-0 flex w-[min(28rem,94vw)] flex-col glass-strong shadow-glass-lg transition-transform duration-500 ease-[var(--ease-out-expo)]',
-          isOpen ? 'translate-x-0' : 'translate-x-full',
+          'absolute inset-y-0 right-0 flex w-[min(28rem,94vw)] flex-col glass-strong shadow-glass-lg outline-none transition-[transform,visibility] duration-500 ease-[var(--ease-out-expo)]',
+          isOpen ? 'visible translate-x-0' : 'invisible translate-x-full',
         )}
         role="dialog"
         aria-modal="true"
@@ -209,7 +206,7 @@ function QuantityInput({ value, onCommit }: { value: number; onCommit: (q: numbe
         if (v !== '' && Number.isInteger(n) && n >= 1) onCommit(n)
       }}
       onBlur={() => setDraft(String(value))}
-      className="w-10 border-x border-ink-100 bg-transparent text-center text-xs font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
+      className="w-10 border-x border-ink-100 bg-transparent text-center text-xs font-semibold focus-visible:ring-2 focus-visible:ring-brand-500 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
       aria-label="Quantity"
     />
   )

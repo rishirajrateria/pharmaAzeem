@@ -49,6 +49,7 @@ export function SortSelect({
         <ArrowUpDown className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="hidden sm:inline">Sort by</span>
         <span className="sr-only sm:hidden">Sort by</span>
+        <span className="sr-only"> (updates results automatically)</span>
       </label>
       <select
         key={value}

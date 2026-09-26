@@ -97,6 +97,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     getProducts({ ...filters.query, categoryIds: descendantIds }),
     getProductFacets(descendantIds),
   ])
+  if (result.totalPages > 0 && filters.page > result.totalPages) notFound()
   const suggestions = result.docs.length === 0 ? await getFeaturedProducts(4) : []
 
   const labels = getCommerceLabels(settings)

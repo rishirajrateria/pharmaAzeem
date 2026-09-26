@@ -3,7 +3,9 @@
 import { ArrowRight, ChevronDown, Mail, Menu, Phone, Search, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+
+import { useModalFocus } from '@/hooks/useModalFocus'
 
 import { Icon } from '@/components/ui/Icon'
 import { cn } from '@/lib/utils'
@@ -56,12 +58,10 @@ export function HeaderClient({
     setMega(false)
   }
 
-  useEffect(() => {
-    document.documentElement.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.documentElement.style.overflow = ''
-    }
-  }, [open])
+  const menuRef = useRef<HTMLDivElement>(null)
+  const closeMenu = useCallback(() => setOpen(false), [])
+  useModalFocus(open, menuRef, closeMenu)
+  const megaRef = useRef<HTMLDivElement>(null)
 
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
@@ -97,8 +97,20 @@ export function HeaderClient({
             <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
               <div
                 className="relative"
+                ref={megaRef}
                 onMouseEnter={() => setMega(true)}
                 onMouseLeave={() => setMega(false)}
+                onFocus={() => setMega(true)}
+                onBlur={(e) => {
+                  if (!megaRef.current?.contains(e.relatedTarget as Node | null)) setMega(false)
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') setMega(false)
+                  if (e.key === 'ArrowDown' && !mega) {
+                    e.preventDefault()
+                    setMega(true)
+                  }
+                }}
               >
                 <Link
                   href="/products"
@@ -129,7 +141,7 @@ export function HeaderClient({
                     <div className="grid grid-cols-3 gap-2">
                       {nav.map((c) => (
                         <div key={c.id} className="rounded-2xl p-3 transition hover:bg-brand-50/70">
-                          <Link href={c.path} className="flex items-start gap-3">
+                          <Link prefetch={false} href={c.path} className="flex items-start gap-3">
                             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.7)]">
                               <Icon name={c.icon} className="h-4.5 w-4.5" />
                             </span>
@@ -145,6 +157,7 @@ export function HeaderClient({
                               {c.children.slice(0, 5).map((s) => (
                                 <li key={s.id}>
                                   <Link
+                                    prefetch={false}
                                     href={s.path}
                                     className="rounded-full border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700"
                                   >
@@ -214,6 +227,7 @@ export function HeaderClient({
           open ? 'pointer-events-auto' : 'pointer-events-none',
         )}
         aria-hidden={!open}
+        inert={!open}
       >
         <div
           className={cn(
@@ -223,9 +237,11 @@ export function HeaderClient({
           onClick={() => setOpen(false)}
         />
         <div
+          ref={menuRef}
+          tabIndex={-1}
           className={cn(
-            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col glass-strong shadow-glass-lg transition-transform duration-500 ease-[var(--ease-out-expo)]',
-            open ? 'translate-x-0' : 'translate-x-full',
+            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col glass-strong shadow-glass-lg outline-none transition-[transform,visibility] duration-500 ease-[var(--ease-out-expo)]',
+            open ? 'visible translate-x-0' : 'invisible translate-x-full',
           )}
           role="dialog"
           aria-modal="true"
@@ -258,6 +274,7 @@ export function HeaderClient({
               {nav.map((c) => (
                 <li key={c.id}>
                   <Link
+                    prefetch={false}
                     href={c.path}
                     className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50"
                   >
@@ -277,6 +294,7 @@ export function HeaderClient({
               {PRIMARY_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
+                    prefetch={false}
                     href={l.href}
                     className={cn(
                       'block rounded-2xl px-3 py-2.5 text-sm hover:bg-brand-50',

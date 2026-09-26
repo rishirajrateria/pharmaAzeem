@@ -42,6 +42,24 @@ const slugify = (s: string) =>
 
 const log = (msg: string) => console.log(`• ${msg}`)
 
+/** Sourcing FAQs for categories that have none – editable later in the admin panel. */
+const defaultCategoryFaqs = (title: string) => [
+  {
+    question: `Can I order ${title.toLowerCase()} products in bulk for export?`,
+    answer: `Yes. Every product in the ${title} range is manufactured in our WHO-GMP certified facilities and available for export in bulk, institutional and private-label packs, subject to registration in your country.`,
+  },
+  {
+    question: `Which documents do you provide for ${title.toLowerCase()} registrations?`,
+    answer:
+      'We supply CTD-format dossiers, Certificates of Pharmaceutical Product (CoPP), GMP certificates, batch Certificates of Analysis, stability data for your climatic zone and samples on request.',
+  },
+  {
+    question: `How do I get a quotation for ${title.toLowerCase()} products?`,
+    answer:
+      'Add the products you need to your inquiry list and click "Inquire now", or send us your product list through the contact form – our export team replies with pricing, minimum order quantities and lead times.',
+  },
+]
+
 async function wipe(payload: Payload) {
   for (const collection of [
     'inquiries',
@@ -200,7 +218,7 @@ async function main() {
         shortDescription: c.shortDescription,
         description: md(c.description),
         highlights: c.highlights?.map((text) => ({ text })),
-        faqs: c.faqs,
+        faqs: c.faqs ?? defaultCategoryFaqs(c.title),
         featured: !parent,
         order,
         image: parent ? undefined : images.hero,
@@ -267,9 +285,7 @@ async function main() {
         minOrderQuantity: 1,
         availability: 'in-stock',
         meta: {
-          title:
-            p.meta?.title ||
-            `${p.title} – ${p.generic} ${p.strength} ${p.form} Manufacturer & Exporter`,
+          title: p.meta?.title || `${p.generic} ${p.strength} ${p.form} – ${p.title}`,
           description: p.meta?.description || p.short,
           keywords:
             p.meta?.keywords ||
@@ -395,7 +411,7 @@ ${REGION_TEXT[c.region]}
           },
         ],
         meta: {
-          title: `Pharmaceutical Supplier & Exporter to ${c.name} | ${siteSettings.siteName}`,
+          title: `Pharmaceutical Exporter to ${c.name}`,
           description: `WHO-GMP certified pharmaceutical manufacturer exporting to ${c.name} since ${c.since}. ${c.authority} registration support, antibiotics, cardiovascular, diabetes and more. Request a quote.`,
           keywords: `pharmaceutical supplier ${c.name}, medicine exporter to ${c.name}, pharmaceutical company ${c.name} import, generic medicines ${c.name}`,
         },

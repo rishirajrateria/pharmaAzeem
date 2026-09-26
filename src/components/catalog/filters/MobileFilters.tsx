@@ -78,7 +78,11 @@ export function MobileFilters({
     if (!open || window.matchMedia('(min-width: 1024px)').matches) return
     const panel = panelRef.current
     const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null
-    panel?.focus({ preventScroll: true })
+    const focusRaf = requestAnimationFrame(() =>
+      (panel?.querySelector<HTMLElement>('button[aria-label="Close filters"]') ?? panel)?.focus({
+        preventScroll: true,
+      }),
+    )
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpen(false)
@@ -107,6 +111,7 @@ export function MobileFilters({
     window.addEventListener('keydown', onKey)
     document.documentElement.style.overflow = 'hidden'
     return () => {
+      cancelAnimationFrame(focusRaf)
       window.removeEventListener('keydown', onKey)
       document.documentElement.style.overflow = ''
       previous?.focus({ preventScroll: true })

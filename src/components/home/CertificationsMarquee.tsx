@@ -1,6 +1,8 @@
 import { ArrowRight, Award } from 'lucide-react'
 import Link from 'next/link'
 
+import { MarqueePause } from './MarqueePause'
+
 import type { Certification } from '@/payload-types'
 
 import { Media } from '../Media'
@@ -44,9 +46,13 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
           View all licenses &amp; certifications{' '}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
+        <MarqueePause targetId="cert-marquee" />
       </Container>
 
-      <div className="group fade-mask-x relative mt-6 overflow-hidden motion-reduce:overflow-x-auto motion-reduce:pb-3 motion-reduce:mask-none">
+      <div
+        id="cert-marquee"
+        className="group fade-mask-x relative mt-6 overflow-hidden motion-reduce:overflow-x-auto motion-reduce:pb-3 motion-reduce:mask-none data-[paused=true]:[&_ul]:[animation-play-state:paused]"
+      >
         <ul className="flex w-max animate-marquee motion-reduce:animate-none motion-reduce:px-4 group-hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
           {items.map((c, i) => {
             const copy = i >= certifications.length

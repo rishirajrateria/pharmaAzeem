@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { RichText } from '@/components/RichText'
@@ -70,6 +71,7 @@ export default async function ProductsPage({ searchParams }: Props) {
     getProductFacets(),
     getAllProductsSlim(),
   ])
+  if (result.totalPages > 0 && filters.page > result.totalPages) notFound()
   const suggestions = result.docs.length === 0 ? await getFeaturedProducts(4) : []
   const labels = getCommerceLabels(settings)
   const name = siteName(settings)

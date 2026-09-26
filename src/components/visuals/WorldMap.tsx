@@ -62,8 +62,9 @@ export function WorldMap({
               )}
             </>
           )
+          // ≥24px hit area via a transparent pseudo-element (WCAG 2.5.8) without enlarging the dot.
           const cls = cn(
-            'group absolute -translate-x-1/2 -translate-y-1/2 rounded-full',
+            'group absolute -translate-x-1/2 -translate-y-1/2 rounded-full before:absolute before:-inset-3 before:content-[""]',
             pin.featured ? 'h-2.5 w-2.5 sm:h-3 sm:w-3' : 'h-2 w-2',
           )
           return pin.href ? (
@@ -74,6 +75,9 @@ export function WorldMap({
               aria-label={pin.name}
               className={cls}
               style={pos}
+              // Dense minor pins are decorative for keyboard users – the country list below is the accessible route.
+              tabIndex={pin.featured ? undefined : -1}
+              aria-hidden={pin.featured ? undefined : true}
             >
               {dot}
             </a>

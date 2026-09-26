@@ -98,9 +98,9 @@ export function FacilityCard({
             </span>
           </div>
 
-          <h3 id={`${anchor}-title`} className="mt-5 heading-3 text-ink-950">
+          <h2 id={`${anchor}-title`} className="mt-5 heading-3 text-ink-950">
             {facility.name}
-          </h3>
+          </h2>
           {(place || facility.address) && (
             <p className="mt-2 flex items-start gap-1.5 text-sm text-ink-500">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" aria-hidden="true" />

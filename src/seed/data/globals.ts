@@ -66,10 +66,10 @@ export const siteSettings = {
 export const homepage = {
   hero: {
     eyebrow: 'WHO-GMP certified manufacturer & exporter',
-    title: 'Trusted medicines for a healthier world',
+    title: 'Trusted pharmaceutical manufacturer & exporter for a healthier world',
     highlight: 'healthier world',
     subtitle:
-      'From our WHO-GMP certified plants to pharmacies and hospitals in 50+ countries – 300+ generic formulations, full regulatory support and dependable supply.',
+      'From our WHO-GMP certified plants to pharmacies and hospitals in 50+ countries – hundreds of generic formulations, full regulatory support and dependable supply.',
     primaryCta: { label: 'Explore products', url: '/products' },
     secondaryCta: { label: 'Request a quotation', url: '/inquiry' },
   },
@@ -192,9 +192,9 @@ export const homepage = {
     },
   ],
   meta: {
-    title: 'Azeem Pharmaceuticals – WHO-GMP Certified Pharmaceutical Manufacturer & Exporter',
+    title: 'Azeem Pharmaceuticals | WHO-GMP Pharma Manufacturer & Exporter',
     description:
-      'WHO-GMP certified manufacturer & exporter of 300+ generic medicines to 50+ countries. Antibiotics, cardiovascular, diabetes, injectables & more. Request a quote.',
+      'WHO-GMP certified manufacturer & exporter of generic medicines to 50+ countries. Antibiotics, cardiovascular, diabetes, injectables & more. Request a quote.',
     keywords:
       'pharmaceutical manufacturer, pharmaceutical exporter, WHO GMP certified pharmaceutical company, generic medicines supplier, third party pharma manufacturing, pharma export company',
   },
@@ -203,7 +203,7 @@ export const homepage = {
 export const aboutPage = {
   hero: {
     eyebrow: 'About us',
-    title: 'Fifteen years of making medicines the right way',
+    title: 'About Azeem Pharmaceuticals: fifteen years of quality generic medicines',
     subtitle:
       'Azeem Pharmaceuticals is an integrated, WHO-GMP certified pharmaceutical company manufacturing and exporting quality generic medicines to healthcare partners on five continents.',
   },
@@ -334,7 +334,7 @@ Every product we ship carries the same commitment: manufactured under WHO-GMP, t
     },
   ],
   meta: {
-    title: 'About Azeem Pharmaceuticals – WHO-GMP Certified Pharma Company',
+    title: 'About Us – WHO-GMP Pharma Company',
     description:
       'Learn about Azeem Pharmaceuticals: a WHO-GMP certified manufacturer and exporter founded in 2009, with five facilities, 450+ people and partners in 50+ countries.',
     keywords:
@@ -345,7 +345,7 @@ Every product we ship carries the same commitment: manufactured under WHO-GMP, t
 export const qualityPage = {
   hero: {
     eyebrow: 'Quality assurance',
-    title: 'Quality is designed into every batch',
+    title: 'Pharmaceutical quality assurance & GMP compliance',
     subtitle:
       'A pharmaceutical quality system aligned with WHO-GMP, ICH Q8–Q10 and revised Schedule M – covering every step from raw material to release.',
   },
@@ -471,7 +471,7 @@ export const qualityPage = {
 export const manufacturingPage = {
   hero: {
     eyebrow: 'Manufacturing',
-    title: 'Infrastructure engineered for quality and scale',
+    title: 'WHO-GMP pharmaceutical manufacturing facilities built for scale',
     subtitle:
       'Five purpose-built facilities covering oral solids, liquids, externals, sterile injectables, R&D and export logistics – all WHO-GMP certified.',
   },
@@ -579,7 +579,7 @@ export const manufacturingPage = {
     },
   ],
   meta: {
-    title: 'Pharmaceutical Manufacturing Facilities – WHO-GMP Plants',
+    title: 'Pharmaceutical Manufacturing Facilities',
     description:
       "Explore Azeem Pharmaceuticals' WHO-GMP manufacturing: oral solids, liquids, externals, sterile injectables, R&D and contract manufacturing capacity in Ahmedabad, India.",
     keywords:
@@ -590,7 +590,7 @@ export const manufacturingPage = {
 export const globalPresencePage = {
   hero: {
     eyebrow: 'Global presence',
-    title: 'Serving healthcare partners in 50+ countries',
+    title: 'Pharmaceutical exporter serving healthcare partners in 50+ countries',
     subtitle:
       'Registered products, local regulatory know-how and dependable logistics across Africa, the Middle East, Asia, the CIS and Latin America.',
   },
@@ -676,7 +676,7 @@ export const globalPresencePage = {
     },
   ],
   meta: {
-    title: 'Global Presence – Pharmaceutical Exporter to 50+ Countries',
+    title: 'Pharmaceutical Exporter to 50+ Countries',
     description:
       'Azeem Pharmaceuticals exports WHO-GMP medicines to 50+ countries in Africa, the Middle East, Asia, CIS and Latin America. Country-by-country regulatory and market overview.',
     keywords:
@@ -705,7 +705,7 @@ export const licensesPage = {
     },
   ],
   meta: {
-    title: 'Licenses & Certifications – WHO-GMP, ISO, CoPP',
+    title: 'Licenses & Certifications',
     description:
       "View Azeem Pharmaceuticals' manufacturing licences, WHO-GMP certificate, ISO 9001/14001/45001 certifications, CoPP, halal and other accreditations.",
     keywords:
@@ -716,7 +716,7 @@ export const licensesPage = {
 export const contactPage = {
   hero: {
     eyebrow: 'Contact',
-    title: 'Talk to our export team',
+    title: 'Contact our pharmaceutical export team',
     subtitle:
       'Product inquiries, registrations, private label projects or a facility audit – we reply within one business day.',
   },
@@ -742,7 +742,7 @@ export const contactPage = {
     },
   ],
   meta: {
-    title: 'Contact Azeem Pharmaceuticals – Export Inquiries',
+    title: 'Contact Our Export Team',
     description:
       'Contact Azeem Pharmaceuticals for product quotations, registrations, private label and contract manufacturing. Email, phone, WhatsApp and inquiry form.',
     keywords:
@@ -755,7 +755,7 @@ export const productsPage = {
     eyebrow: 'Products',
     title: 'Pharmaceutical product catalogue',
     subtitle:
-      '300+ WHO-GMP certified generic formulations across ten therapeutic categories. Filter by category, dosage form or prescription status and add products to your inquiry list.',
+      'WHO-GMP certified generic formulations across ten therapeutic categories. Filter by category, dosage form or prescription status and add products to your inquiry list.',
   },
   intro: `Browse our complete range of tablets, capsules, syrups, injectables, creams and nutraceuticals. Every product page includes composition, indications, pack sizes, storage conditions and downloadable documentation. Add the products you need to your inquiry list and request a single quotation for everything.`,
   faqs: [
@@ -771,9 +771,9 @@ export const productsPage = {
     },
   ],
   meta: {
-    title: 'Pharmaceutical Products – Generic Medicines Catalogue',
+    title: 'Generic Medicines Catalogue',
     description:
-      'Browse 300+ WHO-GMP certified generic medicines: antibiotics, cardiovascular, diabetes, pain, GI, respiratory, dermatology, CNS, vitamins and injectables. Inquire for pricing.',
+      'Browse WHO-GMP certified generic medicines: antibiotics, cardiovascular, diabetes, pain, GI, respiratory, dermatology, CNS, vitamins and injectables. Inquire for pricing.',
     keywords:
       'pharmaceutical products list, generic medicines catalogue, pharma products exporter, medicine manufacturer product list',
   },
@@ -790,7 +790,7 @@ export const inquiryPage = {
   formSuccessMessage:
     'Your inquiry has been received. A member of our export team will send you a quotation within one business day.',
   meta: {
-    title: 'Request a Quotation – Pharmaceutical Inquiry',
+    title: 'Request a Quotation',
     description:
       'Send your pharmaceutical product inquiry to Azeem Pharmaceuticals and receive a quotation with MOQs and lead times within one business day.',
     keywords: 'pharmaceutical quotation request, medicine price inquiry, pharma bulk order inquiry',
