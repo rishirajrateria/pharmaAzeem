@@ -31,6 +31,7 @@ import { Inquiries } from './collections/Inquiries'
 import { Media } from './collections/Media'
 import { Products } from './collections/Products'
 import { Users } from './collections/Users'
+import { migrations } from './migrations'
 import { Homepage } from './globals/Homepage'
 import { SiteSettings } from './globals/SiteSettings'
 import {
@@ -66,6 +67,7 @@ const db = dbUrl.startsWith('postgres')
   ? postgresAdapter({
       pool: { connectionString: dbUrl },
       push: process.env.NODE_ENV !== 'production',
+      prodMigrations: migrations,
     })
   : sqliteAdapter({ client: { url: dbUrl }, push: true })
 
