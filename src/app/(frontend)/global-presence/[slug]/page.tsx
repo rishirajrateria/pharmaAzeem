@@ -17,7 +17,6 @@ import { countryPath, regionAnchor, regionLabel, regulatorShort } from '@/compon
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Button, Container, Eyebrow, Section, SectionHeading } from '@/components/ui'
 import { Reveal } from '@/components/ui/Reveal'
-import { Orbs } from '@/components/visuals/Orbs'
 import { getCommerceLabels } from '@/lib/commerce'
 import { getCountries, getCountryBySlug, getFeaturedProducts, getSiteSettings } from '@/lib/data'
 import {
@@ -155,22 +154,25 @@ export default async function CountryPage({ params }: { params: Params }) {
       />
 
       {/* Hero */}
-      <section aria-labelledby="hero-heading" className="relative overflow-hidden pt-8 sm:pt-12">
-        <Orbs variant="intense" />
+      <section
+        aria-labelledby="hero-heading"
+        className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10"
+      >
         <Container>
           <Breadcrumbs
             crumbs={[
               { name: 'Global presence', path: '/global-presence' },
               { name: country.name, path },
             ]}
+            className="mb-8 sm:mb-10"
           />
-          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="animate-fade-up">
-              <Eyebrow className="mb-5">Global presence · {region}</Eyebrow>
+          <div className="grid items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-6">
+              <Eyebrow className="mb-4">Global presence · {region}</Eyebrow>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                 {country.flag && (
                   <span
-                    className="glass inline-flex h-14 w-14 shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
+                    className="inline-flex h-14 w-14 border border-ink-200 bg-white shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
                     aria-hidden="true"
                   >
                     {country.flag}
@@ -182,22 +184,6 @@ export default async function CountryPage({ params }: { params: Params }) {
                 </h1>
               </div>
               <p className="lead mt-5 max-w-2xl">{summary}</p>
-              <ul className="mt-6 flex flex-wrap gap-2" aria-label="Key facts">
-                {country.sinceYear && (
-                  <li className="chip !py-1.5">
-                    <Clock className="h-3.5 w-3.5" aria-hidden="true" /> Exporting since{' '}
-                    {country.sinceYear}
-                  </li>
-                )}
-                {regulator && (
-                  <li className="chip !py-1.5">
-                    <Landmark className="h-3.5 w-3.5" aria-hidden="true" /> Regulator: {regulator}
-                  </li>
-                )}
-                <li className="chip !py-1.5">
-                  <Check className="h-3.5 w-3.5" aria-hidden="true" /> Export documentation included
-                </li>
-              </ul>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="#inquiry">
                   Talk to our {country.name} desk{' '}
@@ -207,10 +193,49 @@ export default async function CountryPage({ params }: { params: Params }) {
                   Browse products
                 </Button>
               </div>
+              <dl
+                className="mt-10 grid gap-6 border-t border-ink-200 pt-6 sm:grid-cols-3"
+                aria-label="Key facts"
+              >
+                {country.sinceYear && (
+                  <div className="flex items-start gap-3">
+                    <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" aria-hidden="true" />
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-ink-500">
+                        Exporting since
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink-950">
+                        {country.sinceYear}
+                      </dd>
+                    </div>
+                  </div>
+                )}
+                {regulator && (
+                  <div className="flex items-start gap-3">
+                    <Landmark
+                      className="mt-0.5 h-5 w-5 shrink-0 text-brand-700"
+                      aria-hidden="true"
+                    />
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-ink-500">Regulator</dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink-950">{regulator}</dd>
+                    </div>
+                  </div>
+                )}
+                <div className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" aria-hidden="true" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-ink-500">Documentation</dt>
+                    <dd className="mt-1 text-sm font-semibold text-ink-950">
+                      Export documents included
+                    </dd>
+                  </div>
+                </div>
+              </dl>
             </div>
-            <Reveal delay={120}>
+            <div className="lg:col-span-6">
               <CountryMapCard country={country} siblings={siblings} />
-            </Reveal>
+            </div>
           </div>
         </Container>
       </section>
@@ -264,7 +289,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                         key={h.id || i}
                         className="flex items-start gap-3 text-sm font-medium text-ink-900"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-white text-brand-600 shadow-sm ring-1 ring-brand-200">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-white text-brand-700 ring-1 ring-brand-200">
                           <Check className="h-3 w-3" aria-hidden="true" />
                         </span>
                         {h.text}
@@ -274,12 +299,13 @@ export default async function CountryPage({ params }: { params: Params }) {
                 </div>
               )}
               {country.image && (
-                <div className="glass rotate-1 p-2 shadow-glass-lg transition-transform duration-700 hover:rotate-0">
+                <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
                   <Media
                     media={country.image}
                     size="card"
+                    fill
                     sizes="(max-width: 1024px) 100vw, 30vw"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="h-full w-full"
                   />
                 </div>
               )}
@@ -378,12 +404,8 @@ export default async function CountryPage({ params }: { params: Params }) {
       {/* Inquiry desk */}
       <Section id="inquiry" aria-labelledby="inquiry-heading" className="scroll-mt-28 !pt-0">
         <Container>
-          <div className="glass-strong glass-edge noise relative overflow-hidden p-6 sm:p-10 lg:p-14">
-            <div
-              className="pointer-events-none absolute inset-0 dots-pattern opacity-40"
-              aria-hidden="true"
-            />
-            <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div className="border border-ink-200 bg-white p-6 sm:p-10 lg:p-14">
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               <div>
                 <Eyebrow className="mb-4">Contact</Eyebrow>
                 <h2 id="inquiry-heading" className="heading-2">

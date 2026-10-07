@@ -2,7 +2,6 @@ import { Clock, Mail, MessageCircle, Phone } from 'lucide-react'
 
 import { InquiryForm } from '@/components/forms/InquiryForm'
 import { Container, Eyebrow, Section } from '@/components/ui'
-import { Orbs } from '@/components/visuals/Orbs'
 import type { SiteSetting } from '@/payload-types'
 
 type Props = {
@@ -23,18 +22,13 @@ export function InquireSection({ product, contact }: Props) {
   const email = contact?.email || undefined
   const whatsapp = contact?.whatsapp?.replace(/\D/g, '') || undefined
   return (
-    <Section
-      id="inquire"
-      aria-labelledby="inquire-heading"
-      className="scroll-mt-24 overflow-hidden"
-    >
-      <Orbs variant="subtle" />
+    <Section id="inquire" aria-labelledby="inquire-heading" className="scroll-mt-24">
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>
             <Eyebrow className="mb-4">Request a quotation</Eyebrow>
             <h2 id="inquire-heading" className="heading-2">
-              Inquire about <span className="text-gradient">{product.title}</span>
+              Inquire about <span className="text-brand-700">{product.title}</span>
             </h2>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
               Share your quantities and destination and our export desk will reply with pricing,
@@ -47,17 +41,14 @@ export function InquireSection({ product, contact }: Props) {
             <ul className="mt-3 space-y-2" role="list">
               {INCLUDE.map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-ink-700">
-                  <span
-                    className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-500"
-                    aria-hidden="true"
-                  />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-700" aria-hidden="true" />
                   {t}
                 </li>
               ))}
             </ul>
 
             {(email || phone || whatsapp) && (
-              <div className="glass mt-8 p-5">
+              <div className="mt-8 border border-ink-200 bg-surface-2 p-5">
                 <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
                   Prefer to talk?
                 </p>
@@ -106,26 +97,20 @@ export function InquireSection({ product, contact }: Props) {
             )}
           </div>
 
-          <div className="glass-strong glass-edge relative overflow-hidden p-5 sm:p-8">
-            <div
-              className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-brand-200/40 blur-3xl"
-              aria-hidden="true"
+          <div className="border border-ink-200 bg-white p-5 sm:p-8">
+            <h3 className="text-lg font-semibold text-ink-950">Send your inquiry</h3>
+            <p className="mt-1 text-sm text-ink-600">
+              {product.title} will be attached automatically. No account needed.
+            </p>
+            <InquiryForm
+              source="product-page"
+              includeList={false}
+              product={product}
+              submitLabel="Send inquiry"
+              compact
+              className="mt-6"
+              successMessage={`Thank you – we have received your inquiry about ${product.title}. Our export desk will get back to you shortly.`}
             />
-            <div className="relative">
-              <h3 className="text-lg font-semibold text-ink-950">Send your inquiry</h3>
-              <p className="mt-1 text-sm text-ink-600">
-                {product.title} will be attached automatically. No account needed.
-              </p>
-              <InquiryForm
-                source="product-page"
-                includeList={false}
-                product={product}
-                submitLabel="Send inquiry"
-                compact
-                className="mt-6"
-                successMessage={`Thank you – we have received your inquiry about ${product.title}. Our export desk will get back to you shortly.`}
-              />
-            </div>
           </div>
         </div>
       </Container>

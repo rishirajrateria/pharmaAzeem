@@ -65,7 +65,7 @@ export function KeyFacts({
       )}
     >
       {facts.map((f) => (
-        <div key={f.label} className="flex gap-3 bg-white/75 px-4 py-3.5 backdrop-blur sm:px-5">
+        <div key={f.label} className="flex gap-3 bg-white px-4 py-3.5 sm:px-5">
           <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100">
             <Icon name={f.icon} className="h-3.5 w-3.5" />
           </span>

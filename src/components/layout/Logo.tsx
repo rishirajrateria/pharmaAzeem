@@ -63,7 +63,7 @@ export function Logo({
         // eslint-disable-next-line @next/next/no-img-element
         <img src={logo} alt={siteName} className="h-9 w-auto" width={120} height={36} />
       ) : (
-        <LogoMark className="transition-transform duration-500 group-hover:rotate-[-8deg]" />
+        <LogoMark className="transition-transform duration-500" />
       )}
       <span className="flex flex-col leading-none">
         <span

@@ -2,7 +2,6 @@ import { ArrowRight, Check } from 'lucide-react'
 
 import { Button, Container, Eyebrow, Section } from '@/components/ui'
 import { Reveal } from '@/components/ui/Reveal'
-import { MoleculeField } from '@/components/visuals/MoleculeField'
 import type { ManufacturingPage } from '@/payload-types'
 
 const HOW = [
@@ -12,7 +11,7 @@ const HOW = [
   { title: 'Scale production', text: 'Commercial batches released under our quality system.' },
 ]
 
-/** Contract / third-party manufacturing offer in a red-tinted glass panel with bullets and CTA. */
+/** Contract / third-party manufacturing offer: copy, bullets and CTAs beside a numbered "how it works" list. */
 export function ContractManufacturing({
   data,
 }: {
@@ -28,18 +27,8 @@ export function ContractManufacturing({
     >
       <Container>
         <Reveal>
-          <div className="glass-red glass-edge relative overflow-hidden p-6 sm:p-10 lg:p-14">
-            <div
-              className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.35),transparent)]"
-              aria-hidden="true"
-            />
-            <div
-              className="pointer-events-none absolute -bottom-10 -right-6 hidden w-[24rem] opacity-40 lg:block"
-              aria-hidden="true"
-            >
-              <MoleculeField animated={false} />
-            </div>
-            <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-6">
                 <Eyebrow className="mb-4">Contract manufacturing</Eyebrow>
                 <h2 id="manufacturing-contract-title" className="heading-2">
@@ -57,8 +46,8 @@ export function ContractManufacturing({
                         key={b.id || i}
                         className="flex items-start gap-3 text-[15px] text-ink-800"
                       >
-                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_6px_14px_-6px_rgb(225_29_46_/_0.7)]">
-                          <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span className="mt-0.5 shrink-0 text-brand-700">
+                          <Check className="h-4 w-4" aria-hidden="true" />
                         </span>
                         <span>{b.text}</span>
                       </li>
@@ -76,14 +65,14 @@ export function ContractManufacturing({
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <div className="glass-strong glass-edge p-5 sm:p-6">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <div className="border border-ink-200 bg-white p-5 sm:p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">
                     How a project runs
                   </p>
                   <ol className="mt-4 space-y-4" aria-label="Contract manufacturing steps">
                     {HOW.map((h, i) => (
                       <li key={h.title} className="flex gap-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-brand-200 bg-white text-xs font-semibold text-brand-700">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-700 text-xs font-semibold text-white">
                           {i + 1}
                         </span>
                         <div>

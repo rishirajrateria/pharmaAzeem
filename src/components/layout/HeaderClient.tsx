@@ -68,7 +68,7 @@ export function HeaderClient({
   return (
     <header className="sticky top-0 z-50">
       {announcement?.text && (
-        <div className="bg-brand-gradient text-white">
+        <div className="bg-ink-950 text-white/90">
           <div className="container-x flex h-9 items-center justify-center gap-2 text-center text-xs font-medium tracking-wide">
             {announcement.url ? (
               <Link
@@ -83,14 +83,14 @@ export function HeaderClient({
           </div>
         </div>
       )}
-      <div className={cn('transition-all duration-500', scrolled ? 'py-2' : 'py-3 sm:py-4')}>
+      <div
+        className={cn(
+          'border-b border-ink-200 bg-white transition-shadow duration-200',
+          scrolled && 'shadow-glass-lg',
+        )}
+      >
         <div className="container-x">
-          <div
-            className={cn(
-              'glass-edge flex items-center justify-between gap-4 px-4 py-2 pl-5 transition-all duration-500 sm:px-5',
-              scrolled ? 'glass-strong shadow-glass-lg' : 'glass',
-            )}
-          >
+          <div className="flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
             <Logo siteName={siteName} tagline={tagline} logo={logo} />
 
             {/* Desktop nav */}
@@ -118,7 +118,7 @@ export function HeaderClient({
                 <Link
                   href="/products"
                   className={cn(
-                    'inline-flex items-center gap-1 whitespace-nowrap px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'inline-flex items-center gap-1 whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors hover:text-brand-700',
                     isActive('/products') || isActive('/categories')
                       ? 'text-brand-700'
                       : 'text-ink-700',
@@ -134,18 +134,16 @@ export function HeaderClient({
                 {/* Mega menu */}
                 <div
                   className={cn(
-                    'absolute left-1/2 top-full z-50 w-[min(60rem,calc(100vw-3rem))] -translate-x-1/2 pt-4 transition-all duration-300',
-                    mega
-                      ? 'visible translate-y-0 opacity-100'
-                      : 'invisible -translate-y-2 opacity-0',
+                    'absolute left-1/2 top-full z-50 w-[min(60rem,calc(100vw-3rem))] -translate-x-1/2 pt-5 transition-opacity duration-150',
+                    mega ? 'visible opacity-100' : 'invisible opacity-0',
                   )}
                 >
-                  <div className="glass-strong p-4 shadow-glass-lg">
+                  <div className="border border-ink-200 bg-white p-4 shadow-glass-lg">
                     <div className="grid grid-cols-3 gap-2">
                       {nav.map((c) => (
-                        <div key={c.id} className="p-3 transition hover:bg-brand-50/70">
+                        <div key={c.id} className="p-3 transition-colors hover:bg-surface-2">
                           <Link prefetch={false} href={c.path} className="flex items-start gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.7)]">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-700">
                               <Icon name={c.icon} className="h-4.5 w-4.5" />
                             </span>
                             <span>
@@ -195,7 +193,7 @@ export function HeaderClient({
                   key={l.href}
                   href={l.href}
                   className={cn(
-                    'whitespace-nowrap px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors hover:text-brand-700',
                     isActive(l.href) ? 'text-brand-700' : 'text-ink-700',
                   )}
                 >
@@ -212,7 +210,7 @@ export function HeaderClient({
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-10 w-10 items-center justify-center text-ink-800 transition hover:bg-brand-50 lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center text-ink-800 transition-colors hover:bg-surface-2 lg:hidden"
                 aria-label="Open menu"
                 aria-expanded={open}
               >
@@ -234,7 +232,7 @@ export function HeaderClient({
       >
         <div
           className={cn(
-            'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300',
+            'absolute inset-0 bg-ink-950/40 transition-opacity duration-200',
             open ? 'opacity-100' : 'opacity-0',
           )}
           onClick={() => setOpen(false)}
@@ -243,7 +241,7 @@ export function HeaderClient({
           ref={menuRef}
           tabIndex={-1}
           className={cn(
-            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col glass-strong shadow-glass-lg outline-none transition-[transform,visibility] duration-500 ease-[var(--ease-out-expo)]',
+            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col border-l border-ink-200 bg-white outline-none transition-[transform,visibility] duration-300 ease-out',
             open ? 'visible translate-x-0' : 'invisible translate-x-full',
           )}
           role="dialog"

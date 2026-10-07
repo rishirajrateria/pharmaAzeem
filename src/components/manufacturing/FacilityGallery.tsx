@@ -34,10 +34,6 @@ export function FacilityGallery({
           className="absolute inset-0 h-full w-full animate-scale-in"
           imgClassName="object-cover"
         />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/35 via-transparent to-transparent"
-          aria-hidden="true"
-        />
       </div>
       <figcaption className="sr-only">{mediaAlt(current, name)}</figcaption>
       <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">

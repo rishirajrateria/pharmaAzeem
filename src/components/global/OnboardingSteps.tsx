@@ -27,29 +27,17 @@ const DEFAULT_STEPS: Step[] = [
   },
 ]
 
-/** Numbered stepper – vertical on mobile, a connected horizontal track from lg up. */
+/** Numbered steps – stacked on mobile, four columns from lg up. */
 export function OnboardingSteps({ steps }: { steps?: Step[] | null }) {
   const list = steps?.length ? steps : DEFAULT_STEPS
   return (
-    <ol className="relative grid gap-4 lg:grid-cols-4 lg:gap-6" role="list">
-      <div
-        className="pointer-events-none absolute inset-x-12 top-9 hidden h-px bg-gradient-to-r from-transparent via-brand-300 to-transparent lg:block"
-        aria-hidden="true"
-      />
+    <ol className="grid gap-4 lg:grid-cols-4 lg:gap-6" role="list">
       {list.map((s, i) => (
-        <Reveal as="li" key={s.id || s.title} delay={i * 90} className="relative">
-          <article className="glass-card glass-edge relative h-full p-6">
-            <div className="flex items-center gap-4">
-              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center bg-white text-sm font-semibold text-brand-700 shadow-glass ring-1 ring-brand-200">
-                <span
-                  className="absolute inset-0 bg-brand-500/20 animate-pulse-ring"
-                  style={{ animationDelay: `${i * -0.6}s` }}
-                  aria-hidden="true"
-                />
-                <span className="relative">{String(i + 1).padStart(2, '0')}</span>
-              </span>
-              <span className="hairline hidden flex-1 lg:block" aria-hidden="true" />
-            </div>
+        <Reveal as="li" key={s.id || s.title} delay={i * 90}>
+          <article className="h-full border border-ink-200 bg-white p-6">
+            <span className="flex h-10 w-10 items-center justify-center bg-brand-700 text-sm font-semibold text-white">
+              {String(i + 1).padStart(2, '0')}
+            </span>
             <h3 className="mt-5 text-lg font-semibold text-ink-950">{s.title}</h3>
             {s.description && (
               <p className="mt-2 text-sm leading-relaxed text-ink-600">{s.description}</p>

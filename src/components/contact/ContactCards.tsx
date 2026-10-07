@@ -69,7 +69,7 @@ function Card({
   return (
     <Reveal delay={delay} className={cn('glass glass-edge p-6 sm:p-7', className)}>
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white">
           <Icon className="h-4.5 w-4.5" aria-hidden="true" />
         </span>
         <h3 className="text-base font-semibold text-ink-950">{title}</h3>
@@ -303,7 +303,7 @@ export function SocialLinks({
                 rel="noopener noreferrer me"
                 aria-label={`${meta.label} (opens in a new tab)`}
                 title={meta.label}
-                className="flex h-11 w-11 items-center justify-center border border-ink-200/80 bg-white/70 text-ink-700 transition duration-300 hover:-translate-y-0.5 hover:border-brand-500 hover:bg-brand-600 hover:text-white hover:shadow-glow"
+                className="flex h-11 w-11 items-center justify-center border border-ink-200/80 bg-white/70 text-ink-700 transition duration-300 hover:border-brand-500 hover:bg-brand-600 hover:text-white hover:shadow-glow"
               >
                 <Icon className="h-4.5 w-4.5" aria-hidden="true" />
               </a>

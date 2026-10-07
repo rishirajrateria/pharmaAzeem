@@ -43,10 +43,9 @@ export function FeaturedCategories({
           <Reveal as="li" delay={shown.length * 60} className="flex">
             <Link
               href="/products"
-              className="glass-red group relative flex w-full flex-col justify-between overflow-hidden p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 sm:p-8"
+              className="glass-red group relative flex w-full flex-col justify-between overflow-hidden p-6 transition-colors hover:border-brand-300 sm:p-8"
             >
-              <div className="dots-pattern absolute inset-0 opacity-40" aria-hidden="true" />
-              <span className="relative flex h-11 w-11 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+              <span className="relative flex h-11 w-11 items-center justify-center bg-brand-gradient text-white">
                 <Layers className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="relative mt-8">

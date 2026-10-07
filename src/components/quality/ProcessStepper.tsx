@@ -24,10 +24,6 @@ export function ProcessStepper({
   if (!steps?.length) return null
   return (
     <Section aria-labelledby="process-title" className="isolate overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full dots-pattern fade-mask-y opacity-50"
-        aria-hidden="true"
-      />
       <Container>
         <SectionHeading
           eyebrow={eyebrow}
@@ -38,7 +34,7 @@ export function ProcessStepper({
           }
         />
         <ol
-          className="relative mt-12 grid gap-8 before:absolute before:bottom-8 before:left-6 before:top-8 before:w-px before:bg-gradient-to-b before:from-brand-300 before:via-brand-200 before:to-transparent lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14 lg:before:hidden"
+          className="relative mt-12 grid gap-8 before:absolute before:bottom-8 before:left-6 before:top-8 before:w-px before:bg-ink-200 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14 lg:before:hidden"
           aria-label="Quality control steps"
         >
           {steps.map((s, i) => (
@@ -52,7 +48,7 @@ export function ProcessStepper({
                 {pad2(i + 1)}
               </span>
               <span
-                className="pointer-events-none absolute left-14 top-6 hidden h-px w-[calc(100%-1.5rem)] bg-gradient-to-r from-brand-300 via-brand-200 to-transparent group-last:hidden group-[:nth-child(3n)]:hidden lg:block"
+                className="pointer-events-none absolute left-14 top-6 hidden h-px w-[calc(100%-1.5rem)] bg-ink-200 group-last:hidden group-[:nth-child(3n)]:hidden lg:block"
                 aria-hidden="true"
               />
               <div className="glass-card p-6 lg:flex-1">

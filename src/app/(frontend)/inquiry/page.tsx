@@ -5,7 +5,6 @@ import { CtaBand } from '@/components/contact/CtaBand'
 import { ContactHero } from '@/components/contact/ContactHero'
 import { HOW_IT_WORKS_STEPS, HowItWorks, ReassuranceChips } from '@/components/contact/HowItWorks'
 import { InquiryListReview } from '@/components/contact/InquiryListReview'
-import { InquiryVisual } from '@/components/contact/InquiryVisual'
 import { PageSections } from '@/components/contact/PageSections'
 import { howToJsonLd } from '@/components/contact/schema'
 import { InquiryForm } from '@/components/forms/InquiryForm'
@@ -76,7 +75,6 @@ export default async function InquiryPage() {
         intro={page.intro}
         image={page.hero?.image}
         badge={{ title: 'One quotation for your whole list', subtitle: 'No payment required' }}
-        visual={<InquiryVisual listName={listName} />}
       >
         <ReassuranceChips className="mt-7" />
       </ContactHero>
@@ -129,10 +127,6 @@ export default async function InquiryPage() {
         aria-labelledby="how-it-works-heading"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 hairline" aria-hidden="true" />
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 dots-pattern opacity-40 fade-mask-y"
-          aria-hidden="true"
-        />
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <Eyebrow className="mb-4 justify-center">How it works</Eyebrow>

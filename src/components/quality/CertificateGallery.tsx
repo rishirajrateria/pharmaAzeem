@@ -46,10 +46,6 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
   }
   return (
     <div className="relative isolate">
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 dots-pattern fade-mask-y opacity-40"
-        aria-hidden="true"
-      />
       {groups.map((g, gi) => (
         <section
           key={g.type}

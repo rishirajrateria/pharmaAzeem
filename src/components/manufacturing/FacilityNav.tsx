@@ -74,7 +74,7 @@ export function FacilityNav({
                 className={cn(
                   'inline-flex items-center gap-2 whitespace-nowrap px-3.5 py-2 text-xs font-semibold tracking-tight transition-all duration-300 sm:text-sm',
                   isActive
-                    ? 'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]'
+                    ? 'bg-brand-gradient text-white'
                     : 'text-ink-700 hover:bg-brand-50 hover:text-brand-700',
                 )}
               >

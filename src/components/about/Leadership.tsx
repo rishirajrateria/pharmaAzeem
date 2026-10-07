@@ -19,13 +19,10 @@ const initials = (name: string) =>
 function Monogram({ name }: { name: string }) {
   return (
     <div
-      className="bg-brand-gradient-animated relative flex aspect-[4/5] items-center justify-center overflow-hidden"
+      className="relative flex bg-brand-50 aspect-[4/5] items-center justify-center overflow-hidden"
       aria-hidden="true"
     >
-      <div className="absolute inset-0 dots-pattern opacity-30 mix-blend-soft-light" />
-      <div className="absolute -bottom-10 -right-10 h-40 w-40 border border-white/30" />
-      <div className="absolute -left-12 -top-12 h-40 w-40 border border-white/20" />
-      <span className="relative font-sans text-5xl font-semibold tracking-tight text-white drop-shadow-[0_8px_24px_rgb(71_6_16_/_0.5)] sm:text-6xl">
+      <span className="relative font-sans text-5xl font-semibold tracking-tight text-brand-700 sm:text-6xl">
         {initials(name)}
       </span>
     </div>
@@ -68,7 +65,6 @@ export function Leadership({ leadership }: Props) {
                       alt={`${p.name}, ${p.role}`}
                       sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 22vw"
                       className="aspect-[4/5] bg-white"
-                      imgClassName="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
                     />
                   ) : (
                     <Monogram name={p.name} />

@@ -53,10 +53,6 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
       <Container>
         <Reveal>
           <div className="relative overflow-hidden glass-red glass-edge p-6 sm:p-10 lg:grid lg:grid-cols-12 lg:gap-14 lg:p-14">
-            <div
-              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.22),transparent)]"
-              aria-hidden="true"
-            />
             <div className="relative lg:col-span-7">
               <Eyebrow className="mb-4">Verification</Eyebrow>
               <h2 id="verify-title" className="heading-2">
@@ -84,7 +80,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               className="relative mt-10 glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0"
               aria-labelledby="dossier-title"
             >
-              <span className="flex h-11 w-11 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+              <span className="flex h-11 w-11 items-center justify-center bg-brand-gradient text-white">
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 id="dossier-title" className="mt-5 text-lg font-semibold text-ink-950">
@@ -93,10 +89,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               <ul className="mt-4 space-y-2 text-sm text-ink-700" role="list">
                 {docs.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
-                    <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 bg-brand-500"
-                      aria-hidden="true"
-                    />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-brand-500" aria-hidden="true" />
                     {d}
                   </li>
                 ))}

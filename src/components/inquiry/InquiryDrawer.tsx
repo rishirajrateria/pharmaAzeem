@@ -36,7 +36,7 @@ export function InquiryDrawer({ labels }: Props) {
     >
       <div
         className={cn(
-          'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300',
+          'absolute inset-0 bg-ink-950/30 transition-opacity duration-300',
           isOpen ? 'opacity-100' : 'opacity-0',
         )}
         onClick={close}

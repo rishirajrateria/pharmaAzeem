@@ -29,7 +29,7 @@ export function CountryCard({ country, className, compact }: Props) {
       <div className="flex items-start justify-between gap-3">
         <span
           className={cn(
-            'flex shrink-0 items-center justify-center bg-gradient-to-br from-white to-brand-50 leading-none shadow-glass ring-1 ring-brand-100',
+            'flex shrink-0 items-center justify-center bg-white leading-none shadow-glass ring-1 ring-brand-100',
             compact ? 'h-11 w-11 text-2xl' : 'h-14 w-14 text-3xl sm:text-4xl',
           )}
           aria-hidden="true"

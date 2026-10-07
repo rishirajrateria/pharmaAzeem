@@ -24,12 +24,8 @@ export function CoreValues({ values }: Props) {
               delay={i * 60}
               className="group glass-card glass-edge relative overflow-hidden p-6 sm:p-7"
             >
-              <div
-                className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-100/60 blur-2xl transition-transform duration-700 group-hover:scale-150"
-                aria-hidden="true"
-              />
               <div className="relative flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white">
                   <Icon name={v.icon} className="h-5 w-5" />
                 </span>
                 <span className="text-[11px] tracking-[0.2em] text-ink-300">

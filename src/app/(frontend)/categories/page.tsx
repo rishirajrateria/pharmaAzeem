@@ -117,12 +117,11 @@ export default async function CategoriesIndexPage() {
           { label: 'View all products', url: '/products', variant: 'primary' },
           { label: labels.ctaLabel, url: '/inquiry', variant: 'secondary' },
         ]}
-        icon="layers"
       >
         <p className="max-w-2xl text-[15px] leading-relaxed text-ink-600">{description}</p>
       </CatalogHero>
 
-      <Section className="!pt-0" aria-labelledby="categories-grid-title">
+      <Section aria-labelledby="categories-grid-title">
         <Container>
           <SectionHeading
             eyebrow="Therapeutic areas"
@@ -142,10 +141,6 @@ export default async function CategoriesIndexPage() {
       <Section className="!pt-0" aria-labelledby="category-index-title">
         <Container>
           <div className="glass relative overflow-hidden p-6 sm:p-10 lg:p-12">
-            <div
-              className="absolute inset-0 grid-pattern opacity-40 fade-mask-y"
-              aria-hidden="true"
-            />
             <div className="relative">
               <SectionHeading
                 eyebrow="Complete index"
@@ -162,9 +157,7 @@ export default async function CategoriesIndexPage() {
                       <Link href={`/categories/${c.path}`} className="hover:text-brand-700">
                         {c.title}
                       </Link>
-                      <span className="text-[11px] font-medium text-ink-400">
-                        {c.productCount}
-                      </span>
+                      <span className="text-[11px] font-medium text-ink-400">{c.productCount}</span>
                     </h3>
                     {c.children.length > 0 && (
                       <ul className="mt-2.5 space-y-1.5 border-l border-brand-200/70 pl-4">
@@ -175,9 +168,7 @@ export default async function CategoriesIndexPage() {
                               className="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700"
                             >
                               {s.title}
-                              <span className="text-[10px] text-ink-400">
-                                {s.productCount}
-                              </span>
+                              <span className="text-[10px] text-ink-400">{s.productCount}</span>
                             </Link>
                             {s.children.length > 0 && (
                               <ul className="mt-1 space-y-1 pl-4">

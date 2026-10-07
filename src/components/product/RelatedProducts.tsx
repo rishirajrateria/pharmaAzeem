@@ -52,10 +52,6 @@ export function MoreInCategory({ categories }: { categories: Category[] }) {
     <Section aria-labelledby="more-in-heading" className="!pt-0">
       <Container>
         <div className="glass glass-edge relative overflow-hidden p-5 sm:p-6">
-          <div
-            className="pointer-events-none absolute inset-0 dots-pattern opacity-30 fade-mask-x"
-            aria-hidden="true"
-          />
           <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 id="more-in-heading" className="text-sm font-semibold text-ink-950">
               Explore more from the range

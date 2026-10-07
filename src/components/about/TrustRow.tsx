@@ -22,10 +22,6 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
     <Section className="!pt-0" aria-labelledby="about-trust">
       <Container>
         <div className="glass-strong glass-edge relative overflow-hidden p-6 sm:p-10">
-          <div
-            className="pointer-events-none absolute inset-0 dots-pattern opacity-40 fade-mask-x"
-            aria-hidden="true"
-          />
           <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
             <div className="lg:col-span-4">
               <Eyebrow>Certified &amp; trusted</Eyebrow>
@@ -56,7 +52,7 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                         className="h-12 w-12 shrink-0 bg-white object-contain p-1"
                       />
                     ) : (
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white">
                         <Award className="h-5 w-5" aria-hidden="true" />
                       </span>
                     )}

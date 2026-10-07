@@ -18,11 +18,9 @@ import { countryPath, earliestYear, groupByRegion, regionAnchor } from '@/compon
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Button, Container, Eyebrow, Section, SectionHeading } from '@/components/ui'
 import { Reveal } from '@/components/ui/Reveal'
-import { HudRings } from '@/components/visuals/MoleculeField'
-import { Orbs } from '@/components/visuals/Orbs'
 import { getCountries, getPageGlobal, getSiteSettings } from '@/lib/data'
 import { buildMetadata, graph, itemListJsonLd, siteName, webPageJsonLd } from '@/lib/seo'
-import { mediaUrl, richTextToPlain, truncate } from '@/lib/utils'
+import { cn, mediaUrl, richTextToPlain, truncate } from '@/lib/utils'
 
 export const revalidate = 3600
 
@@ -62,6 +60,7 @@ export default async function GlobalPresencePage() {
   const name = siteName(settings)
   const hero = page.hero
   const heroImage = mediaUrl(hero?.image, 'large')
+  const hasHeroImage = Boolean(hero?.image && typeof hero.image === 'object')
   const primaryCta =
     hero?.primaryCta?.label && hero?.primaryCta?.url
       ? hero.primaryCta
@@ -92,13 +91,18 @@ export default async function GlobalPresencePage() {
       />
 
       {/* Hero */}
-      <section aria-labelledby="hero-heading" className="relative overflow-hidden pt-8 sm:pt-12">
-        <Orbs variant="intense" />
+      <section
+        aria-labelledby="hero-heading"
+        className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10"
+      >
         <Container>
-          <Breadcrumbs crumbs={[{ name: 'Global presence', path: PATH }]} />
-          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-            <div className="animate-fade-up">
-              <Eyebrow className="mb-5">{hero?.eyebrow || 'Global presence'}</Eyebrow>
+          <Breadcrumbs
+            crumbs={[{ name: 'Global presence', path: PATH }]}
+            className="mb-8 sm:mb-10"
+          />
+          <div className={cn('grid items-center gap-12', hasHeroImage && 'lg:grid-cols-12')}>
+            <div className={cn(hasHeroImage ? 'lg:col-span-6' : 'max-w-3xl')}>
+              <Eyebrow className="mb-4">{hero?.eyebrow || 'Global presence'}</Eyebrow>
               <h1 id="hero-heading" className="display-2">
                 {hero?.title || 'Serving healthcare partners worldwide'}
               </h1>
@@ -112,61 +116,57 @@ export default async function GlobalPresencePage() {
                   {secondaryCta.label}
                 </Button>
               </div>
-              <ul
-                className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-ink-600"
-                aria-label="Highlights"
-              >
-                <li className="inline-flex items-center gap-2">
-                  <Globe2 className="h-4 w-4 text-brand-600" aria-hidden="true" />{' '}
-                  {countries.length} countries · {groups.length} regions
-                </li>
-                <li className="inline-flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-brand-600" aria-hidden="true" /> Registration
-                  & dossier support
-                </li>
-                <li className="inline-flex items-center gap-2">
-                  <Ship className="h-4 w-4 text-brand-600" aria-hidden="true" /> Sea, air &
-                  cold-chain freight
-                </li>
-              </ul>
+              <dl className="mt-10 grid gap-6 border-t border-ink-200 pt-6 sm:grid-cols-3">
+                <div className="flex items-start gap-3">
+                  <Globe2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" aria-hidden="true" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-ink-500">
+                      Markets served
+                    </dt>
+                    <dd className="mt-1 text-sm font-semibold text-ink-950">
+                      {countries.length} countries · {groups.length} regions
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <ShieldCheck
+                    className="mt-0.5 h-5 w-5 shrink-0 text-brand-700"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-ink-500">Regulatory</dt>
+                    <dd className="mt-1 text-sm font-semibold text-ink-950">
+                      Registration &amp; dossier support
+                    </dd>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Ship className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" aria-hidden="true" />
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-ink-500">Logistics</dt>
+                    <dd className="mt-1 text-sm font-semibold text-ink-950">
+                      Sea, air &amp; cold-chain freight
+                    </dd>
+                  </div>
+                </div>
+              </dl>
             </div>
 
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <HudRings className="opacity-70" />
-              <div className="glass gradient-border animate-float relative rotate-2 p-2 shadow-glass-lg">
-                <Media
-                  media={hero?.image}
-                  size="large"
-                  sizes="(max-width: 1024px) 90vw, 40vw"
-                  priority
-                  className="aspect-[4/3] w-full object-cover"
-                />
-                <div
-                  className="pointer-events-none absolute inset-2 bg-gradient-to-t from-white/50 via-transparent to-transparent"
-                  aria-hidden="true"
-                />
-              </div>
-              <div
-                className="glass absolute -bottom-5 -left-3 animate-float-slow px-4 py-3 shadow-glass sm:-left-8"
-                aria-hidden="true"
-              >
-                <p className="text-[10px] uppercase tracking-[0.2em] text-ink-500">
-                  Markets served
-                </p>
-                <p className="text-gradient text-2xl font-semibold">{countries.length}+</p>
-              </div>
-              {since && (
-                <div
-                  className="glass absolute -right-2 -top-4 animate-float px-4 py-3 shadow-glass sm:-right-6"
-                  aria-hidden="true"
-                >
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-ink-500">
-                    Exporting since
-                  </p>
-                  <p className="text-gradient text-2xl font-semibold">{since}</p>
+            {hasHeroImage && (
+              <div className="lg:col-span-6">
+                <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+                  <Media
+                    media={hero?.image}
+                    size="large"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="h-full w-full"
+                    imgClassName="object-cover"
+                  />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </Container>
       </section>
@@ -236,7 +236,7 @@ export default async function GlobalPresencePage() {
                         className="heading-3 flex flex-wrap items-center gap-3"
                       >
                         {g.label}
-                        <span className="bg-brand-gradient px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]">
+                        <span className="bg-brand-gradient px-2.5 py-0.5 text-[11px] font-semibold text-white">
                           {g.countries.length} {g.countries.length === 1 ? 'market' : 'markets'}
                         </span>
                       </h2>
@@ -293,22 +293,16 @@ export default async function GlobalPresencePage() {
       {/* Onboarding process */}
       <Section aria-labelledby="process-heading" className="!pt-0">
         <Container>
-          <div className="glass-subtle relative overflow-hidden p-6 sm:p-10 lg:p-14">
-            <div
-              className="pointer-events-none absolute inset-0 dots-pattern opacity-50"
-              aria-hidden="true"
+          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14">
+            <SectionHeading
+              eyebrow="How we onboard a new market"
+              title={
+                <span id="process-heading">From first call to first container in four steps</span>
+              }
+              description="A repeatable process refined over many market launches – from the first assessment of your product list to the first shipment."
+              className="mb-10"
             />
-            <div className="relative">
-              <SectionHeading
-                eyebrow="How we onboard a new market"
-                title={
-                  <span id="process-heading">From first call to first container in four steps</span>
-                }
-                description="A repeatable process refined over many market launches – from the first assessment of your product list to the first shipment."
-                className="mb-10"
-              />
-              <OnboardingSteps steps={page.process} />
-            </div>
+            <OnboardingSteps steps={page.process} />
           </div>
         </Container>
       </Section>

@@ -33,10 +33,6 @@ export function FacilitiesSection({
       aria-labelledby="manufacturing-facilities-title"
       className="scroll-mt-24"
     >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60%] grid-pattern fade-mask-y opacity-50"
-        aria-hidden="true"
-      />
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading

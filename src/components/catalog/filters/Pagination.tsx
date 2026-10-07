@@ -73,13 +73,7 @@ export function Pagination({
           ) : (
             <li key={it}>
               {it === page ? (
-                <span
-                  className={cn(
-                    linkBase,
-                    'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]',
-                  )}
-                  aria-current="page"
-                >
+                <span className={cn(linkBase, 'bg-brand-gradient text-white')} aria-current="page">
                   {it}
                 </span>
               ) : (

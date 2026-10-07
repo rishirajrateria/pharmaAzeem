@@ -52,7 +52,7 @@ export function CertificationStrip({ certifications }: { certifications: Certifi
                       fill
                       sizes="64px"
                       className="h-full w-full"
-                      imgClassName="transition-transform duration-700 group-hover:scale-105"
+
                       fallback={
                         <span className="flex h-full w-full items-center justify-center bg-brand-gradient text-white">
                           <Icon name={CERT_TYPE_META[c.type].icon} className="h-6 w-6" />

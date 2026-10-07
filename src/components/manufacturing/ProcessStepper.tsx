@@ -16,10 +16,6 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
   const total = steps.length
   return (
     <Section id="process" aria-labelledby="manufacturing-process-title" className="overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full dots-pattern fade-mask-y opacity-50"
-        aria-hidden="true"
-      />
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -37,7 +33,7 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
         </div>
 
         <ol
-          className="relative mt-12 grid gap-6 before:absolute before:bottom-10 before:left-6 before:top-10 before:w-px before:bg-gradient-to-b before:from-brand-300 before:via-brand-200 before:to-transparent md:grid-cols-2 md:before:hidden lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12"
+          className="relative mt-12 grid gap-6 before:absolute before:bottom-10 before:left-6 before:top-10 before:w-px before:bg-ink-200 md:grid-cols-2 md:before:hidden lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12"
           aria-label="Manufacturing stages"
         >
           {steps.map((s, i) => {
@@ -53,7 +49,7 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
                   {pad2(n)}
                 </span>
                 <span
-                  className="pointer-events-none absolute left-14 top-6 hidden h-px w-[calc(100%-1.5rem)] bg-gradient-to-r from-brand-300 via-brand-200 to-transparent group-last:hidden group-[:nth-child(3n)]:hidden lg:block"
+                  className="pointer-events-none absolute left-14 top-6 hidden h-px w-[calc(100%-1.5rem)] bg-ink-200 group-last:hidden group-[:nth-child(3n)]:hidden lg:block"
                   aria-hidden="true"
                 />
                 <div className="glass-card glass-edge relative h-full overflow-hidden p-6">

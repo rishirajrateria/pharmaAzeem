@@ -22,17 +22,11 @@ export function QualityPillars({ pillars }: { pillars?: Pillar[] | null }) {
           {pillars.map((p, i) => (
             <Reveal key={p.id || i} as="li" delay={i * 60} className="h-full">
               <article className="glass-card relative flex h-full flex-col overflow-hidden p-6 sm:p-7">
-                <span
-                  className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.75),transparent)]"
-                  aria-hidden="true"
-                />
                 <div className="relative flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+                  <span className="flex h-12 w-12 items-center justify-center bg-brand-gradient text-white">
                     <Icon name={p.icon} className="h-5 w-5" />
                   </span>
-                  <span className="text-xs tracking-[0.2em] text-ink-300">
-                    {pad2(i + 1)}
-                  </span>
+                  <span className="text-xs tracking-[0.2em] text-ink-300">{pad2(i + 1)}</span>
                 </div>
                 <h3 className="relative mt-6 text-lg font-semibold leading-snug text-ink-950">
                   {p.title}

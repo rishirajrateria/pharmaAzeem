@@ -5,27 +5,18 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Media } from '@/components/Media'
 import { Button, Container, Eyebrow } from '@/components/ui'
 import { Icon } from '@/components/ui/Icon'
-import { HudRings, MoleculeField } from '@/components/visuals/MoleculeField'
-import { Orbs } from '@/components/visuals/Orbs'
 import type { Crumb } from '@/lib/seo'
-import type { Media as MediaDoc } from '@/payload-types'
 import { cn } from '@/lib/utils'
+import type { Media as MediaDoc } from '@/payload-types'
 
 type Cta = { label?: string | null; url?: string | null } | null | undefined
 
 export type HeroChip = { icon: string; label: string; value: string }
 
-const CHIP_POSITIONS = [
-  '-left-2 top-6 sm:-left-8 sm:top-10',
-  '-right-2 bottom-8 sm:-right-8 sm:bottom-12',
-  'left-6 -bottom-5 sm:left-10',
-]
-const CHIP_DELAYS = ['[animation-delay:-2s]', '[animation-delay:-5s]', '[animation-delay:-8s]']
-
 /**
- * Shared page hero for the Quality and Licenses pages: ambient orbs, breadcrumbs,
- * eyebrow + h1 + lead summary, optional CTAs and the hero image in a floating glass
- * frame with floating "stat chips". Server component – no JS.
+ * Shared page hero for the Quality and Licenses pages: breadcrumbs, eyebrow, h1, lead
+ * summary, optional CTAs and key facts on the left; the hero photograph on the right
+ * (the copy spans max-w-3xl when there is no image). Server component – zero JS.
  */
 export function PageHero({
   crumbs,
@@ -58,26 +49,22 @@ export function PageHero({
   const primary = pick(primaryCta, fallbackPrimary)
   const secondary = pick(secondaryCta, fallbackSecondary)
   const hasImage = Boolean(image && typeof image === 'object')
+  const facts = chips.slice(0, 3)
 
   return (
     <section
-      className="relative isolate overflow-hidden pb-14 pt-6 sm:pb-20 sm:pt-10 lg:pb-28"
+      className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10"
       aria-labelledby="page-hero-title"
     >
-      <Orbs variant="intense" />
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 grid-pattern fade-mask-y opacity-70"
-        aria-hidden="true"
-      />
       <Container>
-        <Breadcrumbs crumbs={crumbs} className="mb-8 sm:mb-12" />
-        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-6">
-            {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
+        <Breadcrumbs crumbs={crumbs} className="mb-8 sm:mb-10" />
+        <div className={cn('grid items-center gap-12', hasImage && 'lg:grid-cols-12')}>
+          <div className={cn(hasImage ? 'lg:col-span-6' : 'max-w-3xl')}>
+            {eyebrow && <Eyebrow className="mb-4">{eyebrow}</Eyebrow>}
             <h1 id="page-hero-title" className="display-2">
-              <span className="text-gradient-ink">{title}</span>
+              {title}
             </h1>
-            {subtitle && <p className="mt-6 max-w-2xl lead">{subtitle}</p>}
+            {subtitle && <p className="mt-5 max-w-2xl lead">{subtitle}</p>}
             {(primary || secondary) && (
               <div className="mt-8 flex flex-wrap gap-3">
                 {primary && (
@@ -93,59 +80,38 @@ export function PageHero({
               </div>
             )}
             {children}
-          </div>
 
-          <div className="relative lg:col-span-6">
-            <HudRings className="hidden lg:flex" />
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
-              <div className="glass glass-edge -rotate-2 animate-float-slow p-2.5 shadow-glass-lg sm:p-3">
-                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100">
-                  {hasImage ? (
-                    <Media
-                      media={image}
-                      size="large"
-                      fill
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="h-full w-full"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center p-8">
-                      <div className="absolute inset-0 dots-pattern opacity-70" />
-                      <MoleculeField className="relative max-h-full" />
+            {facts.length > 0 && (
+              <dl className="mt-10 grid gap-6 border-t border-ink-200 pt-6 sm:grid-cols-3">
+                {facts.map((chip) => (
+                  <div key={chip.label} className="flex items-start gap-3">
+                    <Icon name={chip.icon} className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-ink-500">
+                        {chip.label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-ink-950">{chip.value}</dd>
                     </div>
-                  )}
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent"
-                    aria-hidden="true"
-                  />
-                </div>
-              </div>
-
-              {chips.slice(0, 3).map((chip, i) => (
-                <div
-                  key={chip.label}
-                  className={cn(
-                    'absolute z-10 flex items-center gap-3 glass-strong px-3.5 py-2.5 shadow-glass-lg animate-float',
-                    CHIP_POSITIONS[i],
-                    CHIP_DELAYS[i],
-                  )}
-                >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
-                    <Icon name={chip.icon} className="h-4 w-4" />
-                  </span>
-                  <span className="pr-1">
-                    <span className="block text-[10px] uppercase tracking-[0.18em] text-ink-500">
-                      {chip.label}
-                    </span>
-                    <span className="block text-sm font-semibold leading-tight text-ink-950">
-                      {chip.value}
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
+
+          {hasImage && (
+            <div className="lg:col-span-6">
+              <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+                <Media
+                  media={image}
+                  size="large"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="h-full w-full"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </section>

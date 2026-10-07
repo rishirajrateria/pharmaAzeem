@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 
-import { Button } from '../ui'
-import { MoleculeField } from '../visuals/MoleculeField'
+import { Button, Container } from '../ui'
 
 type Props = {
   eyebrow?: string
@@ -12,7 +11,7 @@ type Props = {
   id?: string
 }
 
-/** Dark mesh CTA band with a glass-dark card – closes every page in the section. */
+/** Solid brand CTA band – closes every page in the section. */
 export function CtaBand({
   eyebrow = 'Next step',
   title,
@@ -22,36 +21,32 @@ export function CtaBand({
   id = 'cta-heading',
 }: Props) {
   return (
-    <section aria-labelledby={id} className="container-x section-y">
-      <div className="mesh-bg-dark noise relative overflow-hidden p-6 text-white sm:p-10 lg:p-14">
-        <div
-          className="pointer-events-none absolute -right-10 -top-10 w-[28rem] opacity-40 lg:w-[34rem]"
-          aria-hidden="true"
-        >
-          <MoleculeField />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-0 grid-pattern opacity-30"
-          aria-hidden="true"
-        />
-        <div className="glass-dark relative max-w-3xl p-6 sm:p-8">
-          <p className="eyebrow !text-brand-300">{eyebrow}</p>
-          <h2 id={id} className="heading-2 mt-3 !text-white">
-            {title}
-          </h2>
-          {description && (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">{description}</p>
-          )}
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Button href={primary.href}>
+    <section aria-labelledby={id} className="bg-brand-700 text-white">
+      <Container className="py-14 sm:py-16 lg:py-20">
+        <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-100">
+              {eyebrow}
+            </p>
+            <h2 id={id} className="heading-2 mt-3 text-white">
+              {title}
+            </h2>
+            {description && (
+              <p className="mt-4 text-base leading-relaxed text-white/85 sm:text-lg">
+                {description}
+              </p>
+            )}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3 lg:mt-0 lg:shrink-0">
+            <Button href={primary.href} variant="light" size="lg">
               {primary.label} <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
-            <Button href={secondary.href} variant="secondary" className="!text-ink-900">
+            <Button href={secondary.href} variant="outline-light" size="lg">
               {secondary.label}
             </Button>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

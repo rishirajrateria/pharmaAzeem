@@ -65,7 +65,6 @@ export function ProductCard({
           sizes="(max-width: 420px) 92vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           priority={priority}
           className="h-full w-full"
-          imgClassName="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-105"
         />
         {(product.badges?.length || 0) > 0 && (
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">

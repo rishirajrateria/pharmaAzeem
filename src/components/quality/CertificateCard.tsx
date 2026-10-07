@@ -22,10 +22,9 @@ const DATE_OPTS: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', 
 function CertificatePlaceholder({ type, title }: { type: Certification['type']; title: string }) {
   return (
     <div
-      className="relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-brand-50 via-white to-brand-100"
+      className="relative flex h-full w-full flex-col items-center justify-center bg-surface-2"
       aria-hidden="true"
     >
-      <div className="absolute inset-0 dots-pattern opacity-70" />
       <div className="absolute inset-x-8 top-6 space-y-2 opacity-60">
         <div className="h-1.5 w-1/2 bg-brand-200/70" />
         <div className="h-1 w-3/4 bg-brand-100" />
@@ -74,12 +73,8 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="h-full w-full"
-          imgClassName="transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
+
           fallback={<CertificatePlaceholder type={cert.type} title={cert.title} />}
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent"
-          aria-hidden="true"
         />
         <div className="absolute left-3 top-3">
           <Badge tone="glass">{meta.singular}</Badge>
@@ -87,7 +82,7 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
         <div className="absolute right-3 top-3">
           <Badge
             tone={status === 'valid' ? 'success' : 'ink'}
-            className={status === 'valid' ? 'bg-white/80 backdrop-blur' : undefined}
+            className={status === 'valid' ? 'bg-white' : undefined}
           >
             <span
               className={cn(
@@ -125,17 +120,13 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
             </div>
           )}
           <div>
-            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
-              Valid from
-            </dt>
+            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Valid from</dt>
             <dd className="mt-0.5 text-ink-900">
               {validFrom ? <time dateTime={cert.validFrom!.slice(0, 10)}>{validFrom}</time> : '—'}
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
-              Valid until
-            </dt>
+            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Valid until</dt>
             <dd className="mt-0.5 text-ink-900">
               {validUntil ? (
                 <time dateTime={cert.validUntil!.slice(0, 10)}>{validUntil}</time>

@@ -12,10 +12,6 @@ export function CapabilitiesGrid({ capabilities }: { capabilities?: Capability[]
   if (!capabilities?.length) return null
   return (
     <Section aria-labelledby="manufacturing-capabilities-title" className="overflow-hidden pt-0">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full dots-pattern fade-mask-y opacity-40"
-        aria-hidden="true"
-      />
       <Container>
         <SectionHeading
           eyebrow="Capabilities"
@@ -34,12 +30,8 @@ export function CapabilitiesGrid({ capabilities }: { capabilities?: Capability[]
               delay={i * 60}
               className="group glass-card glass-edge relative flex h-full flex-col overflow-hidden p-6 sm:p-7"
             >
-              <div
-                className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.55),transparent)] transition-transform duration-700 group-hover:scale-125"
-                aria-hidden="true"
-              />
               <div className="relative flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)] transition-transform duration-500 group-hover:-translate-y-0.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-50 text-brand-700">
                   <Icon name={c.icon} className="h-5 w-5" />
                 </span>
                 <span className="text-[11px] uppercase tracking-[0.2em] text-ink-400">

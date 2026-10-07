@@ -25,7 +25,6 @@ import {
 import { toInquiryItem } from '@/components/catalog/ProductCard'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { Badge, Container, Eyebrow, Section, SectionHeading } from '@/components/ui'
-import { Orbs } from '@/components/visuals/Orbs'
 import { getCommerceLabels, resolvePrice } from '@/lib/commerce'
 import {
   getAllProductsSlim,
@@ -139,7 +138,7 @@ export default async function ProductPage({ params }: { params: Params }) {
           <ul className="mt-5 grid gap-3 sm:grid-cols-2" role="list">
             {benefits.map((b, i) => (
               <li key={b.id || i} className="glass flex items-start gap-3 p-4">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.7)]">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-brand-gradient text-white">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
                 <span className="text-sm leading-relaxed text-ink-800">{b.text}</span>
@@ -195,14 +194,9 @@ export default async function ProductPage({ params }: { params: Params }) {
         )}
       />
 
-      {/* Hero: gallery + buy box. `overflow-x-clip` (not `overflow-hidden`) keeps decorative spill
-          off the horizontal axis without turning the section into a scrollport, so the gallery's
-          `lg:sticky` still sticks to the viewport. */}
-      <section
-        aria-labelledby="product-title"
-        className="relative overflow-x-clip pt-6 sm:pt-8 lg:pt-12"
-      >
-        <Orbs variant="intense" />
+      {/* Hero: gallery + buy box. No `overflow-*` on the section so the gallery's `lg:sticky`
+          still sticks to the viewport. */}
+      <section aria-labelledby="product-title" className="pt-6 sm:pt-8 lg:pt-12">
         <Container>
           <Breadcrumbs crumbs={crumbs} />
           <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14 xl:gap-20">
@@ -216,7 +210,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               />
             </div>
 
-            <div className="animate-fade-up">
+            <div>
               <div className="flex flex-wrap items-center gap-2">
                 <Eyebrow>{primaryCat?.title || 'Pharmaceutical product'}</Eyebrow>
                 {rx && (

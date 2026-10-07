@@ -36,10 +36,6 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
             <Container>
               {layout === 'full' ? (
                 <Reveal className="glass-strong glass-edge relative overflow-hidden px-6 py-10 sm:px-10 sm:py-12 lg:px-14">
-                  <div
-                    className="pointer-events-none absolute inset-0 dots-pattern opacity-30 fade-mask-x"
-                    aria-hidden="true"
-                  />
                   <div className="relative grid gap-8 lg:grid-cols-12">
                     <div className="lg:col-span-4">
                       {s.eyebrow && <Eyebrow>{s.eyebrow}</Eyebrow>}
@@ -72,24 +68,13 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
                     delay={90}
                     className={cn('relative', layout === 'imageLeft' && 'lg:order-1')}
                   >
-                    <div
-                      className="pointer-events-none absolute -inset-6 -z-10 bg-brand-100/50 blur-2xl"
-                      aria-hidden="true"
+                    <Media
+                      media={s.image}
+                      size="large"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="aspect-[4/3] border border-ink-200 bg-white"
                     />
-                    <div
-                      className={cn(
-                        'glass glass-edge p-2.5 shadow-glass-lg',
-                        layout === 'imageLeft' ? 'rotate-[1.5deg]' : 'rotate-[-1.5deg]',
-                      )}
-                    >
-                      <Media
-                        media={s.image}
-                        size="large"
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="aspect-[4/3] bg-white"
-                      />
-                    </div>
                   </Reveal>
                 </div>
               )}
@@ -112,7 +97,7 @@ function BulletList({
     <ul className={cn('grid gap-3', className)} role="list">
       {bullets.map((b, i) => (
         <li key={b.id || i} className="flex items-start gap-3 text-[15px] text-ink-800">
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_4px_12px_-4px_rgb(225_29_46_/_0.8)]">
+          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white">
             <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
           </span>
           <span>{b.text}</span>

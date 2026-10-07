@@ -60,20 +60,13 @@ export function PageSections({
                 </Reveal>
                 {split && (
                   <Reveal delay={120} className={cn('relative', imageLeft && 'lg:order-1')}>
-                    <div
-                      className={cn(
-                        'glass p-2.5 shadow-glass-lg',
-                        imageLeft ? '-rotate-1' : 'rotate-1',
-                      )}
-                    >
-                      <Media
-                        media={s.image}
-                        size="large"
-                        fill
-                        className="aspect-[4/3]"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                    </div>
+                    <Media
+                      media={s.image}
+                      size="large"
+                      fill
+                      className="aspect-[4/3] border border-ink-200"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
                   </Reveal>
                 )}
               </div>

@@ -45,7 +45,7 @@ export function HowItWorks({ className }: { className?: string }) {
           <Reveal key={step.title} as="li" delay={i * 90} className="relative">
             <div className="glass-card glass-edge h-full p-6 sm:p-7">
               <div className="flex items-center justify-between gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-ink-400">

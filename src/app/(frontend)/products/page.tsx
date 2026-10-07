@@ -128,12 +128,11 @@ export default async function ProductsPage({ searchParams }: Props) {
         stats={stats}
         ctas={ctas}
         image={doc.hero?.image}
-        icon="pill"
       >
         {doc.intro && <RichText data={doc.intro} className="max-w-2xl text-[15px]" />}
       </CatalogHero>
 
-      <Section className="!pt-0 !pb-10 sm:!pb-12" aria-labelledby="browse-by-category">
+      <Section className="!pb-10 sm:!pb-12" aria-labelledby="browse-by-category">
         <Container>
           <SectionHeading
             eyebrow="Categories"

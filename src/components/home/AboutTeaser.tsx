@@ -6,9 +6,8 @@ import type { Homepage, SiteSetting } from '@/payload-types'
 import { Media } from '../Media'
 import { Button, Container, Eyebrow, Section } from '../ui'
 import { Reveal } from '../ui/Reveal'
-import { MoleculeField } from '../visuals/MoleculeField'
 
-/** "Who we are" split section: image in a floating glass frame + company facts. */
+/** "Who we are" split section: photograph with company facts beneath it, copy alongside. */
 export function AboutTeaser({
   intro,
   settings,
@@ -35,37 +34,29 @@ export function AboutTeaser({
   ].filter((f): f is { icon: typeof Users; label: string; value: string } => Boolean(f))
 
   return (
-    <Section aria-label="About the company" className="overflow-hidden">
+    <Section aria-label="About the company">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="relative order-last lg:order-first">
-            <MoleculeField className="absolute -left-10 -top-12 w-64 opacity-60" animated={false} />
-            <div
-              className="absolute -bottom-10 -right-6 h-48 w-48 rounded-full bg-brand-gradient opacity-15 blur-3xl"
-              aria-hidden="true"
-            />
-            <div className="glass relative p-3 shadow-glass-lg rotate-[2deg] transition-transform duration-700 hover:rotate-0">
-              <div className="relative aspect-[4/3] overflow-hidden bg-white">
-                <Media
-                  media={intro.image}
-                  size="large"
-                  fill
-                  sizes="(max-width: 1024px) 92vw, 44vw"
-                  className="h-full w-full"
-                  imgClassName="object-cover"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-brand-600/10 via-transparent to-white/30"
-                  aria-hidden="true"
-                />
-              </div>
+          <Reveal className="order-last lg:order-first">
+            <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+              <Media
+                media={intro.image}
+                size="large"
+                fill
+                sizes="(max-width: 1024px) 92vw, 44vw"
+                className="h-full w-full"
+                imgClassName="object-cover"
+              />
             </div>
             {facts.length > 0 && (
-              <dl className="relative z-10 -mt-8 ml-4 mr-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:-mt-10 sm:ml-8 sm:mr-0 sm:max-w-md">
+              <dl className="grid grid-cols-1 border-x border-b border-ink-200 bg-white min-[420px]:grid-cols-2">
                 {facts.map((f) => (
-                  <div key={f.label} className="glass-strong glass-edge px-4 py-3">
-                    <dt className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-ink-500">
-                      <f.icon className="h-3 w-3 text-brand-600" aria-hidden="true" />
+                  <div
+                    key={f.label}
+                    className="border-ink-200 px-4 py-3 not-first:border-t min-[420px]:nth-2:border-t-0 min-[420px]:even:border-l"
+                  >
+                    <dt className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-ink-500">
+                      <f.icon className="h-3.5 w-3.5 text-brand-700" aria-hidden="true" />
                       {f.label}
                     </dt>
                     <dd className="mt-1 text-sm font-semibold text-ink-950">{f.value}</dd>

@@ -130,7 +130,7 @@ export function MobileFilters({
       {/* Backdrop – mobile only */}
       <div
         className={cn(
-          'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden',
+          'absolute inset-0 bg-ink-950/30 transition-opacity duration-300 lg:hidden',
           open ? 'opacity-100' : 'opacity-0',
         )}
         onClick={() => setOpen(false)}

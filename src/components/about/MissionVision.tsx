@@ -29,7 +29,7 @@ export function MissionVision({ mission }: Props) {
               >
                 01
               </span>
-              <span className="relative flex h-14 w-14 items-center justify-center bg-brand-gradient text-white shadow-[0_12px_28px_-10px_rgb(225_29_46_/_0.8)]">
+              <span className="relative flex h-14 w-14 items-center justify-center bg-brand-gradient text-white">
                 <Target className="h-6 w-6" aria-hidden="true" />
               </span>
               <p className="eyebrow mt-8">Our mission</p>
@@ -45,10 +45,6 @@ export function MissionVision({ mission }: Props) {
               delay={90}
               className="mesh-bg-dark relative overflow-hidden p-8 text-white sm:p-10"
             >
-              <div
-                className="pointer-events-none absolute inset-0 dots-pattern opacity-30"
-                aria-hidden="true"
-              />
               <span
                 className="pointer-events-none absolute -right-2 -top-4 select-none text-8xl font-semibold text-white/10"
                 aria-hidden="true"
@@ -59,10 +55,7 @@ export function MissionVision({ mission }: Props) {
                 <Eye className="h-6 w-6" aria-hidden="true" />
               </span>
               <p className="relative mt-8 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
-                <span
-                  className="inline-block h-1.5 w-1.5 bg-brand-400"
-                  aria-hidden="true"
-                />
+                <span className="inline-block h-1.5 w-1.5 bg-brand-400" aria-hidden="true" />
                 Our vision
               </p>
               <h3 className="heading-3 relative mt-2 text-white">Where we are headed</h3>

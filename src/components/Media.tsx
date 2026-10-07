@@ -70,12 +70,11 @@ export function MediaPlaceholder({ className, label }: { className?: string; lab
   return (
     <div
       className={cn(
-        'relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100',
+        'relative flex items-center justify-center overflow-hidden bg-surface-2',
         className,
       )}
       aria-hidden="true"
     >
-      <div className="absolute inset-0 dots-pattern opacity-60" />
       <div className="relative flex h-16 w-16 items-center justify-center glass">
         <svg
           viewBox="0 0 24 24"

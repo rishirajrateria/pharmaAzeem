@@ -135,17 +135,7 @@ export function AddToListPanel({
 
   return (
     <>
-      <div
-        ref={panelRef}
-        className={cn(
-          'glass-strong glass-edge relative overflow-hidden p-5 sm:p-6',
-          className,
-        )}
-      >
-        <div
-          className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-200/40 blur-2xl"
-          aria-hidden="true"
-        />
+      <div ref={panelRef} className={cn('glass-strong relative p-5 sm:p-6', className)}>
         <div className="relative">
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
             <div>

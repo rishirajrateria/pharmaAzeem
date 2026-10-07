@@ -52,7 +52,7 @@ export function FacilityCard({
         {/* Gallery */}
         <div
           className={cn(
-            'relative min-h-[16rem] bg-gradient-to-br from-brand-50 via-white to-brand-100 lg:col-span-6 lg:min-h-[32rem]',
+            'relative min-h-[16rem] bg-surface-2 lg:col-span-6 lg:min-h-[32rem]',
             flip && 'lg:order-2',
           )}
         >
@@ -72,10 +72,6 @@ export function FacilityCard({
                 className="absolute inset-0 h-full w-full"
                 imgClassName="object-cover"
               />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/30 via-transparent to-transparent"
-                aria-hidden="true"
-              />
             </div>
           )}
           <span
@@ -90,7 +86,7 @@ export function FacilityCard({
         <div className={cn('flex flex-col p-6 sm:p-8 lg:col-span-6 lg:p-10', flip && 'lg:order-1')}>
           <div className="flex flex-wrap items-center gap-2">
             <span
-              className="inline-flex items-center gap-1.5 bg-brand-gradient px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]"
+              className="inline-flex items-center gap-1.5 bg-brand-gradient px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white"
               title={type.description}
             >
               <TypeIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -224,9 +220,7 @@ export function FacilityCard({
                     <CalendarDays className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
                     Established
                   </dt>
-                  <dd className="font-semibold text-ink-800">
-                    {facility.establishedYear}
-                  </dd>
+                  <dd className="font-semibold text-ink-800">{facility.establishedYear}</dd>
                 </div>
               )}
               {area && (

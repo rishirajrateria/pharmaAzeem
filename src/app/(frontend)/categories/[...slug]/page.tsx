@@ -32,7 +32,7 @@ import {
   getSiteSettings,
 } from '@/lib/data'
 import { buildMetadata, categoryJsonLd, graph, siteName } from '@/lib/seo'
-import { absUrl, relId, richTextToPlain, truncate } from '@/lib/utils'
+import { absUrl, cn, relId, richTextToPlain, truncate } from '@/lib/utils'
 
 type Props = { params: Promise<{ slug: string[] }>; searchParams: Promise<CatalogSearchParams> }
 
@@ -173,7 +173,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           { label: labels.ctaLabel, url: '/inquiry', variant: 'secondary' },
         ]}
         image={category.image}
-        icon={category.icon}
       >
         <p className="max-w-2xl text-[15px] leading-relaxed text-ink-600">{summary}</p>
         {category.highlights && category.highlights.length > 0 && (
@@ -188,7 +187,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       </CatalogHero>
 
       {children.length > 0 && (
-        <Section className="!pt-0 !pb-12 sm:!pb-16" aria-labelledby="subcategories-title">
+        <Section className="!pb-12 sm:!pb-16" aria-labelledby="subcategories-title">
           <Container>
             <SectionHeading
               eyebrow="Sub-categories"
@@ -207,7 +206,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         </Section>
       )}
 
-      <Section className="!pt-0" aria-label={`${category.title} products`}>
+      <Section
+        className={cn(children.length > 0 && '!pt-0')}
+        aria-label={`${category.title} products`}
+      >
         <Container>
           <CatalogResults
             basePath={basePath}
@@ -226,10 +228,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <Section className="!pt-0" aria-labelledby="category-about-title">
           <Container>
             <div className="glass relative overflow-hidden p-6 sm:p-10 lg:p-14">
-              <div
-                className="absolute inset-0 dots-pattern opacity-40 fade-mask-y"
-                aria-hidden="true"
-              />
               <div className="relative grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
                 <SectionHeading
                   eyebrow="About this range"

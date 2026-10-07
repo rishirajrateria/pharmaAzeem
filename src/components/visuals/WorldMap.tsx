@@ -12,7 +12,7 @@ export const projectPin = (lat: number, lng: number) => {
 }
 
 /**
- * Dotted world map with pulsing pins. The dot field is a static, cacheable SVG
+ * Dotted world map with flat location markers. The dot field is a static, cacheable SVG
  * loaded via <img>; pins are absolutely positioned HTML so they can be links.
  */
 export function WorldMap({
@@ -46,17 +46,12 @@ export function WorldMap({
             <>
               <span
                 className={cn(
-                  'absolute inset-0 rounded-full bg-brand-500/60 animate-pulse-ring',
-                  !pin.featured && 'opacity-60',
-                )}
-              />
-              <span
-                className={cn(
-                  'absolute inset-0 rounded-full bg-brand-600 shadow-[0_0_0_2px_white,0_0_12px_rgb(225_29_46_/_0.8)]',
+                  'absolute inset-0 rounded-full border border-white transition-colors group-hover:bg-brand-900 group-focus-visible:bg-brand-900',
+                  pin.featured ? 'bg-brand-700' : 'bg-brand-500',
                 )}
               />
               {showLabels && pin.featured && (
-                <span className="absolute left-1/2 top-full mt-1.5 hidden -translate-x-1/2 whitespace-nowrap glass px-2 py-0.5 text-[10px] font-medium text-ink-800 md:block">
+                <span className="absolute left-1/2 top-full mt-1.5 hidden -translate-x-1/2 whitespace-nowrap border border-ink-200 bg-white px-1.5 py-0.5 text-[10px] font-medium text-ink-800 md:block">
                   {pin.name}
                 </span>
               )}

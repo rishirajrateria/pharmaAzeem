@@ -17,7 +17,6 @@ export function MapEmbed({
   return (
     <div className={cn('glass p-2 shadow-glass-lg sm:p-3', className)}>
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-50 sm:aspect-[16/9] lg:aspect-[21/9]">
-        <div className="absolute inset-0 dots-pattern opacity-50" aria-hidden="true" />
         <iframe
           src={src}
           title={title}

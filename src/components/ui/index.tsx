@@ -57,12 +57,16 @@ export const GlassCard = ({ className, ...p }: ComponentProps<'div'>) => (
 
 /* ---------- Buttons ---------- */
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'dark'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'dark' | 'light' | 'outline-light'
 const variantClass: Record<Variant, string> = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
   ghost: 'btn-ghost',
   dark: 'btn-dark',
+  /** White button for use on a solid brand-700 (or dark) band. */
+  light: 'btn bg-white text-brand-700 hover:bg-ink-50',
+  /** Outlined white button – secondary action on a solid brand-700 (or dark) band. */
+  'outline-light': 'btn border border-white/60 text-white hover:bg-white/10',
 }
 
 type ButtonProps = {
@@ -124,8 +128,7 @@ export const Badge = ({
   <span
     className={cn(
       'inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
-      tone === 'brand' &&
-        'bg-brand-gradient text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]',
+      tone === 'brand' && 'bg-brand-gradient text-white',
       tone === 'ink' && 'bg-ink-950 text-white',
       tone === 'success' && 'bg-emerald-500/10 text-emerald-700 border border-emerald-500/20',
       tone === 'glass' && 'glass text-ink-800',

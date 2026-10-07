@@ -80,7 +80,7 @@ export default async function QualityPage() {
       />
 
       {(doc.intro || doc.stats?.length) && (
-        <Section className="!pt-0" aria-labelledby="quality-overview-title">
+        <Section aria-labelledby="quality-overview-title">
           <Container>
             {doc.intro && (
               <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
