@@ -45,7 +45,7 @@ export function CertificationStrip({ certifications }: { certifications: Certifi
                   className="group glass-card relative flex h-full flex-col items-center p-5 text-center"
                   aria-label={`${c.title} – view on the licenses page`}
                 >
-                  <span className="relative h-16 w-16 overflow-hidden glass p-1">
+                  <span className="relative h-16 w-16 overflow-hidden glass p-1 rounded-lg">
                     <Media
                       media={c.image}
                       size="thumbnail"

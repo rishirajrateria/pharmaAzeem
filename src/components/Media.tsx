@@ -75,7 +75,7 @@ export function MediaPlaceholder({ className, label }: { className?: string; lab
       )}
       aria-hidden="true"
     >
-      <div className="relative flex h-16 w-16 items-center justify-center glass">
+      <div className="relative flex h-16 w-16 items-center justify-center glass rounded-lg">
         <svg
           viewBox="0 0 24 24"
           className="h-8 w-8 text-brand-500"

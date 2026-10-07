@@ -129,7 +129,7 @@ export function CatalogHero({
 
           {hasImage && (
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden glass">
+              <div className="relative aspect-[4/3] overflow-hidden glass overflow-hidden">
                 <Media
                   media={image}
                   size="large"

@@ -29,7 +29,7 @@ export function FactList({
         <div key={f.label} className="bg-white p-5">
           <dt className="flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
             <span
-              className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100"
+              className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100 rounded-lg"
               aria-hidden="true"
             >
               <Icon name={f.icon} className="h-4 w-4" />

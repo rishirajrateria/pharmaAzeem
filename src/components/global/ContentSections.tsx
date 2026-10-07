@@ -32,7 +32,7 @@ export function ContentSections({ sections }: { sections?: CmsSection[] | null }
                   <ul className="mt-6 grid gap-2.5 sm:grid-cols-2" role="list">
                     {s.bullets.map((b, j) => (
                       <li key={b.id || j} className="flex items-start gap-2.5 text-sm text-ink-700">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200 rounded-md">
                           <Check className="h-3 w-3" aria-hidden="true" />
                         </span>
                         {b.text}

@@ -155,7 +155,7 @@ export function MobileFilters({
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50"
+            className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50 rounded-lg"
             aria-label="Close filters"
           >
             <X className="h-5 w-5" aria-hidden="true" />

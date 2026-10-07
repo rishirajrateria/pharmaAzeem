@@ -23,7 +23,7 @@ export function QualityPillars({ pillars }: { pillars?: Pillar[] | null }) {
             <Reveal key={p.id || i} as="li" delay={i * 60} className="h-full">
               <article className="glass-card relative flex h-full flex-col overflow-hidden p-6 sm:p-7">
                 <div className="relative flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center bg-brand-gradient text-white">
+                  <span className="flex h-12 w-12 items-center justify-center bg-brand-gradient text-white rounded-lg">
                     <Icon name={p.icon} className="h-5 w-5" />
                   </span>
                   <span className="text-xs tracking-[0.2em] text-ink-300">{pad2(i + 1)}</span>

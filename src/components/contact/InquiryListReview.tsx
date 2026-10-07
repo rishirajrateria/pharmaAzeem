@@ -62,7 +62,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
             <li key={item.id} className="flex gap-4 px-5 py-4 sm:px-6 sm:py-5">
               <Link
                 href={href}
-                className="relative h-20 w-20 shrink-0 overflow-hidden border border-ink-100 bg-white"
+                className="relative h-20 w-20 shrink-0 overflow-hidden border border-ink-100 bg-white rounded-lg"
                 aria-hidden="true"
                 tabIndex={-1}
               >
@@ -85,7 +85,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                   <button
                     type="button"
                     onClick={() => remove(item.id)}
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-ink-400 transition hover:bg-brand-50 hover:text-brand-700"
+                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-ink-400 transition hover:bg-brand-50 hover:text-brand-700 rounded-lg"
                     aria-label={`Remove ${item.title} from ${lower}`}
                   >
                     <Trash2 className="h-4 w-4" aria-hidden="true" />
@@ -101,7 +101,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                       type="button"
                       onClick={() => setQuantity(item.id, item.quantity - 1)}
                       disabled={item.quantity <= 1}
-                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40 disabled:hover:bg-transparent"
+                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40 disabled:hover:bg-transparent rounded-lg"
                       aria-label="Decrease quantity"
                     >
                       <Minus className="h-3.5 w-3.5" aria-hidden="true" />
@@ -114,7 +114,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                     <button
                       type="button"
                       onClick={() => setQuantity(item.id, item.quantity + 1)}
-                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700"
+                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 rounded-lg"
                       aria-label="Increase quantity"
                     >
                       <Plus className="h-3.5 w-3.5" aria-hidden="true" />
@@ -189,7 +189,7 @@ function EmptyState({
     <div
       className={cn('glass-strong glass-edge px-6 py-10 text-center sm:px-10 sm:py-14', className)}
     >
-      <div className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600 rounded-lg">
         <ClipboardList className="h-7 w-7" aria-hidden="true" />
       </div>
       <h3 className="mt-5 text-lg font-semibold text-ink-950">Your {lower} is empty</h3>

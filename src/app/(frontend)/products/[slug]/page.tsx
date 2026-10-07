@@ -138,7 +138,7 @@ export default async function ProductPage({ params }: { params: Params }) {
           <ul className="mt-5 grid gap-3 sm:grid-cols-2" role="list">
             {benefits.map((b, i) => (
               <li key={b.id || i} className="glass flex items-start gap-3 p-4">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
                 <span className="text-sm leading-relaxed text-ink-800">{b.text}</span>

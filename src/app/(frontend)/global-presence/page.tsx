@@ -154,7 +154,7 @@ export default async function GlobalPresencePage() {
 
             {hasHeroImage && (
               <div className="lg:col-span-6">
-                <div className="relative aspect-[4/3] overflow-hidden glass">
+                <div className="relative aspect-[4/3] overflow-hidden glass overflow-hidden">
                   <Media
                     media={hero?.image}
                     size="large"
@@ -293,7 +293,7 @@ export default async function GlobalPresencePage() {
       {/* Onboarding process */}
       <Section aria-labelledby="process-heading" className="!pt-0">
         <Container>
-          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14">
+          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14 rounded-xl">
             <SectionHeading
               eyebrow="How we onboard a new market"
               title={

@@ -73,7 +73,7 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
                       size="large"
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="aspect-[4/3] glass"
+                      className="aspect-[4/3] glass overflow-hidden"
                     />
                   </Reveal>
                 </div>
@@ -97,7 +97,7 @@ function BulletList({
     <ul className={cn('grid gap-3', className)} role="list">
       {bullets.map((b, i) => (
         <li key={b.id || i} className="flex items-start gap-3 text-[15px] text-ink-800">
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white">
+          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-md">
             <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
           </span>
           <span>{b.text}</span>

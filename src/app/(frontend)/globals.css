@@ -40,9 +40,14 @@
   --color-surface-2: rgb(255 255 255 / 0.5);
   --color-surface-3: rgb(255 255 255 / 0.7);
 
-  /* Square corners throughout: the corner-radius scale is removed, so rounded-sm…rounded-4xl
-     don't exist. rounded-full is kept only for small map location dots. */
+  /* Gently rounded corners: small controls 6–8px, panels and cards 12px. */
   --radius-*: initial;
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
 
   /* Neutral, barely-there elevation – no coloured glows. */
   --shadow-glass: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 8px 24px -14px rgb(40 12 14 / 0.18);
@@ -139,7 +144,14 @@
    floating on the softly tinted page background (see mesh-bg).
 ------------------------------------------------------------------- */
 @utility glass {
-  background-color: rgb(255 255 255 / 0.56);
+  border-radius: var(--radius-xl);
+  background-color: rgb(255 255 255 / 0.5);
+  background-image: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 0.55),
+    rgb(255 255 255 / 0.12) 60%,
+    rgb(255 240 240 / 0.18)
+  );
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
   border: 1px solid rgb(255 255 255 / 0.85);
@@ -148,7 +160,14 @@
     0 0 0 1px rgb(11 10 15 / 0.04);
 }
 @utility glass-strong {
-  background-color: rgb(255 255 255 / 0.78);
+  border-radius: var(--radius-xl);
+  background-color: rgb(255 255 255 / 0.72);
+  background-image: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 0.5),
+    rgb(255 255 255 / 0.1) 60%,
+    rgb(255 240 240 / 0.15)
+  );
   -webkit-backdrop-filter: blur(22px) saturate(170%);
   backdrop-filter: blur(22px) saturate(170%);
   border: 1px solid rgb(255 255 255 / 0.9);
@@ -157,19 +176,23 @@
     0 0 0 1px rgb(11 10 15 / 0.04);
 }
 @utility glass-subtle {
+  border-radius: var(--radius-xl);
   background-color: rgb(255 255 255 / 0.42);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgb(255 255 255 / 0.7);
 }
 @utility glass-red {
-  background-color: rgb(175 2 1 / 0.06);
+  border-radius: var(--radius-xl);
+  background-color: rgb(175 2 1 / 0.05);
+  background-image: linear-gradient(135deg, rgb(255 255 255 / 0.5), rgb(175 2 1 / 0.06));
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
   border: 1px solid rgb(175 2 1 / 0.14);
   box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.6) inset;
 }
 @utility glass-dark {
+  border-radius: var(--radius-xl);
   background-color: rgb(11 10 15 / 0.78);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
@@ -201,15 +224,30 @@
 ------------------------------------------------------------------- */
 @utility text-gradient {
   color: var(--color-brand-700);
+  background-image: linear-gradient(120deg, var(--color-brand-600), var(--color-brand-800));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 @utility text-gradient-ink {
   color: var(--color-ink-950);
 }
 @utility bg-brand-gradient {
   background-color: var(--color-brand-700);
+  background-image: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-800));
 }
 @utility bg-brand-gradient-animated {
+  @apply bg-brand-gradient;
+}
+/* Soft red band: CTA strips and the category bar. */
+@utility bg-brand-band {
   background-color: var(--color-brand-700);
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-800),
+    var(--color-brand-700) 45%,
+    var(--color-brand-600)
+  );
 }
 /* Page background: a calm grey base with soft brand-red and slate washes, fixed to the
    viewport (a fixed layer rather than background-attachment, which iOS ignores). */
@@ -261,10 +299,11 @@
    Components
 ------------------------------------------------------------------- */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold whitespace-nowrap transition-colors duration-200 select-none disabled:opacity-50 disabled:pointer-events-none;
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold whitespace-nowrap transition duration-200 select-none disabled:opacity-50 disabled:pointer-events-none;
 }
 @utility btn-primary {
-  @apply btn text-white bg-brand-700 hover:bg-brand-800;
+  @apply btn text-white bg-brand-700 shadow-[0_6px_16px_-8px_rgb(175_2_1_/_0.6)] hover:brightness-110;
+  background-image: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-800));
 }
 @utility btn-secondary {
   @apply btn text-ink-900 bg-white/60 backdrop-blur-md border border-ink-300 hover:border-brand-700 hover:bg-white/85 hover:text-brand-700;
@@ -276,7 +315,7 @@
   @apply btn text-white bg-ink-950 hover:bg-ink-800;
 }
 @utility chip {
-  @apply inline-flex items-center gap-1.5 border border-ink-200 bg-white/60 px-3 py-1 text-xs font-medium text-ink-700;
+  @apply inline-flex items-center gap-1.5 rounded-md border border-ink-200 bg-white/60 px-3 py-1 text-xs font-medium text-ink-700;
 }
 /* Small uppercase section label above headings. */
 @utility eyebrow {
@@ -304,7 +343,7 @@
   @apply text-lg leading-relaxed text-ink-600;
 }
 @utility input-glass {
-  @apply w-full border border-ink-300 bg-white/75 backdrop-blur-md px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700/15;
+  @apply w-full rounded-lg border border-ink-300 bg-white/75 backdrop-blur-md px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700/15;
 }
 @utility skeleton {
   background: linear-gradient(

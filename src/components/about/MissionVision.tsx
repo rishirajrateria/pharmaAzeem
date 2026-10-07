@@ -29,7 +29,7 @@ export function MissionVision({ mission }: Props) {
               >
                 01
               </span>
-              <span className="relative flex h-14 w-14 items-center justify-center bg-brand-gradient text-white">
+              <span className="relative flex h-14 w-14 items-center justify-center bg-brand-gradient text-white rounded-lg">
                 <Target className="h-6 w-6" aria-hidden="true" />
               </span>
               <p className="eyebrow mt-8">Our mission</p>
@@ -51,11 +51,14 @@ export function MissionVision({ mission }: Props) {
               >
                 02
               </span>
-              <span className="glass-dark relative flex h-14 w-14 items-center justify-center text-brand-300">
+              <span className="glass-dark relative flex h-14 w-14 items-center justify-center text-brand-300 rounded-lg">
                 <Eye className="h-6 w-6" aria-hidden="true" />
               </span>
               <p className="relative mt-8 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
-                <span className="inline-block h-1.5 w-1.5 bg-brand-400" aria-hidden="true" />
+                <span
+                  className="inline-block h-1.5 w-1.5 bg-brand-400 rounded-full"
+                  aria-hidden="true"
+                />
                 Our vision
               </p>
               <h3 className="heading-3 relative mt-2 text-white">Where we are headed</h3>

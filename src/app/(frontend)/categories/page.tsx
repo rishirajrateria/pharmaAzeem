@@ -151,7 +151,7 @@ export default async function CategoriesIndexPage() {
                 {tree.map((c) => (
                   <div key={c.id} className="mb-8">
                     <h3 className="flex items-center gap-2.5 text-base font-semibold text-ink-950">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                         <Icon name={c.icon} className="h-4 w-4" />
                       </span>
                       <Link href={`/categories/${c.path}`} className="hover:text-brand-700">

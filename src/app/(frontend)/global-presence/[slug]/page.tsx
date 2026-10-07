@@ -172,7 +172,7 @@ export default async function CountryPage({ params }: { params: Params }) {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                 {country.flag && (
                   <span
-                    className="inline-flex h-14 w-14 glass shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
+                    className="inline-flex h-14 w-14 glass shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl rounded-lg"
                     aria-hidden="true"
                   >
                     {country.flag}
@@ -289,7 +289,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                         key={h.id || i}
                         className="flex items-start gap-3 text-sm font-medium text-ink-900"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-white text-brand-700 ring-1 ring-brand-200">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-white text-brand-700 ring-1 ring-brand-200 rounded-md">
                           <Check className="h-3 w-3" aria-hidden="true" />
                         </span>
                         {h.text}
@@ -299,7 +299,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                 </div>
               )}
               {country.image && (
-                <div className="relative aspect-[4/3] overflow-hidden glass">
+                <div className="relative aspect-[4/3] overflow-hidden glass overflow-hidden">
                   <Media
                     media={country.image}
                     size="card"
@@ -422,7 +422,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                     'Sea, air and cold-chain freight with full export documentation',
                   ].map((t) => (
                     <li key={t} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200 rounded-md">
                         <Check className="h-3 w-3" aria-hidden="true" />
                       </span>
                       {t}

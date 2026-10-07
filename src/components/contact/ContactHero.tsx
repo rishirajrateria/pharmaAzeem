@@ -55,7 +55,7 @@ export function ContactHero({
 
           {hasImage && (
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden glass">
+              <div className="relative aspect-[4/3] overflow-hidden glass overflow-hidden">
                 <Media
                   media={image}
                   size="large"
@@ -66,7 +66,7 @@ export function ContactHero({
                 />
               </div>
               {badge && (
-                <div className="flex items-center gap-3 border border-t-0 border-ink-200 bg-white px-4 py-3">
+                <div className="flex items-center gap-3 glass rounded-t-none border-t-0 px-4 py-3">
                   <Timer className="h-4 w-4 shrink-0 text-brand-700" aria-hidden="true" />
                   <p className="text-sm">
                     <span className="font-semibold text-ink-950">{badge.title}</span>

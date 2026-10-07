@@ -30,7 +30,7 @@ function CertificatePlaceholder({ type, title }: { type: Certification['type']; 
         <div className="h-1 w-3/4 bg-brand-100" />
         <div className="h-1 w-2/3 bg-brand-100" />
       </div>
-      <span className="relative flex h-16 w-16 items-center justify-center glass text-brand-600 shadow-glass">
+      <span className="relative flex h-16 w-16 items-center justify-center glass text-brand-600 shadow-glass rounded-lg">
         <Icon name={CERT_TYPE_META[type].icon} className="h-7 w-7" />
       </span>
       <span className="relative mt-3 text-[10px] uppercase tracking-[0.22em] text-brand-700/80">

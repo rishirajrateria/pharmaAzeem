@@ -43,7 +43,7 @@ export function FeaturedCategories({
                 href={`/categories/${c.path}`}
                 className="glass-card group flex h-full flex-col items-center px-3 py-5 text-center"
               >
-                <span className="flex h-14 w-14 items-center justify-center bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white">
+                <span className="flex h-14 w-14 items-center justify-center bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white rounded-lg">
                   <Icon name={c.icon} className="h-6 w-6" />
                 </span>
                 <span className="mt-3 text-sm font-semibold leading-snug text-ink-950">

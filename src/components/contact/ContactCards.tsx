@@ -69,7 +69,7 @@ function Card({
   return (
     <Reveal delay={delay} className={cn('glass glass-edge p-6 sm:p-7', className)}>
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
           <Icon className="h-4.5 w-4.5" aria-hidden="true" />
         </span>
         <h3 className="text-base font-semibold text-ink-950">{title}</h3>
@@ -161,7 +161,7 @@ function Row({
     <div className="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-[auto_auto] items-center gap-x-3 gap-y-0.5 py-3 first:pt-0 last:pb-0">
       <dt className="col-span-2 row-span-2 grid grid-cols-subgrid grid-rows-subgrid items-center">
         <span
-          className="row-span-2 flex h-9 w-9 items-center justify-center bg-brand-50 text-brand-600"
+          className="row-span-2 flex h-9 w-9 items-center justify-center bg-brand-50 text-brand-600 rounded-lg"
           aria-hidden="true"
         >
           <Icon className="h-4 w-4" />
@@ -303,7 +303,7 @@ export function SocialLinks({
                 rel="noopener noreferrer me"
                 aria-label={`${meta.label} (opens in a new tab)`}
                 title={meta.label}
-                className="flex h-11 w-11 items-center justify-center glass text-ink-700 transition duration-300 hover:border-brand-500 hover:bg-brand-600 hover:text-white hover:shadow-glow"
+                className="flex h-11 w-11 items-center justify-center glass text-ink-700 transition duration-300 hover:border-brand-500 hover:bg-brand-600 hover:text-white hover:shadow-glow rounded-lg"
               >
                 <Icon className="h-4.5 w-4.5" aria-hidden="true" />
               </a>

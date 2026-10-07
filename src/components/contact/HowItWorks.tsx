@@ -45,7 +45,7 @@ export function HowItWorks({ className }: { className?: string }) {
           <Reveal key={step.title} as="li" delay={i * 90} className="relative">
             <div className="glass-card glass-edge h-full p-6 sm:p-7">
               <div className="flex items-center justify-between gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-ink-400">
@@ -57,7 +57,7 @@ export function HowItWorks({ className }: { className?: string }) {
             </div>
             {!last && (
               <span
-                className="absolute -right-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center glass-strong text-brand-600 shadow-glass md:flex lg:-right-4"
+                className="absolute -right-3 top-1/2 z-10 hidden h-8 w-8 -translate-y-1/2 items-center justify-center glass-strong text-brand-600 shadow-glass md:flex lg:-right-4 rounded-lg"
                 aria-hidden="true"
               >
                 <ArrowRight className="h-3.5 w-3.5" />

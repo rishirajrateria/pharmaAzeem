@@ -127,7 +127,7 @@ export const Badge = ({
 }: ComponentProps<'span'> & { tone?: 'brand' | 'ink' | 'success' | 'glass' }) => (
   <span
     className={cn(
-      'inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
+      'inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
       tone === 'brand' && 'bg-brand-gradient text-white',
       tone === 'ink' && 'bg-ink-950 text-white',
       tone === 'success' && 'bg-emerald-500/10 text-emerald-700 border border-emerald-500/20',

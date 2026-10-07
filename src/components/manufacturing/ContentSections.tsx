@@ -21,7 +21,7 @@ function Bullets({
     <ul className={cn('grid gap-3', className)} role="list">
       {bullets.map((b, i) => (
         <li key={b.id || i} className="flex items-start gap-3 text-[15px] text-ink-700">
-          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center glass-red text-brand-700">
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center glass-red text-brand-700 rounded-md">
             <Check className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
           <span>{b.text}</span>
@@ -80,7 +80,7 @@ export function ContentSections({ sections }: { sections?: ContentSection[] | nu
                   <Bullets bullets={s.bullets} className="mt-6" />
                 </div>
                 <div className={cn('relative', imageLeft && 'lg:order-1')}>
-                  <div className="relative aspect-[4/3] overflow-hidden border border-ink-200">
+                  <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 rounded-xl">
                     <Media
                       media={s.image}
                       size="large"

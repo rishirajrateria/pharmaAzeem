@@ -52,7 +52,7 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                         className="h-12 w-12 shrink-0 bg-white object-contain p-1"
                       />
                     ) : (
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                         <Award className="h-5 w-5" aria-hidden="true" />
                       </span>
                     )}

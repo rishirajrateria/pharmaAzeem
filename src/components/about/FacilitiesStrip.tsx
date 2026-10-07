@@ -54,7 +54,7 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
                 className="glass-card glass-edge flex flex-col p-5 sm:p-6"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100 rounded-lg">
                     <TypeIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span className="text-[10px] uppercase tracking-[0.18em] text-brand-600">

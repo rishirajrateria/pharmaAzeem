@@ -115,7 +115,7 @@ export function ProductGallery({ images, title, badges = [], rx, className }: Pr
                 aria-pressed={selected}
                 aria-label={`Show image ${i + 1} of ${images.length}`}
                 className={cn(
-                  'relative h-20 w-20 shrink-0 overflow-hidden border bg-white transition-colors',
+                  'relative h-20 w-20 shrink-0 overflow-hidden border bg-white transition-colors rounded-lg',
                   selected ? 'border-brand-700' : 'border-ink-200 hover:border-ink-400',
                 )}
               >

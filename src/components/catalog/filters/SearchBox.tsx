@@ -52,7 +52,7 @@ export function SearchBox({
         {clear && (
           <Link
             href={clear}
-            className="inline-flex h-8 w-8 items-center justify-center text-ink-500 hover:bg-brand-50 hover:text-brand-700"
+            className="inline-flex h-8 w-8 items-center justify-center text-ink-500 hover:bg-brand-50 hover:text-brand-700 rounded-lg"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" aria-hidden="true" />

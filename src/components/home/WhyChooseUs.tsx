@@ -34,7 +34,7 @@ export function WhyChooseUs({ cards }: { cards?: Homepage['whyUs'] }) {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-gradient group-hover:text-white">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-gradient group-hover:text-white rounded-lg">
                     <Icon name={c.icon} className="h-4.5 w-4.5" />
                   </span>
                   <div className="min-w-0">

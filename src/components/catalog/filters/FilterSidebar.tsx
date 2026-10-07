@@ -189,7 +189,7 @@ function FacetOption({
       >
         <span
           className={cn(
-            'flex h-4 w-4 shrink-0 items-center justify-center border transition',
+            'flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition',
             selected
               ? 'border-brand-600 bg-brand-gradient text-white'
               : 'border-ink-300 bg-white group-hover/opt:border-brand-400',

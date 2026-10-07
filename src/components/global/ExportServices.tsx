@@ -51,7 +51,7 @@ export function ExportServices({ services }: { services?: Service[] | null }) {
       {list.map((s, i) => (
         <Reveal as="li" key={s.id || s.title} delay={i * 60} className="h-full">
           <article className="glass-card group flex h-full flex-col p-6">
-            <span className="flex h-12 w-12 items-center justify-center bg-brand-50 text-brand-700">
+            <span className="flex h-12 w-12 items-center justify-center bg-brand-50 text-brand-700 rounded-lg">
               <Icon name={s.icon} className="h-5 w-5" />
             </span>
             <h3 className="mt-5 text-lg font-semibold text-ink-950">{s.title}</h3>

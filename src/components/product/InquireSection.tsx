@@ -41,14 +41,17 @@ export function InquireSection({ product, contact }: Props) {
             <ul className="mt-3 space-y-2" role="list">
               {INCLUDE.map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-ink-700">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-700" aria-hidden="true" />
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-700 rounded-full"
+                    aria-hidden="true"
+                  />
                   {t}
                 </li>
               ))}
             </ul>
 
             {(email || phone || whatsapp) && (
-              <div className="mt-8 border border-ink-200 bg-surface-2 p-5">
+              <div className="mt-8 border border-ink-200 bg-surface-2 p-5 rounded-xl">
                 <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
                   Prefer to talk?
                 </p>

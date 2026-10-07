@@ -35,7 +35,7 @@ export function Timeline({ milestones, siteName }: Props) {
                   className="relative pb-10 pl-14 last:pb-0 lg:grid lg:grid-cols-2 lg:gap-x-20 lg:pb-14 lg:pl-0"
                 >
                   <span
-                    className="absolute left-5 top-7 z-10 h-3 w-3 -translate-x-1/2 bg-brand-700 lg:left-1/2 lg:top-8"
+                    className="absolute left-5 top-7 z-10 h-3 w-3 -translate-x-1/2 bg-brand-700 lg:left-1/2 lg:top-8 rounded-full"
                     aria-hidden="true"
                   />
                   <Reveal

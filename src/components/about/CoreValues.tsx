@@ -25,7 +25,7 @@ export function CoreValues({ values }: Props) {
               className="group glass-card glass-edge relative overflow-hidden p-6 sm:p-7"
             >
               <div className="relative flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                   <Icon name={v.icon} className="h-5 w-5" />
                 </span>
                 <span className="text-[11px] tracking-[0.2em] text-ink-300">

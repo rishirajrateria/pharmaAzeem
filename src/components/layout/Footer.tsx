@@ -45,7 +45,7 @@ export async function Footer() {
                   href="/licenses"
                   className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700"
                 >
-                  <span className="h-1.5 w-1.5 bg-brand-600" />
+                  <span className="h-1.5 w-1.5 bg-brand-600 rounded-full" />
                   {c.title}
                 </Link>
               ))}

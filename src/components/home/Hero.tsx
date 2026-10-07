@@ -78,7 +78,7 @@ export function Hero({
         <div className="grid gap-6 lg:grid-cols-12">
           {categories.length > 0 && (
             <nav
-              className="glass hidden lg:col-span-3 lg:flex lg:flex-col"
+              className="glass hidden overflow-hidden lg:col-span-3 lg:flex lg:flex-col"
               aria-label="Shop by category"
             >
               <p className="border-b border-white/80 bg-white/50 px-4 py-3 text-sm font-semibold text-ink-950">
@@ -114,8 +114,8 @@ export function Hero({
           <div
             className={
               categories.length > 0
-                ? 'glass grid md:grid-cols-[3fr_2fr] lg:col-span-9'
-                : 'glass grid md:grid-cols-[3fr_2fr] lg:col-span-12'
+                ? 'glass grid overflow-hidden md:grid-cols-[3fr_2fr] lg:col-span-9'
+                : 'glass grid overflow-hidden md:grid-cols-[3fr_2fr] lg:col-span-12'
             }
           >
             <div className="flex flex-col justify-center p-6 sm:p-10">
@@ -155,7 +155,7 @@ export function Hero({
 
         {trust.length > 0 && (
           <ul
-            className="glass mt-6 grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4"
+            className="glass mt-6 grid grid-cols-1 overflow-hidden min-[480px]:grid-cols-2 lg:grid-cols-4"
             aria-label="Why buy from us"
           >
             {trust.map((t) => (

@@ -8,7 +8,7 @@ export function AboutCta({ settings }: { settings: SiteSetting }) {
   const email = settings.contact?.email
   const phone = settings.contact?.phone
   return (
-    <section className="bg-brand-700 text-white" aria-labelledby="about-cta">
+    <section className="bg-brand-band text-white" aria-labelledby="about-cta">
       <Container className="py-14 sm:py-16 lg:py-20">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-2xl">

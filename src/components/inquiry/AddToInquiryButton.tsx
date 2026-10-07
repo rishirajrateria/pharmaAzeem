@@ -43,7 +43,7 @@ export function AddToInquiryButton({
         type="button"
         onClick={onClick}
         className={cn(
-          'inline-flex h-10 w-10 items-center justify-center transition-all duration-300',
+          'inline-flex h-10 w-10 items-center justify-center transition-all duration-300 rounded-lg',
           added ? 'bg-emerald-600 text-white' : 'bg-brand-gradient text-white',
           className,
         )}

@@ -36,7 +36,7 @@ export function CountryCard({ country, className, compact }: Props) {
         >
           {country.flag || country.isoCode}
         </span>
-        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white rounded-lg">
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </span>
       </div>

@@ -31,7 +31,7 @@ export function CapabilitiesGrid({ capabilities }: { capabilities?: Capability[]
               className="group glass-card glass-edge relative flex h-full flex-col overflow-hidden p-6 sm:p-7"
             >
               <div className="relative flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-50 text-brand-700">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-50 text-brand-700 rounded-lg">
                   <Icon name={c.icon} className="h-5 w-5" />
                 </span>
                 <span className="text-[11px] uppercase tracking-[0.2em] text-ink-400">

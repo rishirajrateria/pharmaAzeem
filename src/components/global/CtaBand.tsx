@@ -21,7 +21,7 @@ export function CtaBand({
   id = 'cta-heading',
 }: Props) {
   return (
-    <section aria-labelledby={id} className="bg-brand-700 text-white">
+    <section aria-labelledby={id} className="bg-brand-band text-white">
       <Container className="py-14 sm:py-16 lg:py-20">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-2xl">

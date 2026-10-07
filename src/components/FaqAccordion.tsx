@@ -28,7 +28,7 @@ export function FaqAccordion({
         <details key={f.id || i} className="group glass open:glass-strong" name="faq">
           <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-semibold text-ink-950 sm:px-6">
             <span>{f.question}</span>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-brand-200 bg-white text-brand-600 transition-transform duration-300 group-open:rotate-45">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-brand-200 bg-white text-brand-600 transition-transform duration-300 group-open:rotate-45 rounded-lg">
               <Plus className="h-3.5 w-3.5" />
             </span>
           </summary>

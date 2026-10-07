@@ -27,7 +27,7 @@ export function ContractManufacturing({
     >
       <Container>
         <Reveal>
-          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14">
+          <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-14 rounded-xl">
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-6">
                 <Eyebrow className="mb-4">Contract manufacturing</Eyebrow>
@@ -72,7 +72,7 @@ export function ContractManufacturing({
                   <ol className="mt-4 space-y-4" aria-label="Contract manufacturing steps">
                     {HOW.map((h, i) => (
                       <li key={h.title} className="flex gap-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-700 text-xs font-semibold text-white">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-700 text-xs font-semibold text-white rounded-lg">
                           {i + 1}
                         </span>
                         <div>

@@ -47,7 +47,7 @@ export function CatalogSections({
                       key={b.id || j}
                       className="glass flex items-start gap-2.5 px-4 py-3 text-sm text-ink-800"
                     >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-md">
                         <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
                       </span>
                       {b.text}

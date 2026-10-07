@@ -36,7 +36,7 @@ export function ProductGrid({
       <div className={cn('space-y-10', className)}>
         <div className="glass relative overflow-hidden p-8 text-center sm:p-12">
           <div className="relative">
-            <span className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600">
+            <span className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600 rounded-lg">
               <SearchX className="h-7 w-7" aria-hidden="true" />
             </span>
             <h3 className="heading-3 mt-5">

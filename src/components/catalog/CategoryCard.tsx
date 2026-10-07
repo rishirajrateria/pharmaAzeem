@@ -35,10 +35,10 @@ export function CategoryCard({ category, className, compact }: Props) {
       )}
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
             <Icon name={category.icon} className="h-5 w-5" />
           </span>
-          <span className="inline-flex h-9 w-9 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
+          <span className="inline-flex h-9 w-9 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white rounded-lg">
             <ArrowUpRight className="h-4 w-4" />
           </span>
         </div>

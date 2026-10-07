@@ -56,7 +56,7 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
           <Container>
             <div className="flex items-start gap-5">
               <span
-                className="hidden h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-sm font-semibold text-white shadow-glow sm:flex"
+                className="hidden h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-sm font-semibold text-white shadow-glow sm:flex rounded-lg"
                 aria-hidden="true"
               >
                 {pad2(gi + 1)}

@@ -73,7 +73,7 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
                     sizes="40px"
                     className="h-10 w-10 shrink-0 object-cover"
                     fallback={
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white rounded-lg">
                         <Award className="h-4.5 w-4.5" aria-hidden="true" />
                       </span>
                     }

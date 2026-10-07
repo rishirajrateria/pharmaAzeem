@@ -65,7 +65,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               <ol className="mt-8 space-y-6" aria-label="Verification steps">
                 {STEPS.map((s, i) => (
                   <li key={s.title} className="flex gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-xs font-semibold text-white shadow-glow">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-xs font-semibold text-white shadow-glow rounded-lg">
                       {pad2(i + 1)}
                     </span>
                     <div>
@@ -80,7 +80,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               className="relative mt-10 glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0"
               aria-labelledby="dossier-title"
             >
-              <span className="flex h-11 w-11 items-center justify-center bg-brand-gradient text-white">
+              <span className="flex h-11 w-11 items-center justify-center bg-brand-gradient text-white rounded-lg">
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 id="dossier-title" className="mt-5 text-lg font-semibold text-ink-950">
@@ -89,7 +89,10 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               <ul className="mt-4 space-y-2 text-sm text-ink-700" role="list">
                 {docs.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-brand-500" aria-hidden="true" />
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 bg-brand-500 rounded-full"
+                      aria-hidden="true"
+                    />
                     {d}
                   </li>
                 ))}

@@ -20,7 +20,7 @@ export function PriceTag({
           className,
         )}
       >
-        <span className="h-1.5 w-1.5 bg-brand-500" />
+        <span className="h-1.5 w-1.5 bg-brand-500 rounded-full" />
         {price.label}
       </span>
     )

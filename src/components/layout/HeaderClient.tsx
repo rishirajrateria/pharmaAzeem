@@ -165,7 +165,7 @@ export function HeaderClient({
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-11 w-11 items-center justify-center glass text-ink-800 lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center glass text-ink-800 lg:hidden rounded-lg"
                 aria-label="Open menu"
                 aria-expanded={open}
               >
@@ -177,7 +177,7 @@ export function HeaderClient({
         </div>
 
         {/* Category bar */}
-        <div className="hidden bg-brand-700/90 text-white backdrop-blur-xl lg:block">
+        <div className="hidden bg-brand-band text-white lg:block">
           <nav className="container-x flex h-12 items-stretch" aria-label="Product categories">
             <div
               className="relative"
@@ -222,9 +222,12 @@ export function HeaderClient({
                 <div className="glass-strong border-t-0 p-4 shadow-glass-lg">
                   <div className="grid grid-cols-3 gap-2">
                     {nav.map((c) => (
-                      <div key={c.id} className="p-3 transition-colors hover:bg-surface-2">
+                      <div
+                        key={c.id}
+                        className="rounded-lg p-3 transition-colors hover:bg-surface-2"
+                      >
                         <Link prefetch={false} href={c.path} className="flex items-start gap-3">
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-700">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-700 rounded-lg">
                             <Icon name={c.icon} className="h-4.5 w-4.5" />
                           </span>
                           <span>
@@ -241,7 +244,7 @@ export function HeaderClient({
                                 <Link
                                   prefetch={false}
                                   href={sub.path}
-                                  className="border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700"
+                                  className="border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700 rounded-lg"
                                 >
                                   {sub.title}
                                 </Link>
@@ -335,7 +338,7 @@ export function HeaderClient({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50"
+              className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50 rounded-lg"
               aria-label="Close menu"
             >
               <X className="h-5 w-5" />
@@ -361,7 +364,7 @@ export function HeaderClient({
                     href={c.path}
                     className="flex items-center gap-3 px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50"
                   >
-                    <span className="flex h-8 w-8 items-center justify-center bg-brand-50 text-brand-600">
+                    <span className="flex h-8 w-8 items-center justify-center bg-brand-50 text-brand-600 rounded-lg">
                       <Icon name={c.icon} className="h-4 w-4" />
                     </span>
                     <span className="flex-1">{c.title}</span>
@@ -427,7 +430,7 @@ function HeaderSearch({ className }: { className?: string }) {
       <label htmlFor={id} className="sr-only">
         Search products
       </label>
-      <div className="flex w-full border border-ink-300/80 bg-white/70 backdrop-blur-md focus-within:border-brand-700 focus-within:bg-white/90">
+      <div className="flex w-full overflow-hidden rounded-lg border border-ink-300/80 bg-white/70 backdrop-blur-md focus-within:border-brand-700 focus-within:bg-white/90">
         <Search className="ml-3.5 h-4 w-4 shrink-0 self-center text-ink-400" aria-hidden="true" />
         <input
           id={id}
@@ -441,7 +444,7 @@ function HeaderSearch({ className }: { className?: string }) {
         />
         <button
           type="submit"
-          className="bg-brand-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
+          className="bg-brand-gradient px-5 text-sm font-semibold text-white transition hover:brightness-110"
         >
           Search
         </button>

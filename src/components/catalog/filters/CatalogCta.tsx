@@ -19,7 +19,7 @@ export function CatalogCta({
   className?: string
 }) {
   return (
-    <div className={cn('bg-brand-700 text-white', className)}>
+    <div className={cn('bg-brand-band text-white', className)}>
       <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:p-14">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-100">
@@ -54,7 +54,7 @@ export function CatalogCta({
               desc: 'Add your company details and destination country – our export team replies with a quotation.',
             },
           ].map((s) => (
-            <div key={s.term} className="border border-white/30 p-4">
+            <div key={s.term} className="border border-white/30 p-4 rounded-lg">
               <dt className="flex items-center gap-2 text-sm font-semibold text-white">
                 <s.icon className="h-4 w-4" aria-hidden="true" />
                 {s.term}

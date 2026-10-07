@@ -50,7 +50,7 @@ export function DocumentationStrip({ productTitle }: { productTitle: string }) {
   return (
     <Section className="!py-0" aria-labelledby="documentation-heading">
       <Container>
-        <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-12">
+        <div className="border border-ink-200 bg-surface-2 p-6 sm:p-10 lg:p-12 rounded-xl">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
               <Eyebrow>Documentation available</Eyebrow>
