@@ -65,7 +65,15 @@ const dbUrl = process.env.DATABASE_URL || 'file:./data/pharma.db'
  */
 const db = dbUrl.startsWith('postgres')
   ? postgresAdapter({
-      pool: { connectionString: dbUrl },
+      pool: {
+        connectionString: dbUrl,
+        max: 5,
+        // Neon's pooled endpoint (PgBouncer) can silently drop a connection that sits idle
+        // for a while – long enough to happen during a sequential Next.js build. TCP
+        // keepalives stop the socket from going idle long enough to be reaped.
+        keepAlive: true,
+        keepAliveInitialDelayMillis: 10_000,
+      },
       push: process.env.NODE_ENV !== 'production',
       prodMigrations: migrations,
     })
