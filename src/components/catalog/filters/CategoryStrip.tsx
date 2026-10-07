@@ -33,7 +33,7 @@ export function CategoryStrip({
             <Link
               href="/products"
               className={cn(
-                'inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium transition',
+                'inline-flex items-center gap-2 border px-3.5 py-2 text-sm font-medium transition',
                 !activeId
                   ? 'border-brand-600 bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]'
                   : 'glass text-ink-800 hover:border-brand-300 hover:text-brand-700',
@@ -52,7 +52,7 @@ export function CategoryStrip({
               <Link
                 href={`/categories/${c.path}`}
                 className={cn(
-                  'inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium transition',
+                  'inline-flex items-center gap-2 border px-3.5 py-2 text-sm font-medium transition',
                   active
                     ? 'border-brand-600 bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]'
                     : 'glass text-ink-800 hover:border-brand-300 hover:text-brand-700',
@@ -65,7 +65,7 @@ export function CategoryStrip({
                 />
                 {c.title}
                 <span
-                  className={cn('font-mono text-[10px]', active ? 'text-white/80' : 'text-ink-400')}
+                  className={cn('text-[10px]', active ? 'text-white/80' : 'text-ink-400')}
                 >
                   {c.productCount}
                 </span>
@@ -76,7 +76,7 @@ export function CategoryStrip({
         <li className="shrink-0">
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 rounded-full border border-dashed border-brand-300 px-3.5 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50"
+            className="inline-flex items-center gap-2 border border-dashed border-brand-300 px-3.5 py-2 text-sm font-medium text-brand-700 transition hover:bg-brand-50"
           >
             All categories →
           </Link>

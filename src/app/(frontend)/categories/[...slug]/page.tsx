@@ -225,7 +225,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       {category.description && (
         <Section className="!pt-0" aria-labelledby="category-about-title">
           <Container>
-            <div className="glass relative overflow-hidden rounded-[2.25rem] p-6 sm:p-10 lg:p-14">
+            <div className="glass relative overflow-hidden p-6 sm:p-10 lg:p-14">
               <div
                 className="absolute inset-0 dots-pattern opacity-40 fade-mask-y"
                 aria-hidden="true"

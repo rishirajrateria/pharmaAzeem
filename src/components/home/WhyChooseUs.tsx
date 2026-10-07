@@ -29,12 +29,12 @@ export function WhyChooseUs({ cards }: { cards?: Homepage['whyUs'] }) {
               <Reveal as="li" key={c.id || i} delay={i * 50} className="group">
                 <div className="flex items-start gap-5 border-t border-ink-100 py-6 first:border-t-0 lg:py-7">
                   <span
-                    className="mono shrink-0 pt-0.5 text-sm font-medium text-ink-300 transition-colors duration-300 group-hover:text-brand-500"
+                    className="shrink-0 pt-0.5 text-sm font-medium text-ink-300 transition-colors duration-300 group-hover:text-brand-500"
                     aria-hidden="true"
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-(--radius-signature-sm) bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-gradient group-hover:text-white">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-gradient group-hover:text-white">
                     <Icon name={c.icon} className="h-4.5 w-4.5" />
                   </span>
                   <div className="min-w-0">

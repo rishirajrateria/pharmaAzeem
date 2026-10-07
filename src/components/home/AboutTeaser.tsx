@@ -44,8 +44,8 @@ export function AboutTeaser({
               className="absolute -bottom-10 -right-6 h-48 w-48 rounded-full bg-brand-gradient opacity-15 blur-3xl"
               aria-hidden="true"
             />
-            <div className="glass relative rounded-[2rem] p-3 shadow-glass-lg rotate-[2deg] transition-transform duration-700 hover:rotate-0">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white">
+            <div className="glass relative p-3 shadow-glass-lg rotate-[2deg] transition-transform duration-700 hover:rotate-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-white">
                 <Media
                   media={intro.image}
                   size="large"
@@ -63,8 +63,8 @@ export function AboutTeaser({
             {facts.length > 0 && (
               <dl className="relative z-10 -mt-8 ml-4 mr-4 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:-mt-10 sm:ml-8 sm:mr-0 sm:max-w-md">
                 {facts.map((f) => (
-                  <div key={f.label} className="glass-strong glass-edge rounded-2xl px-4 py-3">
-                    <dt className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                  <div key={f.label} className="glass-strong glass-edge px-4 py-3">
+                    <dt className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                       <f.icon className="h-3 w-3 text-brand-600" aria-hidden="true" />
                       {f.label}
                     </dt>

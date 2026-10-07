@@ -35,7 +35,7 @@ export function OverviewSection({
                   {mix.map((m) => (
                     <li key={m.type} className="chip !py-1">
                       <m.icon className="h-3.5 w-3.5" aria-hidden="true" />
-                      <span className="font-mono">{m.count}</span>{' '}
+                      <span>{m.count}</span>{' '}
                       {m.count === 1 ? m.label : m.plural}
                     </li>
                   ))}

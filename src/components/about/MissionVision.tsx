@@ -24,12 +24,12 @@ export function MissionVision({ mission }: Props) {
               className="glass-card glass-edge relative overflow-hidden p-8 sm:p-10"
             >
               <span
-                className="pointer-events-none absolute -right-2 -top-4 select-none font-mono text-8xl font-semibold text-brand-100/80"
+                className="pointer-events-none absolute -right-2 -top-4 select-none text-8xl font-semibold text-brand-100/80"
                 aria-hidden="true"
               >
                 01
               </span>
-              <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_12px_28px_-10px_rgb(225_29_46_/_0.8)]">
+              <span className="relative flex h-14 w-14 items-center justify-center bg-brand-gradient text-white shadow-[0_12px_28px_-10px_rgb(225_29_46_/_0.8)]">
                 <Target className="h-6 w-6" aria-hidden="true" />
               </span>
               <p className="eyebrow mt-8">Our mission</p>
@@ -43,24 +43,24 @@ export function MissionVision({ mission }: Props) {
             <Reveal
               as="article"
               delay={90}
-              className="mesh-bg-dark relative overflow-hidden rounded-3xl p-8 text-white sm:p-10"
+              className="mesh-bg-dark relative overflow-hidden p-8 text-white sm:p-10"
             >
               <div
                 className="pointer-events-none absolute inset-0 dots-pattern opacity-30"
                 aria-hidden="true"
               />
               <span
-                className="pointer-events-none absolute -right-2 -top-4 select-none font-mono text-8xl font-semibold text-white/10"
+                className="pointer-events-none absolute -right-2 -top-4 select-none text-8xl font-semibold text-white/10"
                 aria-hidden="true"
               >
                 02
               </span>
-              <span className="glass-dark relative flex h-14 w-14 items-center justify-center rounded-2xl text-brand-300">
+              <span className="glass-dark relative flex h-14 w-14 items-center justify-center text-brand-300">
                 <Eye className="h-6 w-6" aria-hidden="true" />
               </span>
-              <p className="relative mt-8 inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
+              <p className="relative mt-8 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
                 <span
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-brand-400"
+                  className="inline-block h-1.5 w-1.5 bg-brand-400"
                   aria-hidden="true"
                 />
                 Our vision

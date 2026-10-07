@@ -29,10 +29,10 @@ export function CoreValues({ values }: Props) {
                 aria-hidden="true"
               />
               <div className="relative flex items-start justify-between gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
                   <Icon name={v.icon} className="h-5 w-5" />
                 </span>
-                <span className="font-mono text-[11px] tracking-[0.2em] text-ink-300">
+                <span className="text-[11px] tracking-[0.2em] text-ink-300">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>

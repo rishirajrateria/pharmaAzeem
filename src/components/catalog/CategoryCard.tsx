@@ -42,10 +42,10 @@ export function CategoryCard({ category, className, compact }: Props) {
       )}
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
             <Icon name={category.icon} className="h-5 w-5" />
           </span>
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
+          <span className="inline-flex h-9 w-9 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
             <ArrowUpRight className="h-4 w-4" />
           </span>
         </div>
@@ -58,7 +58,7 @@ export function CategoryCard({ category, className, compact }: Props) {
           <p className="mt-1.5 line-clamp-2 text-sm text-ink-600">{category.shortDescription}</p>
         )}
         {typeof category.productCount === 'number' && (
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600">
+          <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-brand-600">
             {category.productCount} products
           </p>
         )}

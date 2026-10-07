@@ -60,17 +60,17 @@ export function KeyFacts({
     <dl
       id={id}
       className={cn(
-        'grid gap-px overflow-hidden rounded-3xl border border-white/70 bg-brand-100/40 shadow-glass sm:grid-cols-2',
+        'grid gap-px overflow-hidden border border-white/70 bg-brand-100/40 shadow-glass sm:grid-cols-2',
         className,
       )}
     >
       {facts.map((f) => (
         <div key={f.label} className="flex gap-3 bg-white/75 px-4 py-3.5 backdrop-blur sm:px-5">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100">
             <Icon name={f.icon} className="h-3.5 w-3.5" />
           </span>
           <div className="min-w-0">
-            <dt className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
+            <dt className="text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
               {f.label}
             </dt>
             <dd className="mt-0.5 text-sm font-medium leading-snug text-ink-950">{f.value}</dd>

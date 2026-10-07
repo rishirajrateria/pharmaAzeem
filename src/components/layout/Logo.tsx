@@ -21,8 +21,8 @@ export function LogoMark({ className }: { className?: string }) {
           <stop offset="100%" stopColor="#fff" stopOpacity="0.2" />
         </linearGradient>
       </defs>
-      <rect x="2" y="2" width="36" height="36" rx="11" fill={`url(#${a})`} />
-      <rect x="2.5" y="2.5" width="35" height="17" rx="10" fill={`url(#${b})`} opacity="0.35" />
+      <rect x="2" y="2" width="36" height="36" fill={`url(#${a})`} />
+      <rect x="2" y="2" width="36" height="18" fill={`url(#${b})`} opacity="0.35" />
       <g transform="rotate(-45 20 20)">
         <rect x="8" y="14.5" width="24" height="11" rx="5.5" fill="#fff" />
         <rect x="8" y="14.5" width="12" height="11" rx="5.5" fill="#fff" opacity="0.5" />
@@ -77,7 +77,7 @@ export function Logo({
         {tagline && (
           <span
             className={cn(
-              'mt-1 hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] sm:block',
+              'mt-1 hidden whitespace-nowrap text-[10px] uppercase tracking-[0.18em] sm:block',
               invert ? 'text-white/60' : 'text-ink-500',
             )}
           >

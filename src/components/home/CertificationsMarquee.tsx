@@ -65,15 +65,15 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
                 <Link
                   href="/licenses"
                   tabIndex={copy ? -1 : undefined}
-                  className="glass glass-edge flex items-center gap-3 rounded-2xl py-3 pl-3 pr-5 transition hover:border-brand-300 hover:shadow-glass-lg"
+                  className="glass glass-edge flex items-center gap-3 py-3 pl-3 pr-5 transition hover:border-brand-300 hover:shadow-glass-lg"
                 >
                   <Media
                     media={c.image}
                     size="thumbnail"
                     sizes="40px"
-                    className="h-10 w-10 shrink-0 rounded-xl object-cover"
+                    className="h-10 w-10 shrink-0 object-cover"
                     fallback={
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-white">
                         <Award className="h-4.5 w-4.5" aria-hidden="true" />
                       </span>
                     }
@@ -81,7 +81,7 @@ export function CertificationsMarquee({ certifications }: { certifications: Cert
                   <span className="whitespace-nowrap">
                     <span className="block text-sm font-semibold text-ink-950">{c.title}</span>
                     <span className="block text-[11px] text-ink-500">
-                      <span className="font-mono uppercase tracking-wider text-brand-600">
+                      <span className="uppercase tracking-wider text-brand-600">
                         {TYPE_LABEL[c.type]}
                       </span>{' '}
                       · {c.issuer}

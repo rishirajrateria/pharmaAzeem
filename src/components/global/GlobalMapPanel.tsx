@@ -37,7 +37,7 @@ export function GlobalMapPanel({
   const since = earliestYear(countries)
   return (
     <section aria-labelledby={headingId} className={cn('relative', className)}>
-      <div className="glass-strong glass-edge noise relative overflow-hidden rounded-4xl p-4 shadow-glass-lg sm:p-6 lg:p-8">
+      <div className="glass-strong glass-edge noise relative overflow-hidden p-4 shadow-glass-lg sm:p-6 lg:p-8">
         <div
           className="pointer-events-none absolute inset-0 dots-pattern opacity-40"
           aria-hidden="true"
@@ -72,19 +72,19 @@ export function GlobalMapPanel({
           </ul>
         </div>
 
-        <div className="relative mt-6 rounded-3xl border border-white/70 bg-white/40 p-2 sm:p-4">
+        <div className="relative mt-6 border border-white/70 bg-white/40 p-2 sm:p-4">
           <WorldMap pins={pins} showLabels />
           {/* Floating stat chips */}
           <div
             className="pointer-events-none absolute inset-x-4 top-4 hidden justify-between md:flex"
             aria-hidden="true"
           >
-            <span className="glass animate-float rounded-2xl px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass">
+            <span className="glass animate-float px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass">
               <span className="text-gradient text-lg font-semibold">{countries.length}</span>{' '}
               countries served
             </span>
             {featured > 0 && (
-              <span className="glass animate-float-slow rounded-2xl px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass">
+              <span className="glass animate-float-slow px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass">
                 <span className="text-gradient text-lg font-semibold">{featured}</span> key markets
               </span>
             )}
@@ -95,7 +95,7 @@ export function GlobalMapPanel({
               aria-hidden="true"
             >
               <span
-                className="glass animate-float rounded-2xl px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass"
+                className="glass animate-float px-3.5 py-2 text-xs font-medium text-ink-800 shadow-glass"
                 style={{ animationDelay: '-6s' }}
               >
                 <MapPin className="mr-1 inline h-3.5 w-3.5 text-brand-600" /> Exporting since{' '}

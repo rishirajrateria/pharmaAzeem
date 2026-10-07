@@ -149,7 +149,7 @@ export default async function ContactPage() {
             <div className="lg:col-span-7">
               <div
                 id="contact-form"
-                className="glass-strong glass-edge scroll-mt-28 rounded-3xl p-6 sm:p-8 lg:p-10"
+                className="glass-strong glass-edge scroll-mt-28 p-6 sm:p-8 lg:p-10"
               >
                 <Eyebrow className="mb-3">Message us</Eyebrow>
                 <h2 id="contact-form-heading" className="heading-3">

@@ -58,7 +58,7 @@ export function SortSelect({
         defaultValue={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={pending}
-        className="input-glass !w-auto !rounded-full !py-2 pr-8 text-xs font-semibold text-ink-900 disabled:opacity-60"
+        className="input-glass !w-auto !py-2 pr-8 text-xs font-semibold text-ink-900 disabled:opacity-60"
         aria-busy={pending}
       >
         {options.map((o) => (

@@ -50,7 +50,7 @@ export function DocumentationStrip({ productTitle }: { productTitle: string }) {
   return (
     <Section className="!py-0" aria-labelledby="documentation-heading">
       <Container>
-        <div className="mesh-bg-dark noise relative overflow-hidden rounded-[2rem] p-6 text-white sm:p-10 lg:p-12">
+        <div className="mesh-bg-dark noise relative overflow-hidden p-6 text-white sm:p-10 lg:p-12">
           <div
             className="pointer-events-none absolute inset-0 grid-pattern opacity-30 fade-mask-y"
             aria-hidden="true"
@@ -76,8 +76,8 @@ export function DocumentationStrip({ productTitle }: { productTitle: string }) {
             <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-8" role="list">
               {DOCS.map((d, i) => (
                 <Reveal as="li" key={d.title} delay={i * 50}>
-                  <div className="glass-dark flex h-full items-start gap-3 rounded-2xl p-4">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
+                  <div className="glass-dark flex h-full items-start gap-3 p-4">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
                       <d.icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     <span className="min-w-0">

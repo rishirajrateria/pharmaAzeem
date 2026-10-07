@@ -141,7 +141,7 @@ export default async function CategoriesIndexPage() {
 
       <Section className="!pt-0" aria-labelledby="category-index-title">
         <Container>
-          <div className="glass relative overflow-hidden rounded-[2.25rem] p-6 sm:p-10 lg:p-12">
+          <div className="glass relative overflow-hidden p-6 sm:p-10 lg:p-12">
             <div
               className="absolute inset-0 grid-pattern opacity-40 fade-mask-y"
               aria-hidden="true"
@@ -156,13 +156,13 @@ export default async function CategoriesIndexPage() {
                 {tree.map((c) => (
                   <div key={c.id} className="mb-8">
                     <h3 className="flex items-center gap-2.5 text-base font-semibold text-ink-950">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-gradient text-white">
                         <Icon name={c.icon} className="h-4 w-4" />
                       </span>
                       <Link href={`/categories/${c.path}`} className="hover:text-brand-700">
                         {c.title}
                       </Link>
-                      <span className="font-mono text-[11px] font-medium text-ink-400">
+                      <span className="text-[11px] font-medium text-ink-400">
                         {c.productCount}
                       </span>
                     </h3>
@@ -175,7 +175,7 @@ export default async function CategoriesIndexPage() {
                               className="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700"
                             >
                               {s.title}
-                              <span className="font-mono text-[10px] text-ink-400">
+                              <span className="text-[10px] text-ink-400">
                                 {s.productCount}
                               </span>
                             </Link>

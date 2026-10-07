@@ -79,7 +79,7 @@ export function FacilityCard({
             </div>
           )}
           <span
-            className="pointer-events-none absolute left-4 top-4 rounded-full glass-strong px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700 shadow-glass sm:left-6 sm:top-6"
+            className="pointer-events-none absolute left-4 top-4 glass-strong px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700 shadow-glass sm:left-6 sm:top-6"
             aria-hidden="true"
           >
             Facility {pad2(index + 1)}
@@ -90,7 +90,7 @@ export function FacilityCard({
         <div className={cn('flex flex-col p-6 sm:p-8 lg:col-span-6 lg:p-10', flip && 'lg:order-1')}>
           <div className="flex flex-wrap items-center gap-2">
             <span
-              className="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]"
+              className="inline-flex items-center gap-1.5 bg-brand-gradient px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]"
               title={type.description}
             >
               <TypeIcon className="h-3.5 w-3.5" aria-hidden="true" />
@@ -123,11 +123,11 @@ export function FacilityCard({
               aria-label="Capacity"
             >
               {facility.capacity.map((c, i) => (
-                <div key={c.id || i} className="glass-subtle rounded-2xl px-3.5 py-3">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <div key={c.id || i} className="glass-subtle px-3.5 py-3">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     {c.label}
                   </dt>
-                  <dd className="mt-1 font-mono text-sm font-semibold leading-snug text-ink-950">
+                  <dd className="mt-1 text-sm font-semibold leading-snug text-ink-950">
                     {c.value}
                   </dd>
                 </div>
@@ -138,7 +138,7 @@ export function FacilityCard({
           <div className="mt-6 space-y-4">
             {facility.capabilities?.length ? (
               <div>
-                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                   Capabilities
                 </p>
                 <ul className="flex flex-wrap gap-1.5" role="list">
@@ -153,7 +153,7 @@ export function FacilityCard({
 
             {facility.dosageForms?.length ? (
               <div>
-                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                   Dosage forms
                 </p>
                 <ul className="flex flex-wrap gap-1.5" role="list">
@@ -174,7 +174,7 @@ export function FacilityCard({
 
             {certs.length ? (
               <div>
-                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                   Certifications
                 </p>
                 <ul className="flex flex-wrap gap-1.5" role="list">
@@ -196,7 +196,7 @@ export function FacilityCard({
           </div>
 
           {hasDescription && (
-            <details className="group mt-6 rounded-2xl border border-ink-100/80 bg-white/50">
+            <details className="group mt-6 border border-ink-100/80 bg-white/50">
               <summary className="flex cursor-pointer items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink-900">
                 More about this facility
                 <ChevronDown
@@ -220,22 +220,22 @@ export function FacilityCard({
             >
               {facility.establishedYear && (
                 <div className="flex items-center gap-1.5">
-                  <dt className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.14em] text-ink-400">
+                  <dt className="inline-flex items-center gap-1.5 uppercase tracking-[0.14em] text-ink-400">
                     <CalendarDays className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
                     Established
                   </dt>
-                  <dd className="font-mono font-semibold text-ink-800">
+                  <dd className="font-semibold text-ink-800">
                     {facility.establishedYear}
                   </dd>
                 </div>
               )}
               {area && (
                 <div className="flex items-center gap-1.5">
-                  <dt className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.14em] text-ink-400">
+                  <dt className="inline-flex items-center gap-1.5 uppercase tracking-[0.14em] text-ink-400">
                     <Ruler className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
                     Built-up area
                   </dt>
-                  <dd className="font-mono font-semibold text-ink-800">{area}</dd>
+                  <dd className="font-semibold text-ink-800">{area}</dd>
                 </div>
               )}
             </dl>

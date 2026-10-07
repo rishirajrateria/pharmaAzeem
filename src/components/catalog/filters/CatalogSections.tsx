@@ -45,9 +45,9 @@ export function CatalogSections({
                   {s.bullets.map((b, j) => (
                     <li
                       key={b.id || j}
-                      className="glass flex items-start gap-2.5 rounded-2xl px-4 py-3 text-sm text-ink-800"
+                      className="glass flex items-start gap-2.5 px-4 py-3 text-sm text-ink-800"
                     >
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white">
                         <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
                       </span>
                       {b.text}
@@ -58,12 +58,12 @@ export function CatalogSections({
             </div>
             {split && (
               <div className={cn('relative', layout === 'imageLeft' && 'lg:order-1')}>
-                <div className="glass overflow-hidden rounded-3xl p-2">
+                <div className="glass overflow-hidden p-2">
                   <Media
                     media={s.image}
                     size="large"
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="aspect-[4/3] w-full rounded-2xl object-cover"
+                    className="aspect-[4/3] w-full object-cover"
                   />
                 </div>
               </div>

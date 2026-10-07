@@ -77,7 +77,7 @@ export function CatalogHero({
                 {stats.map((s) => (
                   <div
                     key={s.label}
-                    className="glass flex items-baseline gap-2 rounded-full px-4 py-2"
+                    className="glass flex items-baseline gap-2 px-4 py-2"
                   >
                     <dt className="order-2 text-xs font-medium text-ink-600">{s.label}</dt>
                     <dd className="order-1 text-base font-semibold text-gradient">{s.value}</dd>
@@ -103,7 +103,7 @@ export function CatalogHero({
 
           <div className="relative mx-auto w-full max-w-md lg:max-w-none">
             <HudRings className="opacity-70" />
-            <div className="glass relative animate-float-slow overflow-hidden rounded-[2rem] p-2 shadow-glass-lg lg:rotate-[-2deg]">
+            <div className="glass relative animate-float-slow overflow-hidden p-2 shadow-glass-lg lg:rotate-[-2deg]">
               {hasImage ? (
                 <Media
                   media={image}
@@ -111,40 +111,40 @@ export function CatalogHero({
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="aspect-[5/4] w-full rounded-[1.6rem]"
+                  className="aspect-[5/4] w-full"
                 />
               ) : (
-                <div className="relative flex aspect-[5/4] w-full items-center justify-center overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-brand-50 via-white to-brand-100">
+                <div className="relative flex aspect-[5/4] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100">
                   <div className="absolute inset-0 dots-pattern opacity-60" aria-hidden="true" />
                   <MoleculeField className="absolute inset-0 h-full w-full opacity-70" />
-                  <span className="relative flex h-24 w-24 items-center justify-center rounded-3xl bg-brand-gradient text-white shadow-glow">
+                  <span className="relative flex h-24 w-24 items-center justify-center bg-brand-gradient text-white shadow-glow">
                     <Icon name={icon} className="h-12 w-12" />
                   </span>
                 </div>
               )}
               <div
-                className="pointer-events-none absolute inset-2 rounded-[1.6rem] bg-gradient-to-t from-white/40 via-transparent to-transparent"
+                className="pointer-events-none absolute inset-2 bg-gradient-to-t from-white/40 via-transparent to-transparent"
                 aria-hidden="true"
               />
             </div>
             {stats[0] && (
               <div
-                className="glass-strong absolute -left-3 top-8 hidden animate-float rounded-2xl px-4 py-3 shadow-glass-lg sm:block"
+                className="glass-strong absolute -left-3 top-8 hidden animate-float px-4 py-3 shadow-glass-lg sm:block"
                 aria-hidden="true"
               >
                 <p className="text-2xl font-semibold text-gradient">{stats[0].value}</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                   {stats[0].label}
                 </p>
               </div>
             )}
             {stats[1] && (
               <div
-                className="glass-strong absolute -right-2 bottom-8 hidden animate-float rounded-2xl px-4 py-3 shadow-glass-lg sm:block [animation-delay:-4s]"
+                className="glass-strong absolute -right-2 bottom-8 hidden animate-float px-4 py-3 shadow-glass-lg sm:block [animation-delay:-4s]"
                 aria-hidden="true"
               >
                 <p className="text-2xl font-semibold text-gradient">{stats[1].value}</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                   {stats[1].label}
                 </p>
               </div>

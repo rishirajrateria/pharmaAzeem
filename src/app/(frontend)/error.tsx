@@ -28,15 +28,15 @@ export default function ErrorPage({
     >
       <Orbs variant="subtle" />
       <div className="container-x">
-        <div className="glass-strong glass-edge relative mx-auto max-w-2xl overflow-hidden rounded-[2rem] p-8 text-center sm:p-12">
+        <div className="glass-strong glass-edge relative mx-auto max-w-2xl overflow-hidden p-8 text-center sm:p-12">
           <div
             className="pointer-events-none absolute inset-0 dots-pattern opacity-40"
             aria-hidden="true"
           />
           <div className="relative">
-            <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-glow">
+            <span className="relative mx-auto flex h-16 w-16 items-center justify-center bg-brand-gradient text-white shadow-glow">
               <span
-                className="absolute inset-0 rounded-2xl bg-brand-500/50 animate-pulse-ring"
+                className="absolute inset-0 bg-brand-500/50 animate-pulse-ring"
                 aria-hidden="true"
               />
               <LifeBuoy className="relative h-7 w-7" aria-hidden="true" />
@@ -62,7 +62,7 @@ export default function ErrorPage({
               </Link>
             </div>
             {error.digest && (
-              <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+              <p className="mt-8 text-[11px] uppercase tracking-[0.18em] text-ink-400">
                 Reference <span className="text-ink-600">{error.digest}</span>
               </p>
             )}

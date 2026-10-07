@@ -88,7 +88,7 @@ export function AddToListPanel({
   const stepper = (size: 'md' | 'sm') => (
     <div
       className={cn(
-        'inline-flex items-center rounded-full border border-ink-200 bg-white/90',
+        'inline-flex items-center border border-ink-200 bg-white/90',
         size === 'md' ? 'h-12' : 'h-10',
       )}
       role="group"
@@ -99,7 +99,7 @@ export function AddToListPanel({
         onClick={() => setQty((q) => clamp(q - 1))}
         disabled={qty <= 1}
         className={cn(
-          'flex items-center justify-center rounded-l-full text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40',
+          'flex items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40',
           size === 'md' ? 'h-12 w-11' : 'h-10 w-9',
         )}
         aria-label="Decrease quantity"
@@ -123,7 +123,7 @@ export function AddToListPanel({
         type="button"
         onClick={() => setQty((q) => clamp(q + 1))}
         className={cn(
-          'flex items-center justify-center rounded-r-full text-ink-700 transition hover:bg-brand-50 hover:text-brand-700',
+          'flex items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700',
           size === 'md' ? 'h-12 w-11' : 'h-10 w-9',
         )}
         aria-label="Increase quantity"
@@ -138,7 +138,7 @@ export function AddToListPanel({
       <div
         ref={panelRef}
         className={cn(
-          'glass-strong glass-edge relative overflow-hidden rounded-3xl p-5 sm:p-6',
+          'glass-strong glass-edge relative overflow-hidden p-5 sm:p-6',
           className,
         )}
       >
@@ -149,7 +149,7 @@ export function AddToListPanel({
         <div className="relative">
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
             <div>
-              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink-500">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-ink-500">
                 {price.kind === 'price' ? 'Price' : 'Pricing'}
               </p>
               <PriceTag price={price} size="lg" className="mt-1" />
@@ -213,7 +213,7 @@ export function AddToListPanel({
             aria-hidden={!showBar}
             inert={!showBar}
           >
-            <div className="glass-strong glass-edge flex items-center gap-3 rounded-full py-2 pl-4 pr-2 shadow-glass-lg">
+            <div className="glass-strong glass-edge flex items-center gap-3 py-2 pl-4 pr-2 shadow-glass-lg">
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-ink-950">{product.title}</p>
                 <PriceTag price={price} size="sm" />

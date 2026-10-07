@@ -32,7 +32,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
   const units = items.reduce((n, i) => n + i.quantity, 0)
 
   return (
-    <div className={cn('glass-strong glass-edge overflow-hidden rounded-3xl', className)}>
+    <div className={cn('glass-strong glass-edge overflow-hidden', className)}>
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ink-100 px-5 py-4 sm:px-6">
         <p className="text-sm text-ink-600" aria-live="polite">
           <span className="font-semibold text-ink-950">{items.length}</span>{' '}
@@ -62,7 +62,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
             <li key={item.id} className="flex gap-4 px-5 py-4 sm:px-6 sm:py-5">
               <Link
                 href={href}
-                className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-ink-100 bg-white"
+                className="relative h-20 w-20 shrink-0 overflow-hidden border border-ink-100 bg-white"
                 aria-hidden="true"
                 tabIndex={-1}
               >
@@ -85,7 +85,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                   <button
                     type="button"
                     onClick={() => remove(item.id)}
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ink-400 transition hover:bg-brand-50 hover:text-brand-700"
+                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center text-ink-400 transition hover:bg-brand-50 hover:text-brand-700"
                     aria-label={`Remove ${item.title} from ${lower}`}
                   >
                     <Trash2 className="h-4 w-4" aria-hidden="true" />
@@ -93,7 +93,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   <div
-                    className="inline-flex items-center rounded-full border border-ink-200 bg-white shadow-soft"
+                    className="inline-flex items-center border border-ink-200 bg-white shadow-soft"
                     role="group"
                     aria-label={`Quantity for ${item.title}`}
                   >
@@ -101,7 +101,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                       type="button"
                       onClick={() => setQuantity(item.id, item.quantity - 1)}
                       disabled={item.quantity <= 1}
-                      className="flex h-9 w-9 items-center justify-center rounded-l-full text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40 disabled:hover:bg-transparent"
+                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40 disabled:hover:bg-transparent"
                       aria-label="Decrease quantity"
                     >
                       <Minus className="h-3.5 w-3.5" aria-hidden="true" />
@@ -114,7 +114,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                     <button
                       type="button"
                       onClick={() => setQuantity(item.id, item.quantity + 1)}
-                      className="flex h-9 w-9 items-center justify-center rounded-r-full text-ink-700 transition hover:bg-brand-50 hover:text-brand-700"
+                      className="flex h-9 w-9 items-center justify-center text-ink-700 transition hover:bg-brand-50 hover:text-brand-700"
                       aria-label="Increase quantity"
                     >
                       <Plus className="h-3.5 w-3.5" aria-hidden="true" />
@@ -188,11 +188,11 @@ function EmptyState({
   return (
     <div
       className={cn(
-        'glass-strong glass-edge rounded-3xl px-6 py-10 text-center sm:px-10 sm:py-14',
+        'glass-strong glass-edge px-6 py-10 text-center sm:px-10 sm:py-14',
         className,
       )}
     >
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl glass-red text-brand-600">
+      <div className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600">
         <ClipboardList className="h-7 w-7" aria-hidden="true" />
       </div>
       <h3 className="mt-5 text-lg font-semibold text-ink-950">Your {lower} is empty</h3>
@@ -210,22 +210,22 @@ function EmptyState({
 function ListSkeleton({ lower, className }: { lower: string; className?: string }) {
   return (
     <div
-      className={cn('glass-strong glass-edge rounded-3xl', className)}
+      className={cn('glass-strong glass-edge', className)}
       role="status"
       aria-busy="true"
     >
       <span className="sr-only">Loading your {lower}…</span>
       <div className="border-b border-ink-100 px-5 py-4 sm:px-6" aria-hidden="true">
-        <span className="skeleton block h-3.5 w-40 rounded-full" />
+        <span className="skeleton block h-3.5 w-40" />
       </div>
       <ul className="divide-y divide-ink-100" aria-hidden="true">
         {[0, 1].map((i) => (
           <li key={i} className="flex gap-4 px-5 py-4 sm:px-6 sm:py-5">
-            <span className="skeleton h-20 w-20 shrink-0 rounded-2xl" />
+            <span className="skeleton h-20 w-20 shrink-0" />
             <span className="flex-1 space-y-2.5 py-1">
-              <span className="skeleton block h-3.5 w-2/3 rounded-full" />
-              <span className="skeleton block h-3 w-1/2 rounded-full" />
-              <span className="skeleton mt-4 block h-9 w-32 rounded-full" />
+              <span className="skeleton block h-3.5 w-2/3" />
+              <span className="skeleton block h-3 w-1/2" />
+              <span className="skeleton mt-4 block h-9 w-32" />
             </span>
           </li>
         ))}

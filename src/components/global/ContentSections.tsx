@@ -32,7 +32,7 @@ export function ContentSections({ sections }: { sections?: CmsSection[] | null }
                   <ul className="mt-6 grid gap-2.5 sm:grid-cols-2" role="list">
                     {s.bullets.map((b, j) => (
                       <li key={b.id || j} className="flex items-start gap-2.5 text-sm text-ink-700">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-200">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200">
                           <Check className="h-3 w-3" aria-hidden="true" />
                         </span>
                         {b.text}
@@ -43,12 +43,12 @@ export function ContentSections({ sections }: { sections?: CmsSection[] | null }
               </Reveal>
               {hasImage && (
                 <Reveal delay={120} className={cn(layout === 'imageLeft' && 'lg:order-1')}>
-                  <div className="glass rounded-3xl p-2 shadow-glass-lg">
+                  <div className="glass p-2 shadow-glass-lg">
                     <Media
                       media={s.image}
                       size="large"
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="aspect-[4/3] w-full rounded-2xl object-cover"
+                      className="aspect-[4/3] w-full object-cover"
                     />
                   </div>
                 </Reveal>

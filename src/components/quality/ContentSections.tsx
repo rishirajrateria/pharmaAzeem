@@ -30,7 +30,7 @@ function Bullets({
     <ul className={cn('grid gap-3', className)} role="list">
       {bullets.map((b, i) => (
         <li key={b.id || i} className="flex items-start gap-3 text-[15px] text-ink-700">
-          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full glass-red text-brand-700">
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center glass-red text-brand-700">
             <Check className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
           <span>{b.text}</span>
@@ -58,9 +58,9 @@ export function ContentSections({ sections }: { sections?: ContentSection[] | nu
           if (layout === 'full' || !hasImage) {
             return (
               <Reveal key={s.id || i} as="section" aria-labelledby={id}>
-                <div className="relative overflow-hidden rounded-[2rem] glass-strong glass-edge p-6 sm:p-10 lg:p-14">
+                <div className="relative overflow-hidden glass-strong glass-edge p-6 sm:p-10 lg:p-14">
                   <div
-                    className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.6),transparent)]"
+                    className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.6),transparent)]"
                     aria-hidden="true"
                   />
                   <div className="relative grid gap-10 lg:grid-cols-12">
@@ -97,11 +97,11 @@ export function ContentSections({ sections }: { sections?: ContentSection[] | nu
                 <div className={cn('relative', imageLeft && 'lg:order-1')}>
                   <div
                     className={cn(
-                      'glass glass-edge rounded-[2rem] p-2.5 shadow-glass-lg sm:p-3',
+                      'glass glass-edge p-2.5 shadow-glass-lg sm:p-3',
                       imageLeft ? 'rotate-1' : '-rotate-1',
                     )}
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-[1.6rem]">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                       <Media
                         media={s.image}
                         size="large"

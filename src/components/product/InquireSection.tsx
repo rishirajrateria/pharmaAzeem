@@ -41,14 +41,14 @@ export function InquireSection({ product, contact }: Props) {
               lead time and the documents your regulator expects.
             </p>
 
-            <h3 className="mt-8 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
+            <h3 className="mt-8 text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
               Helpful to include
             </h3>
             <ul className="mt-3 space-y-2" role="list">
               {INCLUDE.map((t) => (
                 <li key={t} className="flex items-start gap-2.5 text-sm text-ink-700">
                   <span
-                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-500"
                     aria-hidden="true"
                   />
                   {t}
@@ -57,8 +57,8 @@ export function InquireSection({ product, contact }: Props) {
             </ul>
 
             {(email || phone || whatsapp) && (
-              <div className="glass mt-8 rounded-3xl p-5">
-                <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
+              <div className="glass mt-8 p-5">
+                <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
                   Prefer to talk?
                 </p>
                 <ul className="mt-3 space-y-2 text-sm" role="list">
@@ -106,7 +106,7 @@ export function InquireSection({ product, contact }: Props) {
             )}
           </div>
 
-          <div className="glass-strong glass-edge relative overflow-hidden rounded-[2rem] p-5 sm:p-8">
+          <div className="glass-strong glass-edge relative overflow-hidden p-5 sm:p-8">
             <div
               className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-brand-200/40 blur-3xl"
               aria-hidden="true"

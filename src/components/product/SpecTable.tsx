@@ -16,7 +16,7 @@ export function SpecTable({ product }: { product: Product }) {
         <div>
           <h3 className="heading-3">Composition</h3>
           <p className="mt-1 text-sm text-ink-600">Each unit dose of {product.title} contains:</p>
-          <div className="mt-4 overflow-hidden rounded-2xl border border-white/80 shadow-glass">
+          <div className="mt-4 overflow-hidden border border-white/80 shadow-glass">
             <table className="w-full text-sm">
               <caption className="sr-only">Active ingredients in {product.title}</caption>
               <thead>
@@ -49,7 +49,7 @@ export function SpecTable({ product }: { product: Product }) {
         <p className="mt-1 text-sm text-ink-600">
           Technical data for tender and registration files.
         </p>
-        <div className="mt-4 overflow-hidden rounded-2xl border border-white/80 shadow-glass">
+        <div className="mt-4 overflow-hidden border border-white/80 shadow-glass">
           <table className="w-full text-sm">
             <caption className="sr-only">Specifications of {product.title}</caption>
             <thead>

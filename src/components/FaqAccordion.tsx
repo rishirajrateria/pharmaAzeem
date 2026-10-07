@@ -25,10 +25,10 @@ export function FaqAccordion({
     <div className={cn('space-y-3', className)}>
       {ld && <JsonLd data={{ '@context': 'https://schema.org', ...ld }} />}
       {faqs.map((f, i) => (
-        <details key={f.id || i} className="group glass rounded-2xl open:glass-strong" name="faq">
+        <details key={f.id || i} className="group glass open:glass-strong" name="faq">
           <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-semibold text-ink-950 sm:px-6">
             <span>{f.question}</span>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-brand-200 bg-white text-brand-600 transition-transform duration-300 group-open:rotate-45">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-brand-200 bg-white text-brand-600 transition-transform duration-300 group-open:rotate-45">
               <Plus className="h-3.5 w-3.5" />
             </span>
           </summary>

@@ -100,7 +100,7 @@ export default async function InquiryPage() {
             <div className="lg:col-span-5">
               <div
                 id="inquiry-form"
-                className="glass-strong glass-edge scroll-mt-28 rounded-3xl p-6 sm:p-8 lg:sticky lg:top-28"
+                className="glass-strong glass-edge scroll-mt-28 p-6 sm:p-8 lg:sticky lg:top-28"
               >
                 <Eyebrow className="mb-3">Step 2 · Your details</Eyebrow>
                 <h2 className="heading-3">Where should we send the quotation?</h2>

@@ -48,7 +48,7 @@ export function FacilitiesSection({
           />
           {certs.length > 0 && (
             <div className="lg:max-w-sm lg:shrink-0">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                 Featured certifications
               </p>
               <ul

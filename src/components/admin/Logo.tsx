@@ -11,7 +11,7 @@ export const AdminLogo: React.FC = () => (
           <stop offset="100%" stopColor="#ff6675" />
         </linearGradient>
       </defs>
-      <rect x="2" y="2" width="36" height="36" rx="11" fill="url(#adm-a)" />
+      <rect x="2" y="2" width="36" height="36" fill="url(#adm-a)" />
       <g transform="rotate(-45 20 20)">
         <rect x="8" y="14.5" width="24" height="11" rx="5.5" fill="#fff" />
         <rect x="8" y="14.5" width="12" height="11" rx="5.5" fill="#fff" opacity="0.5" />
@@ -36,7 +36,7 @@ export const AdminIcon: React.FC = () => (
         <stop offset="100%" stopColor="#ff6675" />
       </linearGradient>
     </defs>
-    <rect x="2" y="2" width="36" height="36" rx="11" fill="url(#adm-b)" />
+    <rect x="2" y="2" width="36" height="36" fill="url(#adm-b)" />
     <g transform="rotate(-45 20 20)">
       <rect x="8" y="14.5" width="24" height="11" rx="5.5" fill="#fff" />
       <rect x="8" y="14.5" width="12" height="11" rx="5.5" fill="#fff" opacity="0.5" />

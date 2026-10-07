@@ -22,7 +22,7 @@ export function Testimonials({ testimonials }: { testimonials?: Homepage['testim
             <Reveal as="li" key={t.id || i} delay={i * 80} className="flex">
               <figure className="glass-card glass-edge relative flex w-full flex-col p-6 sm:p-8">
                 <span
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-50 text-brand-600"
+                  className="flex h-10 w-10 items-center justify-center bg-brand-50 text-brand-600"
                   aria-hidden="true"
                 >
                   <Quote className="h-4 w-4" />

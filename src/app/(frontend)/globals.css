@@ -5,9 +5,8 @@
    Red + white minimal palette, soft gradients, glassmorphism.
 ------------------------------------------------------------------- */
 @theme {
-  --font-sans: var(--body-font-raw), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: var(--display-font-raw), var(--font-sans);
-  --font-mono: var(--mono-font-raw), ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* One plain sans-serif for everything – headings, body, labels and data. */
+  --font-sans: var(--body-font-raw), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   --color-brand-50: #fff1f2;
   --color-brand-100: #ffe1e4;
@@ -37,15 +36,10 @@
   --color-surface-2: #fafafb;
   --color-surface-3: #f4f4f6;
 
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
-  --radius-3xl: 1.75rem;
-  --radius-4xl: 2.25rem;
-  /* Signature asymmetric radius — two corners rounded, two square. Used on cards, chips
-     and secondary buttons instead of a uniform border-radius or a full pill on everything;
-     the capsule (rounded-full) shape is reserved for the primary CTA and the nav bar only. */
-  --radius-signature: 1.5rem 0.25rem 1.5rem 0.25rem;
-  --radius-signature-sm: 0.875rem 0.1875rem 0.875rem 0.1875rem;
+  /* Square corners throughout: the corner-radius scale is removed, so rounded-sm…rounded-4xl
+     don't exist. rounded-full is kept only for decorative circles (background glows, orbit
+     rings, map location pings) – never for boxes, cards, buttons, chips or inputs. */
+  --radius-*: initial;
 
   --shadow-glass: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 8px 32px -8px rgb(225 29 46 / 0.12), 0 2px 8px -2px rgb(11 10 15 / 0.06);
   --shadow-glass-lg: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 24px 64px -16px rgb(225 29 46 / 0.18), 0 8px 24px -8px rgb(11 10 15 / 0.08);
@@ -126,7 +120,6 @@
   }
   body {
     @apply bg-surface text-ink-800 antialiased;
-    font-feature-settings: 'ss01', 'cv11', 'liga';
     overflow-x: clip;
   }
   ::selection {
@@ -135,7 +128,6 @@
   }
   h1, h2, h3, h4 {
     @apply text-ink-950 tracking-tight;
-    font-family: var(--font-display);
     text-wrap: balance;
   }
   p {
@@ -144,7 +136,6 @@
   :focus-visible {
     outline: 2px solid var(--color-brand-600);
     outline-offset: 3px;
-    border-radius: 6px;
   }
   img, svg, video { display: block; max-width: 100%; }
   button { cursor: pointer; }
@@ -196,7 +187,6 @@
   -webkit-backdrop-filter: blur(10px) saturate(140%);
   border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow: var(--shadow-glass);
-  border-radius: var(--radius-signature);
   position: relative;
   transition:
     transform 0.5s var(--ease-out-expo),
@@ -209,7 +199,6 @@
     left: 1.25rem;
     right: 1.25rem;
     height: 2px;
-    border-radius: 2px;
     background: linear-gradient(90deg, var(--color-brand-500), transparent 70%);
     opacity: 0.7;
   }
@@ -336,13 +325,10 @@
    Components
 ------------------------------------------------------------------- */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-(--radius-signature-sm) px-6 py-3 font-display text-sm font-semibold tracking-tight whitespace-nowrap transition-all duration-300 select-none disabled:opacity-50 disabled:pointer-events-none;
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold whitespace-nowrap transition-all duration-300 select-none disabled:opacity-50 disabled:pointer-events-none;
 }
-/* The one deliberate capsule in the system: a primary action literally shaped like a
-   pharmaceutical capsule. Every other control uses the asymmetric signature radius instead,
-   so roundness reads as an intentional choice rather than a blanket default. */
 @utility btn-primary {
-  @apply btn text-white rounded-full;
+  @apply btn text-white;
   background-image: linear-gradient(120deg, var(--color-brand-700) 0%, var(--color-brand-600) 50%, var(--color-brand-500) 100%);
   background-size: 200% 200%;
   box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.25) inset, 0 10px 30px -10px rgb(225 29 46 / 0.7);
@@ -360,12 +346,11 @@
   @apply btn text-white bg-ink-950 hover:bg-ink-800;
 }
 @utility chip {
-  @apply inline-flex items-center gap-1.5 rounded-(--radius-signature-sm) border border-brand-200/70 bg-white/70 px-3 py-1 text-xs font-medium text-brand-700 backdrop-blur;
+  @apply inline-flex items-center gap-1.5 border border-brand-200/70 bg-white/70 px-3 py-1 text-xs font-medium text-brand-700 backdrop-blur;
 }
-/* Eyebrow label: a bracketed field tag (like a spec-sheet or label annotation) instead of the
-   ubiquitous "coloured dot + uppercase text" notification-style marker. */
+/* Small uppercase section label above headings. */
 @utility eyebrow {
-  @apply inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-600;
+  @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-600;
 }
 @utility container-x {
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
@@ -389,7 +374,7 @@
   @apply text-lg leading-relaxed text-ink-600 sm:text-xl;
 }
 @utility input-glass {
-  @apply w-full rounded-2xl border border-ink-200/80 bg-white/70 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 backdrop-blur transition focus:border-brand-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-brand-500/15;
+  @apply w-full border border-ink-200/80 bg-white/70 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 backdrop-blur transition focus:border-brand-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-brand-500/15;
 }
 @utility skeleton {
   background: linear-gradient(90deg, rgb(236 236 240) 25%, rgb(246 246 248) 50%, rgb(236 236 240) 75%);
@@ -423,7 +408,7 @@
   & strong { @apply text-ink-900 font-semibold; }
   & hr { @apply my-10 border-0 hairline; }
   & blockquote { @apply border-l-2 border-brand-400 pl-4 italic text-ink-600; }
-  & table { @apply w-full text-sm border-collapse overflow-hidden rounded-2xl; }
+  & table { @apply w-full text-sm border-collapse; }
   & th { @apply bg-brand-50 text-left font-semibold text-ink-900 px-4 py-2.5; }
   & td { @apply border-t border-ink-100 px-4 py-2.5 align-top; }
 }
@@ -433,7 +418,7 @@
   scrollbar-width: thin;
   scrollbar-color: rgb(225 29 46 / 0.35) transparent;
   &::-webkit-scrollbar { width: 6px; height: 6px; }
-  &::-webkit-scrollbar-thumb { background: rgb(225 29 46 / 0.35); border-radius: 999px; }
+  &::-webkit-scrollbar-thumb { background: rgb(225 29 46 / 0.35); }
 }
 
 @media (prefers-reduced-motion: reduce) {

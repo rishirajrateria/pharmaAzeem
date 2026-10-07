@@ -57,11 +57,11 @@ export function CountryMapCard({
   return (
     <div
       className={cn(
-        'glass-strong glass-edge relative overflow-hidden rounded-4xl p-2 shadow-glass-lg sm:p-3',
+        'glass-strong glass-edge relative overflow-hidden p-2 shadow-glass-lg sm:p-3',
         className,
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-white/80 via-brand-50/60 to-white/60">
+      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-white/80 via-brand-50/60 to-white/60">
         <div
           className="pointer-events-none absolute inset-0 grid-pattern opacity-50"
           aria-hidden="true"
@@ -90,7 +90,7 @@ export function CountryMapCard({
             style={{ left: `${(x * 100).toFixed(2)}%`, top: `${(y * 100).toFixed(2)}%` }}
           >
             <span className="absolute inset-0.5 rounded-full bg-brand-500/70 shadow-[0_0_0_2px_white] transition group-hover:bg-brand-600 group-focus-visible:bg-brand-600" />
-            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-full glass px-2 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap glass px-2 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
               {s.name}
             </span>
           </Link>
@@ -109,7 +109,7 @@ export function CountryMapCard({
               />
               <span className="absolute inset-1 rounded-full bg-brand-600 shadow-[0_0_0_3px_white,0_0_18px_rgb(225_29_46_/_0.8)]" />
             </span>
-            <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-full glass-strong px-3 py-1 text-xs font-semibold text-ink-950 shadow-glass">
+            <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap glass-strong px-3 py-1 text-xs font-semibold text-ink-950 shadow-glass">
               <span aria-hidden="true">{country.flag} </span>
               {country.name}
             </span>

@@ -40,9 +40,9 @@ export function OnboardingSteps({ steps }: { steps?: Step[] | null }) {
         <Reveal as="li" key={s.id || s.title} delay={i * 90} className="relative">
           <article className="glass-card glass-edge relative h-full p-6">
             <div className="flex items-center gap-4">
-              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white font-mono text-sm font-semibold text-brand-700 shadow-glass ring-1 ring-brand-200">
+              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center bg-white text-sm font-semibold text-brand-700 shadow-glass ring-1 ring-brand-200">
                 <span
-                  className="absolute inset-0 rounded-full bg-brand-500/20 animate-pulse-ring"
+                  className="absolute inset-0 bg-brand-500/20 animate-pulse-ring"
                   style={{ animationDelay: `${i * -0.6}s` }}
                   aria-hidden="true"
                 />

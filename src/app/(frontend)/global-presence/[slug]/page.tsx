@@ -170,7 +170,7 @@ export default async function CountryPage({ params }: { params: Params }) {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                 {country.flag && (
                   <span
-                    className="glass inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
+                    className="glass inline-flex h-14 w-14 shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
                     aria-hidden="true"
                   >
                     {country.flag}
@@ -256,7 +256,7 @@ export default async function CountryPage({ params }: { params: Params }) {
               aria-label={`${country.name} highlights`}
             >
               {country.highlights && country.highlights.length > 0 && (
-                <div className="glass-red rounded-3xl p-6">
+                <div className="glass-red p-6">
                   <p className="eyebrow mb-4">At a glance</p>
                   <ul className="space-y-3" role="list">
                     {country.highlights.map((h, i) => (
@@ -264,7 +264,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                         key={h.id || i}
                         className="flex items-start gap-3 text-sm font-medium text-ink-900"
                       >
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-brand-600 shadow-sm ring-1 ring-brand-200">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-white text-brand-600 shadow-sm ring-1 ring-brand-200">
                           <Check className="h-3 w-3" aria-hidden="true" />
                         </span>
                         {h.text}
@@ -274,16 +274,16 @@ export default async function CountryPage({ params }: { params: Params }) {
                 </div>
               )}
               {country.image && (
-                <div className="glass rotate-1 rounded-3xl p-2 shadow-glass-lg transition-transform duration-700 hover:rotate-0">
+                <div className="glass rotate-1 p-2 shadow-glass-lg transition-transform duration-700 hover:rotate-0">
                   <Media
                     media={country.image}
                     size="card"
                     sizes="(max-width: 1024px) 100vw, 30vw"
-                    className="aspect-[4/3] w-full rounded-2xl object-cover"
+                    className="aspect-[4/3] w-full object-cover"
                   />
                 </div>
               )}
-              <div className="glass rounded-3xl p-6">
+              <div className="glass p-6">
                 <p className="text-sm font-semibold text-ink-950">
                   Need a quotation for {country.name}?
                 </p>
@@ -378,7 +378,7 @@ export default async function CountryPage({ params }: { params: Params }) {
       {/* Inquiry desk */}
       <Section id="inquiry" aria-labelledby="inquiry-heading" className="scroll-mt-28 !pt-0">
         <Container>
-          <div className="glass-strong glass-edge noise relative overflow-hidden rounded-4xl p-6 sm:p-10 lg:p-14">
+          <div className="glass-strong glass-edge noise relative overflow-hidden p-6 sm:p-10 lg:p-14">
             <div
               className="pointer-events-none absolute inset-0 dots-pattern opacity-40"
               aria-hidden="true"
@@ -400,7 +400,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                     'Sea, air and cold-chain freight with full export documentation',
                   ].map((t) => (
                     <li key={t} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-200">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-200">
                         <Check className="h-3 w-3" aria-hidden="true" />
                       </span>
                       {t}
@@ -441,7 +441,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                   </ul>
                 )}
               </div>
-              <div className="glass rounded-3xl p-5 sm:p-7">
+              <div className="glass p-5 sm:p-7">
                 <InquiryForm
                   source="contact-form"
                   includeList={false}

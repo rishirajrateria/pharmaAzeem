@@ -138,8 +138,8 @@ export default async function ProductPage({ params }: { params: Params }) {
           <h3 className="heading-3">Why partners choose {product.title}</h3>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2" role="list">
             {benefits.map((b, i) => (
-              <li key={b.id || i} className="glass flex items-start gap-3 rounded-2xl p-4">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.7)]">
+              <li key={b.id || i} className="glass flex items-start gap-3 p-4">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.7)]">
                   <Check className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
                 <span className="text-sm leading-relaxed text-ink-800">{b.text}</span>
@@ -221,7 +221,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                 <Eyebrow>{primaryCat?.title || 'Pharmaceutical product'}</Eyebrow>
                 {rx && (
                   <span
-                    className="rounded-full glass px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-ink-800"
+                    className="glass px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-800"
                     title={rx === 'Rx' ? 'Prescription only' : 'Over the counter'}
                   >
                     {rx}
@@ -279,7 +279,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               />
 
               <div className="mt-8">
-                <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
+                <h2 className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-500">
                   At a glance
                 </h2>
                 <KeyFacts facts={facts} className="mt-3" />

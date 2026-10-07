@@ -18,7 +18,7 @@ export function CtaBand({ cta, settings }: { cta?: Homepage['cta']; settings: Si
     <section aria-labelledby="cta-title" className="relative pb-8 sm:pb-12">
       <Container>
         <Reveal>
-          <div className="glass-red gradient-border relative isolate overflow-hidden rounded-[2.5rem] px-6 py-12 text-center sm:px-12 sm:py-16 lg:py-20">
+          <div className="glass-red gradient-border relative isolate overflow-hidden px-6 py-12 text-center sm:px-12 sm:py-16 lg:py-20">
             <Orbs variant="subtle" />
             <div className="dots-pattern absolute inset-0 -z-10 opacity-40" aria-hidden="true" />
             <h2 id="cta-title" className="display-2 mx-auto max-w-3xl">

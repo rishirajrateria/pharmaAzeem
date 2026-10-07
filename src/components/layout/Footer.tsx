@@ -32,8 +32,8 @@ export async function Footer() {
       <div className="container-x">
         {/* Trust strip */}
         {certs.length > 0 && (
-          <div className="glass -mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 rounded-3xl px-6 py-4 text-center">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
+          <div className="glass -mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-4 text-center">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-ink-500">
               Certified & licensed
             </span>
             {certs
@@ -45,7 +45,7 @@ export async function Footer() {
                 href="/licenses"
                 className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
+                <span className="h-1.5 w-1.5 bg-brand-600" />
                 {c.title}
               </Link>
             ))}
@@ -96,7 +96,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
               Products
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
@@ -119,7 +119,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
               Company
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
@@ -143,7 +143,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
               Stay connected
             </h3>
             <ul className="mt-4 space-y-2 text-sm">

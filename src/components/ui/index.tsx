@@ -17,13 +17,7 @@ export const Section = ({ className, children, ...p }: ComponentProps<'section'>
 
 export const Eyebrow = ({ className, children, ...p }: ComponentProps<'p'>) => (
   <p className={cn('eyebrow', className)} {...p}>
-    <span aria-hidden="true" className="text-brand-400">
-      [
-    </span>
     {children}
-    <span aria-hidden="true" className="text-brand-400">
-      ]
-    </span>
   </p>
 )
 
@@ -129,7 +123,7 @@ export const Badge = ({
 }: ComponentProps<'span'> & { tone?: 'brand' | 'ink' | 'success' | 'glass' }) => (
   <span
     className={cn(
-      'inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
+      'inline-flex items-center px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
       tone === 'brand' &&
         'bg-brand-gradient text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]',
       tone === 'ink' && 'bg-ink-950 text-white',
@@ -148,7 +142,7 @@ export const Hairline = ({ className }: { className?: string }) => (
 )
 
 export const Kbd = ({ children }: { children: ReactNode }) => (
-  <kbd className="rounded-md border border-ink-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-ink-500">
+  <kbd className="border border-ink-200 bg-white px-1.5 py-0.5 text-[10px] text-ink-500">
     {children}
   </kbd>
 )

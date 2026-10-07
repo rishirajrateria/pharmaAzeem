@@ -83,7 +83,7 @@ export function ProductTabs({
   if (!tabs.length) return null
 
   return (
-    <div className={cn('glass-strong glass-edge overflow-hidden rounded-[2rem]', className)}>
+    <div className={cn('glass-strong glass-edge overflow-hidden', className)}>
       <div className="relative border-b border-ink-100/80">
         <div
           role="tablist"
@@ -107,7 +107,7 @@ export function ProductTabs({
                 onClick={() => setActive(i)}
                 onKeyDown={(e) => onKeyDown(e, i)}
                 className={cn(
-                  'relative inline-flex shrink-0 items-center gap-2 rounded-t-2xl px-4 py-3 text-sm font-semibold transition-colors',
+                  'relative inline-flex shrink-0 items-center gap-2 px-4 py-3 text-sm font-semibold transition-colors',
                   selected ? 'text-brand-700' : 'text-ink-600 hover:text-ink-950',
                 )}
               >
@@ -115,7 +115,7 @@ export function ProductTabs({
                 {typeof t.count === 'number' && t.count > 0 && (
                   <span
                     className={cn(
-                      'rounded-full px-1.5 py-0.5 font-mono text-[10px]',
+                      'px-1.5 py-0.5 text-[10px]',
                       selected ? 'bg-brand-100 text-brand-700' : 'bg-ink-100 text-ink-500',
                     )}
                   >
@@ -124,7 +124,7 @@ export function ProductTabs({
                 )}
                 <span
                   className={cn(
-                    'absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-brand-gradient transition-opacity duration-300',
+                    'absolute inset-x-3 -bottom-px h-0.5 bg-brand-gradient transition-opacity duration-300',
                     selected ? 'opacity-100' : 'opacity-0',
                   )}
                   aria-hidden="true"

@@ -36,7 +36,7 @@ const loadFonts = () => {
       try {
         const toBuffer = (b: Buffer) =>
           b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer
-        const [semi, regular, mono] = await Promise.all([
+        const [semi, regular] = await Promise.all([
           readFile(
             path.join(
               process.cwd(),
@@ -59,22 +59,10 @@ const loadFonts = () => {
               'Geist-Regular.ttf',
             ),
           ),
-          readFile(
-            path.join(
-              process.cwd(),
-              'node_modules',
-              'geist',
-              'dist',
-              'fonts',
-              'geist-mono',
-              'GeistMono-Medium.ttf',
-            ),
-          ),
         ])
         return [
           { name: 'Geist', data: toBuffer(semi), weight: 600, style: 'normal' },
           { name: 'Geist', data: toBuffer(regular), weight: 400, style: 'normal' },
-          { name: 'Geist Mono', data: toBuffer(mono), weight: 500, style: 'normal' },
         ] satisfies FontSet
       } catch {
         return undefined
@@ -176,7 +164,10 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           position: 'absolute',
-          inset: 0,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           backgroundImage: 'radial-gradient(rgba(225,29,46,0.14) 1.6px, rgba(225,29,46,0) 1.6px)',
           backgroundSize: '26px 26px',
           opacity: 0.8,
@@ -222,12 +213,14 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           position: 'absolute',
-          inset: 40,
+          top: 40,
+          left: 40,
+          right: 40,
+          bottom: 40,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '56px 64px',
-          borderRadius: 40,
           backgroundImage:
             'linear-gradient(135deg, rgba(255,255,255,0.82), rgba(255,255,255,0.52))',
           border: '1.5px solid rgba(255,255,255,0.95)',
@@ -240,14 +233,13 @@ export async function GET(request: NextRequest) {
             style={{
               width: 10,
               height: 10,
-              borderRadius: 9999,
               backgroundColor: '#e11d2e',
               boxShadow: '0 0 0 5px rgba(225,29,46,0.15)',
             }}
           />
           <div
             style={{
-              fontFamily: '"Geist Mono", Menlo, monospace',
+              fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
               fontSize: 20,
               fontWeight: 500,
               letterSpacing: 5,
@@ -314,7 +306,6 @@ export async function GET(request: NextRequest) {
                 justifyContent: 'center',
                 width: 64,
                 height: 64,
-                borderRadius: 19,
                 backgroundImage: 'linear-gradient(135deg, #bd1225 0%, #e11d2e 55%, #ff6675 100%)',
                 boxShadow: '0 14px 30px -12px rgba(225,29,46,0.7)',
               }}
@@ -322,11 +313,10 @@ export async function GET(request: NextRequest) {
               <div
                 style={{
                   position: 'absolute',
-                  left: 1,
-                  top: 1,
-                  width: 62,
-                  height: 30,
-                  borderRadius: 18,
+                  left: 0,
+                  top: 0,
+                  width: 64,
+                  height: 32,
                   backgroundImage:
                     'linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05))',
                 }}
@@ -353,7 +343,7 @@ export async function GET(request: NextRequest) {
               <div
                 style={{
                   marginTop: 6,
-                  fontFamily: '"Geist Mono", Menlo, monospace',
+                  fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
                   fontSize: 15,
                   fontWeight: 500,
                   letterSpacing: 3,
@@ -370,10 +360,9 @@ export async function GET(request: NextRequest) {
               display: 'flex',
               alignItems: 'center',
               padding: '12px 22px',
-              borderRadius: 9999,
               backgroundColor: 'rgba(255,255,255,0.75)',
               border: '1px solid rgba(255,199,205,0.9)',
-              fontFamily: '"Geist Mono", Menlo, monospace',
+              fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
               fontSize: 20,
               fontWeight: 500,
               letterSpacing: 2,

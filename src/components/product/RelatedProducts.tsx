@@ -51,7 +51,7 @@ export function MoreInCategory({ categories }: { categories: Category[] }) {
   return (
     <Section aria-labelledby="more-in-heading" className="!pt-0">
       <Container>
-        <div className="glass glass-edge relative overflow-hidden rounded-3xl p-5 sm:p-6">
+        <div className="glass glass-edge relative overflow-hidden p-5 sm:p-6">
           <div
             className="pointer-events-none absolute inset-0 dots-pattern opacity-30 fade-mask-x"
             aria-hidden="true"

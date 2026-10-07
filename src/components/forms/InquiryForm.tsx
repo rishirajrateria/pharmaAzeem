@@ -54,11 +54,11 @@ export function InquiryForm({
   if (state.ok) {
     return (
       <div
-        className={cn('glass-red rounded-3xl p-8 text-center', className)}
+        className={cn('glass-red p-8 text-center', className)}
         role="status"
         aria-live="polite"
       >
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white text-emerald-600 shadow">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center bg-white text-emerald-600 shadow">
           <CircleCheck className="h-7 w-7" />
         </div>
         <h3 className="mt-4 text-xl font-semibold text-ink-950">Inquiry sent</h3>
@@ -129,7 +129,7 @@ export function InquiryForm({
       </div>
       {state.message && !state.ok && (
         <p
-          className="rounded-2xl border border-brand-200 bg-brand-50 px-4 py-2.5 text-sm text-brand-800"
+          className="border border-brand-200 bg-brand-50 px-4 py-2.5 text-sm text-brand-800"
           role="alert"
         >
           {state.message}

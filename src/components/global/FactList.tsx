@@ -20,16 +20,16 @@ export function FactList({
   return (
     <dl
       className={cn(
-        'grid gap-px overflow-hidden rounded-3xl border border-white/70 bg-brand-100/40 shadow-glass',
+        'grid gap-px overflow-hidden border border-white/70 bg-brand-100/40 shadow-glass',
         columns === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2',
         className,
       )}
     >
       {facts.map((f) => (
         <div key={f.label} className="bg-white/75 p-5 backdrop-blur">
-          <dt className="flex items-center gap-3 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
+          <dt className="flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.18em] text-ink-500">
             <span
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100"
+              className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100"
               aria-hidden="true"
             >
               <Icon name={f.icon} className="h-4 w-4" />

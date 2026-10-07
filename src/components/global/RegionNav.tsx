@@ -42,7 +42,7 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
       aria-label="Regions"
       className={cn('sticky top-28 z-30 -mx-4 px-4 sm:mx-0 sm:px-0', className)}
     >
-      <ul className="scrollbar-thin glass-strong glass-edge flex snap-x gap-1 overflow-x-auto rounded-full p-1.5 shadow-glass-lg">
+      <ul className="scrollbar-thin glass-strong glass-edge flex snap-x gap-1 overflow-x-auto p-1.5 shadow-glass-lg">
         {items.map((item) => {
           const isActive = active === item.anchor
           return (
@@ -51,7 +51,7 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
                 href={`#${item.anchor}`}
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
-                  'inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-xs font-semibold tracking-tight transition-all duration-300 sm:text-sm',
+                  'inline-flex items-center gap-2 whitespace-nowrap px-3.5 py-2 text-xs font-semibold tracking-tight transition-all duration-300 sm:text-sm',
                   isActive
                     ? 'bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]'
                     : 'text-ink-700 hover:bg-brand-50 hover:text-brand-700',
@@ -60,7 +60,7 @@ export function RegionNav({ items, className }: { items: RegionNavItem[]; classN
                 {item.label}
                 <span
                   className={cn(
-                    'rounded-full px-1.5 py-0.5 font-mono text-[10px] leading-none',
+                    'px-1.5 py-0.5 text-[10px] leading-none',
                     isActive ? 'bg-white/20 text-white' : 'bg-brand-50 text-brand-700',
                   )}
                 >

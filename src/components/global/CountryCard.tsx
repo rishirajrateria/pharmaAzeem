@@ -29,14 +29,14 @@ export function CountryCard({ country, className, compact }: Props) {
       <div className="flex items-start justify-between gap-3">
         <span
           className={cn(
-            'flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white to-brand-50 leading-none shadow-glass ring-1 ring-brand-100',
+            'flex shrink-0 items-center justify-center bg-gradient-to-br from-white to-brand-50 leading-none shadow-glass ring-1 ring-brand-100',
             compact ? 'h-11 w-11 text-2xl' : 'h-14 w-14 text-3xl sm:text-4xl',
           )}
           aria-hidden="true"
         >
           {country.flag || country.isoCode}
         </span>
-        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-ink-100 bg-white/60 text-ink-500 transition group-hover:border-brand-300 group-hover:bg-brand-600 group-hover:text-white">
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </span>
       </div>
@@ -48,7 +48,7 @@ export function CountryCard({ country, className, compact }: Props) {
           {country.name}
         </Link>
       </h3>
-      <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-600">
+      <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-brand-600">
         {country.sinceYear ? `Since ${country.sinceYear}` : 'Active market'}
         <span className="text-ink-300"> · </span>
         {country.isoCode}

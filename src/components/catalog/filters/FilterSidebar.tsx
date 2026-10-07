@@ -36,12 +36,12 @@ export function FilterSidebar({
   const activeCount = filters.active.length
 
   return (
-    <div className={cn('glass rounded-3xl p-5', className)}>
+    <div className={cn('glass p-5', className)}>
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-ink-900">
           Filters
           {activeCount > 0 && (
-            <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-gradient px-1.5 font-mono text-[10px] text-white">
+            <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center bg-brand-gradient px-1.5 text-[10px] text-white">
               {activeCount}
             </span>
           )}
@@ -88,7 +88,7 @@ export function FilterSidebar({
                   <span>
                     {g.label}
                     {selected.length > 0 && (
-                      <span className="ml-2 font-mono text-[10px] font-medium text-brand-600">
+                      <span className="ml-2 text-[10px] font-medium text-brand-600">
                         {selected.length} selected
                       </span>
                     )}
@@ -138,7 +138,7 @@ export function FilterSidebar({
         </div>
       )}
 
-      <div className="glass-red mt-5 rounded-2xl p-4">
+      <div className="glass-red mt-5 p-4">
         <p className="flex items-center gap-2 text-sm font-semibold text-ink-950">
           <MessageCircleQuestion className="h-4 w-4 text-brand-600" aria-hidden="true" />
           Need help choosing?
@@ -181,7 +181,7 @@ function FacetOption({
         aria-current={selected ? 'true' : undefined}
         aria-label={`${selected ? 'Remove' : 'Add'} filter ${label} (${count})`}
         className={cn(
-          'group/opt flex items-center gap-2.5 rounded-xl px-2 py-1.5 text-sm transition',
+          'group/opt flex items-center gap-2.5 px-2 py-1.5 text-sm transition',
           selected
             ? 'bg-white/80 font-medium text-brand-700'
             : 'text-ink-700 hover:bg-white/60 hover:text-ink-950',
@@ -189,7 +189,7 @@ function FacetOption({
       >
         <span
           className={cn(
-            'flex h-4 w-4 shrink-0 items-center justify-center rounded-[5px] border transition',
+            'flex h-4 w-4 shrink-0 items-center justify-center border transition',
             selected
               ? 'border-brand-600 bg-brand-gradient text-white'
               : 'border-ink-300 bg-white group-hover/opt:border-brand-400',
@@ -199,7 +199,7 @@ function FacetOption({
           {selected && <Check className="h-3 w-3" strokeWidth={3} />}
         </span>
         <span className="flex-1 truncate">{label}</span>
-        <span className="font-mono text-[11px] text-ink-400">{count}</span>
+        <span className="text-[11px] text-ink-400">{count}</span>
       </Link>
     </li>
   )

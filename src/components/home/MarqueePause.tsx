@@ -16,7 +16,7 @@ export function MarqueePause({ targetId }: { targetId: string }) {
         setPaused(next)
         document.getElementById(targetId)?.setAttribute('data-paused', String(next))
       }}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full glass text-ink-700 hover:text-brand-700"
+      className="inline-flex h-9 w-9 items-center justify-center glass text-ink-700 hover:text-brand-700"
       title={paused ? 'Resume scrolling' : 'Pause scrolling'}
     >
       {paused ? (

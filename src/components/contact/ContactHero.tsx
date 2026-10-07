@@ -73,19 +73,19 @@ export function ContactHero({
               <HudRings className="hidden opacity-70 sm:flex" />
               {hasImage ? (
                 <div className="relative mx-auto max-w-md lg:max-w-none">
-                  <div className="glass rotate-2 rounded-3xl p-2.5 shadow-glass-lg animate-float-slow">
+                  <div className="glass rotate-2 p-2.5 shadow-glass-lg animate-float-slow">
                     <Media
                       media={image}
                       size="large"
                       fill
-                      className="aspect-[4/3] rounded-2xl"
+                      className="aspect-[4/3]"
                       sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
                       priority
                     />
                   </div>
                   {badge && (
-                    <div className="absolute -bottom-5 left-3 flex items-center gap-3 rounded-2xl glass-strong px-4 py-3 shadow-glass animate-float sm:left-6">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white">
+                    <div className="absolute -bottom-5 left-3 flex items-center gap-3 glass-strong px-4 py-3 shadow-glass animate-float sm:left-6">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white">
                         <Timer className="h-4 w-4" aria-hidden="true" />
                       </span>
                       <div>
@@ -100,7 +100,7 @@ export function ContactHero({
               ) : (
                 (visual ?? (
                   <div
-                    className="glass relative mx-auto max-w-md rotate-2 rounded-3xl p-6 shadow-glass-lg animate-float-slow lg:max-w-none"
+                    className="glass relative mx-auto max-w-md rotate-2 p-6 shadow-glass-lg animate-float-slow lg:max-w-none"
                     aria-hidden="true"
                   >
                     <MoleculeField />

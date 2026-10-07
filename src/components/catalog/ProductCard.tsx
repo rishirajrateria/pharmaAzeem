@@ -77,14 +77,14 @@ export function ProductCard({
           </div>
         )}
         {product.prescriptionStatus && (
-          <span className="absolute right-3 top-3 rounded-full glass px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-ink-700">
+          <span className="absolute right-3 top-3 glass px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink-700">
             {product.prescriptionStatus === 'otc' ? 'OTC' : 'Rx'}
           </span>
         )}
       </Link>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         {category && (
-          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">
+          <p className="mb-1 text-[10px] uppercase tracking-[0.18em] text-brand-600">
             {category.title}
           </p>
         )}

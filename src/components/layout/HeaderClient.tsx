@@ -87,7 +87,7 @@ export function HeaderClient({
         <div className="container-x">
           <div
             className={cn(
-              'glass-edge flex items-center justify-between gap-4 rounded-full px-4 py-2 pl-5 transition-all duration-500 sm:px-5',
+              'glass-edge flex items-center justify-between gap-4 px-4 py-2 pl-5 transition-all duration-500 sm:px-5',
               scrolled ? 'glass-strong shadow-glass-lg' : 'glass',
             )}
           >
@@ -118,7 +118,7 @@ export function HeaderClient({
                 <Link
                   href="/products"
                   className={cn(
-                    'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'inline-flex items-center gap-1 whitespace-nowrap px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
                     isActive('/products') || isActive('/categories')
                       ? 'text-brand-700'
                       : 'text-ink-700',
@@ -140,12 +140,12 @@ export function HeaderClient({
                       : 'invisible -translate-y-2 opacity-0',
                   )}
                 >
-                  <div className="glass-strong rounded-3xl p-4 shadow-glass-lg">
+                  <div className="glass-strong p-4 shadow-glass-lg">
                     <div className="grid grid-cols-3 gap-2">
                       {nav.map((c) => (
-                        <div key={c.id} className="rounded-2xl p-3 transition hover:bg-brand-50/70">
+                        <div key={c.id} className="p-3 transition hover:bg-brand-50/70">
                           <Link prefetch={false} href={c.path} className="flex items-start gap-3">
-                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.7)]">
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.7)]">
                               <Icon name={c.icon} className="h-4.5 w-4.5" />
                             </span>
                             <span>
@@ -162,7 +162,7 @@ export function HeaderClient({
                                   <Link
                                     prefetch={false}
                                     href={s.path}
-                                    className="rounded-full border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700"
+                                    className="border border-transparent px-2 py-0.5 text-[11px] text-ink-600 hover:border-brand-200 hover:bg-white hover:text-brand-700"
                                   >
                                     {s.title}
                                   </Link>
@@ -195,7 +195,7 @@ export function HeaderClient({
                   key={l.href}
                   href={l.href}
                   className={cn(
-                    'whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
+                    'whitespace-nowrap px-3 py-2 text-sm font-medium transition hover:bg-brand-50 hover:text-brand-700',
                     isActive(l.href) ? 'text-brand-700' : 'text-ink-700',
                   )}
                 >
@@ -212,7 +212,7 @@ export function HeaderClient({
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-800 transition hover:bg-brand-50 lg:hidden"
+                className="inline-flex h-10 w-10 items-center justify-center text-ink-800 transition hover:bg-brand-50 lg:hidden"
                 aria-label="Open menu"
                 aria-expanded={open}
               >
@@ -255,21 +255,21 @@ export function HeaderClient({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50"
+              className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50"
               aria-label="Close menu"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
           <nav className="scrollbar-thin flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
-            <p className="px-3 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
+            <p className="px-3 pb-2 text-[10px] uppercase tracking-[0.2em] text-ink-400">
               Products
             </p>
             <ul className="space-y-1">
               <li>
                 <Link
                   href="/products"
-                  className="flex items-center justify-between rounded-2xl px-3 py-2.5 text-sm font-semibold text-ink-900 hover:bg-brand-50"
+                  className="flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-ink-900 hover:bg-brand-50"
                 >
                   All products <ArrowRight className="h-4 w-4 text-brand-600" />
                 </Link>
@@ -279,9 +279,9 @@ export function HeaderClient({
                   <Link
                     prefetch={false}
                     href={c.path}
-                    className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50"
+                    className="flex items-center gap-3 px-3 py-2.5 text-sm text-ink-800 hover:bg-brand-50"
                   >
-                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <span className="flex h-8 w-8 items-center justify-center bg-brand-50 text-brand-600">
                       <Icon name={c.icon} className="h-4 w-4" />
                     </span>
                     <span className="flex-1">{c.title}</span>
@@ -290,7 +290,7 @@ export function HeaderClient({
                 </li>
               ))}
             </ul>
-            <p className="px-3 pb-2 pt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
+            <p className="px-3 pb-2 pt-6 text-[10px] uppercase tracking-[0.2em] text-ink-400">
               Company
             </p>
             <ul className="space-y-1">
@@ -300,7 +300,7 @@ export function HeaderClient({
                     prefetch={false}
                     href={l.href}
                     className={cn(
-                      'block rounded-2xl px-3 py-2.5 text-sm hover:bg-brand-50',
+                      'block px-3 py-2.5 text-sm hover:bg-brand-50',
                       isActive(l.href) ? 'text-brand-700 font-semibold' : 'text-ink-800',
                     )}
                   >

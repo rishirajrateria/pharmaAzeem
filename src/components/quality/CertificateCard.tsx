@@ -27,14 +27,14 @@ function CertificatePlaceholder({ type, title }: { type: Certification['type']; 
     >
       <div className="absolute inset-0 dots-pattern opacity-70" />
       <div className="absolute inset-x-8 top-6 space-y-2 opacity-60">
-        <div className="h-1.5 w-1/2 rounded-full bg-brand-200/70" />
-        <div className="h-1 w-3/4 rounded-full bg-brand-100" />
-        <div className="h-1 w-2/3 rounded-full bg-brand-100" />
+        <div className="h-1.5 w-1/2 bg-brand-200/70" />
+        <div className="h-1 w-3/4 bg-brand-100" />
+        <div className="h-1 w-2/3 bg-brand-100" />
       </div>
-      <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl glass text-brand-600 shadow-glass">
+      <span className="relative flex h-16 w-16 items-center justify-center glass text-brand-600 shadow-glass">
         <Icon name={CERT_TYPE_META[type].icon} className="h-7 w-7" />
       </span>
-      <span className="relative mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-brand-700/80">
+      <span className="relative mt-3 text-[10px] uppercase tracking-[0.22em] text-brand-700/80">
         {CERT_TYPE_META[type].singular}
       </span>
       <span className="sr-only">{title}</span>
@@ -91,7 +91,7 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
           >
             <span
               className={cn(
-                'mr-1.5 inline-block h-1.5 w-1.5 rounded-full',
+                'mr-1.5 inline-block h-1.5 w-1.5',
                 status === 'valid' ? 'bg-emerald-500' : 'bg-white/60',
               )}
               aria-hidden="true"
@@ -116,16 +116,16 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
         <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-ink-100 pt-4 text-sm">
           {cert.certificateNumber && (
             <div className="col-span-2">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-400">
+              <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
                 Certificate no.
               </dt>
-              <dd className="mt-0.5 break-all font-mono text-[13px] text-ink-900">
+              <dd className="mt-0.5 break-all text-[13px] text-ink-900">
                 {cert.certificateNumber}
               </dd>
             </div>
           )}
           <div>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-400">
+            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
               Valid from
             </dt>
             <dd className="mt-0.5 text-ink-900">
@@ -133,7 +133,7 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-400">
+            <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">
               Valid until
             </dt>
             <dd className="mt-0.5 text-ink-900">
@@ -190,7 +190,7 @@ export function CertificateCard({ cert, className }: { cert: Certification; clas
               Request a copy
             </Link>
           )}
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-300">
+          <span className="text-[10px] uppercase tracking-[0.18em] text-ink-300">
             {meta.singular}
           </span>
         </div>

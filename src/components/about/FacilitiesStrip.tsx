@@ -54,10 +54,10 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
                 className="glass-card glass-edge flex flex-col p-5 sm:p-6"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                     <TypeIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-brand-600">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-brand-600">
                     {t.label}
                   </span>
                 </div>
@@ -92,7 +92,7 @@ export function FacilitiesStrip({ facilities }: { facilities: Facility[] }) {
                   </ul>
                 )}
                 {(f.establishedYear || f.areaSqm) && (
-                  <dl className="mt-auto flex gap-6 border-t border-ink-100 pt-4 font-mono text-xs text-ink-500">
+                  <dl className="mt-auto flex gap-6 border-t border-ink-100 pt-4 text-xs text-ink-500">
                     {f.establishedYear && (
                       <div>
                         <dt className="sr-only">Established</dt>

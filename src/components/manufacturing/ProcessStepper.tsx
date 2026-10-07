@@ -31,7 +31,7 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
             }
             description="Every product follows the same validated sequence. Each stage has defined in-process controls and nothing moves forward until Quality Assurance signs off the previous one."
           />
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-ink-500 lg:shrink-0 lg:pb-1">
+          <p className="text-xs uppercase tracking-[0.18em] text-ink-500 lg:shrink-0 lg:pb-1">
             {pad2(total)} stages · one quality system
           </p>
         </div>
@@ -49,7 +49,7 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
                 delay={i * 70}
                 className="group relative pl-16 md:pl-0"
               >
-                <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-mono text-sm font-semibold text-white shadow-glow ring-4 ring-white md:relative md:mb-5">
+                <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center bg-brand-gradient text-sm font-semibold text-white shadow-glow ring-4 ring-white md:relative md:mb-5">
                   {pad2(n)}
                 </span>
                 <span
@@ -58,12 +58,12 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
                 />
                 <div className="glass-card glass-edge relative h-full overflow-hidden p-6">
                   <span
-                    className="pointer-events-none absolute -right-3 -top-4 select-none font-mono text-7xl font-semibold leading-none tracking-tighter text-brand-100/80"
+                    className="pointer-events-none absolute -right-3 -top-4 select-none text-7xl font-semibold leading-none tracking-tighter text-brand-100/80"
                     aria-hidden="true"
                   >
                     {pad2(n)}
                   </span>
-                  <p className="relative font-mono text-[10px] uppercase tracking-[0.2em] text-brand-600">
+                  <p className="relative text-[10px] uppercase tracking-[0.2em] text-brand-600">
                     Stage {n} of {total}
                   </p>
                   <h3 className="relative mt-2 text-lg font-semibold leading-snug text-ink-950">
@@ -75,11 +75,11 @@ export function ProcessStepper({ steps }: { steps?: Step[] | null }) {
                     </p>
                   )}
                   <span
-                    className="relative mt-5 block h-1 w-full overflow-hidden rounded-full bg-brand-100/70"
+                    className="relative mt-5 block h-1 w-full overflow-hidden bg-brand-100/70"
                     aria-hidden="true"
                   >
                     <span
-                      className="block h-full rounded-full bg-brand-gradient"
+                      className="block h-full bg-brand-gradient"
                       style={{ width: `${Math.round((n / total) * 100)}%` }}
                     />
                   </span>

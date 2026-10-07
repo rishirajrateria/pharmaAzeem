@@ -48,7 +48,7 @@ export function ProcessStepper({
               delay={i * 70}
               className="group relative pl-16 lg:flex lg:flex-col lg:pl-0"
             >
-              <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gradient font-mono text-sm font-semibold text-white shadow-glow ring-4 ring-white lg:relative lg:mb-5">
+              <span className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center bg-brand-gradient text-sm font-semibold text-white shadow-glow ring-4 ring-white lg:relative lg:mb-5">
                 {pad2(i + 1)}
               </span>
               <span

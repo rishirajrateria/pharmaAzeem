@@ -23,7 +23,7 @@ export function CtaBand({
 }: Props) {
   return (
     <section aria-labelledby={id} className="container-x section-y">
-      <div className="mesh-bg-dark noise relative overflow-hidden rounded-4xl p-6 text-white sm:p-10 lg:p-14">
+      <div className="mesh-bg-dark noise relative overflow-hidden p-6 text-white sm:p-10 lg:p-14">
         <div
           className="pointer-events-none absolute -right-10 -top-10 w-[28rem] opacity-40 lg:w-[34rem]"
           aria-hidden="true"
@@ -34,7 +34,7 @@ export function CtaBand({
           className="pointer-events-none absolute inset-0 grid-pattern opacity-30"
           aria-hidden="true"
         />
-        <div className="glass-dark relative max-w-3xl rounded-3xl p-6 sm:p-8">
+        <div className="glass-dark relative max-w-3xl p-6 sm:p-8">
           <p className="eyebrow !text-brand-300">{eyebrow}</p>
           <h2 id={id} className="heading-2 mt-3 !text-white">
             {title}

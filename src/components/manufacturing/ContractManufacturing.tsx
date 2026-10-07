@@ -28,9 +28,9 @@ export function ContractManufacturing({
     >
       <Container>
         <Reveal>
-          <div className="glass-red glass-edge relative overflow-hidden rounded-[2rem] p-6 sm:p-10 lg:p-14">
+          <div className="glass-red glass-edge relative overflow-hidden p-6 sm:p-10 lg:p-14">
             <div
-              className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.35),transparent)]"
+              className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.35),transparent)]"
               aria-hidden="true"
             />
             <div
@@ -57,7 +57,7 @@ export function ContractManufacturing({
                         key={b.id || i}
                         className="flex items-start gap-3 text-[15px] text-ink-800"
                       >
-                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white shadow-[0_6px_14px_-6px_rgb(225_29_46_/_0.7)]">
+                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_6px_14px_-6px_rgb(225_29_46_/_0.7)]">
                           <Check className="h-3.5 w-3.5" aria-hidden="true" />
                         </span>
                         <span>{b.text}</span>
@@ -76,14 +76,14 @@ export function ContractManufacturing({
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <div className="glass-strong glass-edge rounded-[1.6rem] p-5 sm:p-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <div className="glass-strong glass-edge p-5 sm:p-6">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     How a project runs
                   </p>
                   <ol className="mt-4 space-y-4" aria-label="Contract manufacturing steps">
                     {HOW.map((h, i) => (
                       <li key={h.title} className="flex gap-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand-200 bg-white font-mono text-xs font-semibold text-brand-700">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-brand-200 bg-white text-xs font-semibold text-brand-700">
                           {i + 1}
                         </span>
                         <div>

@@ -20,7 +20,7 @@ export function CatalogCta({
   className?: string
 }) {
   return (
-    <div className={cn('mesh-bg-dark relative overflow-hidden rounded-[2.25rem] noise', className)}>
+    <div className={cn('mesh-bg-dark relative overflow-hidden noise', className)}>
       <div className="absolute inset-0 grid-pattern opacity-40" aria-hidden="true" />
       <div
         className="pointer-events-none absolute -right-10 -top-10 hidden w-[28rem] opacity-40 md:block"
@@ -63,7 +63,7 @@ export function CatalogCta({
               desc: 'Add your company details and destination country – our export team replies with a quotation.',
             },
           ].map((s) => (
-            <div key={s.term} className="glass-dark rounded-2xl p-4">
+            <div key={s.term} className="glass-dark p-4">
               <dt className="flex items-center gap-2 text-sm font-semibold text-white">
                 <s.icon className="h-4 w-4 text-brand-300" aria-hidden="true" />
                 {s.term}

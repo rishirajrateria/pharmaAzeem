@@ -21,7 +21,7 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
   return (
     <Section className="!pt-0" aria-labelledby="about-trust">
       <Container>
-        <div className="glass-strong glass-edge relative overflow-hidden rounded-[2rem] p-6 sm:p-10">
+        <div className="glass-strong glass-edge relative overflow-hidden p-6 sm:p-10">
           <div
             className="pointer-events-none absolute inset-0 dots-pattern opacity-40 fade-mask-x"
             aria-hidden="true"
@@ -45,7 +45,7 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                 <Reveal as="li" key={c.id} delay={i * 50}>
                   <Link
                     href="/licenses"
-                    className="glass group flex h-full items-center gap-4 rounded-2xl p-4 transition hover:border-brand-300 hover:bg-white"
+                    className="glass group flex h-full items-center gap-4 p-4 transition hover:border-brand-300 hover:bg-white"
                   >
                     {mediaUrl(c.image) ? (
                       <Media
@@ -53,10 +53,10 @@ export function TrustRow({ certifications }: { certifications: Certification[] }
                         size="thumbnail"
                         sizes="48px"
                         alt={`${c.title} – ${c.issuer}`}
-                        className="h-12 w-12 shrink-0 rounded-xl bg-white object-contain p-1"
+                        className="h-12 w-12 shrink-0 bg-white object-contain p-1"
                       />
                     ) : (
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
                         <Award className="h-5 w-5" aria-hidden="true" />
                       </span>
                     )}

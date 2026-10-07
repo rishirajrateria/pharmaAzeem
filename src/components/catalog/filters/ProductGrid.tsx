@@ -34,10 +34,10 @@ export function ProductGrid({
   if (products.length === 0) {
     return (
       <div className={cn('space-y-10', className)}>
-        <div className="glass relative overflow-hidden rounded-3xl p-8 text-center sm:p-12">
+        <div className="glass relative overflow-hidden p-8 text-center sm:p-12">
           <div className="absolute inset-0 dots-pattern opacity-50" aria-hidden="true" />
           <div className="relative">
-            <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl glass-red text-brand-600">
+            <span className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600">
               <SearchX className="h-7 w-7" aria-hidden="true" />
             </span>
             <h3 className="heading-3 mt-5">

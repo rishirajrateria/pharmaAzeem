@@ -24,7 +24,7 @@ export function CtaBand({
   return (
     <Section aria-labelledby={id} className="pt-0 sm:pt-0 lg:pt-0">
       <Container>
-        <div className="relative overflow-hidden rounded-4xl mesh-bg-dark px-4 py-10 noise sm:px-10 sm:py-14 lg:px-14">
+        <div className="relative overflow-hidden mesh-bg-dark px-4 py-10 noise sm:px-10 sm:py-14 lg:px-14">
           <div
             className="pointer-events-none absolute inset-0 grid-pattern opacity-30 fade-mask-y"
             aria-hidden="true"
@@ -33,7 +33,7 @@ export function CtaBand({
             className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl animate-float"
             aria-hidden="true"
           />
-          <div className="relative flex flex-col gap-8 rounded-3xl glass-dark p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+          <div className="relative flex flex-col gap-8 glass-dark p-6 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             <div className="max-w-2xl">
               <p className="eyebrow text-brand-300">{eyebrow}</p>
               <h2 id={id} className="heading-2 mt-3 text-white">

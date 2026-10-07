@@ -19,7 +19,7 @@ export function MarketLinks({
 }) {
   if (!countries.length) return null
   return (
-    <nav aria-label={title} className="glass rounded-3xl p-5 sm:p-6">
+    <nav aria-label={title} className="glass p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-base font-semibold text-ink-950">{title}</h2>
         <Link

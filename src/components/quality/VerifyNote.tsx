@@ -52,9 +52,9 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
     <Section aria-labelledby="verify-title">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] glass-red glass-edge p-6 sm:p-10 lg:grid lg:grid-cols-12 lg:gap-14 lg:p-14">
+          <div className="relative overflow-hidden glass-red glass-edge p-6 sm:p-10 lg:grid lg:grid-cols-12 lg:gap-14 lg:p-14">
             <div
-              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.22),transparent)]"
+              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 bg-[radial-gradient(closest-side,rgb(255_102_117_/_0.22),transparent)]"
               aria-hidden="true"
             />
             <div className="relative lg:col-span-7">
@@ -69,7 +69,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               <ol className="mt-8 space-y-6" aria-label="Verification steps">
                 {STEPS.map((s, i) => (
                   <li key={s.title} className="flex gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-gradient font-mono text-xs font-semibold text-white shadow-glow">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-gradient text-xs font-semibold text-white shadow-glow">
                       {pad2(i + 1)}
                     </span>
                     <div>
@@ -81,10 +81,10 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
               </ol>
             </div>
             <aside
-              className="relative mt-10 rounded-3xl glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0"
+              className="relative mt-10 glass-strong p-6 sm:p-8 lg:col-span-5 lg:mt-0"
               aria-labelledby="dossier-title"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
+              <span className="flex h-11 w-11 items-center justify-center bg-brand-gradient text-white shadow-[0_10px_24px_-10px_rgb(225_29_46_/_0.8)]">
                 <ShieldCheck className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 id="dossier-title" className="mt-5 text-lg font-semibold text-ink-950">
@@ -94,7 +94,7 @@ export function VerifyNote({ certifications = [] }: { certifications?: Certifica
                 {docs.map((d) => (
                   <li key={d} className="flex items-start gap-2.5">
                     <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 bg-brand-500"
                       aria-hidden="true"
                     />
                     {d}

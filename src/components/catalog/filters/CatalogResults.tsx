@@ -79,7 +79,7 @@ export function CatalogResults({
       </aside>
 
       <div className="min-w-0">
-        <div className="glass rounded-3xl p-3 sm:p-4">
+        <div className="glass p-3 sm:p-4">
           <SearchBox basePath={basePath} filters={filters} />
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-ink-600" role="status">

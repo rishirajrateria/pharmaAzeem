@@ -16,7 +16,7 @@ export function GroupJumpNav({ groups, className }: { groups: CertGroup[]; class
             <a href={`#${g.anchor}`} className="chip !py-1.5 hover:border-brand-400 hover:bg-white">
               <Icon name={g.icon} className="h-3.5 w-3.5" />
               {g.label}
-              <span className="rounded-full bg-brand-600 px-1.5 font-mono text-[10px] leading-4 text-white">
+              <span className="bg-brand-600 px-1.5 text-[10px] leading-4 text-white">
                 {g.items.length}
               </span>
             </a>
@@ -33,7 +33,7 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
     return (
       <Section className="!pt-0">
         <Container>
-          <div className="glass-strong rounded-[2rem] p-8 text-center sm:p-12">
+          <div className="glass-strong p-8 text-center sm:p-12">
             <h2 className="heading-3">Certificate list being updated</h2>
             <p className="mx-auto mt-3 max-w-xl text-ink-600">
               Our current licences and certificates are available on request while this page is
@@ -60,7 +60,7 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
           <Container>
             <div className="flex items-start gap-5">
               <span
-                className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient font-mono text-sm font-semibold text-white shadow-glow sm:flex"
+                className="hidden h-12 w-12 shrink-0 items-center justify-center bg-brand-gradient text-sm font-semibold text-white shadow-glow sm:flex"
                 aria-hidden="true"
               >
                 {pad2(gi + 1)}
@@ -69,7 +69,7 @@ export function CertificateGallery({ groups }: { groups: CertGroup[] }) {
                 title={
                   <span id={`${g.anchor}-title`}>
                     {g.label}{' '}
-                    <span className="align-middle font-mono text-sm font-medium tracking-[0.18em] text-brand-600">
+                    <span className="align-middle text-sm font-medium tracking-[0.18em] text-brand-600">
                       {g.items.length} {g.items.length === 1 ? 'document' : 'documents'}
                     </span>
                   </span>

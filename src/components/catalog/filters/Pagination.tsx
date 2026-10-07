@@ -37,7 +37,7 @@ export function Pagination({
   if (totalPages <= 1) return null
   const items = pageList(page, totalPages)
   const linkBase =
-    'inline-flex h-10 min-w-10 items-center justify-center rounded-full px-3 text-sm font-medium transition'
+    'inline-flex h-10 min-w-10 items-center justify-center px-3 text-sm font-medium transition'
   return (
     <nav
       aria-label="Pagination"

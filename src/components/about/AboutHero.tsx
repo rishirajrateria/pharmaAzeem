@@ -26,15 +26,15 @@ function FloatChip({
   return (
     <div
       className={cn(
-        'glass glass-edge absolute z-10 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-glass-lg',
+        'glass glass-edge absolute z-10 flex items-center gap-3 px-4 py-3 shadow-glass-lg',
         className,
       )}
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
         <IconCmp className="h-4 w-4" aria-hidden="true" />
       </span>
       <span className="leading-tight">
-        <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+        <span className="block text-[10px] uppercase tracking-[0.18em] text-ink-500">
           {label}
         </span>
         <span className="block text-sm font-semibold text-ink-950">{value}</span>
@@ -98,7 +98,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
             <dl className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm animate-fade-up [animation-delay:320ms]">
               {settings.foundingYear && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     Since
                   </dt>
                   <dd className="font-semibold text-ink-900">{settings.foundingYear}</dd>
@@ -106,7 +106,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
               )}
               {settings.contact?.address?.city && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     HQ
                   </dt>
                   <dd className="font-semibold text-ink-900">
@@ -118,7 +118,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
               )}
               {settings.legalName && (
                 <div className="flex items-baseline gap-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     Legal entity
                   </dt>
                   <dd className="font-semibold text-ink-900">{settings.legalName}</dd>
@@ -130,7 +130,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
           <div className="relative lg:col-span-6">
             <HudRings className="opacity-80" />
             <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg">
-              <div className="glass glass-edge relative rotate-[-2.5deg] animate-float-slow rounded-[2rem] p-2.5 shadow-glass-lg">
+              <div className="glass glass-edge relative rotate-[-2.5deg] animate-float-slow p-2.5 shadow-glass-lg">
                 <Media
                   media={hero?.image}
                   size="large"
@@ -138,10 +138,10 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
                   priority
                   alt={mediaAlt(hero?.image, imageAlt)}
                   sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
-                  className="aspect-[4/5] rounded-[1.5rem] bg-white"
+                  className="aspect-[4/5] bg-white"
                 />
                 <div
-                  className="pointer-events-none absolute inset-2.5 rounded-[1.5rem] ring-1 ring-inset ring-white/70"
+                  className="pointer-events-none absolute inset-2.5 ring-1 ring-inset ring-white/70"
                   aria-hidden="true"
                 />
               </div>

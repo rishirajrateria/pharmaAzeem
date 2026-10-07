@@ -39,12 +39,12 @@ export function Timeline({ milestones, siteName }: Props) {
                   className="relative pb-10 pl-14 last:pb-0 lg:grid lg:grid-cols-2 lg:gap-x-20 lg:pb-14 lg:pl-0"
                 >
                   <span
-                    className="glass absolute left-5 top-1 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full lg:left-1/2 lg:top-6"
+                    className="glass absolute left-5 top-1 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center lg:left-1/2 lg:top-6"
                     aria-hidden="true"
                   >
-                    <span className="h-2.5 w-2.5 rounded-full bg-brand-600 shadow-[0_0_0_4px_rgb(225_29_46_/_0.18)]" />
+                    <span className="h-2.5 w-2.5 bg-brand-600 shadow-[0_0_0_4px_rgb(225_29_46_/_0.18)]" />
                     {i === milestones.length - 1 && (
-                      <span className="absolute inset-0 rounded-full bg-brand-500/50 animate-pulse-ring" />
+                      <span className="absolute inset-0 bg-brand-500/50 animate-pulse-ring" />
                     )}
                   </span>
                   <Reveal
@@ -57,7 +57,7 @@ export function Timeline({ milestones, siteName }: Props) {
                   >
                     <p
                       className={cn(
-                        'flex items-center gap-2 font-mono text-xs font-medium tracking-[0.2em] text-brand-600',
+                        'flex items-center gap-2 text-xs font-medium tracking-[0.2em] text-brand-600',
                         left && 'lg:justify-end',
                       )}
                     >

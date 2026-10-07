@@ -46,13 +46,13 @@ export function SearchBox({
         autoFocus={filters.focusSearch}
         enterKeyHint="search"
         maxLength={80}
-        className="input-glass !rounded-full !py-2.5 !pl-11 !pr-24 text-sm"
+        className="input-glass !py-2.5 !pl-11 !pr-24 text-sm"
       />
       <div className="absolute inset-y-0 right-1.5 flex items-center gap-1">
         {clear && (
           <Link
             href={clear}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-ink-500 hover:bg-brand-50 hover:text-brand-700"
+            className="inline-flex h-8 w-8 items-center justify-center text-ink-500 hover:bg-brand-50 hover:text-brand-700"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" aria-hidden="true" />

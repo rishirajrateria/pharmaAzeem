@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { body, dataMono, display } from '@/fonts'
+import { body } from '@/fonts'
 import Script from 'next/script'
 
 import { Footer } from '@/components/layout/Footer'
@@ -67,7 +67,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${dataMono.variable}`}
+      className={body.variable}
     >
       <body className="mesh-bg min-h-dvh font-sans">
         <noscript>
@@ -75,7 +75,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </noscript>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink-950 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink-950 focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>

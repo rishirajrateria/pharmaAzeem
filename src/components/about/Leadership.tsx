@@ -23,8 +23,8 @@ function Monogram({ name }: { name: string }) {
       aria-hidden="true"
     >
       <div className="absolute inset-0 dots-pattern opacity-30 mix-blend-soft-light" />
-      <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full border border-white/30" />
-      <div className="absolute -left-12 -top-12 h-40 w-40 rounded-full border border-white/20" />
+      <div className="absolute -bottom-10 -right-10 h-40 w-40 border border-white/30" />
+      <div className="absolute -left-12 -top-12 h-40 w-40 border border-white/20" />
       <span className="relative font-sans text-5xl font-semibold tracking-tight text-white drop-shadow-[0_8px_24px_rgb(71_6_16_/_0.5)] sm:text-6xl">
         {initials(name)}
       </span>
@@ -59,7 +59,7 @@ export function Leadership({ leadership }: Props) {
                 delay={i * 60}
                 className="group glass-card glass-edge flex flex-col overflow-hidden !p-0"
               >
-                <div className="relative m-2 overflow-hidden rounded-[1.4rem]">
+                <div className="relative m-2 overflow-hidden">
                   {hasPhoto ? (
                     <Media
                       media={p.photo}
@@ -76,7 +76,7 @@ export function Leadership({ leadership }: Props) {
                 </div>
                 <div className="flex flex-1 flex-col px-5 pb-6 pt-3 sm:px-6">
                   <h3 className="text-lg font-semibold text-ink-950">{p.name}</h3>
-                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-brand-600">
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-brand-600">
                     {p.role}
                   </p>
                   {p.bio && <p className="mt-3 text-sm leading-relaxed text-ink-600">{p.bio}</p>}

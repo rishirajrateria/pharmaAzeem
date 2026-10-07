@@ -64,7 +64,7 @@ export function InquiryDrawer({ labels }: Props) {
           <button
             type="button"
             onClick={close}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-brand-50"
+            className="inline-flex h-10 w-10 items-center justify-center hover:bg-brand-50"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -74,7 +74,7 @@ export function InquiryDrawer({ labels }: Props) {
         <div className="scrollbar-thin flex-1 overflow-y-auto px-5 py-4">
           {list.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-3xl glass">
+              <div className="flex h-16 w-16 items-center justify-center glass">
                 <Plus className="h-6 w-6 text-brand-600" />
               </div>
               <p className="mt-4 text-sm font-medium text-ink-900">
@@ -91,11 +91,11 @@ export function InquiryDrawer({ labels }: Props) {
           ) : (
             <ul className="space-y-3">
               {list.map((item) => (
-                <li key={item.id} className="glass flex gap-3 rounded-2xl p-3">
+                <li key={item.id} className="glass flex gap-3 p-3">
                   <Link
                     href={`/products/${item.slug}`}
                     onClick={close}
-                    className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white"
+                    className="relative h-16 w-16 shrink-0 overflow-hidden bg-white"
                   >
                     {item.image ? (
                       <Image
@@ -123,11 +123,11 @@ export function InquiryDrawer({ labels }: Props) {
                         .join(' · ')}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <div className="inline-flex items-center rounded-full border border-ink-200 bg-white">
+                      <div className="inline-flex items-center border border-ink-200 bg-white">
                         <button
                           type="button"
                           onClick={() => setQuantity(item.id, item.quantity - 1)}
-                          className="flex h-7 w-7 items-center justify-center rounded-l-full hover:bg-brand-50"
+                          className="flex h-7 w-7 items-center justify-center hover:bg-brand-50"
                           aria-label="Decrease quantity"
                         >
                           <Minus className="h-3 w-3" />
@@ -139,7 +139,7 @@ export function InquiryDrawer({ labels }: Props) {
                         <button
                           type="button"
                           onClick={() => setQuantity(item.id, item.quantity + 1)}
-                          className="flex h-7 w-7 items-center justify-center rounded-r-full hover:bg-brand-50"
+                          className="flex h-7 w-7 items-center justify-center hover:bg-brand-50"
                           aria-label="Increase quantity"
                         >
                           <Plus className="h-3 w-3" />
@@ -148,7 +148,7 @@ export function InquiryDrawer({ labels }: Props) {
                       <button
                         type="button"
                         onClick={() => remove(item.id)}
-                        className="inline-flex h-7 w-7 items-center justify-center rounded-full text-ink-400 hover:bg-brand-50 hover:text-brand-700"
+                        className="inline-flex h-7 w-7 items-center justify-center text-ink-400 hover:bg-brand-50 hover:text-brand-700"
                         aria-label={`Remove ${item.title}`}
                       >
                         <Trash2 className="h-3.5 w-3.5" />

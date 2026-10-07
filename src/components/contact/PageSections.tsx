@@ -49,7 +49,7 @@ export function PageSections({
                           key={b.id || b.text}
                           className="flex items-start gap-3 text-sm text-ink-700"
                         >
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-50 text-brand-600">
                             <Check className="h-3 w-3" aria-hidden="true" />
                           </span>
                           {b.text}
@@ -62,7 +62,7 @@ export function PageSections({
                   <Reveal delay={120} className={cn('relative', imageLeft && 'lg:order-1')}>
                     <div
                       className={cn(
-                        'glass rounded-3xl p-2.5 shadow-glass-lg',
+                        'glass p-2.5 shadow-glass-lg',
                         imageLeft ? '-rotate-1' : 'rotate-1',
                       )}
                     >
@@ -70,7 +70,7 @@ export function PageSections({
                         media={s.image}
                         size="large"
                         fill
-                        className="aspect-[4/3] rounded-2xl"
+                        className="aspect-[4/3]"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>

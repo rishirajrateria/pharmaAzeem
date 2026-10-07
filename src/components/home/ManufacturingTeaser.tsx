@@ -51,7 +51,7 @@ export function ManufacturingTeaser({
               <ul className="mt-7 grid gap-3 sm:grid-cols-2">
                 {bullets.map((b, i) => (
                   <li key={b.id || i} className="flex items-start gap-3 text-sm text-ink-700">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-brand-gradient text-white">
                       <Check className="h-3 w-3" aria-hidden="true" />
                     </span>
                     {b.text}
@@ -74,8 +74,8 @@ export function ManufacturingTeaser({
               className="grid-pattern fade-mask-y absolute -inset-6 -z-10 opacity-60"
               aria-hidden="true"
             />
-            <div className="glass relative rounded-[2rem] p-3 shadow-glass-lg rotate-[-2deg] transition-transform duration-700 hover:rotate-0">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white">
+            <div className="glass relative p-3 shadow-glass-lg rotate-[-2deg] transition-transform duration-700 hover:rotate-0">
+              <div className="relative aspect-[4/3] overflow-hidden bg-white">
                 <Media
                   media={section?.image}
                   size="large"
@@ -90,11 +90,11 @@ export function ManufacturingTeaser({
                 />
               </div>
               {facilities.length > 0 && (
-                <div className="absolute -left-3 -top-4 glass-strong glass-edge rounded-2xl px-4 py-3 shadow-glass-lg sm:-left-6">
+                <div className="absolute -left-3 -top-4 glass-strong glass-edge px-4 py-3 shadow-glass-lg sm:-left-6">
                   <p className="text-gradient text-2xl font-semibold leading-none tracking-tight">
                     {facilities.length}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-ink-500">
                     {facilities.length === 1 ? 'Facility' : 'Facilities'}
                   </p>
                 </div>
@@ -105,9 +105,9 @@ export function ManufacturingTeaser({
                 {typeCounts.map((t) => (
                   <div
                     key={t.type}
-                    className="glass-strong glass-edge flex items-center gap-3 rounded-2xl px-3.5 py-3"
+                    className="glass-strong glass-edge flex items-center gap-3 px-3.5 py-3"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-50 text-brand-600">
                       <t.icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     <div className="flex flex-col">

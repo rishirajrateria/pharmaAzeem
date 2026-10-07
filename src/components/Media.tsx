@@ -76,7 +76,7 @@ export function MediaPlaceholder({ className, label }: { className?: string; lab
       aria-hidden="true"
     >
       <div className="absolute inset-0 dots-pattern opacity-60" />
-      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl glass">
+      <div className="relative flex h-16 w-16 items-center justify-center glass">
         <svg
           viewBox="0 0 24 24"
           className="h-8 w-8 text-brand-500"

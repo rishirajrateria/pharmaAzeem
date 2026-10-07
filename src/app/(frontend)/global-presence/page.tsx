@@ -133,34 +133,34 @@ export default async function GlobalPresencePage() {
 
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <HudRings className="opacity-70" />
-              <div className="glass gradient-border animate-float relative rotate-2 rounded-4xl p-2 shadow-glass-lg">
+              <div className="glass gradient-border animate-float relative rotate-2 p-2 shadow-glass-lg">
                 <Media
                   media={hero?.image}
                   size="large"
                   sizes="(max-width: 1024px) 90vw, 40vw"
                   priority
-                  className="aspect-[4/3] w-full rounded-3xl object-cover"
+                  className="aspect-[4/3] w-full object-cover"
                 />
                 <div
-                  className="pointer-events-none absolute inset-2 rounded-3xl bg-gradient-to-t from-white/50 via-transparent to-transparent"
+                  className="pointer-events-none absolute inset-2 bg-gradient-to-t from-white/50 via-transparent to-transparent"
                   aria-hidden="true"
                 />
               </div>
               <div
-                className="glass absolute -bottom-5 -left-3 animate-float-slow rounded-2xl px-4 py-3 shadow-glass sm:-left-8"
+                className="glass absolute -bottom-5 -left-3 animate-float-slow px-4 py-3 shadow-glass sm:-left-8"
                 aria-hidden="true"
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-ink-500">
                   Markets served
                 </p>
                 <p className="text-gradient text-2xl font-semibold">{countries.length}+</p>
               </div>
               {since && (
                 <div
-                  className="glass absolute -right-2 -top-4 animate-float rounded-2xl px-4 py-3 shadow-glass sm:-right-6"
+                  className="glass absolute -right-2 -top-4 animate-float px-4 py-3 shadow-glass sm:-right-6"
                   aria-hidden="true"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-ink-500">
                     Exporting since
                   </p>
                   <p className="text-gradient text-2xl font-semibold">{since}</p>
@@ -236,7 +236,7 @@ export default async function GlobalPresencePage() {
                         className="heading-3 flex flex-wrap items-center gap-3"
                       >
                         {g.label}
-                        <span className="rounded-full bg-brand-gradient px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]">
+                        <span className="bg-brand-gradient px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-[0_6px_16px_-6px_rgb(225_29_46_/_0.6)]">
                           {g.countries.length} {g.countries.length === 1 ? 'market' : 'markets'}
                         </span>
                       </h2>
@@ -262,7 +262,7 @@ export default async function GlobalPresencePage() {
             })}
           </div>
           {groups.length === 0 && (
-            <div className="glass rounded-3xl p-8 text-center text-sm text-ink-600">
+            <div className="glass p-8 text-center text-sm text-ink-600">
               Country pages are being prepared.{' '}
               <Link href="/contact" className="font-semibold text-brand-700 hover:underline">
                 Contact us
@@ -293,7 +293,7 @@ export default async function GlobalPresencePage() {
       {/* Onboarding process */}
       <Section aria-labelledby="process-heading" className="!pt-0">
         <Container>
-          <div className="glass-subtle relative overflow-hidden rounded-4xl p-6 sm:p-10 lg:p-14">
+          <div className="glass-subtle relative overflow-hidden p-6 sm:p-10 lg:p-14">
             <div
               className="pointer-events-none absolute inset-0 dots-pattern opacity-50"
               aria-hidden="true"

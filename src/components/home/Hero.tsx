@@ -64,8 +64,8 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
             {hero.eyebrow && (
               <p className="chip animate-fade-up !py-1.5 !pl-2 !pr-3.5 shadow-glass">
                 <span className="relative flex h-2 w-2" aria-hidden="true">
-                  <span className="absolute inset-0 animate-pulse-ring rounded-full bg-brand-500" />
-                  <span className="relative h-2 w-2 rounded-full bg-brand-600" />
+                  <span className="absolute inset-0 animate-pulse-ring bg-brand-500" />
+                  <span className="relative h-2 w-2 bg-brand-600" />
                 </span>
                 {hero.eyebrow}
               </p>
@@ -96,7 +96,7 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
 
             {trust.length > 0 && (
               <div className="mt-10 animate-fade-up [animation-delay:280ms]">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-400">
+                <p className="text-[10px] uppercase tracking-[0.22em] text-ink-400">
                   {hasCerts
                     ? 'Certified, audited and trusted worldwide'
                     : 'Supplying partners worldwide'}
@@ -133,8 +133,8 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
 
               {/* Rotated glass frame with hero image */}
               <div className="absolute inset-x-[9%] top-[5%] bottom-[5%] animate-float-slow">
-                <div className="gradient-border glass h-full rotate-[-4deg] rounded-[2rem] p-2.5 shadow-glass-lg sm:p-3">
-                  <div className="relative h-full overflow-hidden rounded-[1.5rem] bg-white">
+                <div className="gradient-border glass h-full rotate-[-4deg] p-2.5 shadow-glass-lg sm:p-3">
+                  <div className="relative h-full overflow-hidden bg-white">
                     <Media
                       media={hero.image}
                       size="large"
@@ -159,12 +159,12 @@ export function Hero({ hero, stats, certifications, countryCount }: Props) {
               {/* Floating stat chips */}
               {floating.map((s, i) => (
                 <div key={s.id || i} className={cn('absolute z-10', FLOAT_POSITIONS[i])}>
-                  <div className="glass-strong glass-edge animate-float rounded-2xl px-4 py-3 shadow-glass-lg">
+                  <div className="glass-strong glass-edge animate-float px-4 py-3 shadow-glass-lg">
                     <p className="text-gradient text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
                       {s.value}
                       {s.suffix}
                     </p>
-                    <p className="mt-1.5 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                    <p className="mt-1.5 whitespace-nowrap text-[10px] uppercase tracking-[0.18em] text-ink-500">
                       {s.label}
                     </p>
                   </div>

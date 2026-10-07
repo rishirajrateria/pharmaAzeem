@@ -19,7 +19,7 @@ export function AboutCta({ settings }: { settings: SiteSetting }) {
         aria-hidden="true"
       />
       <Container>
-        <div className="glass-dark glass-edge relative overflow-hidden rounded-[2rem] p-8 sm:p-12 lg:p-16">
+        <div className="glass-dark glass-edge relative overflow-hidden p-8 sm:p-12 lg:p-16">
           <div
             className="pointer-events-none absolute -right-40 top-1/2 h-[36rem] w-[36rem] -translate-y-1/2 opacity-40"
             aria-hidden="true"
@@ -28,9 +28,9 @@ export function AboutCta({ settings }: { settings: SiteSetting }) {
           </div>
           <div className="relative grid items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <p className="inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
+              <p className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-brand-300">
                 <span
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-brand-400"
+                  className="inline-block h-1.5 w-1.5 bg-brand-400"
                   aria-hidden="true"
                 />
                 Partner with us

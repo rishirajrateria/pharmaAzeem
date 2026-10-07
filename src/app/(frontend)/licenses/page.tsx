@@ -123,9 +123,9 @@ export default async function LicensesPage() {
               <GroupJumpNav groups={groups} className="mt-8" />
             </div>
             <div className="lg:col-span-5">
-              <div className="relative overflow-hidden rounded-[2rem] glass-strong glass-edge p-6 sm:p-8">
+              <div className="relative overflow-hidden glass-strong glass-edge p-6 sm:p-8">
                 <div
-                  className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.7),transparent)]"
+                  className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 bg-[radial-gradient(closest-side,rgb(255_199_205_/_0.7),transparent)]"
                   aria-hidden="true"
                 />
                 <p className="eyebrow">At a glance</p>

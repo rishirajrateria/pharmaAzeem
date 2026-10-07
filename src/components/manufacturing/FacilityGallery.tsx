@@ -42,7 +42,7 @@ export function FacilityGallery({
       <figcaption className="sr-only">{mediaAlt(current, name)}</figcaption>
       <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
         <ul
-          className="glass-strong flex gap-1.5 rounded-2xl p-1.5 shadow-glass"
+          className="glass-strong flex gap-1.5 p-1.5 shadow-glass"
           aria-label={`${name} photos`}
           role="list"
         >
@@ -56,7 +56,7 @@ export function FacilityGallery({
                   aria-pressed={isActive}
                   aria-label={`Show photo ${i + 1} of ${images.length}${img.alt ? `: ${img.alt}` : ''}`}
                   className={cn(
-                    'relative block h-12 w-12 overflow-hidden rounded-xl ring-2 transition-all duration-300 sm:h-14 sm:w-14',
+                    'relative block h-12 w-12 overflow-hidden ring-2 transition-all duration-300 sm:h-14 sm:w-14',
                     isActive
                       ? 'ring-brand-600 shadow-glow'
                       : 'ring-transparent opacity-80 hover:opacity-100 hover:ring-brand-200',
@@ -76,7 +76,7 @@ export function FacilityGallery({
           })}
         </ul>
         <span
-          className="glass-strong rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700"
+          className="glass-strong px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700"
           aria-hidden="true"
         >
           {active + 1} / {images.length}

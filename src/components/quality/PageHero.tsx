@@ -98,8 +98,8 @@ export function PageHero({
           <div className="relative lg:col-span-6">
             <HudRings className="hidden lg:flex" />
             <div className="relative mx-auto max-w-lg lg:max-w-none">
-              <div className="glass glass-edge -rotate-2 animate-float-slow rounded-[2rem] p-2.5 shadow-glass-lg sm:p-3">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-brand-50 via-white to-brand-100">
+              <div className="glass glass-edge -rotate-2 animate-float-slow p-2.5 shadow-glass-lg sm:p-3">
+                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100">
                   {hasImage ? (
                     <Media
                       media={image}
@@ -126,16 +126,16 @@ export function PageHero({
                 <div
                   key={chip.label}
                   className={cn(
-                    'absolute z-10 flex items-center gap-3 rounded-2xl glass-strong px-3.5 py-2.5 shadow-glass-lg animate-float',
+                    'absolute z-10 flex items-center gap-3 glass-strong px-3.5 py-2.5 shadow-glass-lg animate-float',
                     CHIP_POSITIONS[i],
                     CHIP_DELAYS[i],
                   )}
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-gradient text-white shadow-[0_8px_20px_-8px_rgb(225_29_46_/_0.8)]">
                     <Icon name={chip.icon} className="h-4 w-4" />
                   </span>
                   <span className="pr-1">
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                    <span className="block text-[10px] uppercase tracking-[0.18em] text-ink-500">
                       {chip.label}
                     </span>
                     <span className="block text-sm font-semibold leading-tight text-ink-950">
