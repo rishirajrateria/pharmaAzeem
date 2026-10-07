@@ -97,7 +97,7 @@ export function InquireSection({ product, contact }: Props) {
             )}
           </div>
 
-          <div className="border border-ink-200 bg-white p-5 sm:p-8">
+          <div className="glass p-5 sm:p-8">
             <h3 className="text-lg font-semibold text-ink-950">Send your inquiry</h3>
             <p className="mt-1 text-sm text-ink-600">
               {product.title} will be attached automatically. No account needed.

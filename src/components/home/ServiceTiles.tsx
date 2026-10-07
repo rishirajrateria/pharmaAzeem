@@ -35,10 +35,7 @@ export function ServiceTiles() {
         <ul className="grid gap-4 md:grid-cols-3">
           {TILES.map((t) => (
             <li key={t.href}>
-              <Link
-                href={t.href}
-                className="group flex h-full flex-col border border-ink-200 bg-white p-6 transition-colors hover:border-brand-700"
-              >
+              <Link href={t.href} className="glass-card group flex h-full flex-col p-6">
                 <t.icon className="h-8 w-8 text-brand-700" aria-hidden="true" />
                 <h2 className="mt-4 text-lg font-semibold text-ink-950">{t.title}</h2>
                 <p className="mt-2 flex-1 text-sm text-ink-600">{t.text}</p>

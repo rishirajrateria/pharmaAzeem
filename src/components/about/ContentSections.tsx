@@ -73,7 +73,7 @@ export function ContentSections({ sections, headingLevel = 'h2', className }: Pr
                       size="large"
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="aspect-[4/3] border border-ink-200 bg-white"
+                      className="aspect-[4/3] glass"
                     />
                   </Reveal>
                 </div>

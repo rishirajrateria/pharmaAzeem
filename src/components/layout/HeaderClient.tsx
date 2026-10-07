@@ -79,7 +79,7 @@ export function HeaderClient({
   return (
     <>
       {/* Utility bar – scrolls away; the store header below stays pinned. */}
-      <div className="border-b border-ink-200 bg-surface-2 text-xs text-ink-600">
+      <div className="border-b border-white/60 bg-white/40 text-xs text-ink-600 backdrop-blur-md">
         <div className="container-x flex h-9 items-center justify-between gap-4">
           <p className="truncate">
             {announcement?.text ? (
@@ -135,7 +135,7 @@ export function HeaderClient({
 
       <header
         className={cn(
-          'sticky top-0 z-50 border-b border-ink-200 bg-white transition-shadow duration-200',
+          'sticky top-0 z-50 border-b border-white/70 bg-white/70 backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200',
           scrolled && 'shadow-glass-lg',
         )}
       >
@@ -165,7 +165,7 @@ export function HeaderClient({
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-11 w-11 items-center justify-center border border-ink-200 text-ink-800 transition-colors hover:border-ink-300 lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center glass text-ink-800 lg:hidden"
                 aria-label="Open menu"
                 aria-expanded={open}
               >
@@ -177,7 +177,7 @@ export function HeaderClient({
         </div>
 
         {/* Category bar */}
-        <div className="hidden bg-brand-700 text-white lg:block">
+        <div className="hidden bg-brand-700/90 text-white backdrop-blur-xl lg:block">
           <nav className="container-x flex h-12 items-stretch" aria-label="Product categories">
             <div
               className="relative"
@@ -201,7 +201,7 @@ export function HeaderClient({
             >
               <Link
                 href="/categories"
-                className="flex h-full items-center gap-2.5 bg-brand-800 px-5 text-sm font-semibold"
+                className="flex h-full items-center gap-2.5 bg-brand-900/40 px-5 text-sm font-semibold"
                 aria-haspopup="true"
                 aria-expanded={mega}
               >
@@ -219,7 +219,7 @@ export function HeaderClient({
                   mega ? 'visible opacity-100' : 'invisible opacity-0',
                 )}
               >
-                <div className="border border-t-0 border-ink-200 bg-white p-4 shadow-glass-lg">
+                <div className="glass-strong border-t-0 p-4 shadow-glass-lg">
                   <div className="grid grid-cols-3 gap-2">
                     {nav.map((c) => (
                       <div key={c.id} className="p-3 transition-colors hover:bg-surface-2">
@@ -314,7 +314,7 @@ export function HeaderClient({
       >
         <div
           className={cn(
-            'absolute inset-0 bg-ink-950/40 transition-opacity duration-200',
+            'absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-200',
             open ? 'opacity-100' : 'opacity-0',
           )}
           onClick={() => setOpen(false)}
@@ -323,7 +323,7 @@ export function HeaderClient({
           ref={menuRef}
           tabIndex={-1}
           className={cn(
-            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col border-l border-ink-200 bg-white outline-none transition-[transform,visibility] duration-300 ease-out',
+            'absolute inset-y-0 right-0 flex w-[min(24rem,92vw)] flex-col border-l border-white/70 bg-white/80 outline-none backdrop-blur-2xl transition-[transform,visibility] duration-300 ease-out',
             open ? 'visible translate-x-0' : 'invisible translate-x-full',
           )}
           role="dialog"
@@ -427,7 +427,7 @@ function HeaderSearch({ className }: { className?: string }) {
       <label htmlFor={id} className="sr-only">
         Search products
       </label>
-      <div className="flex w-full border border-ink-300 bg-white focus-within:border-brand-700">
+      <div className="flex w-full border border-ink-300/80 bg-white/70 backdrop-blur-md focus-within:border-brand-700 focus-within:bg-white/90">
         <Search className="ml-3.5 h-4 w-4 shrink-0 self-center text-ink-400" aria-hidden="true" />
         <input
           id={id}

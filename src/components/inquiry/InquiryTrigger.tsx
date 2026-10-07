@@ -15,7 +15,7 @@ export function InquiryTrigger({ label }: { label: string }) {
     <button
       type="button"
       onClick={open}
-      className="inline-flex h-11 items-center gap-4 border border-ink-200 px-3 text-sm font-medium text-ink-900 transition-colors hover:border-brand-700 hover:text-brand-700"
+      className="inline-flex h-11 items-center gap-4 glass px-3 text-sm font-medium text-ink-900 transition-colors hover:border-brand-700 hover:text-brand-700"
       aria-label={`Open ${label.toLowerCase()} (${n} items)`}
     >
       <span className="relative">

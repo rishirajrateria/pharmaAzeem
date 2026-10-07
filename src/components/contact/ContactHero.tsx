@@ -41,7 +41,7 @@ export function ContactHero({
 }: Props) {
   const hasImage = Boolean(image && typeof image === 'object')
   return (
-    <section className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10">
+    <section className="border-b border-white/60 bg-white/35 pb-14 pt-6 sm:pb-20 sm:pt-10">
       <Container>
         <Breadcrumbs crumbs={crumbs} className="mb-8 sm:mb-10" />
         <div className={cn('grid items-center gap-12', hasImage && 'lg:grid-cols-12')}>
@@ -55,7 +55,7 @@ export function ContactHero({
 
           {hasImage && (
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden glass">
                 <Media
                   media={image}
                   size="large"

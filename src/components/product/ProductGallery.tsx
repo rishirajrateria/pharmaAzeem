@@ -44,7 +44,7 @@ export function ProductGallery({ images, title, badges = [], rx, className }: Pr
       <figure className="m-0">
         <div
           onMouseMove={current ? onMove : undefined}
-          className="group relative aspect-square overflow-hidden border border-ink-200 bg-white [--zoom-x:50%] [--zoom-y:50%]"
+          className="group relative aspect-square overflow-hidden glass [--zoom-x:50%] [--zoom-y:50%]"
         >
           {current ? (
             <div className="relative h-full w-full">

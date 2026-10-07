@@ -156,7 +156,7 @@ export default async function CountryPage({ params }: { params: Params }) {
       {/* Hero */}
       <section
         aria-labelledby="hero-heading"
-        className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10"
+        className="border-b border-white/60 bg-white/35 pb-14 pt-6 sm:pb-20 sm:pt-10"
       >
         <Container>
           <Breadcrumbs
@@ -172,7 +172,7 @@ export default async function CountryPage({ params }: { params: Params }) {
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                 {country.flag && (
                   <span
-                    className="inline-flex h-14 w-14 border border-ink-200 bg-white shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
+                    className="inline-flex h-14 w-14 glass shrink-0 items-center justify-center text-3xl leading-none sm:h-16 sm:w-16 sm:text-4xl"
                     aria-hidden="true"
                   >
                     {country.flag}
@@ -299,7 +299,7 @@ export default async function CountryPage({ params }: { params: Params }) {
                 </div>
               )}
               {country.image && (
-                <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+                <div className="relative aspect-[4/3] overflow-hidden glass">
                   <Media
                     media={country.image}
                     size="card"
@@ -404,7 +404,7 @@ export default async function CountryPage({ params }: { params: Params }) {
       {/* Inquiry desk */}
       <Section id="inquiry" aria-labelledby="inquiry-heading" className="scroll-mt-28 !pt-0">
         <Container>
-          <div className="border border-ink-200 bg-white p-6 sm:p-10 lg:p-14">
+          <div className="glass p-6 sm:p-10 lg:p-14">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               <div>
                 <Eyebrow className="mb-4">Contact</Eyebrow>

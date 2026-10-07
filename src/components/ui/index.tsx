@@ -145,7 +145,5 @@ export const Hairline = ({ className }: { className?: string }) => (
 )
 
 export const Kbd = ({ children }: { children: ReactNode }) => (
-  <kbd className="border border-ink-200 bg-white px-1.5 py-0.5 text-[10px] text-ink-500">
-    {children}
-  </kbd>
+  <kbd className="glass px-1.5 py-0.5 text-[10px] text-ink-500">{children}</kbd>
 )

@@ -20,10 +20,7 @@ export default function ErrorPage({
   }, [error])
 
   return (
-    <section
-      className="flex min-h-[70vh] items-center bg-white section-y"
-      aria-labelledby="error-title"
-    >
+    <section className="flex min-h-[70vh] items-center section-y" aria-labelledby="error-title">
       <div className="container-x">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow justify-center">Something went wrong</p>

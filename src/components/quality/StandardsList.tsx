@@ -23,7 +23,7 @@ export function StandardsList({ standards }: { standards?: Standard[] | null }) 
             />
           </div>
           <Reveal className="lg:col-span-8">
-            <div className="border border-ink-200 bg-white p-6 sm:p-10">
+            <div className="glass p-6 sm:p-10">
               <dl className="grid gap-x-10 sm:grid-cols-2">
                 {standards.map((s, i) => (
                   <div

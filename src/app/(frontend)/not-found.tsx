@@ -5,7 +5,7 @@ import { Container, Section } from '@/components/ui'
 
 export default function NotFound() {
   return (
-    <Section className="flex min-h-[70vh] items-center bg-white" aria-labelledby="not-found-title">
+    <Section className="flex min-h-[70vh] items-center" aria-labelledby="not-found-title">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow justify-center">404</p>

@@ -65,7 +65,7 @@ export function ContractManufacturing({
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <div className="border border-ink-200 bg-white p-5 sm:p-6">
+                <div className="glass p-5 sm:p-6">
                   <p className="text-xs font-semibold uppercase tracking-wider text-ink-500">
                     How a project runs
                   </p>

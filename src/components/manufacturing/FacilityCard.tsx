@@ -192,7 +192,7 @@ export function FacilityCard({
           </div>
 
           {hasDescription && (
-            <details className="group mt-6 border border-ink-100/80 bg-white/50">
+            <details className="group mt-6 glass-subtle">
               <summary className="flex cursor-pointer items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink-900">
                 More about this facility
                 <ChevronDown

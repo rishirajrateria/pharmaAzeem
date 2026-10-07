@@ -123,7 +123,7 @@ export function InquiryDrawer({ labels }: Props) {
                         .join(' · ')}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <div className="inline-flex items-center border border-ink-200 bg-white">
+                      <div className="inline-flex items-center glass">
                         <button
                           type="button"
                           onClick={() => setQuantity(item.id, item.quantity - 1)}

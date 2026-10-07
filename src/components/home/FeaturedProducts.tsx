@@ -17,9 +17,9 @@ export function FeaturedProducts({
 }) {
   if (!products.length) return null
   return (
-    <section aria-labelledby="featured-products-title" className="bg-surface-2 py-12 sm:py-14">
+    <section aria-labelledby="featured-products-title" className="py-12 sm:py-14">
       <Container>
-        <div className="flex items-end justify-between gap-4 border-b border-ink-200 pb-4">
+        <div className="flex items-end justify-between gap-4 border-b border-ink-900/10 pb-4">
           <div>
             <h2 id="featured-products-title" className="text-2xl font-semibold text-ink-950">
               Best-selling products

@@ -34,7 +34,7 @@ export function OnboardingSteps({ steps }: { steps?: Step[] | null }) {
     <ol className="grid gap-4 lg:grid-cols-4 lg:gap-6" role="list">
       {list.map((s, i) => (
         <Reveal as="li" key={s.id || s.title} delay={i * 90}>
-          <article className="h-full border border-ink-200 bg-white p-6">
+          <article className="h-full glass p-6">
             <span className="flex h-10 w-10 items-center justify-center bg-brand-700 text-sm font-semibold text-white">
               {String(i + 1).padStart(2, '0')}
             </span>

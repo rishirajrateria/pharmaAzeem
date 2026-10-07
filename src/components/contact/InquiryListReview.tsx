@@ -93,7 +93,7 @@ export function InquiryListReview({ listName, addLabel, className }: Props) {
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   <div
-                    className="inline-flex items-center border border-ink-200 bg-white shadow-soft"
+                    className="inline-flex items-center glass shadow-soft"
                     role="group"
                     aria-label={`Quantity for ${item.title}`}
                   >
@@ -187,10 +187,7 @@ function EmptyState({
 }) {
   return (
     <div
-      className={cn(
-        'glass-strong glass-edge px-6 py-10 text-center sm:px-10 sm:py-14',
-        className,
-      )}
+      className={cn('glass-strong glass-edge px-6 py-10 text-center sm:px-10 sm:py-14', className)}
     >
       <div className="mx-auto flex h-16 w-16 items-center justify-center glass-red text-brand-600">
         <ClipboardList className="h-7 w-7" aria-hidden="true" />
@@ -209,11 +206,7 @@ function EmptyState({
 
 function ListSkeleton({ lower, className }: { lower: string; className?: string }) {
   return (
-    <div
-      className={cn('glass-strong glass-edge', className)}
-      role="status"
-      aria-busy="true"
-    >
+    <div className={cn('glass-strong glass-edge', className)} role="status" aria-busy="true">
       <span className="sr-only">Loading your {lower}…</span>
       <div className="border-b border-ink-100 px-5 py-4 sm:px-6" aria-hidden="true">
         <span className="skeleton block h-3.5 w-40" />

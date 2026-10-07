@@ -51,7 +51,7 @@ export function CatalogHero({
   if (compact) {
     return (
       <section
-        className={cn('border-b border-ink-200 bg-surface-2 py-5 sm:py-6', className)}
+        className={cn('border-b border-white/60 bg-white/35 py-5 sm:py-6', className)}
         aria-labelledby="catalog-hero-title"
       >
         <Container>
@@ -86,7 +86,7 @@ export function CatalogHero({
   const actions = ctas.filter((c) => c.label && c.url)
   return (
     <section
-      className={cn('border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10', className)}
+      className={cn('border-b border-white/60 bg-white/35 pb-14 pt-6 sm:pb-20 sm:pt-10', className)}
       aria-labelledby="catalog-hero-title"
     >
       <Container>
@@ -129,7 +129,7 @@ export function CatalogHero({
 
           {hasImage && (
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden glass">
                 <Media
                   media={image}
                   size="large"

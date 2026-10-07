@@ -18,7 +18,7 @@ export function FeaturedCategories({
   return (
     <section className="py-12 sm:py-14" aria-labelledby="shop-categories-title">
       <Container>
-        <div className="flex items-end justify-between gap-4 border-b border-ink-200 pb-4">
+        <div className="flex items-end justify-between gap-4 border-b border-ink-900/10 pb-4">
           <div>
             <h2 id="shop-categories-title" className="text-2xl font-semibold text-ink-950">
               Shop by category
@@ -41,7 +41,7 @@ export function FeaturedCategories({
               <Link
                 prefetch={false}
                 href={`/categories/${c.path}`}
-                className="group flex h-full flex-col items-center border border-ink-200 bg-white px-3 py-5 text-center transition-colors hover:border-brand-700"
+                className="glass-card group flex h-full flex-col items-center px-3 py-5 text-center"
               >
                 <span className="flex h-14 w-14 items-center justify-center bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white">
                   <Icon name={c.icon} className="h-6 w-6" />

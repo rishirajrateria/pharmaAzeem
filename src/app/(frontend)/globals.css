@@ -36,16 +36,17 @@
   --color-ink-50: #f6f6f8;
 
   --color-surface: #ffffff;
-  --color-surface-2: #f7f7f9;
-  --color-surface-3: #f1f1f4;
+  /* Translucent tints – they sit on the tinted page background, so they read as frosted bands. */
+  --color-surface-2: rgb(255 255 255 / 0.5);
+  --color-surface-3: rgb(255 255 255 / 0.7);
 
   /* Square corners throughout: the corner-radius scale is removed, so rounded-sm…rounded-4xl
      don't exist. rounded-full is kept only for small map location dots. */
   --radius-*: initial;
 
   /* Neutral, barely-there elevation – no coloured glows. */
-  --shadow-glass: 0 1px 2px 0 rgb(11 10 15 / 0.04);
-  --shadow-glass-lg: 0 6px 20px -8px rgb(11 10 15 / 0.12);
+  --shadow-glass: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 8px 24px -14px rgb(40 12 14 / 0.18);
+  --shadow-glass-lg: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 18px 40px -18px rgb(40 12 14 / 0.25);
   --shadow-glow: 0 0 #0000;
   --shadow-soft: 0 4px 14px -6px rgb(11 10 15 / 0.1);
 
@@ -133,41 +134,59 @@
 }
 
 /* ------------------------------------------------------------------
-   Surfaces
-   (The glass-* names are kept so components don't need renaming; they
-   now produce flat white panels with a thin neutral border.)
+   Surfaces – frosted glass
+   Translucent white panels with a backdrop blur and a fine white edge,
+   floating on the softly tinted page background (see mesh-bg).
 ------------------------------------------------------------------- */
 @utility glass {
-  background-color: #ffffff;
-  border: 1px solid var(--color-ink-200);
+  background-color: rgb(255 255 255 / 0.56);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.85);
+  box-shadow:
+    var(--shadow-glass),
+    0 0 0 1px rgb(11 10 15 / 0.04);
 }
 @utility glass-strong {
-  background-color: #ffffff;
-  border: 1px solid var(--color-ink-200);
+  background-color: rgb(255 255 255 / 0.78);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / 0.9);
+  box-shadow:
+    var(--shadow-glass),
+    0 0 0 1px rgb(11 10 15 / 0.04);
 }
 @utility glass-subtle {
-  background-color: var(--color-surface-2);
-  border: 1px solid var(--color-ink-100);
+  background-color: rgb(255 255 255 / 0.42);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 0.7);
 }
 @utility glass-red {
-  background-color: var(--color-brand-50);
-  border: 1px solid var(--color-brand-100);
+  background-color: rgb(175 2 1 / 0.06);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgb(175 2 1 / 0.14);
+  box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.6) inset;
 }
 @utility glass-dark {
-  background-color: var(--color-ink-900);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  background-color: rgb(11 10 15 / 0.78);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgb(255 255 255 / 0.12);
   color: white;
 }
 @utility glass-card {
-  background-color: #ffffff;
-  border: 1px solid var(--color-ink-200);
+  @apply glass;
   position: relative;
   transition:
-    border-color 0.2s ease,
+    background-color 0.2s ease,
     box-shadow 0.2s ease;
   &:hover {
-    border-color: var(--color-ink-300);
-    box-shadow: var(--shadow-soft);
+    background-color: rgb(255 255 255 / 0.82);
+    box-shadow:
+      var(--shadow-glass-lg),
+      0 0 0 1px rgb(11 10 15 / 0.05);
   }
 }
 @utility glass-edge {
@@ -192,9 +211,25 @@
 @utility bg-brand-gradient-animated {
   background-color: var(--color-brand-700);
 }
-/* Page background */
+/* Page background: a calm grey base with soft brand-red and slate washes, fixed to the
+   viewport (a fixed layer rather than background-attachment, which iOS ignores). */
 @utility mesh-bg {
-  background-color: #ffffff;
+  background-color: #f2f3f6;
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 0% 0%, rgb(175 2 1 / 0.16), transparent 70%),
+      radial-gradient(50rem 36rem at 100% 15%, rgb(100 116 139 / 0.28), transparent 70%),
+      radial-gradient(56rem 40rem at 70% 100%, rgb(175 2 1 / 0.12), transparent 70%),
+      radial-gradient(40rem 30rem at 10% 90%, rgb(148 163 184 / 0.26), transparent 70%);
+  }
 }
 /* Dark band (CTAs, highlights) */
 @utility mesh-bg-dark {
@@ -232,7 +267,7 @@
   @apply btn text-white bg-brand-700 hover:bg-brand-800;
 }
 @utility btn-secondary {
-  @apply btn text-ink-900 bg-white border border-ink-300 hover:border-brand-700 hover:text-brand-700;
+  @apply btn text-ink-900 bg-white/60 backdrop-blur-md border border-ink-300 hover:border-brand-700 hover:bg-white/85 hover:text-brand-700;
 }
 @utility btn-ghost {
   @apply btn text-ink-700 hover:text-brand-700 hover:bg-ink-50;
@@ -241,7 +276,7 @@
   @apply btn text-white bg-ink-950 hover:bg-ink-800;
 }
 @utility chip {
-  @apply inline-flex items-center gap-1.5 border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-700;
+  @apply inline-flex items-center gap-1.5 border border-ink-200 bg-white/60 px-3 py-1 text-xs font-medium text-ink-700;
 }
 /* Small uppercase section label above headings. */
 @utility eyebrow {
@@ -269,7 +304,7 @@
   @apply text-lg leading-relaxed text-ink-600;
 }
 @utility input-glass {
-  @apply w-full border border-ink-300 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700/15;
+  @apply w-full border border-ink-300 bg-white/75 backdrop-blur-md px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700/15;
 }
 @utility skeleton {
   background: linear-gradient(

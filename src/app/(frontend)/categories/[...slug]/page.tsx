@@ -175,7 +175,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                   <Link
                     prefetch={false}
                     href={`/categories/${c.path}`}
-                    className="inline-flex items-center gap-1.5 border border-ink-300 bg-white px-3 py-1.5 text-sm text-ink-800 transition-colors hover:border-brand-700 hover:text-brand-700"
+                    className="inline-flex items-center gap-1.5 glass px-3 py-1.5 text-sm text-ink-800 transition-colors hover:border-brand-700 hover:text-brand-700"
                   >
                     {c.title}
                     <span className="text-xs text-ink-400">{c.productCount}</span>

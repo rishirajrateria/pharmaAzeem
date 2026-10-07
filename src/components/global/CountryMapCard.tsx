@@ -55,7 +55,7 @@ export function CountryMapCard({
     .filter(({ x, y }) => x > 0.04 && x < 0.96 && y > 0.06 && y < 0.94)
 
   return (
-    <div className={cn('overflow-hidden border border-ink-200 bg-white', className)}>
+    <div className={cn('overflow-hidden glass', className)}>
       <div className="relative aspect-[4/3] overflow-hidden">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -81,7 +81,7 @@ export function CountryMapCard({
             style={{ left: `${(x * 100).toFixed(2)}%`, top: `${(y * 100).toFixed(2)}%` }}
           >
             <span className="absolute inset-0.5 rounded-full border border-white bg-brand-500 transition-colors group-hover:bg-brand-700 group-focus-visible:bg-brand-700" />
-            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap border border-ink-200 bg-white px-1.5 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap glass px-1.5 py-0.5 text-[10px] font-medium text-ink-800 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100">
               {s.name}
             </span>
           </Link>
@@ -93,7 +93,7 @@ export function CountryMapCard({
             style={{ left: `${(tx * 100).toFixed(2)}%`, top: `${(ty * 100).toFixed(2)}%` }}
           >
             <span className="block h-4 w-4 rounded-full border-2 border-white bg-brand-700" />
-            <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap border border-ink-200 bg-white px-2.5 py-1 text-xs font-semibold text-ink-950">
+            <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap glass px-2.5 py-1 text-xs font-semibold text-ink-950">
               <span aria-hidden="true">{country.flag} </span>
               {country.name}
             </span>

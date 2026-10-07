@@ -73,15 +73,15 @@ export function Hero({
   ].filter(Boolean) as { icon: LucideIcon; title: string; text: string }[]
 
   return (
-    <section className="border-b border-ink-200 bg-white" aria-labelledby="hero-title">
+    <section className="border-b border-white/60" aria-labelledby="hero-title">
       <Container className="py-6 lg:py-8">
         <div className="grid gap-6 lg:grid-cols-12">
           {categories.length > 0 && (
             <nav
-              className="hidden border border-ink-200 lg:col-span-3 lg:flex lg:flex-col"
+              className="glass hidden lg:col-span-3 lg:flex lg:flex-col"
               aria-label="Shop by category"
             >
-              <p className="border-b border-ink-200 bg-surface-2 px-4 py-3 text-sm font-semibold text-ink-950">
+              <p className="border-b border-white/80 bg-white/50 px-4 py-3 text-sm font-semibold text-ink-950">
                 Shop by category
               </p>
               <ul className="flex-1">
@@ -114,8 +114,8 @@ export function Hero({
           <div
             className={
               categories.length > 0
-                ? 'grid border border-ink-200 bg-surface-2 md:grid-cols-[3fr_2fr] lg:col-span-9'
-                : 'grid border border-ink-200 bg-surface-2 md:grid-cols-[3fr_2fr] lg:col-span-12'
+                ? 'glass grid md:grid-cols-[3fr_2fr] lg:col-span-9'
+                : 'glass grid md:grid-cols-[3fr_2fr] lg:col-span-12'
             }
           >
             <div className="flex flex-col justify-center p-6 sm:p-10">
@@ -139,7 +139,7 @@ export function Hero({
                 )}
               </div>
             </div>
-            <div className="relative min-h-60 border-t border-ink-200 bg-white md:min-h-full md:border-l md:border-t-0">
+            <div className="relative min-h-60 border-t border-white/80 md:min-h-full md:border-l md:border-t-0">
               <Media
                 media={hero.image}
                 size="large"
@@ -155,13 +155,13 @@ export function Hero({
 
         {trust.length > 0 && (
           <ul
-            className="mt-6 grid grid-cols-1 border border-ink-200 min-[480px]:grid-cols-2 lg:grid-cols-4"
+            className="glass mt-6 grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4"
             aria-label="Why buy from us"
           >
             {trust.map((t) => (
               <li
                 key={t.title}
-                className="flex items-center gap-3 border-ink-200 p-4 [&:not(:last-child)]:border-b min-[480px]:[&:nth-child(odd)]:border-r lg:[&:not(:last-child)]:border-b-0 lg:[&:not(:last-child)]:border-r"
+                className="flex items-center gap-3 border-white/80 p-4 [&:not(:last-child)]:border-b min-[480px]:[&:nth-child(odd)]:border-r lg:[&:not(:last-child)]:border-b-0 lg:[&:not(:last-child)]:border-r"
               >
                 <t.icon className="h-7 w-7 shrink-0 text-brand-700" aria-hidden="true" />
                 <span>

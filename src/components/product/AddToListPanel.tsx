@@ -87,10 +87,7 @@ export function AddToListPanel({
 
   const stepper = (size: 'md' | 'sm') => (
     <div
-      className={cn(
-        'inline-flex items-center border border-ink-200 bg-white/90',
-        size === 'md' ? 'h-12' : 'h-10',
-      )}
+      className={cn('inline-flex items-center glass/90', size === 'md' ? 'h-12' : 'h-10')}
       role="group"
       aria-label="Quantity"
     >

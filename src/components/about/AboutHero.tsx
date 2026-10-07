@@ -50,7 +50,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
 
   return (
     <section
-      className="border-b border-ink-200 bg-surface-2 pb-14 pt-6 sm:pb-20 sm:pt-10"
+      className="border-b border-white/60 bg-white/35 pb-14 pt-6 sm:pb-20 sm:pt-10"
       aria-labelledby="about-hero-title"
     >
       <Container>
@@ -85,7 +85,7 @@ export function AboutHero({ hero, settings, facilityCount, certification }: Prop
 
           {hasImage && (
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden border border-ink-200 bg-white">
+              <div className="relative aspect-[4/3] overflow-hidden glass">
                 <Media
                   media={hero?.image}
                   size="large"

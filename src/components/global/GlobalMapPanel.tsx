@@ -36,7 +36,7 @@ export function GlobalMapPanel({
   const since = earliestYear(countries)
   return (
     <section aria-labelledby={headingId} className={className}>
-      <div className="border border-ink-200 bg-white p-4 sm:p-6 lg:p-8">
+      <div className="glass p-4 sm:p-6 lg:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow mb-2">

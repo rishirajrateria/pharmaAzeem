@@ -42,7 +42,7 @@ export function Timeline({ milestones, siteName }: Props) {
                     as="div"
                     delay={Math.min(i, 4) * 60}
                     className={cn(
-                      'border border-ink-200 bg-white p-6 sm:p-7 lg:mt-0',
+                      'glass p-6 sm:p-7 lg:mt-0',
                       left ? 'lg:col-start-1 lg:text-right' : 'lg:col-start-2',
                     )}
                   >
