@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound, permanentRedirect } from 'next/navigation'
 
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { RichText } from '@/components/RichText'
-import { CategoryCard } from '@/components/catalog/CategoryCard'
 import { CatalogCta } from '@/components/catalog/filters/CatalogCta'
 import { CatalogHero } from '@/components/catalog/filters/CatalogHero'
 import { CatalogResults } from '@/components/catalog/filters/CatalogResults'
@@ -16,8 +16,7 @@ import {
 } from '@/components/catalog/filters/parseFilters'
 import { findNode, joinProse } from '@/components/catalog/filters/tree'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { Chip, Container, Section, SectionHeading } from '@/components/ui'
-import { Reveal } from '@/components/ui/Reveal'
+import { Container, Section, SectionHeading } from '@/components/ui'
 import { getCommerceLabels } from '@/lib/commerce'
 import {
   getAllCategories,
@@ -32,7 +31,7 @@ import {
   getSiteSettings,
 } from '@/lib/data'
 import { buildMetadata, categoryJsonLd, graph, siteName } from '@/lib/seo'
-import { absUrl, cn, relId, richTextToPlain, truncate } from '@/lib/utils'
+import { absUrl, relId, richTextToPlain, truncate } from '@/lib/utils'
 
 type Props = { params: Promise<{ slug: string[] }>; searchParams: Promise<CatalogSearchParams> }
 
@@ -107,7 +106,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const parentId = relId(category.parent)
   const parentNode = parentId ? findNode(tree, parentId) : null
   const siblings = (parentNode ? parentNode.children : tree).filter((c) => c.id !== category.id)
-  const parent = ancestors.length > 1 ? ancestors[ancestors.length - 2] : null
   const totalInCategory = node?.productCount ?? result.totalDocs
 
   const crumbs = [
@@ -163,53 +161,33 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <JsonLd data={graph(pageJsonLd, ...jsonLdRest)} />
 
       <CatalogHero
+        compact
         crumbs={crumbs}
-        eyebrow={parent ? parent.title : 'Therapeutic category'}
         title={category.title}
-        lead={category.shortDescription}
-        stats={stats}
-        ctas={[
-          { label: `Browse ${totalInCategory} products`, url: '#catalog', variant: 'primary' },
-          { label: labels.ctaLabel, url: '/inquiry', variant: 'secondary' },
-        ]}
-        image={category.image}
+        lead={category.shortDescription || summary}
+        stats={stats.slice(0, 2)}
       >
-        <p className="max-w-2xl text-[15px] leading-relaxed text-ink-600">{summary}</p>
-        {category.highlights && category.highlights.length > 0 && (
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Highlights">
-            {category.highlights.map((h, i) => (
-              <li key={h.id || i}>
-                <Chip>{h.text}</Chip>
-              </li>
-            ))}
-          </ul>
+        {children.length > 0 && (
+          <nav aria-label={`${category.title} sub-categories`}>
+            <ul className="flex flex-wrap gap-2">
+              {children.map((c) => (
+                <li key={c.id}>
+                  <Link
+                    prefetch={false}
+                    href={`/categories/${c.path}`}
+                    className="inline-flex items-center gap-1.5 border border-ink-300 bg-white px-3 py-1.5 text-sm text-ink-800 transition-colors hover:border-brand-700 hover:text-brand-700"
+                  >
+                    {c.title}
+                    <span className="text-xs text-ink-400">{c.productCount}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         )}
       </CatalogHero>
 
-      {children.length > 0 && (
-        <Section className="!pb-12 sm:!pb-16" aria-labelledby="subcategories-title">
-          <Container>
-            <SectionHeading
-              eyebrow="Sub-categories"
-              title={<span id="subcategories-title">Explore {category.title} by drug class</span>}
-              titleClassName="!text-xl sm:!text-2xl"
-              className="mb-6"
-            />
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {children.map((c, i) => (
-                <Reveal key={c.id} as="li" delay={Math.min(i, 7) * 60}>
-                  <CategoryCard category={c} compact className="h-full" />
-                </Reveal>
-              ))}
-            </ul>
-          </Container>
-        </Section>
-      )}
-
-      <Section
-        className={cn(children.length > 0 && '!pt-0')}
-        aria-label={`${category.title} products`}
-      >
+      <Section className="!pt-8 sm:!pt-10" aria-label={`${category.title} products`}>
         <Container>
           <CatalogResults
             basePath={basePath}
@@ -219,7 +197,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             labels={labels}
             suggestions={suggestions}
             scopeLabel={`in ${category.title}`}
-            priorityCount={category.image ? 0 : 2}
+            priorityCount={4}
           />
         </Container>
       </Section>

@@ -27,6 +27,8 @@ type Props = {
   stats?: HeroStat[]
   ctas?: HeroCta[]
   image?: MediaDoc | number | null
+  /** Store-style title bar for listing pages: no image or CTAs, products start right below. */
+  compact?: boolean
   className?: string
 }
 
@@ -43,8 +45,43 @@ export function CatalogHero({
   stats = [],
   ctas = [],
   image,
+  compact,
   className,
 }: Props) {
+  if (compact) {
+    return (
+      <section
+        className={cn('border-b border-ink-200 bg-surface-2 py-5 sm:py-6', className)}
+        aria-labelledby="catalog-hero-title"
+      >
+        <Container>
+          <Breadcrumbs crumbs={crumbs} className="mb-3" />
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+            <div className="max-w-3xl">
+              <h1
+                id="catalog-hero-title"
+                className="text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl"
+              >
+                {title}
+              </h1>
+              {lead && <p className="mt-1.5 line-clamp-2 text-sm text-ink-600">{lead}</p>}
+            </div>
+            {stats.length > 0 && (
+              <p className="shrink-0 text-sm text-ink-500">
+                {stats.map((s, i) => (
+                  <span key={s.label}>
+                    {i > 0 && <span className="px-2 text-ink-300">|</span>}
+                    <span className="font-semibold text-ink-900">{s.value}</span> {s.label}
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+          {children && <div className="mt-4">{children}</div>}
+        </Container>
+      </section>
+    )
+  }
   const hasImage = Boolean(image && typeof image === 'object')
   const actions = ctas.filter((c) => c.label && c.url)
   return (

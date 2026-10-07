@@ -1,6 +1,6 @@
 'use client'
 
-import { ClipboardList } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 
 import { useHasMounted } from '@/hooks/useHasMounted'
 import { useInquiry } from '@/store/inquiry'
@@ -15,17 +15,19 @@ export function InquiryTrigger({ label }: { label: string }) {
     <button
       type="button"
       onClick={open}
-      className="relative inline-flex h-10 items-center gap-2 px-3 text-sm font-medium text-ink-800 transition hover:bg-brand-50 hover:text-brand-700"
+      className="inline-flex h-11 items-center gap-4 border border-ink-200 px-3 text-sm font-medium text-ink-900 transition-colors hover:border-brand-700 hover:text-brand-700"
       aria-label={`Open ${label.toLowerCase()} (${n} items)`}
     >
-      <ClipboardList className="h-5 w-5" />
-      <span className="hidden whitespace-nowrap 2xl:inline">{label}</span>
-      <span
-        className={`absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center bg-brand-gradient px-1 text-[10px] font-bold text-white shadow transition-transform ${n ? 'scale-100' : 'scale-0'}`}
-        aria-hidden="true"
-      >
-        {n}
+      <span className="relative">
+        <ShoppingCart className="h-5 w-5" aria-hidden="true" />
+        <span
+          className="absolute -right-2.5 -top-2 flex h-4.5 min-w-4.5 items-center justify-center bg-brand-700 px-1 text-[10px] font-bold leading-none text-white"
+          aria-hidden="true"
+        >
+          {n}
+        </span>
       </span>
+      <span className="hidden whitespace-nowrap sm:inline">{label}</span>
     </button>
   )
 }

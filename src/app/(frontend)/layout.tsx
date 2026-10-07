@@ -30,7 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
     referrer: 'origin-when-cross-origin',
     formatDetection: { email: false, address: false, telephone: false },
     manifest: '/manifest.webmanifest',
-    icons: { icon: [{ url: '/icon.svg', type: 'image/svg+xml' }], apple: '/apple-icon.png' },
     openGraph: {
       type: 'website',
       siteName: name,
@@ -49,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#e11d2e',
+  themeColor: '#af0201',
   colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
@@ -65,10 +64,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const ga = settings.seo?.gaMeasurementId
 
   return (
-    <html
-      lang="en"
-      className={body.variable}
-    >
+    <html lang="en" className={body.variable}>
       <body className="mesh-bg min-h-dvh font-sans">
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>

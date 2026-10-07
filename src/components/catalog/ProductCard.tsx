@@ -81,13 +81,13 @@ export function ProductCard({
           </span>
         )}
       </Link>
-      <div className="flex flex-1 flex-col p-4 sm:p-5">
+      <div className="flex flex-1 flex-col p-3 sm:p-5">
         {category && (
-          <p className="mb-1 text-[10px] uppercase tracking-[0.18em] text-brand-600">
+          <p className="mb-1 line-clamp-1 text-[10px] uppercase tracking-[0.14em] text-brand-600">
             {category.title}
           </p>
         )}
-        <h3 className="text-base font-semibold leading-snug text-ink-950">
+        <h3 className="text-sm font-semibold leading-snug text-ink-950 sm:text-base">
           <Link
             href={href}
             className="after:absolute after:inset-0 after:content-[''] hover:text-brand-700"
@@ -96,17 +96,17 @@ export function ProductCard({
           </Link>
         </h3>
         <p className="mt-0.5 line-clamp-1 text-sm text-ink-600">{product.genericName}</p>
-        <div className="mt-2 flex flex-wrap gap-1.5">
+        <div className="mt-2 flex flex-wrap gap-1">
           {product.dosageForm && <span className="chip !py-0.5">{product.dosageForm}</span>}
           {product.strength && <span className="chip !py-0.5">{product.strength}</span>}
         </div>
-        <div className="relative z-10 mt-4 flex items-center justify-between gap-3 border-t border-ink-100 pt-4">
+        <div className="relative z-10 mt-auto pt-4">
           <PriceTag price={price} size="sm" />
           <AddToInquiryButton
             product={toInquiryItem(product)}
             label={labels.addLabel}
             addedLabel={labels.addedLabel}
-            variant="icon"
+            className="mt-3 !w-full !px-2 !py-2.5 text-xs sm:text-sm"
           />
         </div>
       </div>

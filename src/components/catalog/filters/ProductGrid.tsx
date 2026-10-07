@@ -66,7 +66,7 @@ export function ProductGrid({
             <h3 id="catalog-suggestions" className="heading-3">
               You may be looking for
             </h3>
-            <ul className="mt-5 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+            <ul className="mt-5 grid grid-cols-2 gap-2.5 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
               {suggestions.slice(0, 4).map((p) => (
                 <li key={p.id}>
                   <ProductCard product={p} labels={labels} className="h-full" />
@@ -81,10 +81,7 @@ export function ProductGrid({
 
   return (
     <ul
-      className={cn(
-        'grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-5 md:grid-cols-3 xl:grid-cols-4',
-        className,
-      )}
+      className={cn('grid grid-cols-2 gap-2.5 sm:gap-5 md:grid-cols-3 xl:grid-cols-4', className)}
       aria-label="Products"
     >
       {products.map((p, i) => (

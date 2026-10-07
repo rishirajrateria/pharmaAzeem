@@ -1,16 +1,13 @@
 import type { Metadata } from 'next'
 
 import {
-  AboutTeaser,
   CertificationsMarquee,
   CtaBand,
   FeaturedCategories,
   FeaturedProducts,
-  GlobalOperations,
   Hero,
   HomeFaq,
-  ManufacturingTeaser,
-  StatsBand,
+  ServiceTiles,
   Testimonials,
   WhyChooseUs,
 } from '@/components/home'
@@ -21,7 +18,6 @@ import {
   getCategoryTree,
   getCertifications,
   getCountries,
-  getFacilities,
   getFeaturedProducts,
   getHomepage,
   getSiteSettings,
@@ -47,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [settings, home, tree, products, countries, certifications, facilities, allProducts] =
+  const [settings, home, tree, products, countries, certifications, allProducts] =
     await Promise.all([
       getSiteSettings(),
       getHomepage(),
@@ -55,7 +51,6 @@ export default async function HomePage() {
       getFeaturedProducts(8),
       getCountries({ served: true }),
       getCertifications({ featured: true }),
-      getFacilities(),
       getAllProductsSlim(), // cached – already fetched by getCategoryTree, so this is free
     ])
   const labels = getCommerceLabels(settings)
@@ -95,14 +90,13 @@ export default async function HomePage() {
         stats={home.stats}
         certifications={certifications}
         countryCount={countries.length}
+        categories={tree}
+        totalProducts={totalProducts}
       />
-      <StatsBand stats={home.stats} />
       <FeaturedCategories categories={tree} totalProducts={totalProducts} />
       <FeaturedProducts products={products} labels={labels} />
-      <AboutTeaser intro={home.intro} settings={settings} />
+      <ServiceTiles />
       <WhyChooseUs cards={home.whyUs} />
-      <GlobalOperations section={home.globalSection} countries={countries} />
-      <ManufacturingTeaser section={home.manufacturingSection} facilities={facilities} />
       <CertificationsMarquee certifications={certifications} />
       <Testimonials testimonials={home.testimonials} />
       <HomeFaq faqs={home.faqs} />

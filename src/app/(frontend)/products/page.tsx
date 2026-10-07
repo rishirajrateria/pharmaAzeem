@@ -7,7 +7,6 @@ import { CatalogCta } from '@/components/catalog/filters/CatalogCta'
 import { CatalogHero } from '@/components/catalog/filters/CatalogHero'
 import { CatalogResults } from '@/components/catalog/filters/CatalogResults'
 import { CatalogSections } from '@/components/catalog/filters/CatalogSections'
-import { CategoryStrip } from '@/components/catalog/filters/CategoryStrip'
 import {
   canonicalPath,
   describeFilters,
@@ -88,14 +87,6 @@ export default async function ProductsPage({ searchParams }: Props) {
       ? [{ value: facets.dosageForm.length, label: 'dosage forms' }]
       : []),
   ]
-  const ctas = [
-    doc.hero?.primaryCta?.label
-      ? { ...doc.hero.primaryCta, variant: 'primary' as const }
-      : { label: 'Browse the catalogue', url: '#catalog', variant: 'primary' as const },
-    doc.hero?.secondaryCta?.label
-      ? { ...doc.hero.secondaryCta, variant: 'secondary' as const }
-      : { label: labels.ctaLabel, url: '/inquiry', variant: 'secondary' as const },
-  ]
 
   return (
     <>
@@ -121,30 +112,14 @@ export default async function ProductsPage({ searchParams }: Props) {
       />
 
       <CatalogHero
+        compact
         crumbs={[{ name: 'Products', path: BASE }]}
-        eyebrow={doc.hero?.eyebrow || 'Products'}
         title={title}
         lead={doc.hero?.subtitle}
-        stats={stats}
-        ctas={ctas}
-        image={doc.hero?.image}
-      >
-        {doc.intro && <RichText data={doc.intro} className="max-w-2xl text-[15px]" />}
-      </CatalogHero>
+        stats={stats.slice(0, 2)}
+      />
 
-      <Section className="!pb-10 sm:!pb-12" aria-labelledby="browse-by-category">
-        <Container>
-          <SectionHeading
-            eyebrow="Categories"
-            title={<span id="browse-by-category">Browse by therapeutic category</span>}
-            titleClassName="!text-xl sm:!text-2xl"
-            className="mb-5"
-          />
-          <CategoryStrip categories={tree} />
-        </Container>
-      </Section>
-
-      <Section className="!pt-0" aria-label="Product catalogue">
+      <Section className="!pt-8 sm:!pt-10" aria-label="Product catalogue">
         <Container>
           <CatalogResults
             basePath={BASE}
@@ -153,10 +128,21 @@ export default async function ProductsPage({ searchParams }: Props) {
             result={result}
             labels={labels}
             suggestions={suggestions}
-            priorityCount={doc.hero?.image ? 0 : 2}
+            priorityCount={4}
           />
         </Container>
       </Section>
+
+      {doc.intro && (
+        <Section className="!pt-0" aria-label={`About ${name} products`}>
+          <Container>
+            <RichText
+              data={doc.intro}
+              className="max-w-3xl border-t border-ink-200 pt-10 text-[15px]"
+            />
+          </Container>
+        </Section>
+      )}
 
       {doc.sections && doc.sections.length > 0 && (
         <Section className="!pt-0">

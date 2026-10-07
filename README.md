@@ -1,4 +1,4 @@
-# Azeem Pharmaceuticals — website & admin
+# Pharmadent Remedies — website & admin
 
 A glassmorphic, SEO-first pharmaceutical catalogue website with an **inquiry-based commerce flow** ("Add to inquiry list" → "Inquire now", no checkout) and a full **admin panel** for categories, sub-categories, products, per-page SEO, countries, licenses, facilities and inquiries.
 

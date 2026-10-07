@@ -11,10 +11,10 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
-    theme_color: '#e11d2e',
+    theme_color: '#af0201',
     icons: [
-      { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
-      { src: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      { src: '/brand/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
   }
 }

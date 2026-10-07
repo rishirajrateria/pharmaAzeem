@@ -29,11 +29,11 @@ export const getCommerceLabels = (settings?: SiteSetting | null): CommerceLabels
     mode,
     showPrices: Boolean(c?.showPrices),
     currency: c?.currency || 'USD',
-    priceFallbackLabel: c?.priceFallbackLabel || 'Inquire for pricing',
-    listName: c?.listName || (isShop ? 'Cart' : 'Inquiry list'),
-    addLabel: c?.addLabel || (isShop ? 'Add to cart' : 'Add to inquiry list'),
-    addedLabel: isShop ? 'In cart' : 'Added to list',
-    ctaLabel: c?.ctaLabel || (isShop ? 'Checkout' : 'Inquire now'),
+    priceFallbackLabel: c?.priceFallbackLabel || 'Price on request',
+    listName: c?.listName || (isShop ? 'Cart' : 'Quote cart'),
+    addLabel: c?.addLabel || 'Add to cart',
+    addedLabel: 'In cart',
+    ctaLabel: c?.ctaLabel || (isShop ? 'Checkout' : 'Request quote'),
   }
 }
 

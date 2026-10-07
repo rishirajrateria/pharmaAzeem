@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, Plus } from 'lucide-react'
+import { Check, Plus, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 
 import { useHasMounted } from '@/hooks/useHasMounted'
@@ -44,9 +44,7 @@ export function AddToInquiryButton({
         onClick={onClick}
         className={cn(
           'inline-flex h-10 w-10 items-center justify-center transition-all duration-300',
-          added
-            ? 'bg-emerald-500 text-white shadow-[0_8px_20px_-8px_rgb(16_185_129_/_0.8)]'
-            : 'bg-brand-gradient text-white',
+          added ? 'bg-emerald-600 text-white' : 'bg-brand-gradient text-white',
           className,
         )}
         aria-label={added ? addedLabel : `${label}: ${product.title}`}
@@ -64,7 +62,11 @@ export function AddToInquiryButton({
       className={cn(added ? 'btn-secondary' : 'btn-primary', 'w-full sm:w-auto', className)}
       aria-live="polite"
     >
-      {added ? <Check className="h-4 w-4 text-emerald-600" /> : <Plus className="h-4 w-4" />}
+      {added ? (
+        <Check className="h-4 w-4 text-emerald-600" />
+      ) : (
+        <ShoppingCart className="h-4 w-4" />
+      )}
       {added ? addedLabel : label}
     </button>
   )

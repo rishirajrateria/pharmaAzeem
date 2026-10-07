@@ -1,11 +1,11 @@
 /** Site-wide settings and page copy. Everything here is editable in the admin panel. */
 
 export const siteSettings = {
-  siteName: 'Azeem Pharmaceuticals',
-  legalName: 'Azeem Pharmaceuticals Pvt. Ltd.',
+  siteName: 'Pharmadent Remedies',
+  legalName: 'Pharmadent Remedies Pvt. Ltd.',
   tagline: 'Quality medicines, worldwide',
   shortDescription:
-    'Azeem Pharmaceuticals is a WHO-GMP certified manufacturer and exporter of high-quality generic medicines – antibiotics, cardiovascular, diabetes, pain, gastrointestinal, respiratory, dermatology, CNS and injectable products – supplying distributors, hospitals and tenders in more than 50 countries across Africa, the Middle East, Asia, the CIS and Latin America.',
+    'Pharmadent Remedies is a WHO-GMP certified manufacturer and exporter of high-quality generic medicines – antibiotics, cardiovascular, diabetes, pain, gastrointestinal, respiratory, dermatology, CNS and injectable products – supplying distributors, hospitals and tenders in more than 50 countries across Africa, the Middle East, Asia, the CIS and Latin America.',
   foundingYear: 2009,
   employeeCount: '450+',
   announcement: {
@@ -14,8 +14,8 @@ export const siteSettings = {
     url: '/global-presence',
   },
   contact: {
-    email: 'exports@azeempharma.com',
-    inquiryEmail: 'exports@azeempharma.com',
+    email: 'exports@pharmadentremedies.com',
+    inquiryEmail: 'exports@pharmadentremedies.com',
     phone: '+91 79 4000 1234',
     whatsapp: '919876543210',
     address: {
@@ -27,30 +27,30 @@ export const siteSettings = {
     },
     businessHours: 'Monday – Saturday, 09:00 – 18:00 IST',
     socials: [
-      { platform: 'linkedin', url: 'https://www.linkedin.com/company/azeem-pharmaceuticals' },
-      { platform: 'facebook', url: 'https://www.facebook.com/azeempharma' },
-      { platform: 'youtube', url: 'https://www.youtube.com/@azeempharma' },
+      { platform: 'linkedin', url: 'https://www.linkedin.com/company/pharmadent-remedies' },
+      { platform: 'facebook', url: 'https://www.facebook.com/pharmadentremedies' },
+      { platform: 'youtube', url: 'https://www.youtube.com/@pharmadentremedies' },
     ],
   },
   commerce: {
     mode: 'inquiry',
     showPrices: false,
     currency: 'USD',
-    priceFallbackLabel: 'Inquire for pricing',
-    listName: 'Inquiry list',
-    addLabel: 'Add to inquiry list',
-    ctaLabel: 'Inquire now',
+    priceFallbackLabel: 'Price on request',
+    listName: 'Quote cart',
+    addLabel: 'Add to cart',
+    ctaLabel: 'Request quote',
   },
   seo: {
-    titleTemplate: '%s | Azeem Pharmaceuticals',
+    titleTemplate: '%s | Pharmadent Remedies',
     defaultTitle:
-      'Azeem Pharmaceuticals – WHO-GMP Certified Pharmaceutical Manufacturer & Exporter',
+      'Pharmadent Remedies – WHO-GMP Certified Pharmaceutical Manufacturer & Exporter',
     defaultDescription:
       'WHO-GMP certified pharmaceutical manufacturer and exporter of generic medicines – tablets, capsules, syrups, injectables and creams – supplying 50+ countries. Request a quotation today.',
-    twitterHandle: '@azeempharma',
+    twitterHandle: '@pharmadentremedies',
     sameAs: [
-      { url: 'https://www.linkedin.com/company/azeem-pharmaceuticals' },
-      { url: 'https://www.facebook.com/azeempharma' },
+      { url: 'https://www.linkedin.com/company/pharmadent-remedies' },
+      { url: 'https://www.facebook.com/pharmadentremedies' },
     ],
     knowsAbout: [
       { topic: 'Generic pharmaceutical manufacturing' },
@@ -141,7 +141,7 @@ export const homepage = {
   testimonials: [
     {
       quote:
-        'Azeem has been our primary antibiotics supplier for six years. Registration support, documentation and lead times are consistently excellent.',
+        'Pharmadent has been our primary antibiotics supplier for six years. Registration support, documentation and lead times are consistently excellent.',
       author: 'Procurement Director',
       role: 'Pharmaceutical distributor, Nairobi',
     },
@@ -153,7 +153,7 @@ export const homepage = {
     },
     {
       quote:
-        'We launched our own private-label vitamin range with Azeem. Artwork, halal certification and stability data were all handled in-house.',
+        'We launched our own private-label vitamin range with Pharmadent. Artwork, halal certification and stability data were all handled in-house.',
       author: 'Brand Manager',
       role: 'Healthcare marketer, Manila',
     },
@@ -166,7 +166,7 @@ export const homepage = {
   },
   faqs: [
     {
-      question: 'Which countries does Azeem Pharmaceuticals export to?',
+      question: 'Which countries does Pharmadent Remedies export to?',
       answer:
         'We currently export to more than 50 countries across Africa, the Middle East, South and South-East Asia, Central Asia / CIS, Latin America and the Pacific. Visit the Global Presence page for a country-by-country overview.',
     },
@@ -192,7 +192,7 @@ export const homepage = {
     },
   ],
   meta: {
-    title: 'Azeem Pharmaceuticals | WHO-GMP Pharma Manufacturer & Exporter',
+    title: 'Pharmadent Remedies | WHO-GMP Pharma Manufacturer & Exporter',
     description:
       'WHO-GMP certified manufacturer & exporter of generic medicines to 50+ countries. Antibiotics, cardiovascular, diabetes, injectables & more. Request a quote.',
     keywords:
@@ -203,11 +203,11 @@ export const homepage = {
 export const aboutPage = {
   hero: {
     eyebrow: 'About us',
-    title: 'About Azeem Pharmaceuticals: fifteen years of quality generic medicines',
+    title: 'About Pharmadent Remedies: fifteen years of quality generic medicines',
     subtitle:
-      'Azeem Pharmaceuticals is an integrated, WHO-GMP certified pharmaceutical company manufacturing and exporting quality generic medicines to healthcare partners on five continents.',
+      'Pharmadent Remedies is an integrated, WHO-GMP certified pharmaceutical company manufacturing and exporting quality generic medicines to healthcare partners on five continents.',
   },
-  intro: `Founded in 2009 in Ahmedabad – one of the world's largest pharmaceutical manufacturing hubs – Azeem Pharmaceuticals began with a single oral solid dosage plant and a conviction that affordable medicines should never compromise on quality. Today we operate five facilities, employ more than 450 people and supply over 300 formulations to distributors, hospitals and government tenders in 50+ countries.
+  intro: `Founded in 2009 in Ahmedabad – one of the world's largest pharmaceutical manufacturing hubs – Pharmadent Remedies began with a single oral solid dosage plant and a conviction that affordable medicines should never compromise on quality. Today we operate five facilities, employ more than 450 people and supply over 300 formulations to distributors, hospitals and government tenders in 50+ countries.
 
 Every product we ship carries the same commitment: manufactured under WHO-GMP, tested batch by batch, documented for your regulator and delivered on time.`,
   stats: [
@@ -318,12 +318,12 @@ Every product we ship carries the same commitment: manufactured under WHO-GMP, t
   ],
   faqs: [
     {
-      question: 'Where is Azeem Pharmaceuticals located?',
+      question: 'Where is Pharmadent Remedies located?',
       answer:
         'Our headquarters and all five facilities are located in the Pharma Industrial Estate, Ahmedabad, Gujarat, India.',
     },
     {
-      question: 'Is Azeem Pharmaceuticals WHO-GMP certified?',
+      question: 'Is Pharmadent Remedies WHO-GMP certified?',
       answer:
         'Yes – all manufacturing units hold WHO-GMP certification and are additionally certified to ISO 9001, ISO 14001 and ISO 45001.',
     },
@@ -336,9 +336,9 @@ Every product we ship carries the same commitment: manufactured under WHO-GMP, t
   meta: {
     title: 'About Us – WHO-GMP Pharma Company',
     description:
-      'Learn about Azeem Pharmaceuticals: a WHO-GMP certified manufacturer and exporter founded in 2009, with five facilities, 450+ people and partners in 50+ countries.',
+      'Learn about Pharmadent Remedies: a WHO-GMP certified manufacturer and exporter founded in 2009, with five facilities, 450+ people and partners in 50+ countries.',
     keywords:
-      'about azeem pharmaceuticals, pharmaceutical company profile, WHO GMP pharma company India',
+      'about pharmadent remedies, pharmaceutical company profile, WHO GMP pharma company India',
   },
 }
 
@@ -462,7 +462,7 @@ export const qualityPage = {
   meta: {
     title: 'Quality Assurance & GMP Compliance',
     description:
-      'Azeem Pharmaceuticals quality system: WHO-GMP, ICH Q10, ICH stability chambers, HPLC/GC labs, data integrity and 100% batch testing before release.',
+      'Pharmadent Remedies quality system: WHO-GMP, ICH Q10, ICH stability chambers, HPLC/GC labs, data integrity and 100% batch testing before release.',
     keywords:
       'pharmaceutical quality assurance, GMP compliance, pharma quality control laboratory, ICH stability testing',
   },
@@ -581,7 +581,7 @@ export const manufacturingPage = {
   meta: {
     title: 'Pharmaceutical Manufacturing Facilities',
     description:
-      "Explore Azeem Pharmaceuticals' WHO-GMP manufacturing: oral solids, liquids, externals, sterile injectables, R&D and contract manufacturing capacity in Ahmedabad, India.",
+      "Explore Pharmadent Remedies' WHO-GMP manufacturing: oral solids, liquids, externals, sterile injectables, R&D and contract manufacturing capacity in Ahmedabad, India.",
     keywords:
       'pharmaceutical manufacturing facility, WHO GMP plant, contract manufacturing pharma, third party manufacturing, injectable manufacturing plant',
   },
@@ -678,7 +678,7 @@ export const globalPresencePage = {
   meta: {
     title: 'Pharmaceutical Exporter to 50+ Countries',
     description:
-      'Azeem Pharmaceuticals exports WHO-GMP medicines to 50+ countries in Africa, the Middle East, Asia, CIS and Latin America. Country-by-country regulatory and market overview.',
+      'Pharmadent Remedies exports WHO-GMP medicines to 50+ countries in Africa, the Middle East, Asia, CIS and Latin America. Country-by-country regulatory and market overview.',
     keywords:
       'pharmaceutical exporter, pharma export countries, medicine supplier Africa, pharmaceutical supplier Middle East, pharma exporter Latin America',
   },
@@ -691,7 +691,7 @@ export const licensesPage = {
     subtitle:
       'The approvals behind every product we make – from manufacturing licences and WHO-GMP to ISO systems and export registrations.',
   },
-  intro: `Transparency builds trust. Below is the current list of licences and certifications held by Azeem Pharmaceuticals. Copies of certificates, product-specific CoPPs and free sale certificates are available to partners and regulators on request.`,
+  intro: `Transparency builds trust. Below is the current list of licences and certifications held by Pharmadent Remedies. Copies of certificates, product-specific CoPPs and free sale certificates are available to partners and regulators on request.`,
   faqs: [
     {
       question: 'Can I get copies of your certificates for my registration file?',
@@ -707,7 +707,7 @@ export const licensesPage = {
   meta: {
     title: 'Licenses & Certifications',
     description:
-      "View Azeem Pharmaceuticals' manufacturing licences, WHO-GMP certificate, ISO 9001/14001/45001 certifications, CoPP, halal and other accreditations.",
+      "View Pharmadent Remedies' manufacturing licences, WHO-GMP certificate, ISO 9001/14001/45001 certifications, CoPP, halal and other accreditations.",
     keywords:
       'pharmaceutical licenses, WHO GMP certificate, ISO 9001 pharma, certificate of pharmaceutical product, pharma company certifications',
   },
@@ -722,13 +722,13 @@ export const contactPage = {
   },
   intro: `Whether you need a quotation for a single product or want to discuss a long-term distribution partnership, our international business team is ready to help. Use the form, email us directly or reach us on WhatsApp during business hours.`,
   departments: [
-    { name: 'Export sales', email: 'exports@azeempharma.com', phone: '+91 79 4000 1234' },
-    { name: 'Regulatory affairs', email: 'regulatory@azeempharma.com', phone: '+91 79 4000 1235' },
-    { name: 'Contract manufacturing', email: 'cmo@azeempharma.com', phone: '+91 79 4000 1236' },
-    { name: 'Quality & audits', email: 'quality@azeempharma.com' },
+    { name: 'Export sales', email: 'exports@pharmadentremedies.com', phone: '+91 79 4000 1234' },
+    { name: 'Regulatory affairs', email: 'regulatory@pharmadentremedies.com', phone: '+91 79 4000 1235' },
+    { name: 'Contract manufacturing', email: 'cmo@pharmadentremedies.com', phone: '+91 79 4000 1236' },
+    { name: 'Quality & audits', email: 'quality@pharmadentremedies.com' },
   ],
   formSuccessMessage:
-    'Thank you for contacting Azeem Pharmaceuticals. Our export team will respond within one business day.',
+    'Thank you for contacting Pharmadent Remedies. Our export team will respond within one business day.',
   faqs: [
     {
       question: 'What information should I include in my inquiry?',
@@ -744,7 +744,7 @@ export const contactPage = {
   meta: {
     title: 'Contact Our Export Team',
     description:
-      'Contact Azeem Pharmaceuticals for product quotations, registrations, private label and contract manufacturing. Email, phone, WhatsApp and inquiry form.',
+      'Contact Pharmadent Remedies for product quotations, registrations, private label and contract manufacturing. Email, phone, WhatsApp and inquiry form.',
     keywords:
       'contact pharmaceutical exporter, pharma export inquiry, pharmaceutical supplier contact',
   },
@@ -792,7 +792,7 @@ export const inquiryPage = {
   meta: {
     title: 'Request a Quotation',
     description:
-      'Send your pharmaceutical product inquiry to Azeem Pharmaceuticals and receive a quotation with MOQs and lead times within one business day.',
+      'Send your pharmaceutical product inquiry to Pharmadent Remedies and receive a quotation with MOQs and lead times within one business day.',
     keywords: 'pharmaceutical quotation request, medicine price inquiry, pharma bulk order inquiry',
   },
 }

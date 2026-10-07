@@ -1,7 +1,7 @@
 {
-  "name": "azeem-pharma",
+  "name": "pharmadent-remedies",
   "version": "1.0.0",
-  "description": "Azeem Pharmaceuticals — glassmorphic, SEO-first pharmaceutical catalogue website with an inquiry-based commerce flow and a Payload CMS admin panel.",
+  "description": "Pharmadent Remedies — glassmorphic, SEO-first pharmaceutical catalogue website with an inquiry-based commerce flow and a Payload CMS admin panel.",
   "private": true,
   "license": "UNLICENSED",
   "type": "module",

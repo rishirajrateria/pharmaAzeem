@@ -1,4 +1,4 @@
-# Frontend guide — Azeem Pharma "Glass & Crimson"
+# Frontend guide — Pharmadent Remedies "Glass & Crimson"
 
 This document is the contract for building pages in this project. Read it fully before writing code.
 

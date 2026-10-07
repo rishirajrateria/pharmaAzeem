@@ -40,15 +40,15 @@ export async function Footer() {
               .filter((c) => !c.validUntil || new Date(c.validUntil) >= new Date())
               .slice(0, 6)
               .map((c) => (
-              <Link
-                key={c.id}
-                href="/licenses"
-                className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700"
-              >
-                <span className="h-1.5 w-1.5 bg-brand-600" />
-                {c.title}
-              </Link>
-            ))}
+                <Link
+                  key={c.id}
+                  href="/licenses"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink-800 hover:text-brand-700"
+                >
+                  <span className="h-1.5 w-1.5 bg-brand-600" />
+                  {c.title}
+                </Link>
+              ))}
           </div>
         )}
 
@@ -96,9 +96,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
-              Products
-            </h3>
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">Products</h3>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <Link href="/products" className="text-ink-800 hover:text-brand-700">
@@ -119,9 +117,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
-              Company
-            </h3>
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">Company</h3>
             <ul className="mt-4 space-y-2 text-sm">
               {PRIMARY_LINKS.map((l) => (
                 <li key={l.href}>
@@ -143,9 +139,7 @@ export async function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">
-              Stay connected
-            </h3>
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink-500">Stay connected</h3>
             <ul className="mt-4 space-y-2 text-sm">
               {(settings.contact?.socials || []).map((s) => (
                 <li key={s.id || s.url}>

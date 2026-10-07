@@ -26,7 +26,7 @@ export const SiteSettings: GlobalConfig = {
                   name: 'siteName',
                   type: 'text',
                   required: true,
-                  defaultValue: 'Azeem Pharmaceuticals',
+                  defaultValue: 'Pharmadent Remedies',
                   admin: { width: '50%' },
                 },
                 {
@@ -208,7 +208,7 @@ export const SiteSettings: GlobalConfig = {
                 {
                   name: 'priceFallbackLabel',
                   type: 'text',
-                  defaultValue: 'Inquire for pricing',
+                  defaultValue: 'Price on request',
                   admin: { width: '50%' },
                 },
               ],
@@ -219,19 +219,19 @@ export const SiteSettings: GlobalConfig = {
                 {
                   name: 'listName',
                   type: 'text',
-                  defaultValue: 'Inquiry list',
+                  defaultValue: 'Quote cart',
                   admin: { width: '33%' },
                 },
                 {
                   name: 'addLabel',
                   type: 'text',
-                  defaultValue: 'Add to inquiry list',
+                  defaultValue: 'Add to cart',
                   admin: { width: '33%' },
                 },
                 {
                   name: 'ctaLabel',
                   type: 'text',
-                  defaultValue: 'Inquire now',
+                  defaultValue: 'Request quote',
                   admin: { width: '34%' },
                 },
               ],
@@ -245,7 +245,7 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'titleTemplate',
               type: 'text',
-              defaultValue: '%s | Azeem Pharmaceuticals',
+              defaultValue: '%s | Pharmadent Remedies',
               admin: { description: '%s is replaced with the page title.' },
             },
             { name: 'defaultTitle', type: 'text' },

@@ -67,7 +67,7 @@ export const useInquiry = create<InquiryState>()(
       has: (id) => get().items.some((i) => i.id === id),
     }),
     {
-      name: 'azeem-inquiry-list',
+      name: 'pharmadent-inquiry-list',
       version: 1,
       partialize: (s) => ({ items: s.items }),
     },

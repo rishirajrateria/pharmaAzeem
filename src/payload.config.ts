@@ -83,7 +83,7 @@ const db = dbUrl.startsWith('postgres')
 const email = process.env.SMTP_HOST
   ? nodemailerAdapter({
       defaultFromAddress: process.env.SMTP_FROM || 'no-reply@example.com',
-      defaultFromName: process.env.SMTP_FROM_NAME || 'Azeem Pharmaceuticals',
+      defaultFromName: process.env.SMTP_FROM_NAME || 'Pharmadent Remedies',
       transportOptions: {
         host: process.env.SMTP_HOST,
         port: Number(process.env.SMTP_PORT || 587),
@@ -102,7 +102,7 @@ const plugins: Plugin[] = [
     uploadsCollection: 'media',
     generateTitle: ({ doc }) => {
       const t = doc?.title || doc?.name || doc?.hero?.title || ''
-      return t ? `${t} | Azeem Pharmaceuticals` : 'Azeem Pharmaceuticals'
+      return t ? `${t} | Pharmadent Remedies` : 'Pharmadent Remedies'
     },
     generateDescription: ({ doc }) =>
       doc?.shortDescription ||
@@ -149,8 +149,8 @@ export default buildConfig({
       beforeDashboard: ['@/components/admin/Dashboard#BeforeDashboard'],
     },
     meta: {
-      titleSuffix: ' · Azeem Pharma Admin',
-      description: 'Content & catalogue management for the Azeem Pharmaceuticals website.',
+      titleSuffix: ' · Pharmadent Admin',
+      description: 'Content & catalogue management for the Pharmadent Remedies website.',
     },
     dateFormat: 'dd MMM yyyy, HH:mm',
   },

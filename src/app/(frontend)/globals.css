@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------
-   Design tokens — Azeem Pharma corporate system
+   Design tokens — Pharmadent Remedies corporate system
    White pages, solid crimson accent, thin neutral borders, square
    corners and minimal motion: the look of an established manufacturer.
 ------------------------------------------------------------------- */
@@ -11,17 +11,17 @@
     var(--body-font-raw), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
 
-  --color-brand-50: #fff1f2;
-  --color-brand-100: #ffe1e4;
-  --color-brand-200: #ffc7cd;
-  --color-brand-300: #ff9da8;
-  --color-brand-400: #ff6675;
-  --color-brand-500: #f43f52;
-  --color-brand-600: #e11d2e;
-  --color-brand-700: #bd1225;
-  --color-brand-800: #9c1222;
-  --color-brand-900: #811523;
-  --color-brand-950: #470610;
+  --color-brand-50: #fdf2f2;
+  --color-brand-100: #fbe3e3;
+  --color-brand-200: #f6c4c3;
+  --color-brand-300: #ee9896;
+  --color-brand-400: #e05b58;
+  --color-brand-500: #cc2a26;
+  --color-brand-600: #bd0f0c;
+  --color-brand-700: #af0201;
+  --color-brand-800: #8f0201;
+  --color-brand-900: #730403;
+  --color-brand-950: #420101;
 
   --color-ink-950: #0b0a0f;
   --color-ink-900: #16151d;
@@ -98,7 +98,7 @@
     overflow-x: clip;
   }
   ::selection {
-    background: rgb(225 29 46 / 0.18);
+    background: rgb(175 2 1 / 0.16);
     color: var(--color-ink-950);
   }
   h1,

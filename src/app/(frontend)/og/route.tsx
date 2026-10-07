@@ -9,15 +9,17 @@ import { siteName } from '@/lib/seo'
 import { SITE_URL } from '@/lib/utils'
 
 /**
- * /og?title=…&subtitle=…&eyebrow=… – branded 1200×630 Open Graph card.
+ * /og?title=…&subtitle=…&eyebrow=… – flat, branded 1200×630 Open Graph card
+ * (white canvas, brand-red top bar, logo, title block, host footer).
  * Used automatically by buildMetadata() for every page without its own social image.
- * Fonts are read from the installed `geist` package (no network fetch); if they are
- * unavailable the renderer's built-in font is used instead.
+ * Fonts are read from the installed `geist` package and the logo from `public/brand`
+ * (no network fetch – this route runs on the Node.js runtime); if either is unavailable
+ * the renderer's built-in font / a text wordmark is used instead.
  *
- * Each font path is a single literal `path.join(process.cwd(), …)` expression – the
- * form the bundler's file tracing understands – so exactly these three files ship with
- * a standalone/serverless build (a path assembled from variables degrades the trace to
- * the whole fonts directory or nothing at all).
+ * Each asset path is a single literal `path.join(process.cwd(), …)` expression – the
+ * form the bundler's file tracing understands – so exactly these files ship with a
+ * standalone/serverless build (a path assembled from variables degrades the trace to
+ * the whole directory or nothing at all).
  */
 export const runtime = 'nodejs'
 
@@ -27,7 +29,15 @@ const MAX_TITLE = 110
 const MAX_SUBTITLE = 150
 const MAX_EYEBROW = 40
 
-type FontSet = { name: string; data: ArrayBuffer; weight: 400 | 500 | 600; style: 'normal' }[]
+const BRAND_RED = '#af0201'
+const INK = '#0b0a0f'
+const FONT_STACK = 'Geist, "Segoe UI", Helvetica, Arial, sans-serif'
+const FOOTER_LINE = 'WHO-GMP certified manufacturer & exporter'
+/** Source PNG is 960×252; rendered at a third of that. */
+const LOGO_WIDTH = 320
+const LOGO_HEIGHT = 84
+
+type FontSet = { name: string; data: ArrayBuffer; weight: 400 | 600; style: 'normal' }[]
 let fontsPromise: Promise<FontSet | undefined> | undefined
 
 const loadFonts = () => {
@@ -72,6 +82,18 @@ const loadFonts = () => {
   return fontsPromise
 }
 
+let logoPromise: Promise<string | undefined> | undefined
+
+/** Brand logo (red wordmark, transparent PNG) as a data URL, read once per process. */
+const loadLogo = () => {
+  if (!logoPromise) {
+    logoPromise = readFile(path.join(process.cwd(), 'public/brand/pharmadent-logo.png'))
+      .then((b) => `data:image/png;base64,${b.toString('base64')}`)
+      .catch(() => undefined)
+  }
+  return logoPromise
+}
+
 /** Strip control characters and collapse whitespace; hard-cap the length. */
 const sanitize = (value: string | null, max: number) => {
   const clean = (value || '')
@@ -88,7 +110,11 @@ const titleSize = (t: string) =>
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
-  const [settings, fonts] = await Promise.all([getSiteSettings().catch(() => null), loadFonts()])
+  const [settings, fonts, logo] = await Promise.all([
+    getSiteSettings().catch(() => null),
+    loadFonts(),
+    loadLogo(),
+  ])
   const name = siteName(settings)
   const tagline = sanitize(settings?.tagline || null, 48) || 'Quality medicines, worldwide'
   const title =
@@ -115,163 +141,66 @@ export async function GET(request: NextRequest) {
         width: '100%',
         height: '100%',
         display: 'flex',
-        position: 'relative',
+        flexDirection: 'column',
         backgroundColor: '#ffffff',
-        backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #fff7f8 100%)',
-        fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
-        color: '#0b0a0f',
-        overflow: 'hidden',
+        fontFamily: FONT_STACK,
+        color: INK,
       }}
     >
-      {/* Ambient red / pink orbs */}
-      <div
-        style={{
-          position: 'absolute',
-          left: -220,
-          top: -280,
-          width: 780,
-          height: 780,
-          borderRadius: 9999,
-          backgroundImage:
-            'radial-gradient(circle, rgba(255,102,117,0.42) 0%, rgba(255,102,117,0) 70%)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          right: -240,
-          top: -140,
-          width: 680,
-          height: 680,
-          borderRadius: 9999,
-          backgroundImage:
-            'radial-gradient(circle, rgba(225,29,46,0.26) 0%, rgba(225,29,46,0) 70%)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: 420,
-          bottom: -420,
-          width: 760,
-          height: 760,
-          borderRadius: 9999,
-          backgroundImage:
-            'radial-gradient(circle, rgba(255,199,205,0.75) 0%, rgba(255,199,205,0) 70%)',
-        }}
-      />
-      {/* Dot grid texture */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: 'radial-gradient(rgba(225,29,46,0.14) 1.6px, rgba(225,29,46,0) 1.6px)',
-          backgroundSize: '26px 26px',
-          opacity: 0.8,
-        }}
-      />
-      {/* Corner HUD rings */}
-      <div
-        style={{
-          position: 'absolute',
-          right: -160,
-          top: 90,
-          width: 520,
-          height: 520,
-          borderRadius: 9999,
-          border: '1.5px dashed rgba(255,157,168,0.55)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          right: -80,
-          top: 170,
-          width: 360,
-          height: 360,
-          borderRadius: 9999,
-          border: '1.5px solid rgba(255,199,205,0.8)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          right: 98,
-          top: 168,
-          width: 16,
-          height: 16,
-          borderRadius: 9999,
-          backgroundColor: '#e11d2e',
-          boxShadow: '0 0 0 8px rgba(225,29,46,0.14)',
-        }}
-      />
+      {/* Brand bar */}
+      <div style={{ display: 'flex', width: '100%', height: 12, backgroundColor: BRAND_RED }} />
 
-      {/* Glass panel */}
       <div
         style={{
-          position: 'absolute',
-          top: 40,
-          left: 40,
-          right: 40,
-          bottom: 40,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: '56px 64px',
-          backgroundImage:
-            'linear-gradient(135deg, rgba(255,255,255,0.82), rgba(255,255,255,0.52))',
-          border: '1.5px solid rgba(255,255,255,0.95)',
-          boxShadow: '0 30px 80px -24px rgba(225,29,46,0.22), 0 6px 20px -8px rgba(11,10,15,0.08)',
+          flexGrow: 1,
+          padding: '52px 72px 0 72px',
         }}
       >
-        {/* Eyebrow */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div
-            style={{
-              width: 10,
-              height: 10,
-              backgroundColor: '#e11d2e',
-              boxShadow: '0 0 0 5px rgba(225,29,46,0.15)',
-            }}
-          />
-          <div
-            style={{
-              fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
-              fontSize: 20,
-              fontWeight: 500,
-              letterSpacing: 5,
-              textTransform: 'uppercase',
-              color: '#bd1225',
-            }}
-          >
-            {eyebrow}
-          </div>
+        {/* Logo */}
+        <div style={{ display: 'flex', height: LOGO_HEIGHT, alignItems: 'center' }}>
+          {logo ? (
+            // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+            <img src={logo} width={LOGO_WIDTH} height={LOGO_HEIGHT} />
+          ) : (
+            <div style={{ fontSize: 44, fontWeight: 600, color: BRAND_RED }}>{name}</div>
+          )}
         </div>
 
-        {/* Title + subtitle */}
+        {/* Eyebrow + title + subtitle */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             flexGrow: 1,
             justifyContent: 'center',
-            paddingTop: 20,
-            paddingBottom: 20,
+            paddingBottom: 12,
           }}
         >
           <div
             style={{
               display: 'flex',
+              fontSize: 20,
+              fontWeight: 600,
+              letterSpacing: 4,
+              textTransform: 'uppercase',
+              color: BRAND_RED,
+            }}
+          >
+            {eyebrow}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              marginTop: 18,
               fontSize: size,
               fontWeight: 600,
-              lineHeight: 1.06,
-              letterSpacing: -size * 0.03,
-              color: '#0b0a0f',
+              lineHeight: 1.08,
+              letterSpacing: -size * 0.02,
+              color: INK,
               lineClamp: 3,
-              maxWidth: 1000,
+              maxWidth: 1040,
             }}
           >
             {title}
@@ -280,13 +209,13 @@ export async function GET(request: NextRequest) {
             <div
               style={{
                 display: 'flex',
-                marginTop: 22,
-                fontSize: 28,
+                marginTop: 20,
+                fontSize: 27,
                 fontWeight: 400,
                 lineHeight: 1.4,
-                color: '#55545f',
+                color: '#52525b',
                 lineClamp: 2,
-                maxWidth: 940,
+                maxWidth: 980,
               }}
             >
               {subtitle}
@@ -295,82 +224,20 @@ export async function GET(request: NextRequest) {
         </div>
 
         {/* Footer */}
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-            {/* Capsule brand mark drawn with divs */}
-            <div
-              style={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 64,
-                height: 64,
-                backgroundImage: 'linear-gradient(135deg, #bd1225 0%, #e11d2e 55%, #ff6675 100%)',
-                boxShadow: '0 14px 30px -12px rgba(225,29,46,0.7)',
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  width: 64,
-                  height: 32,
-                  backgroundImage:
-                    'linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05))',
-                }}
-              />
-              <div
-                style={{
-                  display: 'flex',
-                  width: 38,
-                  height: 17,
-                  borderRadius: 9999,
-                  backgroundColor: '#ffffff',
-                  transform: 'rotate(-45deg)',
-                  overflow: 'hidden',
-                }}
-              >
-                <div style={{ width: 19, height: 17, backgroundColor: 'rgba(255,102,117,0.55)' }} />
-                <div style={{ width: 1.5, height: 17, backgroundColor: 'rgba(225,29,46,0.5)' }} />
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ fontSize: 30, fontWeight: 600, letterSpacing: -0.6, color: '#0b0a0f' }}>
-                {name}
-              </div>
-              <div
-                style={{
-                  marginTop: 6,
-                  fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
-                  fontSize: 15,
-                  fontWeight: 500,
-                  letterSpacing: 3,
-                  textTransform: 'uppercase',
-                  color: '#6b6a78',
-                }}
-              >
-                {tagline}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              padding: '12px 22px',
-              backgroundColor: 'rgba(255,255,255,0.75)',
-              border: '1px solid rgba(255,199,205,0.9)',
-              fontFamily: 'Geist, "Segoe UI", Helvetica, Arial, sans-serif',
-              fontSize: 20,
-              fontWeight: 500,
-              letterSpacing: 2,
-              color: '#bd1225',
-            }}
-          >
-            {host}
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: 88,
+            borderTop: '1px solid #e4e4e7',
+            fontSize: 20,
+            fontWeight: 400,
+            color: '#71717a',
+          }}
+        >
+          <div style={{ display: 'flex' }}>{host}</div>
+          <div style={{ display: 'flex' }}>{FOOTER_LINE}</div>
         </div>
       </div>
     </div>,

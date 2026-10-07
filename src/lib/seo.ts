@@ -42,7 +42,7 @@ export type BuildMetadataArgs = {
 /* ------------------------------------------------------------------ */
 
 export const siteName = (settings?: SiteSetting | null) =>
-  settings?.siteName || 'Azeem Pharmaceuticals'
+  settings?.siteName || 'Pharmadent Remedies'
 
 /** Builds a complete Next.js Metadata object with canonical, OG, Twitter, robots and hreflang. */
 export const buildMetadata = ({

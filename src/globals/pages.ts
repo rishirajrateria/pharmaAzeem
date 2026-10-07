@@ -51,7 +51,7 @@ export const AboutPage = pageGlobal({
   slug: 'about-page',
   label: 'About page',
   path: '/about',
-  defaults: { title: 'About Azeem Pharmaceuticals', eyebrow: 'About us' },
+  defaults: { title: 'About Pharmadent Remedies', eyebrow: 'About us' },
   extraFields: [
     statsField('stats'),
     {
