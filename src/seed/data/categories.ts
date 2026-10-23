@@ -133,6 +133,35 @@ Our anti-infective portfolio covers the most prescribed antibiotic classes – c
             'antimalarial manufacturer, artemether lumefantrine supplier, artesunate exporter',
         },
       },
+      {
+        title: 'Antiprotozoals & Anthelmintics',
+        slug: 'antiprotozoals-anthelmintics',
+        icon: 'microscope',
+        shortDescription: 'Metronidazole, ornidazole, secnidazole, nitazoxanide and albendazole.',
+        description: `## Antiprotozoal and anthelmintic medicines\n\nNitroimidazole antiprotozoals and anthelmintics for amoebiasis, giardiasis, trichomoniasis and intestinal worm infections, in tablet, chewable tablet and suspension forms.`,
+        meta: {
+          title: 'Antiprotozoal & Anthelmintic Medicines Supplier',
+          description:
+            'Metronidazole, ornidazole, secnidazole, nitazoxanide and albendazole tablets and suspensions for export.',
+          keywords:
+            'metronidazole supplier, albendazole exporter, secnidazole tablets, nitazoxanide, antiprotozoal medicines',
+        },
+      },
+      {
+        title: 'Other Anti-infectives',
+        slug: 'other-anti-infectives',
+        icon: 'shield-check',
+        shortDescription:
+          'Doxycycline, tetracycline, chloramphenicol, co-trimoxazole, aciclovir and combination kits.',
+        description: `## Other anti-infective medicines\n\nTetracyclines, chloramphenicol, sulfonamide combinations, aciclovir and anti-infective combination kits that sit outside the main antibiotic classes.`,
+        meta: {
+          title: 'Doxycycline, Co-trimoxazole & Anti-infective Kits Supplier',
+          description:
+            'Doxycycline, tetracycline, chloramphenicol, co-trimoxazole, aciclovir and combination kits for export.',
+          keywords:
+            'doxycycline supplier, co-trimoxazole exporter, chloramphenicol capsules, aciclovir tablets',
+        },
+      },
     ],
   },
   {
@@ -200,6 +229,19 @@ Hypertension, dyslipidaemia and thrombotic disease are lifelong conditions – o
           keywords: 'clopidogrel manufacturer, antiplatelet supplier, anticoagulant exporter',
         },
       },
+      {
+        title: 'Venous & Vascular Health',
+        slug: 'vasoprotectives',
+        icon: 'activity',
+        shortDescription: 'Diosmin and diosmin–hesperidin for chronic venous insufficiency.',
+        description: `## Vasoprotective medicines\n\nFlavonoid venotonics used in chronic venous insufficiency, haemorrhoids and leg heaviness.`,
+        meta: {
+          title: 'Diosmin & Hesperidin Tablets Supplier',
+          description: 'Diosmin 600 mg and diosmin–hesperidin 450/50 mg tablets for export.',
+          keywords:
+            'diosmin tablets supplier, diosmin hesperidin exporter, venous insufficiency tablets',
+        },
+      },
     ],
   },
   {
@@ -247,6 +289,21 @@ From metformin to modern DPP-4 and SGLT2 inhibitor generics, our diabetes range 
           description:
             'Levothyroxine sodium tablets 25–150 mcg from a WHO-GMP certified manufacturer with tight content-uniformity controls.',
           keywords: 'levothyroxine manufacturer, thyroid tablets exporter',
+        },
+      },
+      {
+        title: 'Oral Corticosteroids',
+        slug: 'systemic-corticosteroids',
+        icon: 'pill',
+        shortDescription:
+          'Dexamethasone, prednisolone, methylprednisolone and deflazacort tablets.',
+        description: `## Oral corticosteroids\n\nSystemic corticosteroid tablets for inflammatory, allergic and immune conditions.`,
+        meta: {
+          title: 'Oral Corticosteroid Tablets Supplier',
+          description:
+            'Dexamethasone, prednisolone, methylprednisolone and deflazacort tablets for export.',
+          keywords:
+            'dexamethasone tablets supplier, prednisolone exporter, deflazacort tablets, methylprednisolone',
         },
       },
     ],
@@ -306,6 +363,34 @@ High-volume analgesic and anti-inflammatory products including paracetamol, ibup
           description:
             'Thiocolchicoside and chlorzoxazone combination tablets from an export-quality manufacturer.',
           keywords: 'muscle relaxant manufacturer, thiocolchicoside supplier',
+        },
+      },
+      {
+        title: 'Opioid Analgesics',
+        slug: 'opioid-analgesics',
+        icon: 'pill-bottle',
+        shortDescription:
+          'Tramadol and tapentadol-based analgesics (prescription only; permits required).',
+        description: `## Opioid analgesics\n\nPrescription-only opioid analgesics for moderate to severe pain. These are controlled products: supply is subject to the importing country’s licence and permit requirements.`,
+        meta: {
+          title: 'Opioid Analgesics Supplier – Licensed Importers',
+          description:
+            'Tramadol and tapentadol-based analgesics supplied against valid import authorisation.',
+          keywords:
+            'tramadol supplier, tapentadol exporter, opioid analgesic export, controlled medicines export',
+        },
+      },
+      {
+        title: 'Topical Pain Relief',
+        slug: 'topical-pain-relief',
+        icon: 'flask-conical',
+        shortDescription:
+          'Menthol, diclofenac and methyl salicylate gels for muscle and joint pain.',
+        description: `## Topical pain relief\n\nCooling and anti-inflammatory gels for localised muscle and joint pain.`,
+        meta: {
+          title: 'Topical Pain Relief Gels Supplier',
+          description: 'Menthol, diclofenac, linseed oil and methyl salicylate gels for export.',
+          keywords: 'pain relief gel supplier, menthol gel exporter, diclofenac gel',
         },
       },
     ],
@@ -377,6 +462,20 @@ Proton pump inhibitors, antiemetics and antiulcer medicines manufactured with en
           description:
             'Lactulose solution and other laxatives from a certified pharmaceutical exporter.',
           keywords: 'lactulose manufacturer, laxative supplier',
+        },
+      },
+      {
+        title: 'Antispasmodics & Antidiarrhoeals',
+        slug: 'antispasmodics-antidiarrhoeals',
+        icon: 'activity',
+        shortDescription: 'Hyoscine, dicyclomine and mebeverine combinations and loperamide.',
+        description: `## Antispasmodics and antidiarrhoeals\n\nMedicines for abdominal cramps, spasm and acute diarrhoea.`,
+        meta: {
+          title: 'Antispasmodic & Antidiarrhoeal Medicines Supplier',
+          description:
+            'Hyoscine butylbromide, dicyclomine and mebeverine combinations and loperamide for export.',
+          keywords:
+            'hyoscine butylbromide supplier, loperamide capsules, mebeverine combination, dicyclomine',
         },
       },
     ],
@@ -495,6 +594,21 @@ Softgels, tablets, syrups and sachets covering daily multivitamins, iron and fol
           keywords: 'pediatric drops manufacturer, ORS exporter, zinc syrup supplier',
         },
       },
+      {
+        title: 'Iron & Haematinics',
+        slug: 'haematinics',
+        icon: 'droplets',
+        shortDescription:
+          'Iron, folic acid, vitamin B12 and zinc tablets, capsules, syrups and drops.',
+        description: `## Iron and haematinic products\n\nIron preparations – ferrous fumarate, ferrous ascorbate, iron polymaltose complex and choline citrate – with folic acid, vitamin B12 and zinc for the prevention and treatment of iron-deficiency anaemia.`,
+        meta: {
+          title: 'Iron, Folic Acid & Haematinic Supplements Supplier',
+          description:
+            'Iron polymaltose, ferrous ascorbate and ferrous fumarate with folic acid and B12 in tablets, capsules and syrups.',
+          keywords:
+            'iron syrup supplier, ferrous ascorbate exporter, iron polymaltose, folic acid tablets, haematinic',
+        },
+      },
     ],
   },
   {
@@ -553,13 +667,26 @@ Creams, ointments and gels manufactured in a dedicated externals block with homo
           keywords: 'betamethasone cream manufacturer, clobetasol exporter',
         },
       },
+      {
+        title: 'Antiseptics & Hygiene',
+        slug: 'antiseptics-hygiene',
+        icon: 'shield-check',
+        shortDescription: 'Povidone-iodine, chlorhexidine gel and alcohol hand rubs.',
+        description: `## Antiseptics and hygiene\n\nSkin and hand antiseptics including povidone-iodine solution, chlorhexidine gel and hand rub.`,
+        meta: {
+          title: 'Antiseptic Solutions & Hand Rub Supplier',
+          description: 'Povidone-iodine solution, chlorhexidine gel and hand rub for export.',
+          keywords:
+            'povidone iodine supplier, chlorhexidine gel exporter, hand rub supplier, antiseptic solution',
+        },
+      },
     ],
   },
   {
     title: 'Central Nervous System',
     slug: 'central-nervous-system',
     icon: 'brain',
-    shortDescription: 'Antiepileptics, antidepressants, anxiolytics and antipsychotics.',
+    shortDescription: 'Antiepileptics, antidepressants and anxiolytics.',
     description: `## Neuro-psychiatric medicines
 
 Consistent quality is critical for CNS therapies with narrow therapeutic windows. Our range is manufactured with validated content-uniformity controls and full stability profiles.`,
@@ -571,7 +698,7 @@ Consistent quality is critical for CNS therapies with narrow therapeutic windows
     meta: {
       title: 'CNS Medicines Manufacturer – Antiepileptics & Antidepressants',
       description:
-        'Levetiracetam, sodium valproate, escitalopram, sertraline and olanzapine generics from a WHO-GMP certified CNS medicines manufacturer.',
+        'Carbamazepine, sodium valproate, phenobarbital, fluoxetine, amitriptyline and benzodiazepine generics for export.',
       keywords:
         'antiepileptic manufacturer, antidepressant exporter, levetiracetam supplier, olanzapine manufacturer',
     },
@@ -602,80 +729,142 @@ Consistent quality is critical for CNS therapies with narrow therapeutic windows
           keywords: 'escitalopram manufacturer, sertraline supplier, antidepressant exporter',
         },
       },
+    ],
+  },
+  {
+    title: 'Dental & Oral Care',
+    slug: 'dental-oral-care',
+    icon: 'shield-plus',
+    shortDescription: 'Desensitising toothpastes, dental gels and antiseptic mouthwashes.',
+    description: `## Dental and oral care range
+
+Potassium nitrate and fluoride toothpastes for sensitive teeth, children's fluoride gels, gum paints and chlorhexidine mouthwashes, offered in several flavours.
+
+## Why importers choose this range
+
+- Several flavours of the same formula (original, lemon, mint)
+- Toothpastes, gels and mouthwashes from one supplier
+- Private-label options on request`,
+    highlights: ['Potassium nitrate + fluoride formulas', 'Mouthwashes & gels', 'Flavour variants'],
+    faqs: [
       {
-        title: 'Antipsychotics',
-        slug: 'antipsychotics',
-        icon: 'eye',
-        shortDescription: 'Olanzapine, risperidone and quetiapine.',
-        description: `## Antipsychotic medicines\n\nAtypical antipsychotics in tablets and orally disintegrating tablets.`,
+        question: 'Can I order dental products in private-label packs?',
+        answer:
+          'Yes – tell us the product, flavour and pack size you need in your inquiry and we will confirm minimum order quantities and artwork requirements.',
+      },
+      {
+        question: 'Which flavours are available?',
+        answer:
+          'Toothpastes and mouthwashes are listed in original, lemon and mint variants; other flavours can be discussed on request.',
+      },
+    ],
+    meta: {
+      title: 'Dental & Oral Care Products Supplier – Toothpaste, Mouthwash',
+      description:
+        'Potassium nitrate and fluoride toothpastes, dental gels and chlorhexidine mouthwash for export. Request a quotation.',
+      keywords:
+        'toothpaste supplier, potassium nitrate toothpaste, mouthwash exporter, dental gel, oral care export',
+    },
+    children: [
+      {
+        title: 'Toothpastes & Dental Gels',
+        slug: 'toothpastes-gels',
+        icon: 'sparkles',
+        shortDescription: 'Desensitising and fluoride toothpastes, dental gels and gum paints.',
+        description: `## Toothpastes and dental gels\n\nPotassium nitrate + sodium fluoride desensitising toothpastes, children's fluoride gel and gum paint.`,
         meta: {
-          title: 'Antipsychotic Medicines Manufacturer',
+          title: 'Toothpaste & Dental Gel Supplier',
           description:
-            'Olanzapine, risperidone and quetiapine tablets from a certified pharmaceutical exporter.',
-          keywords: 'olanzapine manufacturer, risperidone supplier, antipsychotic exporter',
+            'Potassium nitrate and sodium fluoride toothpastes, fluoride gels and gum paints for export.',
+          keywords: 'desensitising toothpaste supplier, potassium nitrate toothpaste, fluoride gel',
+        },
+      },
+      {
+        title: 'Mouthwashes & Oral Rinses',
+        slug: 'mouthwashes-rinses',
+        icon: 'droplets',
+        shortDescription: 'Antiseptic and fluoride mouthwashes.',
+        description: `## Mouthwashes and oral rinses\n\nChlorhexidine antiseptic mouthwash and potassium nitrate + fluoride mouthwash.`,
+        meta: {
+          title: 'Mouthwash & Oral Rinse Supplier',
+          description:
+            'Chlorhexidine and potassium nitrate + sodium fluoride mouthwashes for export.',
+          keywords: 'mouthwash supplier, chlorhexidine mouthwash, fluoride mouthwash exporter',
         },
       },
     ],
   },
   {
-    title: 'Injectables',
-    slug: 'injectables',
-    icon: 'syringe',
-    shortDescription: 'Sterile antibiotics, IV fluids, electrolytes and vitamin injections.',
-    description: `## Sterile injectable manufacturing
+    title: 'Sexual & Reproductive Health',
+    slug: 'sexual-reproductive-health',
+    icon: 'heart-handshake',
+    shortDescription: 'Erectile dysfunction treatments, women’s health kits and urinary health.',
+    description: `## Sexual and reproductive health
 
-Vials, ampoules and large-volume parenterals produced in Grade A/B aseptic areas with terminal sterilisation or aseptic filling as appropriate, 100% visual inspection and validated sterility assurance.`,
-    highlights: [
-      'Aseptic & terminally sterilised',
-      'Vials, ampoules & LVP bags',
-      '100% visual inspection',
+Prescription-only products in this range are supplied to licensed importers, wholesalers and institutions in line with the regulations of the destination country.
+
+## Included product groups
+
+- PDE-5 inhibitors for erectile dysfunction
+- Women's health kits and lactation support
+- Urinary antispasmodics`,
+    highlights: ['Prescription-only range', 'Licensed importers', 'Kits and tablets'],
+    faqs: [
+      {
+        question: 'Are these products available to private individuals?',
+        answer:
+          'No. Prescription-only products are supplied to licensed importers, distributors and institutions that can provide the permits required in the destination country.',
+      },
+      {
+        question: 'Which documents are needed to quote?',
+        answer:
+          'Please include your company details, import licence and the products and quantities you require.',
+      },
     ],
     meta: {
-      title: 'Injectable Medicines Manufacturer & Exporter',
+      title: 'Sexual & Reproductive Health Medicines Supplier',
       description:
-        'Ceftriaxone, meropenem, IV fluids, electrolytes and vitamin injections from a WHO-GMP certified sterile injectables manufacturer.',
+        'Sildenafil, tadalafil, women’s health kits and urinary antispasmodics supplied to licensed importers.',
       keywords:
-        'injectable manufacturer, sterile injectables exporter, IV fluids supplier, ceftriaxone injection manufacturer',
+        'sildenafil supplier, tadalafil exporter, womens health kits, flavoxate tablets, licensed importer medicines',
     },
     children: [
       {
-        title: 'Antibiotic Injections',
-        slug: 'antibiotic-injections',
-        icon: 'syringe',
-        shortDescription: 'Ceftriaxone, meropenem, amikacin and piperacillin-tazobactam.',
-        description: `## Antibiotic injections\n\nDry powder vials and ready-to-use injections for hospital anti-infective therapy.`,
+        title: 'Erectile Dysfunction',
+        slug: 'erectile-dysfunction',
+        icon: 'pill',
+        shortDescription: 'Sildenafil, tadalafil and sildenafil–dapoxetine tablets.',
+        description: `## Erectile dysfunction treatments\n\nPDE-5 inhibitor tablets and combinations, prescription only.`,
         meta: {
-          title: 'Antibiotic Injections Manufacturer',
+          title: 'Sildenafil & Tadalafil Tablets Supplier',
           description:
-            'Ceftriaxone, meropenem, amikacin and piperacillin-tazobactam injections from a certified sterile manufacturer.',
-          keywords:
-            'ceftriaxone injection manufacturer, meropenem exporter, antibiotic vials supplier',
+            'Sildenafil, tadalafil and sildenafil–dapoxetine tablets supplied to licensed importers.',
+          keywords: 'sildenafil tablets supplier, tadalafil exporter, dapoxetine combination',
         },
       },
       {
-        title: 'IV Fluids & Electrolytes',
-        slug: 'iv-fluids-electrolytes',
-        icon: 'droplets',
-        shortDescription: 'Normal saline, dextrose, Ringer lactate and electrolyte concentrates.',
-        description: `## IV fluids and electrolytes\n\nLarge-volume parenterals in 100–1000 ml bags and bottles.`,
+        title: 'Women’s Health',
+        slug: 'womens-health',
+        icon: 'heart-handshake',
+        shortDescription: 'Mifepristone–misoprostol kits and lactation support.',
+        description: `## Women's health\n\nRegulated kits supplied only against valid import authorisation, and nutritional support for breastfeeding mothers.`,
         meta: {
-          title: 'IV Fluids Manufacturer – Saline, Dextrose, Ringer Lactate',
+          title: 'Women’s Health Products Supplier',
           description:
-            'Normal saline, dextrose and Ringer lactate LVPs from a WHO-GMP certified IV fluids manufacturer.',
-          keywords: 'IV fluids manufacturer, normal saline exporter, LVP supplier',
+            'Mifepristone–misoprostol kits and lactation support products supplied to licensed importers.',
+          keywords: 'mifepristone misoprostol kit supplier, womens health medicines export',
         },
       },
       {
-        title: 'Vitamin Injections',
-        slug: 'vitamin-injections',
-        icon: 'sparkles',
-        shortDescription: 'Vitamin B12, B-complex and vitamin K injections.',
-        description: `## Vitamin injections\n\nAmpoules and vials for nutritional deficiency management.`,
+        title: 'Urinary Health',
+        slug: 'urinary-health',
+        icon: 'activity',
+        shortDescription: 'Flavoxate and other urinary tract antispasmodics.',
+        description: `## Urinary health\n\nUrinary antispasmodic tablets for bladder spasm and urinary frequency.`,
         meta: {
-          title: 'Vitamin Injections Manufacturer',
-          description:
-            'Vitamin B12, B-complex and vitamin K injections from a certified sterile manufacturer.',
-          keywords: 'vitamin b12 injection manufacturer, b complex injection exporter',
+          title: 'Urinary Antispasmodic Tablets Supplier',
+          description: 'Flavoxate hydrochloride tablets for export.',
+          keywords: 'flavoxate tablets supplier, urinary antispasmodic exporter',
         },
       },
     ],

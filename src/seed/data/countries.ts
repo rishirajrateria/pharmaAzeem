@@ -80,11 +80,7 @@ export const countries: SeedCountry[] = [
     authority: 'Tanzania Medicines and Medical Devices Authority (TMDA)',
     since: 2015,
     note: 'We supply TMDA-registered essential medicines to distributors in Dar es Salaam serving public and faith-based hospital networks.',
-    categories: [
-      'antibiotics-anti-infectives',
-      'iv-fluids-electrolytes',
-      'analgesics-antipyretics',
-    ],
+    categories: ['antibiotics-anti-infectives', 'haematinics', 'analgesics-antipyretics'],
   },
   {
     name: 'Uganda',
@@ -108,7 +104,7 @@ export const countries: SeedCountry[] = [
     authority: 'Ethiopian Food and Drug Authority (EFDA)',
     since: 2017,
     note: 'We participate in EPSS tenders and supply private importers in Addis Ababa with EFDA-registered essential medicines.',
-    categories: ['antibiotics-anti-infectives', 'iv-fluids-electrolytes', 'oral-antidiabetics'],
+    categories: ['antibiotics-anti-infectives', 'haematinics', 'oral-antidiabetics'],
   },
   {
     name: 'South Africa',
@@ -156,7 +152,7 @@ export const countries: SeedCountry[] = [
     authority: 'Autoridade Nacional Reguladora de Medicamentos (ANARME)',
     since: 2018,
     note: 'Portuguese-language artwork and ANARME dossiers are prepared in-house for the Mozambican market, shipped through the port of Maputo.',
-    categories: ['antimalarials', 'iv-fluids-electrolytes', 'cephalosporins'],
+    categories: ['antimalarials', 'haematinics', 'cephalosporins'],
   },
   {
     name: 'Cameroon',
@@ -204,7 +200,7 @@ export const countries: SeedCountry[] = [
     authority: 'Autorité Congolaise de Réglementation Pharmaceutique (ACOREP)',
     since: 2016,
     note: 'We serve Kinshasa and Lubumbashi through experienced importers, with strong demand for antimalarials, antibiotics and IV fluids.',
-    categories: ['antimalarials', 'iv-fluids-electrolytes', 'antibiotic-injections'],
+    categories: ['antimalarials', 'haematinics', 'macrolides'],
   },
   {
     name: 'Sudan',
@@ -252,7 +248,7 @@ export const countries: SeedCountry[] = [
     authority: 'Agência Reguladora de Medicamentos e Tecnologias de Saúde (ARMED)',
     since: 2019,
     note: 'Portuguese-language packs and ARMED dossiers support our Angolan partners in Luanda.',
-    categories: ['antimalarials', 'iv-fluids-electrolytes', 'antibiotics-anti-infectives'],
+    categories: ['antimalarials', 'haematinics', 'antibiotics-anti-infectives'],
   },
   {
     name: 'Egypt',
@@ -331,11 +327,7 @@ export const countries: SeedCountry[] = [
     authority: 'Supreme Board of Drugs and Medical Appliances (SBDMA)',
     since: 2012,
     note: 'A decade-long partnership with Yemeni importers keeps essential antibiotics, IV fluids and analgesics flowing through Aden and Hodeidah.',
-    categories: [
-      'iv-fluids-electrolytes',
-      'antibiotics-anti-infectives',
-      'analgesics-antipyretics',
-    ],
+    categories: ['haematinics', 'antibiotics-anti-infectives', 'analgesics-antipyretics'],
   },
   {
     name: 'Oman',
@@ -397,7 +389,7 @@ export const countries: SeedCountry[] = [
     authority: 'Directorate General of Drug Administration (DGDA)',
     since: 2016,
     note: 'We supply specialised injectables and niche generics that complement the strong local industry, under DGDA import licences.',
-    categories: ['injectables', 'central-nervous-system'],
+    categories: ['gastrointestinal', 'central-nervous-system'],
   },
   {
     name: 'Afghanistan',
@@ -520,7 +512,7 @@ export const countries: SeedCountry[] = [
     authority: 'Pharmaceutical Services Standards Branch, National Department of Health',
     since: 2018,
     note: 'We supply antimalarials and essential medicines to Port Moresby wholesalers and the national medical stores.',
-    categories: ['antimalarials', 'antibiotics-anti-infectives', 'iv-fluids-electrolytes'],
+    categories: ['antimalarials', 'antibiotics-anti-infectives', 'haematinics'],
   },
   {
     name: 'Fiji',
@@ -582,7 +574,7 @@ export const countries: SeedCountry[] = [
     authority: 'Service for Pharmaceutical Supervision, Ministry of Health',
     since: 2016,
     note: 'We supply Dushanbe-based importers with registered essential medicines and IV fluids.',
-    categories: ['iv-fluids-electrolytes', 'antibiotics-anti-infectives'],
+    categories: ['haematinics', 'antibiotics-anti-infectives'],
   },
   {
     name: 'Azerbaijan',
@@ -631,7 +623,7 @@ export const countries: SeedCountry[] = [
     authority: 'Turkish Medicines and Medical Devices Agency (TİTCK)',
     since: 2022,
     note: 'We partner with Istanbul-based companies on contract manufacturing and API-plus-formulation projects.',
-    categories: ['injectables', 'cardiovascular'],
+    categories: ['gastrointestinal', 'cardiovascular'],
   },
   {
     name: 'Albania',
@@ -717,7 +709,7 @@ export const countries: SeedCountry[] = [
     authority: 'Instituto Nacional de Higiene Rafael Rangel (INHRR)',
     since: 2018,
     note: 'We support humanitarian and private importers in Caracas with essential medicines and IV fluids.',
-    categories: ['iv-fluids-electrolytes', 'antibiotics-anti-infectives'],
+    categories: ['haematinics', 'antibiotics-anti-infectives'],
   },
   {
     name: 'Ecuador',

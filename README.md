@@ -21,37 +21,38 @@ Production:
 pnpm build && pnpm start
 ```
 
-| Script | What it does |
-| --- | --- |
-| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js dev server / production build / production server |
-| `pnpm seed` | Seeds demo data when the catalogue is empty. `pnpm seed -- --fresh` wipes content and reseeds. |
-| `pnpm typecheck` / `pnpm lint` | TypeScript and ESLint |
-| `pnpm generate:types` | Regenerate `src/payload-types.ts` after changing collections |
-| `pnpm generate:importmap` | Regenerate the admin import map after adding admin components |
-| `pnpm map:generate` | Regenerate the dotted world-map SVG |
-| `pnpm test:e2e` | Playwright smoke tests against `pnpm start` |
-| `node scripts/qa-screenshots.mjs [baseUrl] [outDir]` | Full-page desktop + mobile screenshots of every key route (visual QA; set `CHROMIUM_PATH` to reuse an installed Chromium) |
+| Script                                               | What it does                                                                                                                                                                                                                                                               |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev` / `pnpm build` / `pnpm start`             | Next.js dev server / production build / production server                                                                                                                                                                                                                  |
+| `pnpm seed`                                          | Seeds demo data when the catalogue is empty. `pnpm seed -- --fresh` wipes content and reseeds.                                                                                                                                                                             |
+| `pnpm tsx scripts/import-products.ts`                | Loads the client's product list (`src/seed/data/product-list.json`) into the connected database: adds missing categories and products, removes the old sample products. Safe to re-run; `--update` rewrites existing products, `--keep-samples` keeps the sample products. |
+| `pnpm typecheck` / `pnpm lint`                       | TypeScript and ESLint                                                                                                                                                                                                                                                      |
+| `pnpm generate:types`                                | Regenerate `src/payload-types.ts` after changing collections                                                                                                                                                                                                               |
+| `pnpm generate:importmap`                            | Regenerate the admin import map after adding admin components                                                                                                                                                                                                              |
+| `pnpm map:generate`                                  | Regenerate the dotted world-map SVG                                                                                                                                                                                                                                        |
+| `pnpm test:e2e`                                      | Playwright smoke tests against `pnpm start`                                                                                                                                                                                                                                |
+| `node scripts/qa-screenshots.mjs [baseUrl] [outDir]` | Full-page desktop + mobile screenshots of every key route (visual QA; set `CHROMIUM_PATH` to reuse an installed Chromium)                                                                                                                                                  |
 
 ## Environment variables
 
 See `.env.example`.
 
-| Variable | Required | Notes |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SERVER_URL` | yes | Public site URL (no trailing slash). Used for canonical URLs, sitemap, Open Graph and structured data. |
-| `PAYLOAD_SECRET` | yes | Long random string – signs admin sessions. |
-| `DATABASE_URL` | yes | `file:./data/pharma.db` (SQLite) or `postgres://…` (Neon, Supabase, RDS…). The adapter is chosen automatically. |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `SMTP_FROM_NAME` | no | When set, new inquiries are emailed to *Site Settings → Contact → Inquiry email*. Without SMTP, emails are logged to the console. |
-| `BLOB_READ_WRITE_TOKEN` | no | Store uploads in Vercel Blob (required on Vercel, whose filesystem is read-only). |
-| `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD` | no | Credentials for the first admin created by `pnpm seed`. |
+| Variable                                                                          | Required | Notes                                                                                                                             |
+| --------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SERVER_URL`                                                          | yes      | Public site URL (no trailing slash). Used for canonical URLs, sitemap, Open Graph and structured data.                            |
+| `PAYLOAD_SECRET`                                                                  | yes      | Long random string – signs admin sessions.                                                                                        |
+| `DATABASE_URL`                                                                    | yes      | `file:./data/pharma.db` (SQLite) or `postgres://…` (Neon, Supabase, RDS…). The adapter is chosen automatically.                   |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`, `SMTP_FROM_NAME` | no       | When set, new inquiries are emailed to _Site Settings → Contact → Inquiry email_. Without SMTP, emails are logged to the console. |
+| `BLOB_READ_WRITE_TOKEN`                                                           | no       | Store uploads in Vercel Blob (required on Vercel, whose filesystem is read-only).                                                 |
+| `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD`                                         | no       | Credentials for the first admin created by `pnpm seed`.                                                                           |
 
 ## Using the admin panel (`/admin`)
 
-**Catalogue → Categories.** Create a category, then create sub-categories by picking a *Parent*. Each category has: title, slug, short description (cards + default meta description), rich description (shown under the product grid), image, icon, highlights, FAQs and its own **SEO tab** (title, description, image, keywords, canonical, no-index). URLs are hierarchical: `/categories/antibiotics-anti-infectives/cephalosporins`.
+**Catalogue → Categories.** Create a category, then create sub-categories by picking a _Parent_. Each category has: title, slug, short description (cards + default meta description), rich description (shown under the product grid), image, icon, highlights, FAQs and its own **SEO tab** (title, description, image, keywords, canonical, no-index). URLs are hierarchical: `/categories/antibiotics-anti-infectives/cephalosporins`.
 
-**Catalogue → Products.** Title (brand name), generic name, one or more categories (a product assigned to a sub-category also appears in the parent), images, *Details* (dosage form, strength, Rx/OTC, route, pack size, packaging, shelf life, storage, composition, therapeutic class, specifications), *Description* (rich text description, indications, key benefits, FAQs, related products), *Pricing & stock* and the **SEO tab**. Products use drafts – click **Publish** to make them public.
+**Catalogue → Products.** Title (brand name), generic name, one or more categories (a product assigned to a sub-category also appears in the parent), images, _Details_ (dosage form, strength, Rx/OTC, route, pack size, packaging, shelf life, storage, composition, therapeutic class, specifications), _Description_ (rich text description, indications, key benefits, FAQs, related products), _Pricing & stock_ and the **SEO tab**. Products use drafts – click **Publish** to make them public.
 
-**Pricing.** The site launches in inquiry mode: every product shows *"Inquire for pricing"* and an *"Add to inquiry list"* button. Enter prices whenever you like – they stay hidden until **Site Settings → Commerce → Show prices** is switched on (or a single product is set to *Always show price*). Labels ("Inquiry list", "Add to inquiry list", "Inquire now", "Inquire for pricing") and currency are editable there too.
+**Pricing.** The site launches in inquiry mode: every product shows _"Inquire for pricing"_ and an _"Add to inquiry list"_ button. Enter prices whenever you like – they stay hidden until **Site Settings → Commerce → Show prices** is switched on (or a single product is set to _Always show price_). Labels ("Inquiry list", "Add to inquiry list", "Inquire now", "Inquire for pricing") and currency are editable there too.
 
 **Sales → Inquiries.** Every quote request (inquiry list, product page and contact form) is stored here with the requested products and quantities, and emailed when SMTP is configured. Track status (new → contacted → quoted → won/closed) and add internal notes.
 
@@ -126,4 +127,4 @@ docs/frontend-guide.md   design system + conventions for building pages
 
 ## Notes on the seed content
 
-The seeded company profile, addresses, certificates (marked *SAMPLE*), people and products are **placeholders** for demonstration. Replace them with your real details, artwork and certificate scans from the admin panel before going live.
+The seeded company profile, addresses, certificates (marked _SAMPLE_), people and products are **placeholders** for demonstration. Replace them with your real details, artwork and certificate scans from the admin panel before going live.

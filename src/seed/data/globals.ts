@@ -43,8 +43,7 @@ export const siteSettings = {
   },
   seo: {
     titleTemplate: '%s | Pharmadent Remedies',
-    defaultTitle:
-      'Pharmadent Remedies – WHO-GMP Certified Pharmaceutical Manufacturer & Exporter',
+    defaultTitle: 'Pharmadent Remedies – WHO-GMP Certified Pharmaceutical Manufacturer & Exporter',
     defaultDescription:
       'WHO-GMP certified pharmaceutical manufacturer and exporter of generic medicines – tablets, capsules, syrups, injectables and creams – supplying 50+ countries. Request a quotation today.',
     twitterHandle: '@pharmadentremedies',
@@ -723,8 +722,16 @@ export const contactPage = {
   intro: `Whether you need a quotation for a single product or want to discuss a long-term distribution partnership, our international business team is ready to help. Use the form, email us directly or reach us on WhatsApp during business hours.`,
   departments: [
     { name: 'Export sales', email: 'exports@pharmadentremedies.com', phone: '+91 79 4000 1234' },
-    { name: 'Regulatory affairs', email: 'regulatory@pharmadentremedies.com', phone: '+91 79 4000 1235' },
-    { name: 'Contract manufacturing', email: 'cmo@pharmadentremedies.com', phone: '+91 79 4000 1236' },
+    {
+      name: 'Regulatory affairs',
+      email: 'regulatory@pharmadentremedies.com',
+      phone: '+91 79 4000 1235',
+    },
+    {
+      name: 'Contract manufacturing',
+      email: 'cmo@pharmadentremedies.com',
+      phone: '+91 79 4000 1236',
+    },
     { name: 'Quality & audits', email: 'quality@pharmadentremedies.com' },
   ],
   formSuccessMessage:
@@ -755,27 +762,27 @@ export const productsPage = {
     eyebrow: 'Products',
     title: 'Pharmaceutical product catalogue',
     subtitle:
-      'WHO-GMP certified generic formulations across ten therapeutic categories. Filter by category, dosage form or prescription status and add products to your inquiry list.',
+      'Browse our product list by therapeutic category. Filter by dosage form or prescription status and add the products you need to your cart to request a single quotation.',
   },
-  intro: `Browse our complete range of tablets, capsules, syrups, injectables, creams and nutraceuticals. Every product page includes composition, indications, pack sizes, storage conditions and downloadable documentation. Add the products you need to your inquiry list and request a single quotation for everything.`,
+  intro: `Our product list covers antibiotics, antimalarials, cardiovascular, diabetes, pain, gastrointestinal, respiratory, vitamin, dermatology, CNS, dental and reproductive health products in tablet, capsule, syrup, cream and powder forms. Every product page shows composition, presentation and indications. Add the products you need to your cart and request a quotation for everything at once.`,
   faqs: [
     {
       question: 'Are all listed products available for export?',
       answer:
-        'Yes – every product in the catalogue is manufactured in our WHO-GMP facilities and available for export, subject to registration in the destination country.',
+        'Listed products are available for export, subject to registration and import requirements in the destination country. Contact us to confirm availability for your market.',
     },
     {
       question: 'Can I request a product that is not listed?',
       answer:
-        'Our portfolio exceeds 300 formulations, not all of which are online. Tell us what you need and we will confirm availability or evaluate development.',
+        'Our portfolio is wider than the online list. Tell us what you need and we will confirm availability.',
     },
   ],
   meta: {
     title: 'Generic Medicines Catalogue',
     description:
-      'Browse WHO-GMP certified generic medicines: antibiotics, cardiovascular, diabetes, pain, GI, respiratory, dermatology, CNS, vitamins and injectables. Inquire for pricing.',
+      'Browse generic medicines by category: antibiotics, antimalarials, cardiovascular, diabetes, pain, gastrointestinal, respiratory, vitamins, dermatology, CNS, dental care and more. Request a quote.',
     keywords:
-      'pharmaceutical products list, generic medicines catalogue, pharma products exporter, medicine manufacturer product list',
+      'pharmaceutical products list, generic medicines catalogue, pharma products exporter, medicine product list',
   },
 }
 

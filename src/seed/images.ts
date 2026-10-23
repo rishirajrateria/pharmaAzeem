@@ -140,6 +140,30 @@ const artBox = `
   <path d="M420 330 l180 90 v260 l-180 -90z" fill="url(#red)" fill-opacity=".35"/>
 </g>`
 
+const artToothpaste = `
+<g filter="url(#shadow)" transform="rotate(-24 600 470)">
+  <path d="M360 410 h360 l60 24 v92 l-60 24 h-360 a40 40 0 0 1 -40 -40 v-60 a40 40 0 0 1 40 -40z" fill="#fff"/>
+  <rect x="470" y="410" width="34" height="140" fill="url(#red)" fill-opacity=".9"/>
+  <rect x="540" y="410" width="34" height="140" fill="url(#red)" fill-opacity=".35"/>
+  <rect x="780" y="440" width="84" height="70" rx="14" fill="url(#red)"/>
+  <rect x="380" y="418" width="330" height="26" rx="13" fill="url(#shine)"/>
+</g>
+<g filter="url(#shadow)" transform="rotate(18 700 700)">
+  <rect x="520" y="680" width="300" height="34" rx="17" fill="#fff"/>
+  <rect x="820" y="660" width="120" height="74" rx="18" fill="url(#red)" fill-opacity=".85"/>
+  <rect x="836" y="640" width="88" height="24" rx="8" fill="#fff"/>
+</g>`
+const artMouthwash = `
+<g filter="url(#shadow)">
+  <rect x="520" y="200" width="120" height="70" rx="14" fill="url(#red)"/>
+  <rect x="535" y="262" width="90" height="40" rx="8" fill="#fff"/>
+  <path d="M470 300 h220 v330 a50 50 0 0 1 -50 50 h-120 a50 50 0 0 1 -50 -50z" fill="#fff"/>
+  <path d="M490 430 h180 v190 a30 30 0 0 1 -30 30 h-120 a30 30 0 0 1 -30 -30z" fill="url(#red)" fill-opacity=".8"/>
+  <rect x="482" y="320" width="16" height="290" rx="8" fill="url(#shine)"/>
+  <path d="M730 520 h120 l-16 140 h-88z" fill="#fff"/>
+  <path d="M738 580 h104 l-8 80 h-88z" fill="url(#red)" fill-opacity=".8"/>
+</g>`
+
 const ART: Record<string, string> = {
   Tablet: artTablet,
   Capsule: artCapsule,
@@ -258,6 +282,45 @@ export async function badgeImage(file: string, title: string, issuer: string) {
   <text x="400" y="430" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#55545f">${esc(issuer)}</text>
   <text x="400" y="490" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#e11d2e" letter-spacing="4">SAMPLE CERTIFICATE ARTWORK</text>
   </svg>`
+  await sharp(Buffer.from(svg)).webp({ quality: 84 }).toFile(out)
+  return out
+}
+
+/** Generic pack illustrations (no text) shared by every product of the same kind. */
+export type PackKind =
+  'tablet' | 'capsule' | 'syrup' | 'cream' | 'toothpaste' | 'mouthwash' | 'sachet' | 'kit'
+
+const PACK_ART: Record<PackKind, string> = {
+  tablet: artTablet,
+  capsule: artCapsule,
+  syrup: artSyrup,
+  cream: artCream,
+  toothpaste: artToothpaste,
+  mouthwash: artMouthwash,
+  sachet: artSachet,
+  kit: artBox,
+}
+
+export const PACK_KINDS = Object.keys(PACK_ART) as PackKind[]
+
+export const PACK_ALT: Record<PackKind, string> = {
+  tablet: 'Illustration of tablets',
+  capsule: 'Illustration of capsules',
+  syrup: 'Illustration of a syrup bottle',
+  cream: 'Illustration of a cream tube',
+  toothpaste: 'Illustration of a toothpaste tube and toothbrush',
+  mouthwash: 'Illustration of a mouthwash bottle',
+  sachet: 'Illustration of a powder sachet',
+  kit: 'Illustration of a product carton',
+}
+
+export async function packImage(file: string, kind: PackKind) {
+  fs.mkdirSync(OUT, { recursive: true })
+  const out = path.join(OUT, file)
+  if (fs.existsSync(out)) return out
+  const w = 1200
+  const h = 1200
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${defs}${backdrop(w, h)}${PACK_ART[kind]}</svg>`
   await sharp(Buffer.from(svg)).webp({ quality: 84 }).toFile(out)
   return out
 }

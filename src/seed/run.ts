@@ -26,8 +26,9 @@ import {
   qualityPage,
   siteSettings,
 } from './data/globals'
-import { formDefaults, products as seedProducts } from './data/products'
-import { abstractImage, badgeImage, productImage } from './images'
+import { ensurePackImages, upsertProducts, defaultCategoryFaqs } from './catalogue'
+import { products as seedProducts } from './data/products'
+import { abstractImage, badgeImage } from './images'
 import { md } from './lexical'
 
 const fresh = process.argv.includes('--fresh') || process.env.SEED_FRESH === '1'
@@ -41,24 +42,6 @@ const slugify = (s: string) =>
     .replace(/^-+|-+$/g, '')
 
 const log = (msg: string) => console.log(`• ${msg}`)
-
-/** Sourcing FAQs for categories that have none – editable later in the admin panel. */
-const defaultCategoryFaqs = (title: string) => [
-  {
-    question: `Can I order ${title.toLowerCase()} products in bulk for export?`,
-    answer: `Yes. Every product in the ${title} range is manufactured in our WHO-GMP certified facilities and available for export in bulk, institutional and private-label packs, subject to registration in your country.`,
-  },
-  {
-    question: `Which documents do you provide for ${title.toLowerCase()} registrations?`,
-    answer:
-      'We supply CTD-format dossiers, Certificates of Pharmaceutical Product (CoPP), GMP certificates, batch Certificates of Analysis, stability data for your climatic zone and samples on request.',
-  },
-  {
-    question: `How do I get a quotation for ${title.toLowerCase()} products?`,
-    answer:
-      'Add the products you need to your inquiry list and click "Inquire now", or send us your product list through the contact form – our export team replies with pricing, minimum order quantities and lead times.',
-  },
-]
 
 async function wipe(payload: Payload) {
   for (const collection of [
@@ -233,72 +216,14 @@ async function main() {
   log(`Created ${catIdBySlug.size} categories`)
 
   // ---------- Products ----------
-  const productIds: number[] = []
-  const productIdBySku = new Map<string, number>()
-  for (const p of seedProducts) {
-    const defaults = formDefaults(p.form)
-    const slug = slugify(
-      `${p.title} ${p.generic}`.length > 60 ? p.title : `${p.title}-${p.generic}`,
-    )
-    const image = await upload(
-      payload,
-      await productImage(`${p.sku.toLowerCase()}.webp`, {
-        brand: p.title,
-        generic: p.generic,
-        strength: p.strength,
-        form: p.form,
-      }),
-      `${p.title} – ${p.generic} ${p.strength} ${p.form}`,
-    )
-    const cats = p.categories
-      .map((s) => catIdBySlug.get(s))
-      .filter((x): x is number => typeof x === 'number')
-    const doc = await payload.create({
-      collection: 'products',
-      data: {
-        title: p.title,
-        slug,
-        genericName: p.generic,
-        categories: cats,
-        featured: Boolean(p.featured),
-        badges: p.badges as any,
-        images: [image],
-        shortDescription: p.short,
-        dosageForm: p.form as any,
-        strength: p.strength,
-        prescriptionStatus: p.rx || 'rx',
-        route: p.route as any,
-        packSize: p.packSize,
-        packaging: p.packaging || defaults.packaging,
-        shelfLife: p.shelfLife || defaults.shelfLife,
-        storage: p.storage || defaults.storage,
-        activeIngredients: p.ingredients,
-        therapeuticClass: p.therapeuticClass,
-        specifications: p.specs,
-        description: md(p.description),
-        indications: md(p.indications),
-        keyBenefits: p.benefits.map((text) => ({ text })),
-        faqs: p.faqs,
-        price: p.price,
-        showPrice: 'default',
-        sku: p.sku,
-        minOrderQuantity: 1,
-        availability: 'in-stock',
-        meta: {
-          title: p.meta?.title || `${p.generic} ${p.strength} ${p.form} – ${p.title}`,
-          description: p.meta?.description || p.short,
-          keywords:
-            p.meta?.keywords ||
-            `${p.generic.toLowerCase()} ${p.strength.toLowerCase()}, ${p.generic.toLowerCase()} ${p.form.toLowerCase()} manufacturer, ${p.generic.toLowerCase()} exporter`,
-        },
-        _status: 'published',
-      },
-      context: ctx,
-    })
-    productIds.push(doc.id)
-    productIdBySku.set(p.sku, doc.id)
+  const packImages = await ensurePackImages(payload)
+  log(`Uploaded ${packImages.size} generic pack illustrations`)
+  const productStats = await upsertProducts(payload, seedProducts, catIdBySlug, packImages)
+  if (productStats.failed.length) {
+    console.error(productStats.failed.join('\n'))
+    throw new Error(`${productStats.failed.length} products failed to import`)
   }
-  log(`Created ${productIds.length} products`)
+  log(`Created ${productStats.created} products`)
 
   // ---------- Countries ----------
   const productsByCat = new Map<number, number[]>()

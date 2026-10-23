@@ -50,9 +50,10 @@ export const dynamicParams = true
 
 type Params = Promise<{ slug: string }>
 
+/** Pre-build the first pages only; the rest are rendered on first visit and then cached (ISR). */
 export async function generateStaticParams() {
   const products = await getAllProductsSlim()
-  return products.map((p) => ({ slug: p.slug }))
+  return products.slice(0, 60).map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
