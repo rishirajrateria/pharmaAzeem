@@ -164,7 +164,7 @@ export type ProductQuery = {
 }
 
 const sortMap: Record<ProductSort, string> = {
-  featured: '-featured,-updatedAt',
+  featured: '-featured,title',
   newest: '-createdAt',
   'name-asc': 'title',
   'name-desc': '-title',

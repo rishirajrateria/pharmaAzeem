@@ -272,7 +272,7 @@ export function productData(
     minOrderQuantity: 1,
     availability: 'made-to-order' as const,
     meta: { title: metaTitle, description: trim(p.short, 160), keywords },
-    _status: 'published' as const,
+    _status: (p.draft ? 'draft' : 'published') as 'draft' | 'published',
   }
 }
 
@@ -309,6 +309,7 @@ export async function upsertProducts(
             collection: 'products',
             id,
             data: productData(p, catIds, imageIds),
+            draft: p.draft,
             context: ctx,
           })
           stats.updated++
@@ -316,6 +317,7 @@ export async function upsertProducts(
           await payload.create({
             collection: 'products',
             data: productData(p, catIds, imageIds),
+            draft: p.draft,
             context: ctx,
           })
           stats.created++
@@ -442,9 +444,17 @@ const LEGACY_PRODUCTS_PAGE = {
     'WHO-GMP certified generic formulations across ten therapeutic categories. Filter by category, dosage form or prescription status and add products to your inquiry list.',
   intro:
     'Browse our complete range of tablets, capsules, syrups, injectables, creams and nutraceuticals. Every product page includes composition, indications, pack sizes, storage conditions and downloadable documentation. Add the products you need to your inquiry list and request a single quotation for everything.',
-  faqQuestions: [
-    'Are all listed products available for export?',
-    'Can I request a product that is not listed?',
+  faqs: [
+    {
+      question: 'Are all listed products available for export?',
+      answer:
+        'Yes – every product in the catalogue is manufactured in our WHO-GMP facilities and available for export, subject to registration in the destination country.',
+    },
+    {
+      question: 'Can I request a product that is not listed?',
+      answer:
+        'Our portfolio exceeds 300 formulations, not all of which are online. Tell us what you need and we will confirm availability or evaluate development.',
+    },
   ],
   metaDescription:
     'Browse WHO-GMP certified generic medicines: antibiotics, cardiovascular, diabetes, pain, GI, respiratory, dermatology, CNS, vitamins and injectables. Inquire for pricing.',
@@ -465,9 +475,12 @@ export async function refreshProductsPageCopy(payload: Payload) {
     data.hero = { ...cur.hero, subtitle: productsPage.hero.subtitle }
   if (lexicalText(cur.intro).replace(/\s+/g, ' ').trim() === LEGACY_PRODUCTS_PAGE.intro)
     data.intro = md(productsPage.intro)
-  const q = (cur.faqs || []).map((f: { question: string }) => f.question)
-  if (JSON.stringify(q) === JSON.stringify(LEGACY_PRODUCTS_PAGE.faqQuestions))
-    data.faqs = productsPage.faqs
+  const current = (cur.faqs || []).map((f: { question: string; answer: string }) => [
+    f.question,
+    f.answer,
+  ])
+  const legacy = LEGACY_PRODUCTS_PAGE.faqs.map((f) => [f.question, f.answer])
+  if (JSON.stringify(current) === JSON.stringify(legacy)) data.faqs = productsPage.faqs
   if (cur.meta?.description === LEGACY_PRODUCTS_PAGE.metaDescription)
     data.meta = {
       ...cur.meta,

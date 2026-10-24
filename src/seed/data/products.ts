@@ -38,6 +38,8 @@ export type ListProduct = {
   aliases: string[]
   short: string
   indications: string[]
+  /** Saved as a hidden draft instead of being published (needs a decision before it goes live). */
+  draft: boolean
 }
 
 export const products = list as ListProduct[]
