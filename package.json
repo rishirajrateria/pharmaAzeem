@@ -7,7 +7,6 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
-    "vercel-build": "cross-env NODE_OPTIONS=--no-deprecation tsx ./scripts/import-products.ts --if-needed && pnpm build",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
