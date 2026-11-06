@@ -55,7 +55,7 @@ export function ProductCard({
     >
       <Link
         href={href}
-        className="relative m-2 mb-0 block aspect-square overflow-hidden rounded-[1.25rem] bg-gradient-to-br from-white/80 via-white/50 to-brand-100/60 ring-1 ring-white/80"
+        className="relative m-2 mb-0 block aspect-square overflow-hidden rounded-[1.25rem] bg-white/70 ring-1 ring-white/90"
         aria-label={product.title}
       >
         <Media

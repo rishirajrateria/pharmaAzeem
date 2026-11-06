@@ -47,7 +47,7 @@ export function FeaturedCategories({
                 href={`/categories/${c.path}`}
                 className="glass-card lift group flex h-full flex-col items-center !rounded-3xl px-3 py-7 text-center"
               >
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-white to-brand-100 text-brand-700 ring-1 ring-white shadow-[0_8px_18px_-10px_rgb(175_2_1_/_0.45)] transition-all duration-300 group-hover:bg-brand-gradient group-hover:text-white group-hover:shadow-[0_12px_22px_-10px_rgb(175_2_1_/_0.7)]">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 ring-1 ring-white shadow-[0_8px_18px_-10px_rgb(175_2_1_/_0.45)] transition-all duration-300 group-hover:bg-brand-gradient group-hover:text-white group-hover:shadow-[0_12px_22px_-10px_rgb(175_2_1_/_0.7)]">
                   <Icon name={c.icon} className="h-6 w-6" />
                 </span>
                 <span className="mt-3 text-sm font-semibold leading-snug text-ink-950">
@@ -60,12 +60,12 @@ export function FeaturedCategories({
           <li>
             <Link
               href="/products"
-              className="bg-hero lift group flex h-full flex-col items-center justify-center rounded-3xl px-3 py-7 text-center text-white shadow-[0_20px_40px_-20px_rgb(120_2_1_/_0.7)]"
+              className="lift group flex h-full flex-col items-center justify-center rounded-3xl bg-brand-700 px-3 py-7 text-center text-white"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur transition group-hover:bg-white group-hover:text-brand-700">
                 <ArrowRight className="h-6 w-6" aria-hidden="true" />
               </span>
-              <span className="mt-3 text-sm font-semibold leading-snug">All products</span>
+              <span className="mt-3 text-sm font-semibold leading-snug text-white">All products</span>
               <span className="mt-1 text-xs text-white/70">{totalProducts} products</span>
             </Link>
           </li>
