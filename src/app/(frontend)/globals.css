@@ -46,8 +46,9 @@
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
+  --radius-xl: 16px;
+  --radius-2xl: 22px;
+  --radius-3xl: 30px;
 
   /* Neutral, barely-there elevation – no coloured glows. */
   --shadow-glass: 0 1px 0 0 rgb(255 255 255 / 0.7) inset, 0 8px 24px -14px rgb(40 12 14 / 0.18);
@@ -211,6 +212,31 @@
       var(--shadow-glass-lg),
       0 0 0 1px rgb(11 10 15 / 0.05);
   }
+}
+@utility lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    background-color 0.2s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.8) inset,
+      0 22px 44px -22px rgb(120 2 1 / 0.35);
+  }
+}
+/* Deep crimson banner with soft light spots – hero and call-to-action panels. */
+@utility bg-hero {
+  background-color: var(--color-brand-800);
+  background-image:
+    radial-gradient(40rem 26rem at 90% -10%, rgb(255 255 255 / 0.16), transparent 60%),
+    radial-gradient(30rem 24rem at -5% 110%, rgb(255 120 110 / 0.28), transparent 60%),
+    linear-gradient(
+      120deg,
+      var(--color-brand-900),
+      var(--color-brand-700) 55%,
+      var(--color-brand-600)
+    );
 }
 @utility glass-edge {
   position: relative;

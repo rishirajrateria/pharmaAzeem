@@ -13,9 +13,9 @@ export function CtaBand({ cta, settings }: { cta?: Homepage['cta']; settings: Si
   const email = settings.contact?.email
 
   return (
-    <section aria-labelledby="cta-title" className="bg-brand-band text-white">
-      <Container className="py-14 sm:py-16 lg:py-20">
-        <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
+    <section aria-labelledby="cta-title" className="py-14 sm:py-20">
+      <Container>
+        <div className="bg-hero relative overflow-hidden rounded-3xl px-7 py-12 text-white shadow-[0_30px_60px_-30px_rgb(120_2_1_/_0.6)] sm:px-12 sm:py-16 lg:flex lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <h2 id="cta-title" className="heading-2 text-white">
               {cta.heading}

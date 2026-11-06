@@ -17,20 +17,24 @@ export function FeaturedProducts({
 }) {
   if (!products.length) return null
   return (
-    <section aria-labelledby="featured-products-title" className="py-12 sm:py-14">
+    <section aria-labelledby="featured-products-title" className="py-14 sm:py-20">
       <Container>
-        <div className="flex items-end justify-between gap-4 border-b border-ink-900/10 pb-4">
+        <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 id="featured-products-title" className="text-2xl font-semibold text-ink-950">
+            <p className="eyebrow mb-2">Popular picks</p>
+            <h2
+              id="featured-products-title"
+              className="text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl"
+            >
               Best-selling products
             </h2>
-            <p className="mt-1 text-sm text-ink-500">
+            <p className="mt-2 text-base text-ink-500">
               Export-ready generics with dossiers, stability data and CoA on request
             </p>
           </div>
           <Link
             href="/products"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-brand-700/20 bg-white/60 px-4 py-2 text-sm font-semibold text-brand-700 backdrop-blur transition hover:border-brand-700 hover:bg-white"
           >
             Shop all products <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>

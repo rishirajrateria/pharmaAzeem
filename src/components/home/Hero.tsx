@@ -13,9 +13,8 @@ import type { CategoryNode } from '@/lib/data'
 import type { Certification, Homepage } from '@/payload-types'
 
 import { Media } from '../Media'
-import { Button, Container, Eyebrow } from '../ui'
+import { Button, Container } from '../ui'
 import { Icon } from '../ui/Icon'
-import { Highlight } from './Highlight'
 
 type Props = {
   hero: Homepage['hero']
@@ -114,40 +113,49 @@ export function Hero({
           <div
             className={
               categories.length > 0
-                ? 'glass grid overflow-hidden md:grid-cols-[3fr_2fr] lg:col-span-9'
-                : 'glass grid overflow-hidden md:grid-cols-[3fr_2fr] lg:col-span-12'
+                ? 'bg-hero relative grid overflow-hidden rounded-3xl text-white shadow-[0_30px_60px_-30px_rgb(120_2_1_/_0.55)] md:grid-cols-[1.3fr_0.7fr] lg:col-span-9'
+                : 'bg-hero relative grid overflow-hidden rounded-3xl text-white shadow-[0_30px_60px_-30px_rgb(120_2_1_/_0.55)] md:grid-cols-[1.3fr_0.7fr] lg:col-span-12'
             }
           >
-            <div className="flex flex-col justify-center p-6 sm:p-10">
-              {hero.eyebrow && <Eyebrow>{hero.eyebrow}</Eyebrow>}
+            <div className="relative z-10 flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+              {hero.eyebrow && (
+                <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden="true" />
+                  {hero.eyebrow}
+                </span>
+              )}
               <h1
                 id="hero-title"
-                className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink-950 xl:text-[2.5rem]"
+                className="mt-5 text-3xl font-semibold leading-[1.12] tracking-tight text-white sm:text-4xl xl:text-[2.6rem]"
               >
-                <Highlight text={hero.title} highlight={hero.highlight} />
+                {hero.title}
               </h1>
-              {hero.subtitle && <p className="mt-4 text-base text-ink-600">{hero.subtitle}</p>}
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button href={primary?.url || '/products'}>
+              {hero.subtitle && (
+                <p className="mt-4 max-w-lg text-base leading-relaxed text-white/80">
+                  {hero.subtitle}
+                </p>
+              )}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button href={primary?.url || '/products'} variant="light">
                   {primary?.label || 'Shop all products'}{' '}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
                 {secondary && (
-                  <Button href={secondary.url!} variant="secondary">
+                  <Button href={secondary.url!} variant="outline-light">
                     {secondary.label}
                   </Button>
                 )}
               </div>
             </div>
-            <div className="relative min-h-60 border-t border-white/80 md:min-h-full md:border-l md:border-t-0">
+            <div className="relative min-h-64 md:min-h-full">
               <Media
                 media={hero.image}
                 size="large"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 37vw"
-                className="absolute inset-0 h-full w-full"
-                imgClassName="object-cover"
+                className="absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,transparent,black_30%)] md:[mask-image:linear-gradient(to_right,transparent,black_42%)]"
+                imgClassName="object-cover opacity-95 mix-blend-luminosity md:mix-blend-normal"
               />
             </div>
           </div>

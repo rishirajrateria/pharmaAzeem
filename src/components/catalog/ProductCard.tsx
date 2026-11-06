@@ -51,11 +51,11 @@ export function ProductCard({
     { title: string; path?: string | null } | undefined
   return (
     <article
-      className={cn('group glass-card relative flex flex-col overflow-hidden !p-0', className)}
+      className={cn('group glass-card lift relative flex flex-col overflow-hidden !p-0', className)}
     >
       <Link
         href={href}
-        className="relative block aspect-square overflow-hidden bg-white"
+        className="relative block aspect-square overflow-hidden bg-white/40"
         aria-label={product.title}
       >
         <Media
@@ -65,6 +65,7 @@ export function ProductCard({
           sizes="(max-width: 420px) 92vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           priority={priority}
           className="h-full w-full"
+          imgClassName="transition-transform duration-500 ease-out group-hover:scale-105"
         />
         {(product.badges?.length || 0) > 0 && (
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">

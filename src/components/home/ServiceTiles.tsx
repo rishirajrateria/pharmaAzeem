@@ -35,12 +35,18 @@ export function ServiceTiles() {
         <ul className="grid gap-4 md:grid-cols-3">
           {TILES.map((t) => (
             <li key={t.href}>
-              <Link href={t.href} className="glass-card group flex h-full flex-col p-6">
-                <t.icon className="h-8 w-8 text-brand-700" aria-hidden="true" />
+              <Link href={t.href} className="glass-card lift group flex h-full flex-col p-7">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_10px_20px_-10px_rgb(175_2_1_/_0.7)]">
+                  <t.icon className="h-6 w-6" aria-hidden="true" />
+                </span>
                 <h2 className="mt-4 text-lg font-semibold text-ink-950">{t.title}</h2>
                 <p className="mt-2 flex-1 text-sm text-ink-600">{t.text}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:underline">
-                  {t.cta} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  {t.cta}{' '}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </span>
               </Link>
             </li>
