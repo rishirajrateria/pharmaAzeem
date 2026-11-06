@@ -64,9 +64,11 @@ const variantClass: Record<Variant, string> = {
   ghost: 'btn-ghost',
   dark: 'btn-dark',
   /** White button for use on a solid brand-700 (or dark) band. */
-  light: 'btn bg-white text-brand-700 hover:bg-ink-50',
+  light:
+    'btn bg-white text-brand-700 shadow-[0_10px_30px_-10px_rgb(0_0_0_/_0.45)] hover:-translate-y-0.5 hover:bg-brand-50',
   /** Outlined white button – secondary action on a solid brand-700 (or dark) band. */
-  'outline-light': 'btn border border-white/60 text-white hover:bg-white/10',
+  'outline-light':
+    'btn border border-white/35 bg-white/10 text-white backdrop-blur-xl shadow-[inset_0_1px_0_rgb(255_255_255_/_0.3)] hover:bg-white/20',
 }
 
 type ButtonProps = {
@@ -127,7 +129,7 @@ export const Badge = ({
 }: ComponentProps<'span'> & { tone?: 'brand' | 'ink' | 'success' | 'glass' }) => (
   <span
     className={cn(
-      'inline-flex items-center rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
+      'inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider',
       tone === 'brand' && 'bg-brand-gradient text-white',
       tone === 'ink' && 'bg-ink-950 text-white',
       tone === 'success' && 'bg-emerald-500/10 text-emerald-700 border border-emerald-500/20',

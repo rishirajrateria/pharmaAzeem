@@ -135,7 +135,7 @@ export function HeaderClient({
 
       <header
         className={cn(
-          'sticky top-0 z-50 border-b border-white/70 bg-white/70 backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200',
+          'sticky top-0 z-50 border-b border-white/60 bg-white/45 shadow-[inset_0_-1px_0_rgb(255_255_255_/_0.6)] backdrop-blur-2xl backdrop-saturate-[1.8] transition-shadow duration-200',
           scrolled && 'shadow-glass-lg',
         )}
       >
@@ -165,7 +165,7 @@ export function HeaderClient({
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-11 w-11 items-center justify-center glass text-ink-800 lg:hidden rounded-lg"
+                className="inline-flex h-11 w-11 items-center justify-center glass !rounded-full text-ink-800 lg:hidden"
                 aria-label="Open menu"
                 aria-expanded={open}
               >
@@ -430,7 +430,7 @@ function HeaderSearch({ className }: { className?: string }) {
       <label htmlFor={id} className="sr-only">
         Search products
       </label>
-      <div className="flex w-full overflow-hidden rounded-lg border border-ink-300/80 bg-white/70 backdrop-blur-md focus-within:border-brand-700 focus-within:bg-white/90">
+      <div className="flex w-full overflow-hidden rounded-full border border-white/90 bg-white/50 p-1 shadow-[inset_0_1px_0_rgb(255_255_255_/_0.9),0_8px_20px_-14px_rgb(120_2_1_/_0.4)] backdrop-blur-xl focus-within:border-brand-300 focus-within:bg-white/80">
         <Search className="ml-3.5 h-4 w-4 shrink-0 self-center text-ink-400" aria-hidden="true" />
         <input
           id={id}
@@ -440,11 +440,11 @@ function HeaderSearch({ className }: { className?: string }) {
           autoComplete="off"
           enterKeyHint="search"
           maxLength={80}
-          className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
+          className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
         />
         <button
           type="submit"
-          className="bg-brand-gradient px-5 text-sm font-semibold text-white transition hover:brightness-110"
+          className="rounded-full bg-brand-gradient px-5 text-sm font-semibold text-white transition hover:brightness-110"
         >
           Search
         </button>

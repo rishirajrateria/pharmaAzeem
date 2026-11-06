@@ -1,40 +1,56 @@
 import type { Homepage } from '@/payload-types'
 
-import { Container, Section, SectionHeading } from '../ui'
+import { Container } from '../ui'
 import { Icon } from '../ui/Icon'
 import { Reveal } from '../ui/Reveal'
 
-/** Reasons to work with us – a grid of icon cards. */
+/** Reasons to work with us – frosted glass cards on a deep crimson band for contrast. */
 export function WhyChooseUs({ cards }: { cards?: Homepage['whyUs'] }) {
   if (!cards?.length) return null
   return (
-    <Section aria-label="Why choose us">
+    <section aria-label="Why choose us" className="py-14 sm:py-20">
       <Container>
-        <SectionHeading
-          eyebrow="Why choose us"
-          title="Built to be your most dependable supplier"
-          description="Quality systems, regulatory depth and logistics designed around the needs of importers, distributors, hospitals and tender boards."
-          align="center"
-        />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((c, i) => (
-            <Reveal as="li" key={c.id || i} delay={(i % 3) * 70} className="flex">
-              <div className="glass-card lift group relative flex w-full flex-col p-7">
-                <span className="absolute right-6 top-5 text-4xl font-semibold text-brand-700/10 transition-colors duration-300 group-hover:text-brand-700/20">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-[0_10px_20px_-10px_rgb(175_2_1_/_0.7)]">
-                  <Icon name={c.icon} className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold text-ink-950">{c.title}</h3>
-                {c.description && (
-                  <p className="mt-2 text-sm leading-relaxed text-ink-600">{c.description}</p>
-                )}
-              </div>
-            </Reveal>
-          ))}
-        </ul>
+        <div className="bg-hero relative isolate overflow-hidden rounded-[2.5rem] px-6 py-14 text-white shadow-[0_40px_80px_-40px_rgb(120_2_1_/_0.7)] sm:px-10 lg:px-14 lg:py-20">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+            <span className="blob -right-20 -top-20 h-80 w-80 bg-rose-300/35" />
+            <span
+              className="blob -bottom-24 -left-16 h-96 w-96 bg-brand-400/45"
+              style={{ animationDelay: '-8s' }}
+            />
+            <div className="absolute inset-0 grid-pattern opacity-[0.06] [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
+          </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+              Why choose us
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Built to be your most dependable supplier
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-white/75 sm:text-lg">
+              Quality systems, regulatory depth and logistics designed around the needs of
+              importers, distributors, hospitals and tender boards.
+            </p>
+          </div>
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {cards.map((c, i) => (
+              <Reveal as="li" key={c.id || i} delay={(i % 3) * 70} className="flex">
+                <div className="glass-night group relative flex w-full flex-col p-7 transition duration-300 hover:-translate-y-1 hover:bg-white/15">
+                  <span className="absolute right-6 top-5 text-5xl font-semibold text-white/10 transition-colors duration-300 group-hover:text-white/20">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-[0_10px_24px_-10px_rgb(0_0_0_/_0.5)]">
+                    <Icon name={c.icon} className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{c.title}</h3>
+                  {c.description && (
+                    <p className="mt-2 text-sm leading-relaxed text-white/70">{c.description}</p>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </Container>
-    </Section>
+    </section>
   )
 }

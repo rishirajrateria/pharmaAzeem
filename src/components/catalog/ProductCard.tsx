@@ -51,11 +51,11 @@ export function ProductCard({
     { title: string; path?: string | null } | undefined
   return (
     <article
-      className={cn('group glass-card lift relative flex flex-col overflow-hidden !p-0', className)}
+      className={cn('group glass-card lift relative flex flex-col overflow-hidden !rounded-3xl !p-0', className)}
     >
       <Link
         href={href}
-        className="relative block aspect-square overflow-hidden bg-white/40"
+        className="relative m-2 mb-0 block aspect-square overflow-hidden rounded-[1.25rem] bg-gradient-to-br from-white/80 via-white/50 to-brand-100/60 ring-1 ring-white/80"
         aria-label={product.title}
       >
         <Media
@@ -77,7 +77,7 @@ export function ProductCard({
           </div>
         )}
         {product.prescriptionStatus && (
-          <span className="absolute right-3 top-3 glass px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink-700">
+          <span className="absolute right-3 top-3 glass !rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink-700">
             {product.prescriptionStatus === 'otc' ? 'OTC' : 'Rx'}
           </span>
         )}
